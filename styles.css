@@ -1,3 +1,6 @@
+/* Establish layer order so cascade is predictable */
+@layer base, header, intro, featured, projects, contact, footer, roadmap;
+
 @layer base {
   :root {
     /* colors */
@@ -11,7 +14,7 @@
     /* font families */
     --main: "Lato", sans-serif;
     --heading: "Josefin Sans", sans-serif;
-    --mono: "Fira mono", monospace;
+    --mono: "Fira Mono", monospace;
 
     /* type scale */
     --base-size: 1.2rem;
@@ -53,6 +56,7 @@
     margin: 0;
     padding: 0;
   }
+
   h1,
   h2,
   h3,
@@ -80,44 +84,18 @@
   h6 {
     font-size: var(--h6);
   }
+
   .mono {
     font-family: var(--mono);
   }
 
-  .colors {
-    display: flex;
-    /* you could do this with grid as well, but you may need a few more lines of code */
-  }
-  .colors > * {
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
-    border: 1px solid black;
-  }
-  .white {
-    background-color: var(--white);
-  }
-  .black {
-    background-color: var(--black);
-  }
-  .tan {
-    background-color: var(--tan);
-  }
-  .green {
-    background-color: var(--green);
-  }
-  .lightgreen {
-    background-color: var(--lightgreen);
-  }
-  .red {
-    background-color: var(--red);
-  }
   a {
     color: var(--green);
   }
   a:hover {
     text-decoration: none;
   }
+
   img {
     max-width: 100%;
   }
@@ -125,11 +103,13 @@
     margin: 0;
     padding: 0;
   }
+
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
   }
+
   .button {
     display: inline-block;
     background-color: var(--green);
@@ -143,20 +123,61 @@
     font-weight: 600;
     line-height: 1;
   }
+  /* Consistent button states, site-wide */
+  a.button,
+  button.button {
+    background-color: var(--green);
+    color: var(--black);
+    transition: background-color 0.15s ease, transform 0.05s ease;
+  }
 
-  .button:hover {
+  /* hover + keyboard focus */
+  a.button:hover,
+  a.button:focus-visible,
+  button.button:hover,
+  button.button:focus-visible {
     background-color: var(--tan);
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  /* active (pressed) */
+  a.button:active,
+  button.button:active {
+    transform: translateY(1px);
+  }
+
+  /* optional: ensure visited buttons don’t turn purple/whatever */
+  a.button:visited {
+    color: var(--black);
+  }
+
+  /* Prevent background scroll when menu is open */
+  body.no-scroll {
+    overflow: hidden;
   }
 }
 
+/* Intro (hero) */
 @layer intro {
   .intro {
-    padding: 4rem 0 10rem 0;
+    padding: 4rem 0 10rem;
     background-image: url("img/fem-featured-top.png"), url("img/fem-comet.jpg");
     background-repeat: repeat-x, no-repeat;
     background-position: bottom center, 86% 10%;
     color: var(--white);
   }
+  .intro a:no-button {
+    color: var(--white);
+  }
+
+  .intro h2 {
+    text-transform: uppercase;
+  }
+  .name {
+    font-weight: 700;
+  }
+
   .availability {
     display: inline-block;
     font-weight: 600;
@@ -166,32 +187,26 @@
     color: var(--black);
     border: 1px solid var(--tan);
   }
-  /* Subtle “shiny” treatment for just those two links */
+
+  /* Shiny treatment for two links */
   p a[href*="frontendmasters.com"],
   p a[href*="developer.mozilla.org"] {
-    color: var(--accent-ink, var(--lightgreen));
+    color: var(--lightgreen);
     font-weight: 600;
-
-    /* clearer underline on bright backgrounds */
     text-decoration: underline;
     text-decoration-thickness: 2px;
     text-underline-offset: 3px;
     text-decoration-color: rgba(0, 0, 0, 0.55);
-
-    /* soft highlight behind the text */
     background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 0) 60%,
       rgba(10, 88, 255, 0.14) 0
     );
-    padding: 0 0.1em; /* keeps the highlight tidy */
+    padding: 0 0.1em;
     border-radius: 0.2em;
-    display: inline; /* stay inline */
     transition: text-shadow 0.2s, background 0.2s, outline-offset 0.2s,
       text-decoration-color 0.2s;
   }
-
-  /* Hover/focus: gentle glow + clearer underline */
   p a[href*="frontendmasters.com"]:hover,
   p a[href*="developer.mozilla.org"]:hover,
   p a[href*="frontendmasters.com"]:focus-visible,
@@ -201,37 +216,15 @@
     outline: 2px solid rgba(10, 88, 255, 0.4);
     outline-offset: 2px;
   }
-
-  /* Respect reduced motion preferences */
   @media (prefers-reduced-motion: reduce) {
     p a[href*="frontendmasters.com"],
     p a[href*="developer.mozilla.org"] {
       transition: none;
     }
   }
-
-  .intro a {
-    color: var(--white);
-  }
-  header button {
-    display: none;
-  }
-  .intro h2 {
-    text-transform: uppercase;
-  }
-  .name {
-    font-weight: 700;
-  }
-  @media (max-width: 640px) {
-    nav a:any-link:not(.button) {
-      color: var(--black);
-    }
-    nav a:hover {
-      color: var(--tan);
-    }
-  }
 }
 
+/* Header + mobile drawer (single transform-based system) */
 @layer header {
   header {
     display: flex;
@@ -240,28 +233,33 @@
     align-items: baseline;
     margin-bottom: 6rem;
   }
-
+   header button {
+    display: none;
+  }
   header h1 {
     font-size: var(--h3);
     color: var(--lightgreen);
     font-weight: 300;
     margin: 0;
   }
+
   header a {
     text-decoration: none;
     color: var(--white);
   }
-  header a:hover {
+  header a:not(.button):hover {
     color: var(--green);
   }
+
   header svg {
     width: 30px;
     fill: var(--white);
     margin-top: 0.5rem;
   }
-  header a:hover svg {
+  header a:not(.button):hover svg {
     fill: var(--green);
   }
+
   nav {
     font-family: var(--heading);
     font-weight: 600;
@@ -271,7 +269,7 @@
   nav ul {
     margin: 0;
     padding: 0;
-    list-style-type: none;
+    list-style: none;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -285,6 +283,8 @@
   nav .button:hover {
     color: var(--black);
   }
+
+  /* tablet header centering */
   @media (max-width: 830px) {
     header {
       justify-content: center;
@@ -295,14 +295,17 @@
       margin-bottom: 2rem;
     }
   }
-  @media (max-width: 640px) {
+
+  /* Mobile: show hamburger and use transform-based drawer */
+  @media (max-width: 768px) {
     header {
       justify-content: space-between;
     }
     header h1 {
       flex-basis: auto;
     }
-    /* hamburger button is the button HTML element */
+
+    /* hamburger button */
     header button {
       display: block;
       font-size: 3rem;
@@ -317,38 +320,37 @@
     header button::after {
       content: "\2630";
     }
-    /* menu that appears when hamburger is clicked */
-    nav {
+
+    /* drawer */
+    header nav {
       position: fixed;
       top: 0;
-      right: 200%;
-      width: 100vw;
-      height: 100vh;
-      opacity: 0;
-      background: #fff;
-      padding-top: 20%;
-      transition: right 0s 0.5s, opacity 0.5s;
-    }
-    /* trigger for animation - pulls down nav box */
-    button:focus + nav,
-    button:focus-within + nav {
       right: 0;
+      bottom: 0;
+      width: 80vw;
+      max-width: 22rem;
+      z-index: 1000;
+      background: #fff;
+      padding: 1rem;
+
+      /* closed */
+      transform: translateX(100%);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+
+      transition: transform 0.35s ease, opacity 0.35s ease,
+        visibility 0s linear 0.35s;
+    }
+    header nav.is-open {
+      transform: translateX(0);
       opacity: 1;
-      transition: right 0s, opacity 0.5s;
+      visibility: visible;
+      pointer-events: auto;
+      transition: transform 0.35s ease, opacity 0.35s ease, visibility 0s;
     }
-    nav ul {
-      display: block;
-      text-align: center;
-      position: relative;
-      top: -50vh;
-      transition: top 0.5s;
-    }
-    /* trigger for animation - makes the links in motion */
-    button:focus + nav ul,
-    button:focus-within + nav ul {
-      top: 0;
-    }
-    /* styling for links and SVGs in the mobile menu */
+
+    /* mobile menu link styles */
     header nav a:any-link:not(.button),
     header nav a:any-link:not(.button):visited {
       display: block;
@@ -356,36 +358,31 @@
       color: var(--black);
       transition: color 0.15s ease;
     }
-
     header nav a:any-link:not(.button):hover,
     header nav a:any-link:not(.button):focus-visible {
       color: var(--green);
     }
 
-    /* icons inherit link color so they only turn green on hover */
     header nav a svg {
       width: 1.6rem;
       height: 1.6rem;
       fill: currentColor;
       transition: fill 0.15s ease;
     }
-    /* keep spacing even between link items */
+
     nav .button {
       margin-top: 1.5rem;
     }
-    /* sets up the close icon - clicking anywhere not on a link will close the menu */
-    nav ul::after {
-      content: "\2716";
-      color: var(--green);
+
+    /* keep list vertical on mobile */
+    nav ul {
       display: block;
-      position: absolute;
-      top: 0.125rem;
-      right: 0.5rem;
-      font-size: 3rem;
-      line-height: 1;
+      text-align: left;
     }
   }
 }
+
+/* Featured */
 @layer featured {
   .section-featured {
     background-image: url(img/fem-feature-bottom.png),
@@ -394,37 +391,41 @@
     background-position: bottom center, center center;
     padding: 6rem 0;
   }
-
   .section-featured h2 {
     font-size: var(--h3);
   }
-
   .section-featured h3 {
-    margin: 3rem 0 0 0;
-    padding: 1rem 1rem 0 1rem;
+    margin: 3rem 0 0;
+    padding: 1rem 1rem 0;
     color: var(--white);
     font-size: var(--h4);
     background-color: var(--black);
   }
   .blackbox {
-    padding: 0rem 1rem 1rem 1rem;
+    padding: 0 1rem 1rem;
     color: white;
-    background-color: var(--black);
+    background: var(--black);
     border-radius: 0;
   }
+
   .section-featured article {
     display: grid;
     grid-template-rows: auto;
   }
-
-  .section-featured img {
-    grid-row: 1/2;
-    grid-column: 1/2;
+  .section-featured article > :is(img, picture) {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
     display: block;
     margin-top: 2rem;
   }
+  .section-featured article picture > img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   .section-featured ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
@@ -437,12 +438,12 @@
     grid-row: 2/3;
     margin-top: -1.75rem;
   }
-
   .section-featured li {
-    background-color: var(--white);
+    background: var(--white);
     padding: 0.5rem;
     border: 2px solid var(--red);
   }
+
   @media (max-width: 475px) {
     .section-featured h2 {
       font-size: var(--h4);
@@ -456,34 +457,23 @@
       font-size: var(--h5);
     }
     .section-featured ul {
-      background-color: var(--white);
+      background: var(--white);
       padding: 0.5rem;
       border: 2px solid var(--red);
     }
     .section-featured li {
-      background-color: transparent;
+      background: transparent;
       padding: 0;
-      border: none;
+      border: 0;
     }
   }
-  .section-featured article > :is(img, picture) {
-    grid-row: 1 / 2;
-    grid-column: 1 / 2;
-    display: block; 
-    margin-top: 2rem; 
-  }
-
-  
-  .section-featured article picture > img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
 }
+
+/* Projects */
 @layer projects {
   .section-projects {
-    background-color: var(--black);
-    padding: 6rem 0 4rem 0;
+    background: var(--black);
+    padding: 6rem 0 4rem;
     color: var(--white);
   }
   figure {
@@ -505,7 +495,7 @@
     color: var(--green);
   }
   figcaption {
-    background-color: var(--black);
+    background: var(--black);
     opacity: 0.8;
     text-align: center;
     grid-row: 2/3;
@@ -516,9 +506,9 @@
     font-size: var(--h5);
   }
   figcaption ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
-    margin: 0 0 2rem 0;
+    margin: 0 0 2rem;
     font-family: var(--mono);
     text-transform: uppercase;
     font-size: var(--small);
@@ -526,6 +516,7 @@
   figcaption li {
     display: inline-block;
   }
+
   .topgrid {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -534,12 +525,14 @@
   .topgrid figure:first-child {
     grid-row: span 2;
   }
+
   .bottomgrid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
     margin: 2rem 0;
   }
+
   @media (max-width: 992px) {
     .topgrid {
       display: block;
@@ -581,6 +574,8 @@
     }
   }
 }
+
+/* Contact */
 @layer contact {
   .section-contact {
     text-align: center;
@@ -592,6 +587,8 @@
     margin-top: 3rem;
   }
 }
+
+/* Footer */
 @layer footer {
   footer {
     text-align: center;
@@ -600,9 +597,8 @@
     background-size: cover;
     color: var(--white);
   }
-
   footer ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
     margin: 2rem 0;
     display: flex;
@@ -619,22 +615,22 @@
     fill: var(--green);
   }
 }
+
+/* Roadmap */
 @layer roadmap {
   .roadmap {
-    background-color: var(--black);
+    background: var(--black);
     color: var(--white);
-    padding: 6rem 0; /* matches other sections */
+    padding: 6rem 0;
   }
-
   .roadmap h2 {
     margin: 0 0 1rem;
-  } /* headings already uppercase via base layer */
+  }
   .roadmap p {
     margin: 0 0 2rem;
     opacity: 0.9;
   }
 
-  /* Details/summary styled like your site (subtle borders, no grey plates) */
   .roadmap details {
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
@@ -672,14 +668,12 @@
   .roadmap .todo-list li {
     padding: 0.4rem 0;
   }
-
   .roadmap .todo-list label {
     display: grid;
     grid-template-columns: 1.25rem 1fr;
     gap: 0.6rem;
     align-items: start;
   }
-
   .roadmap input[type="checkbox"] {
     margin-top: 0.2rem;
     accent-color: var(--green);
