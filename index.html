@@ -138,7 +138,20 @@
 
         <article>
           <h3>Alarm Clock</h3>
-          <img src="img/alarm.png" alt="Lorem" />
+          <picture>
+            <!-- phones & small tablets -->
+            <source media="(max-width: 600px)" srcset="img/alarm-small.png" />
+            <!-- default for anything larger -->
+            <img
+              src="img/alarm.png"
+              alt="Screenshot of the Alarm Clock web app"
+              width="1200"
+              height="675"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+
           <ul>
             <li>HTML</li>
             <li>CSS</li>
@@ -153,9 +166,8 @@
               button to preview. A live clock with a 12/24-hour display makes it
               easy to verify times at a glance, and your alarms are saved
               locally so they persist between visits. Built with vanilla HTML,
-              CSS, and JavaScript—no dependencies.
-              The app supports desktop notifications (with permission) and works
-              offline.
+              CSS, and JavaScript—no dependencies. The app supports desktop
+              notifications (with permission) and works offline.
             </p>
 
             <p>
