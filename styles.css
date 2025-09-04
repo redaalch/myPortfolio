@@ -153,9 +153,6 @@
   }
 
   /* Prevent background scroll when menu is open */
-  body.no-scroll {
-    overflow: hidden;
-  }
 }
 
 /* Intro (hero) */
@@ -233,7 +230,7 @@
     align-items: baseline;
     margin-bottom: 6rem;
   }
-   header button {
+  header button {
     display: none;
   }
   header h1 {
@@ -304,7 +301,9 @@
     header h1 {
       flex-basis: auto;
     }
-
+    body.no-scroll {
+      overflow: hidden;
+    }
     /* hamburger button */
     header button {
       display: block;

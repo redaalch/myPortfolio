@@ -38,7 +38,7 @@
   for (var i = 0; i < links.length; i++) {
     links[i].addEventListener("click", closeMenu);
   }
-   document.addEventListener("click", function (e) {
+  document.addEventListener("click", function (e) {
     if (!isOpen()) return; // only do this if the drawer is open
     var clickInsideNav = nav.contains(e.target);
     var clickOnButton = menuBtn.contains(e.target);
@@ -46,4 +46,12 @@
       closeMenu();
     }
   });
+  // Close the menu if we leave the mobile breakpoint
+  function handleResize() {
+    if (window.innerWidth > 768 && isOpen()) {
+      closeMenu();
+    }
+  }
+  window.addEventListener("resize", handleResize);
+  window.addEventListener("orientationchange", handleResize);
 })();
