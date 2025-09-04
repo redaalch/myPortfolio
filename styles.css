@@ -162,14 +162,14 @@
     font-weight: 600;
     padding: 0.5rem 0.75rem;
     border-radius: 999px;
-    background: #e6ffed;
-    color: #065f46;
-    border: 1px solid #a7f3d0;
+    background: var(--green);
+    color: var(--black);
+    border: 1px solid var(--tan);
   }
   /* Subtle “shiny” treatment for just those two links */
   p a[href*="frontendmasters.com"],
   p a[href*="developer.mozilla.org"] {
-    color: var(--accent-ink, #2af0cf);
+    color: var(--accent-ink, var(--lightgreen));
     font-weight: 600;
 
     /* clearer underline on bright backgrounds */
