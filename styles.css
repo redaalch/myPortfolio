@@ -414,9 +414,6 @@
       left: 0; /* menu slides from left */
       right: auto;
     }
-    #site-nav.active {
-      transform: translateX(0); /* slide in from right */
-    }
   }
 }
 
@@ -618,8 +615,9 @@
   .section-contact {
     text-align: center;
     padding: 6rem 0;
-    background: var(--black) url("img/fem-aurora.jpg") center center;
+    background: var(--black) url("img/fem-aurora.jpg") center center no-repeat;
     color: var(--white);
+    background-size: cover;
   }
   .section-contact p:last-child {
     margin-top: 3rem;
@@ -631,7 +629,7 @@
   footer {
     text-align: center;
     padding: 6rem 0;
-    background: var(--black) url("img/fem-stars.jpg") no-repeat center center;
+    background: var(--black) url("img/nature.jpg") no-repeat center center;
     background-size: cover;
     color: var(--white);
   }
