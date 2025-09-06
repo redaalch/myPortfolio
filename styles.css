@@ -378,6 +378,45 @@
       display: block;
       text-align: left;
     }
+    header nav .close-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: none;
+      border-radius: 50%;
+      background: var(--black);
+      color: var(--white);
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    header nav .close-button:hover,
+    header nav .close-button:focus {
+      background: var(--green);
+      color: var(--black);
+      transform: scale(1.05);
+    }
+  }
+  @media (max-width: 419px) {
+    .menu-button {
+      left: 1rem; /* move hamburger to the left */
+      right: auto; /* cancel right positioning */
+    }
+
+    #site-nav {
+      left: 0; /* menu slides from left */
+      right: auto;
+    }
+    #site-nav.active {
+      transform: translateX(0); /* slide in from right */
+    }
   }
 }
 
