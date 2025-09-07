@@ -1,0 +1,15 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# If you start using Node/build tools later
+node_modules/
+dist/
+.cache/
+
+# Secrets (never commit these)
+.env
+.env.*
