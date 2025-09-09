@@ -159,11 +159,9 @@
 @layer intro {
   .intro {
     padding: 4rem 0 10rem;
-    background-image: url("img/fem-featured-top.png"), url("img/space.jpg");
+    background-image: url("img/fem-featured-top.png"), url("img/fem-comet.jpg");
     background-repeat: repeat-x, no-repeat;
-    background-position: bottom center, 86% 10%;
-    background-size: cover;
-    color: var(--white);
+    background-position: bottom center, 86% 10%;    color: var(--white);
   }
   .intro a:no-button {
     color: var(--white);
