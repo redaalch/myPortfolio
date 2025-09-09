@@ -53,6 +53,14 @@
       href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lato:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="preload"
+      as="image"
+      href="/img/fem-comet.avif"
+      imagesrcset="/img/fem-comet.avif 1x, /img/fem-comet@2x.avif 2x"
+      fetchpriority="high"
+    />
+
     <title>Reda Alalach — Full-Stack Developer</title>
     <script type="application/ld+json">
       {
@@ -192,14 +200,14 @@
           <h3>Alarm Clock</h3>
           <picture>
             <!-- phones & small tablets -->
-            <source media="(max-width: 600px)" srcset="img/alarm-small.png" />
+            <source media="(max-width: 600px)" srcset="img/alarm-small.webp" />
             <!-- default for anything larger -->
             <img
-              src="img/alarm.png"
+              src="img/alarm.webp"
               alt="Screenshot of the Alarm Clock web app"
               width="1200"
               height="675"
-              loading="lazy"
+              fetchpriority="high"
               decoding="async"
             />
           </picture>

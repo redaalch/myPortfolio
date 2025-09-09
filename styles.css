@@ -159,9 +159,19 @@
 @layer intro {
   .intro {
     padding: 4rem 0 10rem;
-    background-image: url("img/fem-featured-top.png"), url("img/fem-comet.jpg");
+    background-image: url("img/fem-featured-top.png"),
+      image-set(
+        url("img/fem-comet.avif") type("image/avif") 1x,
+        url("img/fem-comet@2x.avif") type("image/avif") 2x,
+        url("img/fem-comet.jpg") type("image/jpeg") 1x,
+        url("img/fem-comet@2x.jpg") type("image/jpeg") 2x
+      );
+
     background-repeat: repeat-x, no-repeat;
-    background-position: bottom center, 86% 10%;    color: var(--white);
+    background-position: bottom center, 86% 10%;
+    background-size: auto, cover;
+
+    color: var(--white);
   }
   .intro a:no-button {
     color: var(--white);
