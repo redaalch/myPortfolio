@@ -62,6 +62,9 @@
     />
 
     <title>Reda Alalach — Full-Stack Developer</title>
+    <link rel="modulepreload" href="/js/modules/menu.js" />
+    <link rel="modulepreload" href="/js/modules/todos.js" />
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -199,9 +202,23 @@
         <article>
           <h3>Alarm Clock</h3>
           <picture>
-            <!-- phones & small tablets -->
-            <source media="(max-width: 600px)" srcset="img/alarm-small.webp" />
-            <!-- default for anything larger -->
+            <!-- AVIF first -->
+            <source
+              type="image/avif"
+              media="(max-width: 600px)"
+              srcset="img/alarm-small.avif"
+            />
+            <source type="image/avif" srcset="img/alarm.avif" />
+
+            <!-- WebP fallback -->
+            <source
+              type="image/webp"
+              media="(max-width: 600px)"
+              srcset="img/alarm-small.webp"
+            />
+            <source type="image/webp" srcset="img/alarm.webp" />
+
+            <!-- Last-resort fallback (kept as WebP since you already ship it) -->
             <img
               src="img/alarm.webp"
               alt="Screenshot of the Alarm Clock web app"
@@ -267,8 +284,18 @@
             <a
               href="https://frontendmasters.com/courses/advanced-css-layouts/"
               target="_blank"
-              ><img src="img/fem-news.png" alt="Advanced CSS Layouts"
-            /></a>
+            >
+              <picture>
+                <source type="image/avif" srcset="img/fem-news.avif" />
+                <source type="image/webp" srcset="img/fem-news.webp" />
+                <img
+                  src="img/fem-news.png"
+                  alt="Advanced CSS Layouts"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            </a>
             <figcaption>
               <a
                 href="https://frontendmasters.com/courses/advanced-css-layouts/"
