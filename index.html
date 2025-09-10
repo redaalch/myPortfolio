@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Reda Alalach — Full-Stack Developer" />
     <meta property="og:site_name" content="Reda Alalach" />
@@ -37,8 +39,6 @@
       content="Projects and coursework by Reda Alalach, specializing in full-stack development."
     />
 
-    <meta property="og:image:width" content="1850" />
-    <meta property="og:image:height" content="1001" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://remyportfolio.me/" />
     <meta name="author" content="Reda Alalach" />
@@ -46,15 +46,29 @@
       name="description"
       content="Portfolio of Reda Alalach — full-stack developer. Selected projects, coursework, and ways to get in touch."
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="preload"
+      as="style"
+      href="styles.css"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="styles.css" /></noscript>
+
     <link rel="icon" href="/img/favicon.ico" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lato:wght@400;700&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lato:wght@400;700&display=swap"
+      />
+    </noscript>
+
     <link
       rel="preload"
       as="image"
@@ -74,7 +88,7 @@
         "name": "Reda Alalach",
         "url": "https://remyportfolio.me/",
         "jobTitle": "Full-Stack Developer",
-        "image": "https://remyportfolio.me/img/og-alarm-1200x630.jpg",
+        "image": "https://remyportfolio.me/img/alarm-1200-630.jpg",
         "sameAs": [
           "https://github.com/redaalch",
           "https://www.linkedin.com/in/reda-alalach/"
@@ -204,23 +218,31 @@
         <article>
           <h3>Alarm Clock</h3>
           <picture>
-            <!-- AVIF first -->
+            <!-- AVIF -->
             <source
               type="image/avif"
               media="(max-width: 600px)"
-              srcset="img/alarm-small.avif"
+              srcset="img/alarm-600.avif"
             />
-            <source type="image/avif" srcset="img/alarm.avif" />
+            <source
+              type="image/avif"
+              srcset="img/alarm-600.avif 600w, img/alarm.avif 1200w"
+              sizes="(max-width: 600px) 100vw, 1168px"
+            />
 
-            <!-- WebP fallback -->
+            <!-- WebP -->
             <source
               type="image/webp"
               media="(max-width: 600px)"
-              srcset="img/alarm-small.webp"
+              srcset="img/alarm-600.webp"
             />
-            <source type="image/webp" srcset="img/alarm.webp" />
+            <source
+              type="image/webp"
+              srcset="img/alarm-600.webp 600w, img/alarm.webp 1200w"
+              sizes="(max-width: 600px) 100vw, 1168px"
+            />
 
-            <!-- Final fallback -->
+            <!-- Fallback -->
             <img
               src="img/alarm.webp"
               alt="Screenshot of the Alarm Clock web app"
@@ -270,13 +292,29 @@
               target="_blank"
             >
               <picture>
-                <source type="image/avif" srcset="img/fem-coffee-layout.avif" />
-                <source type="image/webp" srcset="img/fem-coffee-layout.webp" />
+                <source
+                  type="image/avif"
+                  srcset="
+                    img/fem-coffee-layout-900.avif   900w,
+                    img/fem-coffee-layout-1400.avif 1400w
+                  "
+                  sizes="(max-width: 992px) 100vw, 904px"
+                />
+                <source
+                  type="image/webp"
+                  srcset="
+                    img/fem-coffee-layout-900.webp   900w,
+                    img/fem-coffee-layout-1400.webp 1400w
+                  "
+                  sizes="(max-width: 992px) 100vw, 904px"
+                />
                 <img
                   src="img/fem-coffee-layout.jpg"
                   alt="CSS Projects"
                   loading="lazy"
                   decoding="async"
+                  width="904"
+                  height="786"
                 />
               </picture>
             </a>
@@ -301,13 +339,29 @@
               target="_blank"
             >
               <picture>
-                <source type="image/avif" srcset="img/fem-news.avif" />
-                <source type="image/webp" srcset="img/fem-news.webp" />
+                <source
+                  type="image/avif"
+                  srcset="
+                    img/fem-news-400.avif 400w,
+                    img/fem-news-800.avif 800w
+                  "
+                  sizes="(max-width: 992px) 90vw, 387px"
+                />
+                <source
+                  type="image/webp"
+                  srcset="
+                    img/fem-news-400.webp 400w,
+                    img/fem-news-800.webp 800w
+                  "
+                  sizes="(max-width: 992px) 90vw, 387px"
+                />
                 <img
                   src="img/fem-news.png"
                   alt="Advanced CSS Layouts"
                   loading="lazy"
                   decoding="async"
+                  width="387"
+                  height="374"
                 />
               </picture>
             </a>
@@ -329,13 +383,29 @@
           <figure>
             <a href="https://frontendmasters.com/bootcamp" target="_blank">
               <picture>
-                <source type="image/avif" srcset="img/fem-blog.avif" />
-                <source type="image/webp" srcset="img/fem-blog.webp" />
+                <source
+                  type="image/avif"
+                  srcset="
+                    img/fem-blog-400.avif 400w,
+                    img/fem-blog-800.avif 800w
+                  "
+                  sizes="(max-width: 992px) 90vw, 387px"
+                />
+                <source
+                  type="image/webp"
+                  srcset="
+                    img/fem-blog-400.webp 400w,
+                    img/fem-blog-800.webp 800w
+                  "
+                  sizes="(max-width: 992px) 90vw, 387px"
+                />
                 <img
                   src="img/fem-blog.png"
                   alt="Frontend Masters Bootcamp."
                   loading="lazy"
                   decoding="async"
+                  width="387"
+                  height="381"
                 />
               </picture>
             </a>
@@ -358,8 +428,22 @@
             target="_blank"
           >
             <picture>
-              <source type="image/avif" srcset="img/fem-css-projects.avif" />
-              <source type="image/webp" srcset="img/fem-css-projects.webp" />
+              <source
+                type="image/avif"
+                srcset="
+                  img/fem-css-projects-220.avif 220w,
+                  img/fem-css-projects.avif     500w
+                "
+                sizes="(max-width: 992px) 80vw, 208px"
+              />
+              <source
+                type="image/webp"
+                srcset="
+                  img/fem-css-projects-220.webp 220w,
+                  img/fem-css-projects.webp     500w
+                "
+                sizes="(max-width: 992px) 80vw, 208px"
+              />
               <img
                 src="img/fem-css-projects.webp"
                 alt="CSS Projects."
@@ -371,8 +455,22 @@
 
           <a href="https://frontendmasters.com/bootcamp" target="_blank">
             <picture>
-              <source type="image/avif" srcset="img/fem-bootcamp.avif" />
-              <source type="image/webp" srcset="img/fem-bootcamp.webp" />
+              <source
+                type="image/avif"
+                srcset="
+                  img/fem-bootcamp-220.avif 220w,
+                  img/fem-bootcamp.avif     500w
+                "
+                sizes="(max-width: 992px) 80vw, 208px"
+              />
+              <source
+                type="image/webp"
+                srcset="
+                  img/fem-bootcamp-220.webp 220w,
+                  img/fem-bootcamp.webp     500w
+                "
+                sizes="(max-width: 992px) 80vw, 208px"
+              />
               <img
                 src="img/fem-bootcamp.png"
                 alt="Frontend Masters Bootcamp."
@@ -387,8 +485,22 @@
             target="_blank"
           >
             <picture>
-              <source type="image/avif" srcset="img/fem-adv-css.avif" />
-              <source type="image/webp" srcset="img/fem-adv-css.webp" />
+              <source
+                type="image/avif"
+                srcset="
+                  img/fem-adv-css-220.avif 220w,
+                  img/fem-adv-css.avif     500w
+                "
+                sizes="(max-width: 992px) 80vw, 208px"
+              />
+              <source
+                type="image/webp"
+                srcset="
+                  img/fem-adv-css-220.webp 220w,
+                  img/fem-adv-css.webp     500w
+                "
+                sizes="(max-width: 992px) 80vw, 208px"
+              />
               <img
                 src="img/fem-adv-css.jpg"
                 alt="Advanced CSS Layouts."
@@ -403,8 +515,22 @@
             target="_blank"
           >
             <picture>
-              <source type="image/avif" srcset="img/fem-int-css.avif" />
-              <source type="image/webp" srcset="img/fem-int-css.webp" />
+              <source
+                type="image/avif"
+                srcset="
+                  img/fem-int-css-220.avif 220w,
+                  img/fem-int-css.avif     500w
+                "
+                sizes="(max-width: 992px) 80vw, 208px"
+              />
+              <source
+                type="image/webp"
+                srcset="
+                  img/fem-int-css-220.webp 220w,
+                  img/fem-int-css.webp     500w
+                "
+                sizes="(max-width: 992px) 80vw, 208px"
+              />
               <img
                 src="img/fem-int-css.webp"
                 alt="Intermediate HTML and CSS."
@@ -419,8 +545,22 @@
             target="_blank"
           >
             <picture>
-              <source type="image/avif" srcset="img/fem-layouts.avif" />
-              <source type="image/webp" srcset="img/fem-layouts.webp" />
+              <source
+                type="image/avif"
+                srcset="
+                  img/fem-layouts-220.avif 220w,
+                  img/fem-layouts.avif     500w
+                "
+                sizes="(max-width: 992px) 80vw, 208px"
+              />
+              <source
+                type="image/webp"
+                srcset="
+                  img/fem-layouts-220.webp 220w,
+                  img/fem-layouts.webp     500w
+                "
+                sizes="(max-width: 992px) 80vw, 208px"
+              />
               <img
                 src="img/fem-layouts.webp"
                 alt="Practical CSS Layouts."
