@@ -624,9 +624,23 @@
   .section-contact {
     text-align: center;
     padding: 6rem 0;
-    background: var(--black) url("img/fem-aurora.jpg") center center no-repeat;
+    /* Modern formats first, JPEG as fallback, keep position/size in one line */
+    background: var(--black)
+      image-set(
+        url("img/fem-aurora.avif") type("image/avif"),
+        url("img/fem-aurora.webp") type("image/webp"),
+        url("img/fem-aurora.jpg") type("image/jpeg")
+      )
+      center center / cover no-repeat;
+
+    /* (Optional) Better Safari coverage; keep both for now */
+    background: var(--black) -webkit-image-set(
+        url("img/fem-aurora.avif") type("image/avif"),
+        url("img/fem-aurora.webp") type("image/webp"),
+        url("img/fem-aurora.jpg") type("image/jpeg")
+      ) center center / cover no-repeat;
+
     color: var(--white);
-    background-size: cover;
   }
   .section-contact p:last-child {
     margin-top: 3rem;
@@ -638,8 +652,20 @@
   footer {
     text-align: center;
     padding: 6rem 0;
-    background: var(--black) url("img/nature.jpg") no-repeat center center;
-    background-size: cover;
+    background: var(--black)
+      image-set(
+        url("img/nature.avif") type("image/avif"),
+        url("img/nature.webp") type("image/webp"),
+        url("img/nature.jpg") type("image/jpeg")
+      )
+      center center / cover no-repeat;
+
+    background: var(--black) -webkit-image-set(
+        url("img/nature.avif") type("image/avif"),
+        url("img/nature.webp") type("image/webp"),
+        url("img/nature.jpg") type("image/jpeg")
+      ) center center / cover no-repeat;
+
     color: var(--white);
   }
   footer ul {
