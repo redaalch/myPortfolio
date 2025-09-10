@@ -332,9 +332,23 @@
             target="_blank"
             ><img src="img/fem-css-projects.webp" alt="CSS Projects."
           /></a>
-          <a href="https://frontendmasters.com/bootcamp" target="_blank"
-            ><img src="img/fem-bootcamp.png" alt="Frontend Masters Bootcamp."
-          /></a>
+          <a href="https://frontendmasters.com/bootcamp" target="_blank">
+            <picture>
+              <!-- AVIF first (smallest on modern browsers) -->
+              <source type="image/avif" srcset="img/fem-bootcamp.avif" />
+
+              <!-- WebP fallback -->
+              <source type="image/webp" srcset="img/fem-bootcamp.webp" />
+
+              <!-- Final fallback (your original PNG) -->
+              <img
+                src="img/fem-bootcamp.png"
+                alt="Frontend Masters Bootcamp."
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </a>
           <a
             href="https://frontendmasters.com/courses/advanced-css-layouts/"
             target="_blank"
