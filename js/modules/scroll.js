@@ -9,3 +9,10 @@ document.addEventListener('click', function (e) {
   if (id.length === 0) return;
   const target = document.getElementById(id);
   if (!target) return;
+ e.preventDefault();
+
+  const headerHeight = header ? header.offsetHeight : 0;
+  const rect = target.getBoundingClientRect();
+  const absoluteTop = rect.top + window.scrollY;
+  const cushion = 12;
+  let finalTop = absoluteTop - headerHeight - cushion;
