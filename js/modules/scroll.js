@@ -5,3 +5,5 @@ document.addEventListener('click', function (e) {
   const href = link.getAttribute('href');
   if (!href) return;
   if (href.charAt(0) !== '#') return;
+  const id = href.slice(1);
+  if (id.length === 0) return;
