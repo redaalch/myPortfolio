@@ -753,4 +753,7 @@
     opacity: 0.65;
     text-decoration: line-through;
   }
+  section {
+    scroll-margin-top: 6rem;
+  }
 }
