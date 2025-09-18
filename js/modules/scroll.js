@@ -7,3 +7,5 @@ document.addEventListener('click', function (e) {
   if (href.charAt(0) !== '#') return;
   const id = href.slice(1);
   if (id.length === 0) return;
+  const target = document.getElementById(id);
+  if (!target) return;
