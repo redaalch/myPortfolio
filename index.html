@@ -3,63 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="canonical" href="https://remyportfolio.me/" />
+
+
+    <link rel="canonical" href="https://redaalch.github.io/" />
+
+
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Reda Alalach — Full-Stack Developer" />
+    <meta property="og:title" content="Reda Alalach — Backend & Full-Stack Developer" />
     <meta property="og:site_name" content="Reda Alalach" />
     <meta
       property="og:description"
-      content="Projects and coursework by Reda Alalach, specializing in full-stack development."
+      content="Backend-leaning full-stack developer building Node.js/Express APIs, real-time features with Socket.io, and modern React apps."
     />
-    <meta
-      property="og:image"
-      content="https://remyportfolio.me/img/alarm-1200-630.jpg"
-    />
-    <meta
-      property="og:image:alt"
-      content="Preview image from Reda Alalach's developer portfolio"
-    />
+    <meta property="og:image" content="img/og-1200-630.jpg" />
+    <meta property="og:image:alt" content="Reda Alalach — developer portfolio preview" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-
-    <meta property="og:url" content="https://remyportfolio.me/" />
-    <meta
-      name="twitter:image"
-      content="https://remyportfolio.me/img/alarm-1200-630.jpg"
-    />
-    <meta
-      name="twitter:image:alt"
-      content="Preview image from Reda Alalach's developer portfolio"
-    />
-
-    <meta name="twitter:title" content="Reda Alalach — Full-Stack Developer" />
-    <meta
-      name="twitter:description"
-      content="Projects and coursework by Reda Alalach, specializing in full-stack development."
-    />
+    <meta property="og:url" content="https://redaalch.github.io/" />
 
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Reda Alalach — Backend & Full-Stack Developer" />
+    <meta
+      name="twitter:description"
+      content="Node.js/Express • MongoDB • Socket.io • React • DevOps — projects, experience, and contact."
+    />
+    <meta name="twitter:image" content="img/og-1200-630.jpg" />
+    <meta name="twitter:image:alt" content="Reda Alalach — developer portfolio preview" />
 
     <meta name="author" content="Reda Alalach" />
     <meta
       name="description"
-      content="Portfolio of Reda Alalach — full-stack developer. Selected projects, coursework, and ways to get in touch."
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="/img/fem-comet.avif"
-      imagesrcset="/img/fem-comet.avif 1x, /img/fem-comet@2x.avif 2x"
-      type="image/avif"
+      content="Portfolio of Reda Alalach — backend & full-stack developer. Projects (MERN, real-time), internships, skills, and contact."
     />
 
     <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" href="/img/favicon.ico" />
+    <link rel="icon" href="img/favicon.ico" />
 
     <link
       rel="preload"
@@ -67,26 +50,22 @@
       href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lato:wght@400;700&display=swap"
       onload="this.onload=null;this.rel='stylesheet'"
     />
-    <link
-      rel="preload"
-      as="image"
-      href="/img/fem-comet.avif"
-      imagesrcset="/img/fem-comet.avif 1x, /img/fem-comet@2x.avif 2x"
-      imagesizes="100vw"
-      fetchpriority="high"
-    />
-    <title>Reda Alalach — Full-Stack Developer</title>
-    <link rel="modulepreload" href="/js/modules/menu.js" />
-    <link rel="modulepreload" href="/js/modules/todos.js" />
+
+    <link rel="preload" as="image" href="img/fem-comet.avif" type="image/avif" />
+
+    <title>Reda Alalach — Backend & Full-Stack Developer</title>
+
+    <link rel="modulepreload" href="js/modules/menu.js" />
+    <link rel="modulepreload" href="js/modules/scroll.js" />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Reda Alalach",
-        "url": "https://remyportfolio.me/",
-        "jobTitle": "Full-Stack Developer",
-        "image": "https://remyportfolio.me/img/alarm-1200-630.jpg",
+        "url": "https://redaalch.github.io/",
+        "jobTitle": "Backend & Full-Stack Developer",
+        "image": "img/og-1200-630.jpg",
         "sameAs": [
           "https://github.com/redaalch",
           "https://www.linkedin.com/in/reda-alalach/"
@@ -94,12 +73,14 @@
       }
     </script>
   </head>
+
   <body>
+
     <section class="intro" id="intro">
       <div class="container">
         <header>
           <h1>
-            <a aria-label="Click for home." href="index.html">
+            <a aria-label="Home" href="index.html">
               <svg
                 aria-hidden="true"
                 viewBox="0 0 512 512"
@@ -124,17 +105,16 @@
           </button>
 
           <nav aria-label="Primary" id="site-nav">
-            <button class="close-button" aria-label="Close menu">
-              &times;
-            </button>
+            <button class="close-button" aria-label="Close menu">&times;</button>
             <ul class="menu">
               <li><a href="#projects">Projects</a></li>
-              <li><a href="#intro">About</a></li>
+              <li><a href="#experience">Experience</a></li>
+              <li><a href="#skills">Skills</a></li>
+              <li><a href="#certifications">Certifications</a></li>
               <li><a href="#contact">Contact</a></li>
-              <li><a href="#roadmap">Future To-Dos</a></li>
               <li>
                 <a
-                  aria-label="LinkedIn."
+                  aria-label="LinkedIn"
                   href="https://www.linkedin.com/in/reda-alalach/"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -152,7 +132,7 @@
               </li>
               <li>
                 <a
-                  aria-label="Github"
+                  aria-label="GitHub"
                   href="https://github.com/redaalch"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -169,81 +149,63 @@
                 </a>
               </li>
               <li>
-                <a
-                  class="button"
-                  href="#"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  >Resume</a
-                >
+                <a class="button" href="assets/Reda_Alalach_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
               </li>
             </ul>
           </nav>
         </header>
 
-        <p>Hi, my name is <span class="name">Reda Alalach</span>.</p>
-        <h2>I build the web.</h2>
+        <p>Hi, Im <span class="name">Reda Alalach</span>.</p>
+        <h2>Backend-leaning full-stack developer.</h2>
+
         <p>
-          I'm in the final (third) year of my licence (Bachelor's) at the
-          Faculty of Dhar Mahraz in Fez, specializing in full-stack development.
+          I build reliable <strong>Node.js/Express</strong> backends (REST APIs, JWT auth, error handling),
+          add <strong>real-time</strong> features with <strong>Socket.io</strong>, and ship modern UIs with
+          <strong>React</strong>.
         </p>
+
         <p>
-          For now, I work with HTML, CSS, JavaScript, and Java. I'm focused on
-          building clean, accessible interfaces and strengthening my backend
-          fundamentals through projects. I'm expanding my skills with courses
-          “JavaScript: The Hard Parts v2” on
-          <a
-            href="https://frontendmasters.com/teachers/jen-kramer/"
-            target="_blank"
-            >Frontend Masters</a
-          >, and I explore resources like
-          <a href="https://developer.mozilla.org/" target="_blank"
-            >MDN Web Docs</a
-          >.
+          <strong>Currently:</strong> Full-Stack Developer Intern (MERN) at <strong>Technocolabs Softwares Inc.</strong> (remote).
+          <br />
+          <strong>Previously:</strong> Web Developer Intern at <strong>ALCHDEV BUSINESS</strong>.
         </p>
-        <p class="availability">Available for internships</p>
+
+        <div class="hero-cta">
+          <a class="button" href="#projects">View projects</a>
+          <a class="button button-secondary" href="assets/Reda_Alalach_Resume.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
+        </div>
+
+        <p class="availability">Open to remote backend internships (GCP/Firebase)</p>
+
+        <ul class="quick-tags" aria-label="Key technologies">
+          <li>Node.js</li>
+          <li>Express</li>
+          <li>MongoDB</li>
+          <li>Socket.io</li>
+          <li>React</li>
+          <li>Docker</li>
+          <li>CI/CD</li>
+        </ul>
+
+        <p class="learning">
+          <strong>Learning now:</strong> Google Cloud Functions + Firebase (Firestore/Auth/Storage) to build scalable serverless backends.
+        </p>
       </div>
     </section>
 
-    <section class="section-featured">
+    <section class="section-featured" id="featured">
       <div class="container">
         <h2>Featured Project</h2>
-        <p>
-          Projects coming soon — I'm preparing write-ups and screenshots. Check
-          back shortly.
+        <p class="section-lead">
+          A deeper, real product-style build that combines backend, UX, and real-time collaboration.
         </p>
 
         <article>
-          <h3>Alarm Clock</h3>
+          <h3>NotesBoard</h3>
           <picture>
-            <!-- AVIF -->
-            <source
-              type="image/avif"
-              media="(max-width: 600px)"
-              srcset="img/alarm-600.avif"
-            />
-            <source
-              type="image/avif"
-              srcset="img/alarm-600.avif 600w, img/alarm.avif 1200w"
-              sizes="(max-width: 600px) 100vw, 1168px"
-            />
-
-            <!-- WebP -->
-            <source
-              type="image/webp"
-              media="(max-width: 600px)"
-              srcset="img/alarm-600.webp"
-            />
-            <source
-              type="image/webp"
-              srcset="img/alarm-600.webp 600w, img/alarm.webp 1200w"
-              sizes="(max-width: 600px) 100vw, 1168px"
-            />
-
-            <!-- Fallback -->
             <img
-              src="img/alarm.webp"
-              alt="Screenshot of the Alarm Clock web app"
+              src="img/notesboard-1200-675.jpg"
+              alt="NotesBoard project cover"
               width="1200"
               height="675"
               fetchpriority="high"
@@ -252,436 +214,300 @@
           </picture>
 
           <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>SVG</li>
+            <li>MERN</li>
+            <li>Express</li>
+            <li>JWT</li>
+            <li>MongoDB</li>
+            <li>Yjs</li>
+            <li>React</li>
           </ul>
+
           <div class="blackbox">
             <p>
-              A lightweight alarm clock where you can add, edit, delete, and
-              toggle alarms. Set one-time or recurring alarms, pick a sound, and
-              preview with “Test.” A live 12/24-hour clock helps check times,
-              and alarms save locally to persist between visits. Built with
-              vanilla HTML, CSS, and JavaScript—supports desktop notifications
-              and offline use.
+              Collaborative notes + analytics platform with a real-time editor (Yjs/Hocuspocus), shared dashboards,
+              and a modern UX (drag-and-drop, animations, offline cache, notifications).
             </p>
 
-            <p>
+            <div class="project-actions">
               <a
-                href="https://redaalch.github.io/alarm-clock/"
-                target="_blank"
                 class="button"
-                >Website Link</a
-              >
-            </p>
+                href="https://github.com/redaalch/notesBoard"
+                target="_blank"
+                rel="noopener noreferrer"
+              >GitHub repo</a>
+              <a class="button button-secondary" href="#projects">More projects</a>
+            </div>
           </div>
         </article>
       </div>
     </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section-experience" id="experience">
+      <div class="container">
+        <h2>Experience</h2>
+        <p class="section-lead">
+          Ive worked on production-style features: authentication, API integration, real-time updates, deployment, and reliability.
+        </p>
+
+        <div class="xp-grid">
+          <article class="xp-card">
+            <header>
+              <h3>Technocolabs Softwares Inc.</h3>
+              <p class="xp-meta">Full-Stack Developer Intern (MERN) • Remote • Oct 2025 – Present</p>
+            </header>
+
+            <ul class="xp-bullets">
+              <li>Built real-time notifications with <strong>Socket.io</strong> to instantly inform users on task assignment/updates.</li>
+              <li>Implemented secure flows with <strong>JWT authentication</strong> and robust Express middleware (global error handling).</li>
+              <li>Helped deploy and troubleshoot full-stack environments (Render/Vercel/Railway/Netlify) with proper env config.</li>
+              <li>Added a <code>/health</code> status endpoint and improved UX feedback with toast notifications.</li>
+            </ul>
+
+            <ul class="tag-list" aria-label="Technologies used">
+              <li>Node.js</li>
+              <li>Express</li>
+              <li>JWT</li>
+              <li>Socket.io</li>
+              <li>Deployment</li>
+            </ul>
+          </article>
+
+          <article class="xp-card">
+            <header>
+              <h3>ALCHDEV BUSINESS</h3>
+              <p class="xp-meta">Web Developer Intern • On-site • Jul 2025 – Sep 2025</p>
+            </header>
+
+            <ul class="xp-bullets">
+              <li>Contributed to a React.js codebase: built new pages, improved UI consistency, and integrated APIs.</li>
+              <li>Worked with common React tooling (React Router, Redux) and UI component libraries to speed delivery.</li>
+              <li>Improved performance and cross-browser compatibility through refactoring and UI polishing.</li>
+            </ul>
+
+            <ul class="tag-list" aria-label="Technologies used">
+              <li>React</li>
+              <li>Redux</li>
+              <li>React Router</li>
+              <li>REST APIs</li>
+              <li>CSS</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section-projects" id="projects">
       <div class="container">
-        <h2>Projects I am proud of</h2>
-        <div class="topgrid">
-          <!-- Big left card -->
-          <figure>
-            <a
-              href="https://frontendmasters.com/courses/css-projects/"
-              target="_blank"
-            >
+        <h2>Projects</h2>
+        <p class="section-lead">
+          A selection of projects focused on backend fundamentals, real-time systems, and clean user experiences.
+        </p>
+
+        <div class="project-grid">
+
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="img/realtime-notifications-1200-675.jpg"
+                alt="Real-time notifications project cover"
+                loading="lazy"
+                decoding="async"
+                width="1200"
+                height="675"
+              />
+            </div>
+            <div class="project-content">
+              <h3>Real-time Notifications Module</h3>
+              <p class="project-subtitle">Socket.io + Express — internship feature work</p>
+              <p>
+                Implemented event-driven notifications for task assignment and updates, with API-driven history
+                and UI feedback via toast alerts. Focused on reliability, auth consistency, and clean UX.
+              </p>
+              <ul class="tag-list">
+                <li>Socket.io</li>
+                <li>Express</li>
+                <li>JWT</li>
+                <li>REST</li>
+                <li>Testing</li>
+              </ul>
+              <p class="project-note">
+                <small>Note: code is part of an internship project and may not be publicly shareable.</small>
+              </p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media">
               <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    img/fem-coffee-layout-900.avif   900w,
-                    img/fem-coffee-layout-1400.avif 1400w
-                  "
-                  sizes="(max-width: 992px) 100vw, 904px"
-                />
-                <source
-                  type="image/webp"
-                  srcset="
-                    img/fem-coffee-layout-900.webp   900w,
-                    img/fem-coffee-layout-1400.webp 1400w
-                  "
-                  sizes="(max-width: 992px) 100vw, 904px"
-                />
+                <source type="image/avif" srcset="img/alarm.avif" />
+                <source type="image/webp" srcset="img/alarm.webp" />
                 <img
-                  src="img/fem-coffee-layout.jpg"
-                  alt="CSS Projects"
+                  src="img/alarm.webp"
+                  alt="Alarm Clock web app screenshot"
                   loading="lazy"
                   decoding="async"
-                  width="904"
-                  height="786"
+                  width="1200"
+                  height="675"
                 />
               </picture>
-            </a>
-            <figcaption>
-              <a
-                href="https://frontendmasters.com/courses/css-projects/"
-                target="_blank"
-              >
-                <h3>CSS Projects</h3>
-                <ul>
-                  <li>HTML</li>
-                  <li>CSS</li>
-                </ul>
-              </a>
-            </figcaption>
-          </figure>
+            </div>
+            <div class="project-content">
+              <h3>Alarm Clock</h3>
+              <p class="project-subtitle">Vanilla JS • Local storage • Notifications • Offline</p>
+              <p>
+                A lightweight alarm clock where you can add/edit/delete alarms, set recurring schedules, and
+                persist alarms locally. Includes a live 12/24-hour clock, desktop notifications, and offline support.
+              </p>
+              <ul class="tag-list">
+                <li>JavaScript</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>PWA</li>
+              </ul>
+              <div class="project-actions">
+                <a
+                  class="button"
+                  href="https://redaalch.github.io/alarm-clock/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Live demo</a
+                >
+              </div>
+            </div>
+          </article>
 
-          <!-- Right column #1 -->
-          <figure>
-            <a
-              href="https://frontendmasters.com/courses/advanced-css-layouts/"
-              target="_blank"
-            >
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    img/fem-news-400.avif 400w,
-                    img/fem-news-800.avif 800w
-                  "
-                  sizes="(max-width: 992px) 90vw, 387px"
-                />
-                <source
-                  type="image/webp"
-                  srcset="
-                    img/fem-news-400.webp 400w,
-                    img/fem-news-800.webp 800w
-                  "
-                  sizes="(max-width: 992px) 90vw, 387px"
-                />
-                <img
-                  src="img/fem-news.png"
-                  alt="Advanced CSS Layouts"
-                  loading="lazy"
-                  decoding="async"
-                  width="387"
-                  height="374"
-                />
-              </picture>
-            </a>
-            <figcaption>
-              <a
-                href="https://frontendmasters.com/courses/advanced-css-layouts/"
-                target="_blank"
-              >
-                <h3>Advanced CSS Layouts</h3>
-                <ul>
-                  <li>HTML</li>
-                  <li>CSS</li>
-                </ul>
-              </a>
-            </figcaption>
-          </figure>
-
-          <!-- Right column #2 -->
-          <figure>
-            <a href="https://frontendmasters.com/bootcamp" target="_blank">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    img/fem-blog-400.avif 400w,
-                    img/fem-blog-800.avif 800w
-                  "
-                  sizes="(max-width: 992px) 90vw, 387px"
-                />
-                <source
-                  type="image/webp"
-                  srcset="
-                    img/fem-blog-400.webp 400w,
-                    img/fem-blog-800.webp 800w
-                  "
-                  sizes="(max-width: 992px) 90vw, 387px"
-                />
-                <img
-                  src="img/fem-blog.png"
-                  alt="Frontend Masters Bootcamp."
-                  loading="lazy"
-                  decoding="async"
-                  width="387"
-                  height="381"
-                />
-              </picture>
-            </a>
-            <figcaption>
-              <a href="https://frontendmasters.com/bootcamp" target="_blank">
-                <h3>Bootcamp</h3>
-                <ul>
-                  <li>HTML</li>
-                  <li>CSS</li>
-                  <li>JavaScript</li>
-                </ul>
-              </a>
-            </figcaption>
-          </figure>
-        </div>
-
-        <div class="bottomgrid">
-          <a
-            href="https://frontendmasters.com/courses/css-projects/"
-            target="_blank"
-          >
-            <picture>
-              <source
-                type="image/avif"
-                srcset="
-                  img/fem-css-projects-220.avif 220w,
-                  img/fem-css-projects.avif     500w
-                "
-                sizes="(max-width: 992px) 80vw, 208px"
-              />
-              <source
-                type="image/webp"
-                srcset="
-                  img/fem-css-projects-220.webp 220w,
-                  img/fem-css-projects.webp     500w
-                "
-                sizes="(max-width: 992px) 80vw, 208px"
-              />
-              <img
-                src="img/fem-css-projects.webp"
-                alt="CSS Projects."
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
-          </a>
-
-          <a href="https://frontendmasters.com/bootcamp" target="_blank">
-            <picture>
-              <source
-                type="image/avif"
-                srcset="
-                  img/fem-bootcamp-220.avif 220w,
-                  img/fem-bootcamp.avif     500w
-                "
-                sizes="(max-width: 992px) 80vw, 208px"
-              />
-              <source
-                type="image/webp"
-                srcset="
-                  img/fem-bootcamp-220.webp 220w,
-                  img/fem-bootcamp.webp     500w
-                "
-                sizes="(max-width: 992px) 80vw, 208px"
-              />
-              <img
-                src="img/fem-bootcamp.png"
-                alt="Frontend Masters Bootcamp."
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
-          </a>
-
-          <a
-            href="https://frontendmasters.com/courses/advanced-css-layouts/"
-            target="_blank"
-          >
-            <picture>
-              <source
-                type="image/avif"
-                srcset="
-                  img/fem-adv-css-220.avif 220w,
-                  img/fem-adv-css.avif     500w
-                "
-                sizes="(max-width: 992px) 80vw, 208px"
-              />
-              <source
-                type="image/webp"
-                srcset="
-                  img/fem-adv-css-220.webp 220w,
-                  img/fem-adv-css.webp     500w
-                "
-                sizes="(max-width: 992px) 80vw, 208px"
-              />
-              <img
-                src="img/fem-adv-css.jpg"
-                alt="Advanced CSS Layouts."
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
-          </a>
-
-          <a
-            href="https://frontendmasters.com/courses/intermediate-html-css/"
-            target="_blank"
-          >
-            <picture>
-              <source
-                type="image/avif"
-                srcset="
-                  img/fem-int-css-220.avif 220w,
-                  img/fem-int-css.avif     500w
-                "
-                sizes="(max-width: 992px) 80vw, 208px"
-              />
-              <source
-                type="image/webp"
-                srcset="
-                  img/fem-int-css-220.webp 220w,
-                  img/fem-int-css.webp     500w
-                "
-                sizes="(max-width: 992px) 80vw, 208px"
-              />
-              <img
-                src="img/fem-int-css.webp"
-                alt="Intermediate HTML and CSS."
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
-          </a>
-
-          <a
-            href="https://frontendmasters.com/courses/css-layouts"
-            target="_blank"
-          >
-            <picture>
-              <source
-                type="image/avif"
-                srcset="
-                  img/fem-layouts-220.avif 220w,
-                  img/fem-layouts.avif     500w
-                "
-                sizes="(max-width: 992px) 80vw, 208px"
-              />
-              <source
-                type="image/webp"
-                srcset="
-                  img/fem-layouts-220.webp 220w,
-                  img/fem-layouts.webp     500w
-                "
-                sizes="(max-width: 992px) 80vw, 208px"
-              />
-              <img
-                src="img/fem-layouts.webp"
-                alt="Practical CSS Layouts."
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
-          </a>
+          <article class="project-card">
+            <div class="project-media project-media--gradient" aria-hidden="true"></div>
+            <div class="project-content">
+              <h3>Portfolio (this site)</h3>
+              <p class="project-subtitle">Clean, fast, and deployable as static content</p>
+              <p>
+                A lightweight portfolio built with semantic HTML, modern CSS, and accessible navigation.
+                Includes performance and SEO basics, plus a GitHub Pages deployment workflow.
+              </p>
+              <ul class="tag-list">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>GitHub Pages</li>
+              </ul>
+              <p class="project-note">
+                <small>Tip: update the canonical URL + sitemap after deploying to your final domain.</small>
+              </p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
-    <section id="roadmap" class="roadmap">
+
+    <section class="section-skills" id="skills">
       <div class="container">
-        <h2>Future To-Dos</h2>
-        <p>Things I plan to add or improve on this portfolio.</p>
+        <h2>Skills</h2>
+        <p class="section-lead">Tools I use, plus what Im actively leveling up.</p>
 
-        <details open>
-          <summary>Content</summary>
-          <ul class="todo-list">
-            <li>
-              <label
-                ><input type="checkbox" />
-                <span
-                  ><strong>Certificates & Courses</strong> — section with
-                  badges/screenshots and links (e.g., “JavaScript: The Hard
-                  Parts v2”).</span
-                >
-              </label>
-            </li>
-            <li>
-              <label
-                ><input type="checkbox" />
-                <span
-                  ><strong>More About Me</strong> — short bio, what I'm doing
-                  now, timeline of past experiences and schools (Faculty of Dhar
-                  Mahraz, Fez).</span
-                >
-              </label>
-            </li>
-            <li>
-              <label
-                ><input type="checkbox" />
-                <span
-                  ><strong>Projects</strong> — add cards for each project
-                  (title, role, tech, brief description, repo/demo links).</span
-                >
-              </label>
-            </li>
-            <li>
-              <label
-                ><input type="checkbox" />
-                <span
-                  ><strong>Resume</strong> — link to PDF and a quick highlights
-                  list (skills, tools, contact).</span
-                >
-              </label>
-            </li>
-          </ul>
-        </details>
+        <div class="skills-grid">
+          <article class="skill-card">
+            <h3>Backend</h3>
+            <ul class="tag-list">
+              <li>Node.js</li>
+              <li>Express</li>
+              <li>REST APIs</li>
+              <li>JWT Auth</li>
+              <li>Socket.io</li>
+              <li>MongoDB</li>
+              <li>Mongoose</li>
+            </ul>
+          </article>
 
-        <details>
-          <summary>Polish</summary>
-          <ul class="todo-list">
-            <li>
-              <label
-                ><input type="checkbox" />
-                <span
-                  ><strong>Accessibility pass</strong> — alt text, heading
-                  order, focus states, link contrast.</span
-                >
-              </label>
-            </li>
-            <li>
-              <label
-                ><input type="checkbox" />
-                <span
-                  ><strong>Performance</strong> — convert images to WebP/AVIF,
-                  lazy-load non-critical images, compress og-image.</span
-                >
-              </label>
-            </li>
-            <li>
-              <label
-                ><input type="checkbox" />
-                <span
-                  ><strong>SEO & Social</strong> — meta description, Open
-                  Graph/Twitter tags, Person JSON-LD.</span
-                >
-              </label>
-            </li>
-            <li>
-              <label
-                ><input type="checkbox" />
-                <span
-                  ><strong>Dark-mode polish</strong> — tweak with
-                  <code>@media (prefers-color-scheme: dark)</code>.</span
-                >
-              </label>
-            </li>
-          </ul>
-        </details>
+          <article class="skill-card">
+            <h3>Cloud & DevOps</h3>
+            <ul class="tag-list">
+              <li>Docker</li>
+              <li>Kubernetes (basics)</li>
+              <li>GitHub Actions</li>
+              <li>GitLab CI</li>
+              <li>Jenkins</li>
+              <li>Linux</li>
+            </ul>
+            <p class="skill-note"><small>Learning: GCP Cloud Functions + Firebase (Firestore/Auth/Storage).</small></p>
+          </article>
+
+          <article class="skill-card">
+            <h3>Frontend</h3>
+            <ul class="tag-list">
+              <li>React</li>
+              <li>React Router</li>
+              <li>Redux</li>
+              <li>Vite</li>
+              <li>Tailwind CSS</li>
+              <li>Framer Motion</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <h3>Quality</h3>
+            <ul class="tag-list">
+              <li>Testing Library</li>
+              <li>Vitest</li>
+              <li>API Error Handling</li>
+              <li>Logging & Monitoring (basics)</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- instructions in JavaScript block -->
+    <section class="section-certifications" id="certifications">
+      <div class="container">
+        <h2>Certifications</h2>
+        <p class="section-lead">Credentials and structured learning.</p>
+
+        <div class="cert-grid">
+          <article class="cert-card">
+            <h3>Meta — Front-End Developer Professional Certificate</h3>
+            <p class="cert-meta">Coursera • 2025</p>
+          </article>
+
+          <article class="cert-card">
+            <h3>IBM — Back-End Developer Professional Certificate</h3>
+            <p class="cert-meta">In progress</p>
+          </article>
+
+          <article class="cert-card">
+            <h3>LPIC-101</h3>
+            <p class="cert-meta">In progress</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section-contact" id="contact">
       <div class="container">
-        <h2>Contact Me</h2>
+        <h2>Contact</h2>
         <p>
-          I'm always up for challenges to stretch my creativity. Let's get
-          together and make something interesting.
+          Want to collaborate or discuss an internship opportunity? Id love to chat.
+          <br />
+          Email is the fastest way to reach me.
         </p>
         <p>
           <a href="mailto:reda.alalach@gmail.com" class="button">Email me</a>
+          <a
+            href="assets/Reda_Alalach_Resume.pdf"
+            class="button button-secondary"
+            target="_blank"
+            rel="noopener noreferrer"
+            >View CV</a
+          >
         </p>
       </div>
     </section>
+
     <footer>
       <div class="container">
-        <h2>Reda Alalach &middot; Web Developer</h2>
+        <h2>Reda Alalach &middot; Backend & Full-Stack Developer</h2>
         <ul>
           <li>
-            <!-- LinkedIn SVG -->
             <a
               href="https://www.linkedin.com/in/reda-alalach/"
               target="_blank"
@@ -692,8 +518,6 @@
                 viewBox="0 0 448 512"
                 aria-hidden="true"
               >
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-
                 <path
                   d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"
                 />
@@ -701,19 +525,14 @@
             </a>
           </li>
           <li>
-            <a
-              href="https://github.com/redaalch"
-              target="_blank"
-              aria-label="Github"
-            >
+            <a href="https://github.com/redaalch" target="_blank" aria-label="Github">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 448 512"
                 aria-hidden="true"
               >
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                 <path
-                  d="M448 96c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96zM265.8 407.7c0-1.8 0-6 .1-11.6c.1-11.4 .1-28.8 .1-43.7c0-15.6-5.2-25.5-11.3-30.7c37-4.1 76-9.2 76-73.1c0-18.2-6.5-27.3-17.1-39c1.7-4.3 7.4-22-1.7-45c-13.9-4.3-45.7 17.9-45.7 17.9c-13.2-3.7-27.5-5.6-41.6-5.6s-28.4 1.9-41.6 5.6c0 0-31.8-22.2-45.7-17.9c-9.1 22.9-3.5 40.6-1.7 45c-10.6 11.7-15.6 20.8-15.6 39c0 63.6 37.3 69 74.3 73.1c-4.8 4.3-9.1 11.7-10.6 22.3c-9.5 4.3-33.8 11.7-48.3-13.9c-9.1-15.8-25.5-17.1-25.5-17.1c-16.2-.2-1.1 10.2-1.1 10.2c10.8 5 18.4 24.2 18.4 24.2c9.7 29.7 56.1 19.7 56.1 19.7c0 9 .1 21.7 .1 30.6c0 4.8 .1 8.6 .1 10c0 4.3-3 9.5-11.5 8C106 393.6 59.8 330.8 59.8 257.4c0-91.8 70.2-161.5 162-161.5s166.2 69.7 166.2 161.5c.1 73.4-44.7 136.3-110.7 158.3c-8.4 1.5-11.5-3.7-11.5-8zm-90.5-54.8c-.2-1.5 1.1-2.8 3-3.2c1.9-.2 3.7 .6 3.9 1.9c.3 1.3-1 2.6-3 3c-1.9 .4-3.7-.4-3.9-1.7zm-9.1 3.2c-2.2 .2-3.7-.9-3.7-2.4c0-1.3 1.5-2.4 3.5-2.4c1.9-.2 3.7 .9 3.7 2.4c0 1.3-1.5 2.4-3.5 2.4zm-14.3-2.2c-1.9-.4-3.2-1.9-2.8-3.2s2.4-1.9 4.1-1.5c2 .6 3.3 2.1 2.8 3.4c-.4 1.3-2.4 1.9-4.1 1.3zm-12.5-7.3c-1.5-1.3-1.9-3.2-.9-4.1c.9-1.1 2.8-.9 4.3 .6c1.3 1.3 1.8 3.3 .9 4.1c-.9 1.1-2.8 .9-4.3-.6zm-8.5-10c-1.1-1.5-1.1-3.2 0-3.9c1.1-.9 2.8-.2 3.7 1.3c1.1 1.5 1.1 3.3 0 4.1c-.9 .6-2.6 0-3.7-1.5zm-6.3-8.8c-1.1-1.3-1.3-2.8-.4-3.5c.9-.9 2.4-.4 3.5 .6c1.1 1.3 1.3 2.8 .4 3.5c-.9 .9-2.4 .4-3.5-.6zm-6-6.4c-1.3-.6-1.9-1.7-1.5-2.6c.4-.6 1.5-.9 2.8-.4c1.3 .7 1.9 1.8 1.5 2.6c-.4 .9-1.7 1.1-2.8 .4z"
+                  d="M448 96c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96zM265.8 407.7c0-1.8 0-6 .1-11.6c.1-11.4 .1-28.8 .1-43.7c0-15.6-5.2-25.5-11.3-30.7c37-4.1 76-9.2 76-73.1c0-18.2-6.5-27.3-17.1-39c1.7-4.3 7.4-22-1.7-45c-13.9-4.3-45.7 17.9-45.7 17.9c-13.2-3.7-27.5-5.6-41.6-5.6s-28.4 1.9-41.6 5.6c0 0-31.8-22.2-45.7-17.9c-9.1 22.9-3.5 40.6-1.7 45c-10.6 11.7-15.6 20.8-15.6 39c0 63.6 37.3 69 74.3 73.1c-4.8 4.3-9.1 11.7-10.6 22.3c-9.5 4.3-33.8 11.7-48.3-13.9c-9.1-15.8-25.5-17.1-25.5-17.1c-16.2-.2-1.1 10.2-1.1 10.2c10.8 5 18.4 24.2 18.4 24.2c9.7 29.7 56.1 19.7 56.1 19.7c0 9 .1 21.7 .1 30.6c0 4.8 .1 8.6 .1 10c0 4.3-3 9.5-11.5 8C106 393.6 59.8 330.8 59.8 257.4c0-91.8 70.2-161.5 162-161.5s166.2 69.7 166.2 161.5c.1 73.4-44.7 136.3-110.7 158.3c-8.4 1.5-11.5-3.7-11.5-8z"
                 />
               </svg>
             </a>
@@ -725,7 +544,6 @@
                 viewBox="0 0 512 512"
                 aria-hidden="true"
               >
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                 <path
                   d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"
                 />
@@ -733,9 +551,10 @@
             </a>
           </li>
         </ul>
-        <p><small>&copy; 2025 Reda Alalach. All rights reserved.</small></p>
+        <p><small>&copy; <span id="year">2025</span> Reda Alalach. All rights reserved.</small></p>
       </div>
     </footer>
+
     <script src="js/main.js" type="module"></script>
   </body>
 </html>
