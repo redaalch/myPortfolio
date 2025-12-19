@@ -1,4 +1,3 @@
-// Accessible mobile menu (no advanced syntax)
 (function () {
   let menuBtn = document.querySelector(
     'header button[aria-controls="site-nav"]'
@@ -39,7 +38,7 @@
     links[i].addEventListener("click", closeMenu);
   }
   document.addEventListener("click", function (e) {
-    if (!isOpen()) return; // only do this if the drawer is open
+    if (!isOpen()) return; 
     let clickInsideNav = nav.contains(e.target);
     let clickOnButton = menuBtn.contains(e.target);
     if (!clickInsideNav && !clickOnButton) {

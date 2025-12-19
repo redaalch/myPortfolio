@@ -1,4 +1,3 @@
-// Persist Roadmap checkboxes using one unique key per item
 (function () {
   const roadmap = document.getElementById("roadmap");
   if (!roadmap) return;

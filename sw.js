@@ -5,7 +5,7 @@
    - HTML navigations: network-first (fresh page)
 */
 
-const VERSION = "v1-2025-09-11";
+const VERSION = "v1-2025-12-19";
 const IMG_CACHE = "img-" + VERSION;
 const ASSET_CACHE = "assets-" + VERSION;
 const PAGE_CACHE = "pages-" + VERSION;
@@ -52,14 +52,15 @@ self.addEventListener("fetch", function (event) {
   }
 
   // Images: cache-first
-  if (path.startsWith("/img/")) {
+  if (path.includes("/img/")) {
     event.respondWith(cacheFirst(req, IMG_CACHE));
     return;
   }
 
   // CSS/JS and Google Fonts: stale-while-revalidate
   const isAsset =
-    path.startsWith("/js/") ||
+    path.includes("/js/") ||
+    path.includes("/assets/") ||
     path.endsWith("/styles.css") ||
     url.hostname === "fonts.googleapis.com" ||
     url.hostname === "fonts.gstatic.com";
