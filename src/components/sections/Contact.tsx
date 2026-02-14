@@ -195,7 +195,7 @@ export default function ContactSection() {
               </span>
             </h2>
 
-            <div className="relative mt-2 flex size-[4.25rem] items-center justify-center sm:size-[5rem]">
+            <div className="relative mt-2 flex size-17 items-center justify-center sm:size-20">
               <div
                 className="pointer-events-none absolute inset-0 rounded-full ring-1 transition-all ease-out"
                 style={{
@@ -269,7 +269,7 @@ export default function ContactSection() {
             pointerEvents: isClicked ? "none" : "auto",
           }}
         >
-          <p className="max-w-[35rem] text-[15px] leading-relaxed text-white/58">
+          <p className="max-w-140 text-[15px] leading-relaxed text-white/58">
             Have a project in mind or an internship opportunity? I'd love to
             hear about it and build something great together.
           </p>
