@@ -1,36 +1,73 @@
-# Reda Alalach — Portfolio (Static)
+# React + TypeScript + Vite
 
-A lightweight, fast portfolio website built with **HTML + CSS + JavaScript**.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## What’s inside
+Currently, two official plugins are available:
 
-- **Featured project** + project cards
-- **Experience** section (internships)
-- **Skills** + **Certifications**
-- **Resume PDF** included at: `assets/Reda_Alalach_Resume.pdf`
-- Responsive navigation + smooth scrolling
-- Optional Service Worker caching (`sw.js`)
-- GitHub Pages deployment workflow (`.github/workflows/static.yml`)
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Quick edit checklist
+## React Compiler
 
-- Update SEO links in `index.html`:
-  - `canonical`
-  - `og:url`
-  - `sitemap.xml` + `robots.txt`
-- Replace the resume file if needed:
-  - `assets/Reda_Alalach_Resume.pdf`
-- Update project links + descriptions in the **Projects** section.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Deploy to GitHub Pages
+## Expanding the ESLint configuration
 
-This repo includes a workflow that deploys the entire repository to GitHub Pages on pushes to `main`.
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-1. Push to GitHub.
-2. In your repo settings → **Pages**:
-   - Build and deployment: GitHub Actions
-3. Your site will be published automatically.
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
----
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-If you want a React/Next.js version of this portfolio later, you can keep the same content structure and migrate the UI.
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
