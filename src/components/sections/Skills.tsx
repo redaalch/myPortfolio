@@ -186,9 +186,52 @@ export default function SkillsSection() {
           </p>
         </div>
 
+        {/* ── Mobile fallback: card grid ── */}
+        <div className="grid grid-cols-1 gap-4 md:hidden">
+          {CATEGORIES.map((cat, ci) => (
+            <div
+              key={ci}
+              className="rounded-xl border border-white/8 bg-white/3 p-5"
+            >
+              <div className="flex items-center gap-2.5 mb-3">
+                <span
+                  className="w-2.5 h-2.5 rounded-full"
+                  style={{ backgroundColor: cat.color }}
+                />
+                <h3 className="text-sm font-semibold text-white tracking-wide">
+                  {cat.title}
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {cat.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="text-xs px-2.5 py-1.5 rounded-full border text-white/60"
+                    style={{
+                      borderColor: `${cat.color}30`,
+                      backgroundColor: `${cat.color}08`,
+                    }}
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+              {cat.note && (
+                <p
+                  className="text-[11px] mt-3 italic"
+                  style={{ color: `${cat.color}90` }}
+                >
+                  {cat.note}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* ── Desktop: constellation SVG ── */}
         <svg
           viewBox={`0 0 ${W} ${H}`}
-          className="w-full select-none"
+          className="w-full select-none hidden md:block"
           role="img"
           aria-label="Constellation map of skills and technologies"
           onPointerLeave={leave}
@@ -395,7 +438,7 @@ export default function SkillsSection() {
           })}
         </svg>
 
-        <div className="flex flex-wrap justify-center gap-6 mt-6">
+        <div className="hidden md:flex flex-wrap justify-center gap-6 mt-6">
           {CATEGORIES.map((cat, ci) => (
             <div
               key={ci}
