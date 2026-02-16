@@ -28,7 +28,7 @@ interface ResponsiveHeroBannerProps {
 }
 
 const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
-  backgroundImageUrl = "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0e2dbea0-c0a9-413f-a57b-af279633c0df_3840w.jpg",
+  backgroundImageUrl = "/hero-2400w.avif",
   navLinks = [
     { label: "Projects", href: "#projects" },
     { label: "Experience", href: "#experience" },
@@ -67,7 +67,14 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
     <section className="w-full isolate min-h-screen overflow-hidden relative">
       <img
         src={backgroundImageUrl}
+        srcSet="/hero-1200w.avif 1200w, /hero-2400w.avif 2400w"
+        sizes="100vw"
         alt=""
+        width={2400}
+        height={1344}
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
         className="w-full h-full object-cover absolute top-0 right-0 bottom-0 left-0"
       />
       <div className="pointer-events-none absolute inset-0 ring-1 ring-black/30" />
@@ -79,13 +86,16 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
               <Logo height={36} />
             </a>
 
-            <nav className="hidden md:flex items-center gap-2">
+            <nav
+              aria-label="Main navigation"
+              className="hidden md:flex items-center gap-2"
+            >
               <div className="flex items-center gap-1 rounded-full bg-white/5 px-1 py-1 ring-1 ring-white/10 backdrop-blur">
                 {navLinks.map((link, index) => (
                   <a
                     key={index}
                     href={link.href}
-                    className={`px-3 py-2 text-sm font-medium hover:text-white font-sans transition-colors ${
+                    className={`px-3 py-2 text-sm font-medium hover:text-white transition-colors ${
                       link.isActive ? "text-white/90" : "text-white/80"
                     }`}
                   >
@@ -96,7 +106,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                   href={ctaButtonHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="ml-1 inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-2 text-sm font-medium text-neutral-900 hover:bg-white/90 font-sans transition-colors"
+                  className="ml-1 inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-2 text-sm font-medium text-neutral-900 hover:bg-white/90 transition-colors"
                 >
                   {ctaButtonText}
                   <svg
@@ -208,10 +218,10 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
         <div className="sm:pt-28 md:pt-32 lg:pt-40 max-w-7xl mx-auto pt-28 px-6 pb-16">
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-6 inline-flex items-center gap-3 rounded-full bg-white/10 px-2.5 py-2 ring-1 ring-white/15 backdrop-blur animate-fade-slide-in-1">
-              <span className="inline-flex items-center text-xs font-medium text-neutral-900 bg-white/90 rounded-full py-0.5 px-2 font-sans">
+              <span className="inline-flex items-center text-xs font-medium text-neutral-900 bg-white/90 rounded-full py-0.5 px-2">
                 {badgeLabel}
               </span>
-              <span className="text-sm font-medium text-white/90 font-sans">
+              <span className="text-sm font-medium text-white/90">
                 {badgeText}
               </span>
             </div>
@@ -229,7 +239,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
             <div className="flex flex-col sm:flex-row sm:gap-4 mt-10 gap-3 items-center justify-center animate-fade-slide-in-4">
               <a
                 href={primaryButtonHref}
-                className="inline-flex items-center gap-2 hover:bg-white/15 text-sm font-medium text-white bg-white/10 ring-white/15 ring-1 rounded-full py-3 px-5 font-sans transition-colors"
+                className="inline-flex items-center gap-2 hover:bg-white/15 text-sm font-medium text-white bg-white/10 ring-white/15 ring-1 rounded-full py-3 px-5 transition-colors"
               >
                 {primaryButtonText}
                 <svg
@@ -250,7 +260,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
               </a>
               <a
                 href={secondaryButtonHref}
-                className="inline-flex items-center gap-2 rounded-full bg-transparent px-5 py-3 text-sm font-medium text-white/90 hover:text-white font-sans transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-transparent px-5 py-3 text-sm font-medium text-white/90 hover:text-white transition-colors"
               >
                 {secondaryButtonText}
                 <svg

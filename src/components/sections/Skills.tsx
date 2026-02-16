@@ -80,7 +80,7 @@ export default function SkillsSection() {
           <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest">
             Toolkit
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3 font-instrument-serif italic">
             Skills & Technologies
           </h2>
           <p className="text-white/50 mt-4 max-w-2xl mx-auto text-lg">
