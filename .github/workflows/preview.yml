@@ -1,0 +1,57 @@
+name: PR Preview Deploy
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint & Typecheck
+        run: |
+          npm run lint
+          npx tsc --noEmit
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy preview to Netlify
+        id: netlify
+        uses: nwtgck/actions-netlify@v3
+        with:
+          publish-dir: ./dist
+          production-deploy: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "PR #${{ github.event.pull_request.number }} — ${{ github.event.pull_request.title }}"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
+
+      - name: Lighthouse CI on preview
+        if: steps.netlify.outputs.deploy-url
+        run: |
+          npm install -g @lhci/cli
+          lhci autorun \
+            --collect.url=${{ steps.netlify.outputs.deploy-url }} \
+            --assert.preset=lighthouse:recommended \
+            --assert.assertions.categories:performance='["warn",{"minScore":0.9}]' \
+            --assert.assertions.cumulative-layout-shift='["error",{"maxNumericValue":0.1}]' \
+            || true
