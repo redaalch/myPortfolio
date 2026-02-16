@@ -159,7 +159,7 @@ export default function ContactSection() {
         >
           <div className="flex flex-col items-center gap-7">
             <h2
-              className="relative text-center text-6xl font-light leading-[0.93] tracking-tight text-white sm:text-7xl md:text-8xl lg:text-[7.4rem] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+              className="relative text-center text-6xl font-light leading-[0.93] tracking-tight text-white sm:text-7xl md:text-8xl lg:text-[7.4rem] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] font-instrument-serif italic"
               style={{
                 opacity: isClicked ? 0 : 1,
                 transform: isClicked

@@ -1,18 +1,23 @@
-import { Briefcase } from "lucide-react";
+import { useState } from "react";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import technocolabsLogo from "../../assets/technocolabs_logo.jpeg";
+import alchdevLogo from "../../assets/alchdev.jpeg";
 
 interface Experience {
   company: string;
+  shortName: string;
+  logo: string;
   role: string;
   period: string;
   type: string;
   bullets: string[];
-  tags: string[];
 }
 
 const experiences: Experience[] = [
   {
     company: "Technocolabs Softwares Inc.",
+    shortName: "Technocolabs",
+    logo: technocolabsLogo,
     role: "Full-Stack Developer Intern (MERN)",
     period: "Oct 2025 – Present",
     type: "Remote",
@@ -22,10 +27,11 @@ const experiences: Experience[] = [
       "Helped deploy and troubleshoot full-stack environments (Render/Vercel/Railway/Netlify) with proper env config.",
       "Added a /health status endpoint and improved UX feedback with toast notifications.",
     ],
-    tags: ["Node.js", "Express", "JWT", "Socket.io", "Deployment"],
   },
   {
     company: "ALCHDEV BUSINESS",
+    shortName: "ALCHDEV",
+    logo: alchdevLogo,
     role: "Web Developer Intern",
     period: "Jul 2025 – Sep 2025",
     type: "On-site",
@@ -34,12 +40,13 @@ const experiences: Experience[] = [
       "Worked with React Router, Redux, and UI component libraries to speed delivery.",
       "Improved performance and cross-browser compatibility through refactoring and UI polishing.",
     ],
-    tags: ["React", "Redux", "React Router", "REST APIs", "CSS"],
   },
 ];
 
 export default function ExperienceSection() {
   const { ref, visible } = useScrollReveal();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const active = experiences[activeIndex];
 
   return (
     <section id="experience" className="py-24 relative">
@@ -47,60 +54,74 @@ export default function ExperienceSection() {
         ref={ref}
         className={`max-w-5xl mx-auto px-6 ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
       >
-        <div className="text-center mb-16">
-          <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest">
-            Career
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-            Experience
+        {/* Title with horizontal line */}
+        <div className="flex items-center gap-6 mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-violet-400 whitespace-nowrap font-instrument-serif italic">
+            My Work Experiences
           </h2>
-          <p className="text-white/50 mt-4 max-w-2xl mx-auto text-lg">
-            Production-style feature work: authentication, API integration,
-            real-time updates, deployment, and reliability.
-          </p>
+          <div className="flex-1 h-px bg-white/15" />
         </div>
 
-        <div className="space-y-8">
-          {experiences.map((xp, i) => (
-            <article
-              key={i}
-              className="group rounded-2xl bg-white/3 ring-1 ring-white/8 p-6 md:p-8 hover:bg-white/6 hover:ring-white/15 transition-all duration-300"
-            >
-              <div className="flex items-start gap-4 mb-4">
-                <div className="shrink-0 w-10 h-10 rounded-xl bg-violet-500/10 ring-1 ring-violet-500/20 flex items-center justify-center">
-                  <Briefcase className="w-5 h-5 text-violet-400" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-white">{xp.company}</h3>
-                  <p className="text-sm text-white/50">
-                    {xp.role} &middot; {xp.type} &middot; {xp.period}
-                  </p>
-                </div>
-              </div>
+        {/* Tabbed layout — open/flat style */}
+        <div className="flex flex-col md:flex-row gap-0">
+          {/* Sidebar tabs with continuous left border */}
+          <nav className="flex md:flex-col shrink-0 md:w-48 border-b md:border-b-0 md:border-l-2 md:border-l-white/10 overflow-x-auto md:overflow-x-visible">
+            {experiences.map((xp, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                className={`relative text-left px-5 py-3 text-sm font-medium transition-colors duration-200 whitespace-nowrap
+                  ${
+                    activeIndex === i
+                      ? "text-violet-400"
+                      : "text-white/30 hover:text-white/60"
+                  }`}
+              >
+                {/* Active left indicator (overlaps the border) */}
+                {activeIndex === i && (
+                  <span className="hidden md:block absolute -left-0.5 top-0 bottom-0 w-0.5 bg-violet-400" />
+                )}
+                {activeIndex === i && (
+                  <span className="block md:hidden absolute bottom-0 left-0 right-0 h-0.5 bg-violet-400" />
+                )}
+                {xp.shortName}
+              </button>
+            ))}
+          </nav>
 
-              <ul className="space-y-2 ml-14">
-                {xp.bullets.map((bullet, j) => (
-                  <li
-                    key={j}
-                    className="text-sm text-white/60 leading-relaxed before:content-['▸'] before:text-violet-400 before:mr-2"
-                  >
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex flex-wrap gap-2 mt-5 ml-14">
-                {xp.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs px-2.5 py-1 rounded-full bg-white/5 text-white/50 ring-1 ring-white/8"
-                  >
-                    {tag}
-                  </span>
-                ))}
+          {/* Content panel */}
+          <div
+            key={activeIndex}
+            className="flex-1 md:pl-12 pt-6 md:pt-0 animate-fade-in"
+          >
+            <div className="flex items-start gap-4">
+              <img
+                src={active.logo}
+                alt={`${active.company} logo`}
+                className="shrink-0 w-11 h-11 rounded-xl object-cover ring-1 ring-white/10"
+              />
+              <div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white leading-snug">
+                  {active.role}{" "}
+                  <span className="text-violet-400">@ {active.company}</span>
+                </h3>
+                <p className="text-sm text-white/40 mt-1">
+                  {active.type} | {active.period}
+                </p>
               </div>
-            </article>
-          ))}
+            </div>
+
+            <ul className="space-y-3 mt-6">
+              {active.bullets.map((bullet, j) => (
+                <li
+                  key={j}
+                  className="text-sm text-white/55 leading-relaxed pl-5 relative before:content-['▸'] before:text-violet-400 before:absolute before:left-0"
+                >
+                  {bullet}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
