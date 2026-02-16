@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Github, ArrowUpRight, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
@@ -26,15 +26,14 @@ function useVisibleCount() {
 export default function ProjectsSection() {
   const { ref, visible } = useScrollReveal();
   const visibleCount = useVisibleCount();
-  const [startIndex, setStartIndex] = useState(0);
+  const [rawStartIndex, setStartIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState<"next" | "prev">("next");
 
-  // Reset startIndex when visibleCount changes so we don't overflow
-  useEffect(() => {
-    setStartIndex((prev) =>
-      Math.min(prev, Math.max(0, projects.length - visibleCount)),
-    );
-  }, [visibleCount]);
+  // Clamp startIndex so it never overflows when visibleCount changes
+  const startIndex = Math.min(
+    rawStartIndex,
+    Math.max(0, projects.length - visibleCount),
+  );
 
   const canPrev = startIndex > 0;
   const canNext = startIndex + visibleCount < projects.length;
