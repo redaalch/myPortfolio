@@ -148,7 +148,7 @@ export default function SkillsSection() {
   const [active, setActive] = useState<number | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout>>();
 
-  const { sats, crossLinks, stars } = useMemo(buildLayout, []);
+  const { sats, crossLinks, stars } = useMemo(() => buildLayout(), []);
 
   useEffect(() => () => clearTimeout(timer.current), []);
 
