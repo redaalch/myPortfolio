@@ -19,19 +19,114 @@
       property="og:description"
       content="Backend-leaning full-stack developer building Node.js/Express APIs, real-time features with Socket.io, and modern React apps."
     />
-    <meta property="og:url" content="https://redaalch.github.io/" />
+    <meta property="og:url" content="https://remyportfolio.me/" />
+    <meta property="og:image" content="https://remyportfolio.me/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Reda Alalach — Backend & Full-Stack Developer"
+    />
+    <meta
+      name="twitter:description"
+      content="Backend-leaning full-stack developer building Node.js/Express APIs, real-time features with Socket.io, and modern React apps."
+    />
+    <meta
+      name="twitter:image"
+      content="https://remyportfolio.me/og-image.png"
+    />
+
+    <link rel="canonical" href="https://remyportfolio.me/" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Instrument+Serif&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Quicksand:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Preload hero image for fast LCP -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/avif"
+      imagesrcset="/hero-1200w.avif 1200w, /hero-2400w.avif 2400w"
+      imagesizes="100vw"
+    />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Reda Alalach",
+        "url": "https://remyportfolio.me",
+        "jobTitle": "Backend & Full-Stack Developer",
+        "sameAs": [
+          "https://github.com/redaalch",
+          "https://www.linkedin.com/in/reda-alalach/"
+        ],
+        "description": "Backend-leaning full-stack developer building Node.js/Express APIs, real-time features with Socket.io, and modern React apps.",
+        "knowsAbout": [
+          "Node.js",
+          "Express",
+          "MongoDB",
+          "React",
+          "TypeScript",
+          "Socket.io",
+          "Docker",
+          "Firebase"
+        ]
+      }
+    </script>
 
     <title>Reda Alalach — Backend & Full-Stack Developer</title>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div
+        style="
+          max-width: 700px;
+          margin: 80px auto;
+          padding: 24px;
+          color: #fff;
+          font-family: system-ui, sans-serif;
+          text-align: center;
+        "
+      >
+        <h1 style="font-size: 2rem; margin-bottom: 16px">Reda Alalach</h1>
+        <p style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 24px">
+          Backend & Full-Stack Developer
+        </p>
+        <p style="opacity: 0.6; line-height: 1.7">
+          This portfolio requires JavaScript to run. Please enable JavaScript or
+          visit my profiles directly:
+        </p>
+        <div
+          style="
+            margin-top: 24px;
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+          "
+        >
+          <a href="https://github.com/redaalch" style="color: #a78bfa"
+            >GitHub</a
+          >
+          <a
+            href="https://www.linkedin.com/in/reda-alalach/"
+            style="color: #a78bfa"
+            >LinkedIn</a
+          >
+          <a href="mailto:reda.alalach@gmail.com" style="color: #a78bfa"
+            >Email</a
+          >
+        </div>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
