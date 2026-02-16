@@ -32,7 +32,11 @@ export default function ProjectsSection() {
     slideDirection === "next" ? "project-slide-next" : "project-slide-prev";
 
   return (
-    <section id="projects" className="py-24 relative">
+    <section id="projects" className="py-24 relative overflow-hidden">
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-[0.07]"
+        style={{ backgroundImage: "url('/screen-template.png')" }}
+      />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.05)_0%,transparent_70%)]" />
 
       <div

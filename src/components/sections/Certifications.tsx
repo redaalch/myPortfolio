@@ -42,7 +42,7 @@ export default function CertificationsSection() {
     <section id="certifications" className="py-24 relative">
       <div
         ref={ref}
-        className={`max-w-[1000px] mx-auto px-6 ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
+        className={`max-w-[1000px] mx-auto px-6 relative ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
       >
         <div className="text-center mb-16">
           <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest">

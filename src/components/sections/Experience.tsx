@@ -52,7 +52,7 @@ export default function ExperienceSection() {
     <section id="experience" className="py-24 relative">
       <div
         ref={ref}
-        className={`max-w-5xl mx-auto px-6 ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
+        className={`max-w-5xl mx-auto px-6 relative ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
       >
         {/* Title with horizontal line */}
         <div className="flex items-center gap-6 mb-12">

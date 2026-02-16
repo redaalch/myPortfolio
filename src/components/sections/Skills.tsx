@@ -168,7 +168,7 @@ export default function SkillsSection() {
 
   return (
     <section id="skills" className="py-24 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(59,130,246,0.05)_0%,transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(59,130,246,0.08)_0%,transparent_70%)]" />
 
       <div
         ref={ref}

@@ -10,7 +10,7 @@ const lighthouseScores = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/6 py-12">
+    <footer className="py-12 relative">
       <div className="max-w-7xl mx-auto px-6">
         {/* Lighthouse scores */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8">

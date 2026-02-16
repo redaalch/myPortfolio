@@ -16,18 +16,25 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       <ResponsiveHeroBanner />
-      <main id="main-content">
+      <div className="relative overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/abstract-bg.jpg')" }}
+        />
+        <div className="absolute inset-0 bg-background/90" />
+        <main id="main-content" className="relative">
+          <Suspense fallback={null}>
+            <ProjectsSection />
+            <ExperienceSection />
+            <SkillsSection />
+            <CertificationsSection />
+            <ContactSection />
+          </Suspense>
+        </main>
         <Suspense fallback={null}>
-          <ProjectsSection />
-          <ExperienceSection />
-          <SkillsSection />
-          <CertificationsSection />
-          <ContactSection />
+          <Footer />
         </Suspense>
-      </main>
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
+      </div>
     </div>
   );
 }
