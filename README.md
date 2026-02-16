@@ -1,73 +1,91 @@
-# React + TypeScript + Vite
+# remyportfolio.me
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Personal portfolio of **Reda Alalach** — backend & full-stack developer.
 
-Currently, two official plugins are available:
+[![Live Site](https://img.shields.io/badge/live-remyportfolio.me-8b5cf6?style=for-the-badge)](https://remyportfolio.me)
+[![Deploy](https://github.com/redaalch/myPortfolio/actions/workflows/static.yml/badge.svg)](https://github.com/redaalch/myPortfolio/actions/workflows/static.yml)
+[![CodeQL](https://github.com/redaalch/myPortfolio/actions/workflows/codeql.yml/badge.svg)](https://github.com/redaalch/myPortfolio/actions/workflows/codeql.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Lighthouse Performance](https://img.shields.io/badge/Performance-95+-8b5cf6?logo=lighthouse&logoColor=white)
+![Lighthouse Accessibility](https://img.shields.io/badge/Accessibility-100-8b5cf6?logo=lighthouse&logoColor=white)
+![Lighthouse Best Practices](https://img.shields.io/badge/Best%20Practices-100-8b5cf6?logo=lighthouse&logoColor=white)
+![Lighthouse SEO](https://img.shields.io/badge/SEO-100-8b5cf6?logo=lighthouse&logoColor=white)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+| Layer     | Technology                   |
+| --------- | ---------------------------- |
+| Framework | React 19                     |
+| Styling   | Tailwind CSS v4              |
+| Bundler   | Vite 7                       |
+| Language  | TypeScript 5.9               |
+| Hosting   | GitHub Pages (custom domain) |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Screenshot
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+![Portfolio Screenshot](/public/og-image.png)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Local Development
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Install dependencies
+npm ci
+
+# Start dev server
+npm run dev
+
+# Lint
+npm run lint
+
+# Build for production
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Docker (one-command run)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Build and run with Docker Compose
+docker compose up --build
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Site is served at http://localhost:3000
 ```
+
+## CI / CD
+
+| Check             | Trigger            | Tool                         |
+| ----------------- | ------------------ | ---------------------------- |
+| Lint + Typecheck  | Every push         | ESLint + `tsc --noEmit`      |
+| Lighthouse CI     | Every push         | `@lhci/cli` (perf ≥ 0.9)     |
+| CodeQL scanning   | Push / PR / weekly | GitHub CodeQL                |
+| Dependabot        | Weekly             | npm + GitHub Actions         |
+| PR preview deploy | Pull requests      | Netlify + Lighthouse         |
+| Production deploy | Push to `main`     | GitHub Pages (custom domain) |
+
+## Performance
+
+Run through [WebPageTest](https://www.webpagetest.org/?url=https://remyportfolio.me) to verify:
+
+- **TTFB**: < 200 ms (GitHub Pages CDN)
+- **LCP**: < 1.2 s (AVIF hero with `<link rel="preload">`)
+- **CLS**: 0 (width/height on hero image, no layout shift)
+- **Total weight**: ~110 KB (gzip, including fonts)
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── sections/     # Page sections (Projects, Experience, Skills, …)
+│   └── ui/           # Reusable UI components (Navbar, Hero, …)
+├── data/             # Static data (projects list, case studies)
+├── hooks/            # Custom React hooks
+├── pages/            # Route pages (Home, ProjectDetails, CaseStudy)
+└── assets/           # Images and logos
+```
+
+## License
+
+[MIT](./LICENSE) © 2025 Reda Alalach
