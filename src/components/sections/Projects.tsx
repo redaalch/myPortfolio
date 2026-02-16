@@ -1,57 +1,35 @@
-import { ArrowUpRight, Github } from "lucide-react";
+import { useState } from "react";
+import { Github, ArrowUpRight, BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { projects } from "../../data/projects";
 
-interface Project {
-  title: string;
-  subtitle: string;
-  description: string;
-  tags: string[];
-  liveUrl?: string;
-  repoUrl?: string;
-  note?: string;
-  gradient: string;
-}
-
-const projects: Project[] = [
-  {
-    title: "NotesBoard",
-    subtitle: "MERN • Real-time Collaboration • Yjs",
-    description:
-      "Collaborative notes & analytics platform with a real-time editor (Yjs/Hocuspocus), shared dashboards, drag-and-drop, animations, offline cache, and notifications.",
-    tags: ["React", "Express", "MongoDB", "JWT", "Yjs", "Socket.io"],
-    repoUrl: "https://github.com/redaalch/notesBoard",
-    gradient: "from-violet-500/20 to-blue-500/20",
-  },
-  {
-    title: "Real-time Notifications Module",
-    subtitle: "Socket.io + Express — Internship feature",
-    description:
-      "Event-driven notifications for task assignment and updates, with API-driven history and UI feedback via toast alerts. Focused on reliability, auth consistency, and clean UX.",
-    tags: ["Socket.io", "Express", "JWT", "REST", "Testing"],
-    note: "Code is part of an internship project and may not be publicly shareable.",
-    gradient: "from-emerald-500/20 to-cyan-500/20",
-  },
-  {
-    title: "Alarm Clock",
-    subtitle: "Vanilla JS • PWA • Local Storage",
-    description:
-      "Lightweight alarm clock with add/edit/delete alarms, recurring schedules, local persistence, live 12/24-hour clock, desktop notifications, and offline support.",
-    tags: ["JavaScript", "HTML", "CSS", "PWA"],
-    liveUrl: "https://redaalch.github.io/alarm-clock/",
-    gradient: "from-orange-500/20 to-rose-500/20",
-  },
-  {
-    title: "Portfolio (This Site)",
-    subtitle: "React • Tailwind • TypeScript • Vite",
-    description:
-      "Modern portfolio built with React, Tailwind CSS, and TypeScript. Includes smooth animations, responsive design, and deployed via GitHub Pages.",
-    tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-    gradient: "from-pink-500/20 to-violet-500/20",
-  },
-];
+const VISIBLE = 3;
 
 export default function ProjectsSection() {
   const { ref, visible } = useScrollReveal();
+  const [startIndex, setStartIndex] = useState(0);
+  const [slideDirection, setSlideDirection] = useState<"next" | "prev">("next");
+
+  const canPrev = startIndex > 0;
+  const canNext = startIndex + VISIBLE < projects.length;
+
+  const prev = () => {
+    if (canPrev) {
+      setSlideDirection("prev");
+      setStartIndex((i) => i - 1);
+    }
+  };
+  const next = () => {
+    if (canNext) {
+      setSlideDirection("next");
+      setStartIndex((i) => i + 1);
+    }
+  };
+
+  const visibleProjects = projects.slice(startIndex, startIndex + VISIBLE);
+  const slideClass =
+    slideDirection === "next" ? "project-slide-next" : "project-slide-prev";
 
   return (
     <section id="projects" className="py-24 relative">
@@ -62,78 +40,131 @@ export default function ProjectsSection() {
         className={`max-w-7xl mx-auto px-6 relative ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
       >
         <div className="text-center mb-16">
-          <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest">
-            Portfolio
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-            Featured Projects
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white font-instrument-serif italic">
+            Projects
           </h2>
-          <p className="text-white/50 mt-4 max-w-2xl mx-auto text-lg">
-            A selection of projects focused on backend fundamentals, real-time
-            systems, and clean user experiences.
-          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, i) => (
+        {/* Cards — carousel showing 3 */}
+        <div className="flex justify-center items-center gap-10">
+          {visibleProjects.map((project) => (
             <article
-              key={i}
-              className="group rounded-2xl bg-white/3 ring-1 ring-white/8 p-6 hover:bg-white/6 hover:ring-white/15 transition-all duration-300"
+              key={`${project.title}-${startIndex}`}
+              className={`w-[350px] h-[450px] rounded-[20px] bg-linear-to-br ${project.color} p-5 flex flex-col text-left box-border transition-all duration-500 ease-out transform-gpu hover:scale-[1.03] project-card-hover ${slideClass}`}
             >
-              {/* Gradient header */}
-              <div
-                className={`h-2 w-16 rounded-full bg-linear-to-r ${project.gradient} mb-6`}
-              />
+              {/* Thumbnail */}
+              <div className="w-full">
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    width={700}
+                    height={438}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-auto rounded-[5px] object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-[150px] rounded-[5px] bg-white/10 flex items-center justify-center">
+                    <span className="text-white/30 text-sm">Preview</span>
+                  </div>
+                )}
+              </div>
 
-              <h3 className="text-xl font-bold text-white group-hover:text-violet-300 transition-colors">
+              {/* Title */}
+              <h3 className="text-2xl font-bold text-white mt-1.5 mb-0 leading-8">
                 {project.title}
               </h3>
-              <p className="text-sm text-white/40 mt-1">{project.subtitle}</p>
-              <p className="text-white/60 mt-4 leading-relaxed text-sm">
-                {project.description}
-              </p>
 
-              {project.note && (
-                <p className="text-xs text-white/30 mt-3 italic">
-                  Note: {project.note}
-                </p>
-              )}
-
-              <div className="flex flex-wrap gap-2 mt-5">
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2.5 mt-1.5">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs px-2.5 py-1 rounded-full bg-white/5 text-white/50 ring-1 ring-white/8"
+                    className="text-xs px-1.5 py-1 rounded-[5px] bg-white/15 text-white/75 transition-opacity hover:opacity-100"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <div className="flex gap-3 mt-6">
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm text-violet-400 hover:text-violet-300 transition-colors"
+              {/* Description */}
+              <p className="text-[13px] text-white/75 leading-relaxed mt-1.5 mb-2.5">
+                {project.description}
+              </p>
+
+              {/* Footer: Year + Links — pushed to bottom */}
+              <div className="flex items-center justify-between w-full mt-auto">
+                <span className="text-sm font-bold text-white">
+                  {project.year}
+                </span>
+                <div className="flex items-center gap-3">
+                  {project.hasCaseStudy && (
+                    <Link
+                      to={`/case-study/${project.slug}`}
+                      className="inline-flex items-center gap-1.5 text-xs text-violet-300/90 hover:text-white transition-colors font-medium"
+                    >
+                      <BookOpen className="w-3.5 h-3.5" />
+                      Case Study
+                    </Link>
+                  )}
+                  <Link
+                    to={`/projects/${project.slug}`}
+                    className="inline-flex items-center gap-1.5 text-xs text-white/75 hover:text-white transition-colors"
                   >
-                    Live Demo <ArrowUpRight className="h-3.5 w-3.5" />
-                  </a>
-                )}
-                {project.repoUrl && (
-                  <a
-                    href={project.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm text-white/50 hover:text-white/80 transition-colors"
-                  >
-                    <Github className="h-3.5 w-3.5" /> Source
-                  </a>
-                )}
+                    More details
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </Link>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-white/70 hover:text-white underline transition-colors"
+                    >
+                      Live
+                    </a>
+                  )}
+                  {project.repoUrl && (
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block hover:opacity-75 transition-opacity"
+                    >
+                      <Github className="w-[25px] h-[25px] text-white" />
+                    </a>
+                  )}
+                </div>
               </div>
             </article>
           ))}
+        </div>
+
+        {/* Navigation — text toggles */}
+        <div className="flex items-center justify-between mt-6 px-2">
+          <button
+            onClick={prev}
+            disabled={!canPrev}
+            className={`bg-transparent border-none outline-none cursor-pointer text-sm transition-all ${
+              canPrev
+                ? "text-white/60 hover:opacity-75"
+                : "text-white/15 cursor-default"
+            }`}
+          >
+            ← Prev
+          </button>
+          <button
+            onClick={next}
+            disabled={!canNext}
+            className={`bg-transparent border-none outline-none cursor-pointer text-sm transition-all ${
+              canNext
+                ? "text-white/60 hover:opacity-75"
+                : "text-white/15 cursor-default"
+            }`}
+          >
+            Next →
+          </button>
         </div>
       </div>
     </section>
