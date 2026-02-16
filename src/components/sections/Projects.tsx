@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Github, ArrowUpRight, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
