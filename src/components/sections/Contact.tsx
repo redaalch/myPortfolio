@@ -1,281 +1,224 @@
 import type React from "react";
-
 import { useState } from "react";
-import { ArrowUpRight, Mail, FileText, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  FileText,
+  Send,
+  Loader2,
+  CheckCircle2,
+  Mail,
+  CircleDot,
+} from "lucide-react";
+
+const inputClass =
+  "w-full rounded-lg border border-white/10 bg-white/3 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition-colors focus:border-white/25 focus:bg-white/5";
+
+const cellClass =
+  "rounded-2xl border border-white/6 bg-white/2 backdrop-blur-sm relative overflow-hidden";
+
+const skills = ["Frontend", "Backend", "Full Stack"];
 
 export default function ContactSection() {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [isButtonHovered, setIsButtonHovered] = useState(false);
+  const [formState, setFormState] = useState<"idle" | "sending" | "sent">(
+    "idle",
+  );
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [cvHovered, setCvHovered] = useState(false);
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsClicked(true);
-
+    setFormState("sending");
+    await new Promise((r) => setTimeout(r, 1500));
+    setFormState("sent");
     setTimeout(() => {
-      setShowSuccess(true);
-    }, 450);
-  };
-
-  const handleClose = () => {
-    setShowSuccess(false);
-    setIsClicked(false);
-    setIsButtonHovered(false);
+      setFormState("idle");
+      setFormData({ name: "", email: "", message: "" });
+    }, 2500);
   };
 
   return (
-    <section
-      id="contact"
-      className="relative flex min-h-[88vh] items-center justify-center px-6 py-20"
-    >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.01)_45%,transparent_70%)]" />
-
-      <div className="relative z-10 flex flex-col items-center gap-10 text-white">
+    <section id="contact" className="relative px-6 py-12 sm:py-16">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-3 lg:grid-cols-[1fr_2fr]">
+        {/* ── Cell 1: Heading ── */}
         <div
-          className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-8 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-          style={{
-            opacity: showSuccess ? 1 : 0,
-            transform: showSuccess
-              ? "translateY(0) scale(1)"
-              : "translateY(20px) scale(0.95)",
-            pointerEvents: showSuccess ? "auto" : "none",
-          }}
+          className={`${cellClass} flex flex-col justify-between px-8 py-10 sm:py-12`}
         >
-          <button
-            type="button"
-            onClick={handleClose}
-            className="absolute right-2 top-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/6 text-white/80 ring-1 ring-white/15 transition-colors hover:bg-white/12 hover:text-white"
-            aria-label="Close and go back"
-          >
-            <X className="size-4" strokeWidth={1.8} />
-          </button>
-
-          <div className="flex flex-col items-center gap-1.5">
-            <span
-              className="text-[11px] font-medium tracking-[0.26em] uppercase text-white/60 transition-all duration-500"
-              style={{
-                transform: showSuccess ? "translateY(0)" : "translateY(10px)",
-                opacity: showSuccess ? 1 : 0,
-                transitionDelay: "100ms",
-              }}
-            >
-              Perfect
-            </span>
-            <h3
-              className="text-3xl font-light tracking-tight text-white transition-all duration-500 sm:text-[2.45rem]"
-              style={{
-                transform: showSuccess ? "translateY(0)" : "translateY(10px)",
-                opacity: showSuccess ? 1 : 0,
-                transitionDelay: "200ms",
-              }}
-            >
-              Let's connect
-            </h3>
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(139,92,246,0.08)_0%,transparent_60%)]" />
+          <div className="relative z-10 flex h-full flex-col justify-between gap-6">
+            <div>
+              <span className="text-[10px] font-medium tracking-[0.28em] uppercase text-white/40">
+                Get in touch
+              </span>
+              <h2 className="mt-3 text-5xl font-light leading-[0.93] tracking-tight text-white sm:text-6xl lg:text-7xl font-instrument-serif italic">
+                Let's
+                <br />
+                work
+                <br />
+                <span className="text-white/25">together</span>
+              </h2>
+            </div>
+            <p className="max-w-xs text-[13px] leading-relaxed text-white/40">
+              Have a project in mind or an internship opportunity? I'd love to
+              build something great together.
+            </p>
           </div>
-
-          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-            <a
-              href="assets/Reda_Alalach_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              onMouseEnter={() => setIsButtonHovered(true)}
-              onMouseLeave={() => setIsButtonHovered(false)}
-              className="group relative inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium ring-1 transition-all duration-500"
-              style={{
-                borderColor: isButtonHovered
-                  ? "rgba(255,255,255,0.9)"
-                  : "rgba(255,255,255,0.2)",
-                backgroundColor: isButtonHovered
-                  ? "rgba(255,255,255,0.92)"
-                  : "rgba(255,255,255,0.04)",
-                color: isButtonHovered ? "#0a0a0a" : "#ffffff",
-                transform: showSuccess ? "translateY(0)" : "translateY(15px)",
-                opacity: showSuccess ? 1 : 0,
-                transitionDelay: "140ms",
-              }}
-            >
-              <FileText className="size-4" strokeWidth={1.8} />
-              View CV
-              <ArrowUpRight
-                className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                strokeWidth={1.8}
-              />
-            </a>
-
-            <a
-              href="mailto:reda.alalach@gmail.com"
-              className="inline-flex items-center gap-2 rounded-full bg-transparent px-6 py-3 text-sm font-medium text-white/85 ring-1 ring-white/15 hover:bg-white/8 hover:text-white transition-all duration-500"
-              style={{
-                transform: showSuccess ? "translateY(0)" : "translateY(15px)",
-                opacity: showSuccess ? 1 : 0,
-                transitionDelay: "220ms",
-              }}
-            >
-              <Mail className="size-4" strokeWidth={1.8} />
-              Email Me
-            </a>
-          </div>
-
-          <span
-            className="text-[11px] tracking-[0.2em] uppercase text-white/45 transition-all duration-500"
-            style={{
-              transform: showSuccess ? "translateY(0)" : "translateY(10px)",
-              opacity: showSuccess ? 1 : 0,
-              transitionDelay: "420ms",
-            }}
-          >
-            Ready for internships & freelance projects
-          </span>
         </div>
 
-        <div
-          className="flex items-center gap-3 transition-all duration-500"
-          style={{
-            opacity: isClicked ? 0 : 1,
-            transform: isClicked ? "translateY(-20px)" : "translateY(0)",
-            pointerEvents: isClicked ? "none" : "auto",
-          }}
-        >
-          <span className="relative flex size-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
-          </span>
-          <span className="text-[13px] font-medium tracking-[0.2em] uppercase text-white/65">
-            Available for projects
-          </span>
-        </div>
-
-        <div
-          className="group relative cursor-pointer"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onClick={(e) =>
-            handleClick(e as unknown as React.MouseEvent<HTMLAnchorElement>)
-          }
-          style={{
-            pointerEvents: isClicked ? "none" : "auto",
-          }}
-        >
-          <div className="flex flex-col items-center gap-7">
-            <h2
-              className="relative text-center text-6xl font-light leading-[0.93] tracking-tight text-white sm:text-7xl md:text-8xl lg:text-[7.4rem] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] font-instrument-serif italic"
-              style={{
-                opacity: isClicked ? 0 : 1,
-                transform: isClicked
-                  ? "translateY(-40px) scale(0.95)"
-                  : "translateY(0) scale(1)",
-              }}
-            >
-              <span className="block overflow-hidden">
-                <span
-                  className="block transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                  style={{
-                    transform:
-                      isHovered && !isClicked
-                        ? "translateY(-8%)"
-                        : "translateY(0)",
-                  }}
-                >
-                  Let's work
-                </span>
-              </span>
-              <span className="block overflow-hidden">
-                <span
-                  className="block transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-75"
-                  style={{
-                    transform:
-                      isHovered && !isClicked
-                        ? "translateY(-8%)"
-                        : "translateY(0)",
-                  }}
-                >
-                  <span className="text-white/35">together</span>
-                </span>
-              </span>
-            </h2>
-
-            <div className="relative mt-2 flex size-17 items-center justify-center sm:size-20">
-              <div
-                className="pointer-events-none absolute inset-0 rounded-full ring-1 transition-all ease-out"
-                style={{
-                  borderColor: "transparent",
-                  backgroundColor: isClicked
-                    ? "transparent"
-                    : isHovered
-                      ? "rgba(255,255,255,0.92)"
-                      : "transparent",
-                  boxShadow: isHovered
-                    ? "inset 0 0 0 1px rgba(255,255,255,0.9)"
-                    : "inset 0 0 0 1px rgba(255,255,255,0.25)",
-                  transform: isClicked
-                    ? "scale(3)"
-                    : isHovered
-                      ? "scale(1.1)"
-                      : "scale(1)",
-                  opacity: isClicked ? 0 : 1,
-                  transitionDuration: isClicked ? "700ms" : "500ms",
-                }}
-              />
-              <ArrowUpRight
-                className="size-6 transition-all ease-[cubic-bezier(0.16,1,0.3,1)] sm:size-7"
-                style={{
-                  transform: isClicked
-                    ? "translate(100px, -100px) scale(0.5)"
-                    : isHovered
-                      ? "translate(2px, -2px)"
-                      : "translate(0, 0)",
-                  opacity: isClicked ? 0 : 1,
-                  color: isHovered && !isClicked ? "#111111" : "#ffffff",
-                  transitionDuration: isClicked ? "600ms" : "500ms",
-                }}
-              />
+        {/* ── Right column: nested grid ── */}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {/* ── Contact Form (full width of right col) ── */}
+          <div className={`${cellClass} px-6 py-8 sm:col-span-2 sm:px-8`}>
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.04)_0%,transparent_50%)]" />
+            <div className="relative z-10">
+              {formState === "sent" ? (
+                <div className="flex flex-col items-center gap-3 py-8 animate-fade-slide-in-1">
+                  <CheckCircle2
+                    className="size-9 text-emerald-400"
+                    strokeWidth={1.5}
+                  />
+                  <p className="text-sm font-light text-white/70">
+                    Message sent — I'll be in touch!
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                  <span className="mb-1 text-[10px] font-medium tracking-[0.28em] uppercase text-white/40">
+                    Send a message
+                  </span>
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    <input
+                      type="text"
+                      placeholder="Name"
+                      required
+                      value={formData.name}
+                      onChange={(e) =>
+                        setFormData((p) => ({ ...p, name: e.target.value }))
+                      }
+                      className={inputClass}
+                    />
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      required
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData((p) => ({ ...p, email: e.target.value }))
+                      }
+                      className={inputClass}
+                    />
+                  </div>
+                  <textarea
+                    placeholder="Your message..."
+                    required
+                    rows={4}
+                    value={formData.message}
+                    onChange={(e) =>
+                      setFormData((p) => ({ ...p, message: e.target.value }))
+                    }
+                    className={`resize-none ${inputClass}`}
+                  />
+                  <button
+                    type="submit"
+                    disabled={formState === "sending"}
+                    className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-all duration-300 hover:bg-white/90 disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {formState === "sending" ? (
+                      <>
+                        <Loader2
+                          className="size-4 animate-spin"
+                          strokeWidth={2}
+                        />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="size-4" strokeWidth={1.8} />
+                        Send Message
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
 
-          <div className="absolute -left-10 top-1/2 -translate-y-1/2 sm:-left-20">
-            <div
-              className="h-px w-10 bg-white/18 transition-all duration-500 sm:w-16"
-              style={{
-                transform: isClicked
-                  ? "scaleX(0) translateX(-20px)"
-                  : isHovered
-                    ? "scaleX(1.5)"
-                    : "scaleX(1)",
-                opacity: isClicked ? 0 : isHovered ? 1 : 0.5,
-              }}
-            />
+          {/* ── Availability (full width of right col) ── */}
+          <div
+            className={`${cellClass} flex flex-col gap-4 px-6 py-6 sm:col-span-2`}
+          >
+            <div className="flex items-center gap-2.5">
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
+              </span>
+              <span className="text-sm font-medium text-white/80">
+                Available for internships & projects
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-white/8 bg-white/3 px-3.5 py-1.5 text-xs font-medium text-white/60"
+                >
+                  <CircleDot
+                    className="size-3 text-emerald-400/70"
+                    strokeWidth={2}
+                  />
+                  {skill}
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="absolute -right-10 top-1/2 -translate-y-1/2 sm:-right-20">
-            <div
-              className="h-px w-10 bg-white/18 transition-all duration-500 sm:w-16"
-              style={{
-                transform: isClicked
-                  ? "scaleX(0) translateX(20px)"
-                  : isHovered
-                    ? "scaleX(1.5)"
-                    : "scaleX(1)",
-                opacity: isClicked ? 0 : isHovered ? 1 : 0.5,
-              }}
-            />
-          </div>
-        </div>
 
-        <div
-          className="mt-4 flex flex-col items-center gap-3 text-center transition-all duration-500 delay-100"
-          style={{
-            opacity: isClicked ? 0 : 1,
-            transform: isClicked ? "translateY(20px)" : "translateY(0)",
-            pointerEvents: isClicked ? "none" : "auto",
-          }}
-        >
-          <p className="max-w-140 text-[15px] leading-relaxed text-white/58">
-            Have a project in mind or an internship opportunity? I'd love to
-            hear about it and build something great together.
-          </p>
-          <span className="text-[11px] tracking-[0.18em] uppercase text-white/45">
-            reda.alalach@gmail.com
-          </span>
+          {/* ── View CV (50% of right col) ── */}
+          <a
+            href="assets/Reda_Alalach_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={() => setCvHovered(true)}
+            onMouseLeave={() => setCvHovered(false)}
+            className={`${cellClass} group flex items-center justify-between px-6 py-6 transition-all duration-400`}
+            style={{
+              backgroundColor: cvHovered ? "rgba(255,255,255,0.06)" : undefined,
+            }}
+          >
+            <div className="flex items-center gap-3">
+              <FileText className="size-5 text-white/50" strokeWidth={1.5} />
+              <div>
+                <p className="text-sm font-medium text-white/80">View CV</p>
+                <p className="text-[11px] text-white/35">Download resume</p>
+              </div>
+            </div>
+            <ArrowUpRight
+              className="size-5 text-white/30 transition-all duration-300 group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              strokeWidth={1.8}
+            />
+          </a>
+
+          {/* ── Email (50% of right col) ── */}
+          <a
+            href="mailto:reda.alalach@gmail.com"
+            className={`${cellClass} group flex items-center justify-between px-6 py-6 transition-all duration-400 hover:bg-white/4`}
+          >
+            <div className="flex items-center gap-3">
+              <Mail className="size-5 text-white/50" strokeWidth={1.5} />
+              <div>
+                <p className="text-sm font-medium text-white/80">Email</p>
+                <p className="text-[11px] text-white/35">
+                  reda.alalach@gmail.com
+                </p>
+              </div>
+            </div>
+            <ArrowUpRight
+              className="size-5 text-white/30 transition-all duration-300 group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              strokeWidth={1.8}
+            />
+          </a>
         </div>
       </div>
     </section>

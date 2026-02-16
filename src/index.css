@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Quicksand", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-instrument-serif: "Instrument Serif", serif;
 
   --color-background: #030014;
@@ -233,5 +233,11 @@ button:focus-visible {
   .project-card-hover:hover {
     box-shadow: none;
     filter: none;
+  }
+
+  .vertical-banner {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

@@ -33,7 +33,7 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/redaalch/notesBoard",
     liveUrl: "https://notesboard.xyz/",
     image: notesBoardPreview,
-    color: "from-violet-600 to-indigo-700",
+    color: "from-teal-700 to-teal-800",
     hasCaseStudy: true,
   },
   {
@@ -49,7 +49,7 @@ export const projects: Project[] = [
     tags: ["Socket.io", "Express", "JWT", "REST"],
     year: "2025",
     image: notificationsPreview,
-    color: "from-emerald-600 to-teal-700",
+    color: "from-purple-600/80 to-purple-800",
     hasCaseStudy: true,
   },
   {
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     year: "2025",
     liveUrl: "https://redaalch.github.io/alarm-clock/",
     image: alarmClockPreview,
-    color: "from-orange-500 to-amber-700",
+    color: "from-amber-700 to-amber-900",
   },
   {
     slug: "portfolio-site",
@@ -81,7 +81,7 @@ export const projects: Project[] = [
     tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
     year: "2025",
     image: portfolioPreview,
-    color: "from-rose-500 to-pink-700",
+    color: "from-slate-600 to-slate-800",
     hasCaseStudy: true,
   },
 ];

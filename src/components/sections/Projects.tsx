@@ -34,12 +34,6 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-24 relative overflow-hidden">
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-[0.07]"
-        style={{ backgroundImage: "url('/screen-template.png')" }}
-      />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.05)_0%,transparent_70%)]" />
-
-      <div
         ref={ref}
         className={`max-w-7xl mx-auto px-6 relative ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
       >
@@ -50,11 +44,14 @@ export default function ProjectsSection() {
         </div>
 
         {/* Cards — carousel showing 3 */}
-        <div className="flex justify-center items-center gap-10">
-          {visibleProjects.map((project) => (
+        <div className="flex justify-center items-end gap-10">
+          {visibleProjects.map((project, i) => {
+            const rotations = ["-rotate-3", "rotate-0", "rotate-3"];
+            const rotation = rotations[i % 3];
+            return (
             <article
               key={`${project.title}-${startIndex}`}
-              className={`w-[350px] h-[450px] rounded-[20px] bg-linear-to-br ${project.color} p-5 flex flex-col text-left box-border transition-all duration-500 ease-out transform-gpu hover:scale-[1.03] project-card-hover ${slideClass}`}
+              className={`w-[350px] h-[450px] rounded-[20px] bg-linear-to-br ${project.color} p-5 flex flex-col text-left box-border transition-all duration-500 ease-out transform-gpu hover:scale-[1.05] hover:rotate-0 project-card-hover ${rotation} ${slideClass}`}
             >
               {/* Thumbnail */}
               <div className="w-full">
@@ -142,7 +139,8 @@ export default function ProjectsSection() {
                 </div>
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
 
         {/* Navigation — text toggles */}

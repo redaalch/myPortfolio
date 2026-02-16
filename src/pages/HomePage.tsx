@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import ResponsiveHeroBanner from "../components/ui/responsive-hero-banner";
+import VerticalBanner from "../components/ui/VerticalBanner";
 
 const ProjectsSection = lazy(() => import("../components/sections/Projects"));
 const ExperienceSection = lazy(
@@ -14,15 +15,16 @@ const Footer = lazy(() => import("../components/sections/Footer"));
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-background">
-      <ResponsiveHeroBanner />
-      <div className="relative overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/abstract-bg.jpg')" }}
-        />
-        <div className="absolute inset-0 bg-background/90" />
-        <main id="main-content" className="relative">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/abstract-bg.jpg')" }}
+      />
+      <div className="absolute inset-0 bg-background/87" />
+      <div className="relative">
+        <ResponsiveHeroBanner />
+        <VerticalBanner />
+        <main id="main-content">
           <Suspense fallback={null}>
             <ProjectsSection />
             <ExperienceSection />
