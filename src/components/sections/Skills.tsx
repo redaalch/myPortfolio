@@ -146,7 +146,7 @@ function labelPos(sx: number, sy: number, hx: number, hy: number) {
 export default function SkillsSection() {
   const { ref, visible } = useScrollReveal();
   const [active, setActive] = useState<number | null>(null);
-  const timer = useRef<ReturnType<typeof setTimeout>>();
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const { sats, crossLinks, stars } = useMemo(() => buildLayout(), []);
 
