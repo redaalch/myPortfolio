@@ -281,8 +281,14 @@ export const caseStudies: CaseStudy[] = [
       { label: "Hero image size", value: "5–15 KB (AVIF)" },
       { label: "Accessibility score", value: "100" },
       { label: "Code-split chunks", value: "6 lazy sections" },
-      { label: "Page transitions", value: "View Transition API (300 ms crossfade)" },
-      { label: "Routes", value: "5 (Home, About, Project, Case Study, 404 redirect)" },
+      {
+        label: "Page transitions",
+        value: "View Transition API (300 ms crossfade)",
+      },
+      {
+        label: "Routes",
+        value: "5 (Home, About, Project, Case Study, 404 redirect)",
+      },
     ],
     nextSteps: [
       "Implement dark/light theme toggle with system preference detection",
