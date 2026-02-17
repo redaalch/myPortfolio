@@ -1,5 +1,6 @@
 import type React from "react";
 import { useState } from "react";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 import {
   ArrowUpRight,
   FileText,
@@ -19,6 +20,7 @@ const cellClass =
 const skills = ["Frontend", "Backend", "Full Stack"];
 
 export default function ContactSection() {
+  const { ref, visible } = useScrollReveal(0.1);
   const [formState, setFormState] = useState<"idle" | "sending" | "sent">(
     "idle",
   );
@@ -41,8 +43,11 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative px-6 py-12 sm:py-16">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-3 lg:grid-cols-[1fr_2fr]">
+    <section id="contact" className="relative px-6 py-24 sm:py-32">
+      <div
+        ref={ref}
+        className={`mx-auto grid max-w-6xl grid-cols-1 gap-3 lg:grid-cols-[1fr_2fr] ${visible ? "reveal visible" : "reveal"}`}
+      >
         {/* ── Cell 1: Heading ── */}
         <div
           className={`${cellClass} flex flex-col justify-between px-8 py-10 sm:py-12`}
@@ -53,7 +58,7 @@ export default function ContactSection() {
               <span className="text-[10px] font-medium tracking-[0.28em] uppercase text-white/40">
                 Get in touch
               </span>
-              <h2 className="mt-3 text-5xl font-light leading-[0.93] tracking-tight text-white sm:text-6xl lg:text-7xl font-instrument-serif italic">
+              <h2 className="mt-3 text-5xl font-light leading-[0.93] tracking-tight sm:text-6xl lg:text-7xl font-instrument-serif italic bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent">
                 Let's
                 <br />
                 work
@@ -124,7 +129,7 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={formState === "sending"}
-                    className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-all duration-300 hover:bg-white/90 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {formState === "sending" ? (
                       <>
@@ -177,7 +182,7 @@ export default function ContactSection() {
 
           {/* ── View CV (50% of right col) ── */}
           <a
-            href="assets/Reda_Alalach_Resume.pdf"
+            href="/Reda_Alalach_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             onMouseEnter={() => setCvHovered(true)}

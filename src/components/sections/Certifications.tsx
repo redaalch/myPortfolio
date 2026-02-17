@@ -39,7 +39,7 @@ export default function CertificationsSection() {
   const { ref, visible } = useScrollReveal();
 
   return (
-    <section id="certifications" className="py-24 relative">
+    <section id="certifications" className="py-32 relative">
       <div
         ref={ref}
         className={`max-w-[1000px] mx-auto px-6 relative ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
@@ -48,7 +48,7 @@ export default function CertificationsSection() {
           <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest">
             Credentials
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3 font-instrument-serif italic">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent mt-3 font-instrument-serif italic">
             Licenses & Certifications
           </h2>
           <div className="mx-auto mt-4 h-px w-24 bg-violet-400/40" />
