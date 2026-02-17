@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Github, Linkedin, Mail } from "lucide-react";
+import profileImg from "../../assets/profile.jpeg";
 
 export default function VerticalBanner() {
   const [visible, setVisible] = useState(false);
@@ -24,32 +25,117 @@ export default function VerticalBanner() {
             : "opacity-0 -translate-x-4 pointer-events-none"
         }`}
       >
-        <div className="flex flex-col items-center gap-5">
-          <a
-            href="https://github.com/redaalch"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-violet-400/70 hover:text-violet-400 hover:scale-110 transition-all duration-200"
-            aria-label="GitHub"
-          >
-            <Github className="w-5 h-5" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/reda-alalach/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-violet-400/70 hover:text-violet-400 hover:scale-110 transition-all duration-200"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="w-5 h-5" />
-          </a>
-          <a
-            href="mailto:reda.alalach@gmail.com"
-            className="text-violet-400/70 hover:text-violet-400 hover:scale-110 transition-all duration-200"
-            aria-label="Email"
-          >
-            <Mail className="w-5 h-5" />
-          </a>
+        <div className="flex flex-col items-center gap-7">
+          {/* GitHub with tooltip profile card + layer stack */}
+          <div className="sc-tooltip-container">
+            <div className="sc-tooltip">
+              <div className="sc-profile">
+                <div className="sc-user">
+                  <img
+                    src={profileImg}
+                    alt="Reda Alalach"
+                    className="sc-avatar"
+                  />
+                  <div className="sc-details">
+                    <div className="sc-name">Reda Alalach</div>
+                    <div className="sc-username">@redaalch</div>
+                  </div>
+                </div>
+                <div className="sc-about">Open Source & Full-Stack Dev</div>
+              </div>
+            </div>
+            <a
+              href="https://github.com/redaalch"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="sc-icon-link"
+              aria-label="GitHub"
+            >
+              <div className="sc-layer">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span className="sc-layer-icon">
+                  <Github className="w-6 h-6" />
+                </span>
+              </div>
+            </a>
+          </div>
+
+          {/* LinkedIn with tooltip profile card + layer stack */}
+          <div className="sc-tooltip-container">
+            <div className="sc-tooltip">
+              <div className="sc-profile">
+                <div className="sc-user">
+                  <img
+                    src={profileImg}
+                    alt="Reda Alalach"
+                    className="sc-avatar"
+                  />
+                  <div className="sc-details">
+                    <div className="sc-name">Reda Alalach</div>
+                    <div className="sc-username">@reda-alalach</div>
+                  </div>
+                </div>
+                <div className="sc-about">
+                  Full-Stack Developer · 500+ Connections
+                </div>
+              </div>
+            </div>
+            <a
+              href="https://www.linkedin.com/in/reda-alalach/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="sc-icon-link"
+              aria-label="LinkedIn"
+            >
+              <div className="sc-layer">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span className="sc-layer-icon">
+                  <Linkedin className="w-6 h-6" />
+                </span>
+              </div>
+            </a>
+          </div>
+
+          {/* Email with tooltip card + layer stack */}
+          <div className="sc-tooltip-container">
+            <div className="sc-tooltip">
+              <div className="sc-profile">
+                <div className="sc-user">
+                  <img
+                    src={profileImg}
+                    alt="Reda Alalach"
+                    className="sc-avatar"
+                  />
+                  <div className="sc-details">
+                    <div className="sc-name">Reda Alalach</div>
+                    <div className="sc-username">reda.alalach@gmail.com</div>
+                  </div>
+                </div>
+                <div className="sc-about">Feel free to reach out!</div>
+              </div>
+            </div>
+            <a
+              href="mailto:reda.alalach@gmail.com"
+              className="sc-icon-link"
+              aria-label="Email"
+            >
+              <div className="sc-layer">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span className="sc-layer-icon">
+                  <Mail className="w-6 h-6" />
+                </span>
+              </div>
+            </a>
+          </div>
         </div>
         <div className="w-px h-24 bg-linear-to-b from-violet-400/30 to-transparent" />
       </aside>

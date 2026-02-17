@@ -2,6 +2,29 @@ import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 
 /* ================================================================== */
+/*  Marquee logos — slug must match cdn.simpleicons.org                */
+/* ================================================================== */
+const MARQUEE_LOGOS = [
+  { name: "React", slug: "react", color: "61DAFB" },
+  { name: "TypeScript", slug: "typescript", color: "3178C6" },
+  { name: "Node.js", slug: "nodedotjs", color: "5FA04E" },
+  { name: "Express", slug: "express", color: "white" },
+  { name: "MongoDB", slug: "mongodb", color: "47A248" },
+  { name: "Docker", slug: "docker", color: "2496ED" },
+  { name: "Kubernetes", slug: "kubernetes", color: "326CE5" },
+  { name: "GitHub Actions", slug: "githubactions", color: "2088FF" },
+  { name: "Vite", slug: "vite", color: "646CFF" },
+  { name: "Tailwind CSS", slug: "tailwindcss", color: "06B6D4" },
+  { name: "Redux", slug: "redux", color: "764ABC" },
+  { name: "Linux", slug: "linux", color: "FCC624" },
+  { name: "Jenkins", slug: "jenkins", color: "D24939" },
+  { name: "GitLab CI", slug: "gitlab", color: "FC6D26" },
+  { name: "Socket.io", slug: "socketdotio", color: "white" },
+  { name: "Vitest", slug: "vitest", color: "6E9F18" },
+  { name: "Framer Motion", slug: "framer", color: "0055FF" },
+];
+
+/* ================================================================== */
 /*  Data                                                               */
 /* ================================================================== */
 interface Category {
@@ -167,7 +190,7 @@ export default function SkillsSection() {
     active == null ? 0.18 : active === ci ? 0.5 : 0.03;
 
   return (
-    <section id="skills" className="py-24 relative">
+    <section id="skills" className="py-32 relative">
       <div
         ref={ref}
         className={`max-w-6xl mx-auto px-6 relative ${
@@ -178,7 +201,7 @@ export default function SkillsSection() {
           <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest">
             Toolkit
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3 font-instrument-serif italic">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent mt-3 font-instrument-serif italic">
             Skills & Technologies
           </h2>
           <p className="text-white/50 mt-4 max-w-2xl mx-auto text-lg">
@@ -462,6 +485,46 @@ export default function SkillsSection() {
               </span>
             </div>
           ))}
+        </div>
+
+        {/* ── Tech logo marquee ── */}
+        <div className="mt-16 relative overflow-hidden">
+          {/* Edge fades */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[#030014] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-[#030014] to-transparent" />
+
+          <div className="marquee-track">
+            {[0, 1].map((copy) => (
+              <div
+                key={copy}
+                className="flex items-center shrink-0"
+                style={{ gap: "3rem" }}
+                aria-hidden={copy === 1 ? "true" : undefined}
+              >
+                {MARQUEE_LOGOS.map((logo) => (
+                  <div
+                    key={`${copy}-${logo.name}`}
+                    className="flex flex-col items-center gap-2 group"
+                    style={{ marginRight: 0 }}
+                  >
+                    <img
+                      src={`https://cdn.simpleicons.org/${logo.slug}/${logo.color}`}
+                      alt={logo.name}
+                      width={28}
+                      height={28}
+                      loading="lazy"
+                      className="opacity-40 group-hover:opacity-90 transition-opacity duration-300"
+                    />
+                    <span className="text-[10px] text-white/0 group-hover:text-white/50 transition-colors duration-300 whitespace-nowrap">
+                      {logo.name}
+                    </span>
+                  </div>
+                ))}
+                {/* spacer to match gap at the seam */}
+                <div className="shrink-0 w-12" aria-hidden="true" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

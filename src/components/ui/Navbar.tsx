@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "./Logo";
 
 const navLinks = [
+  { label: "About", href: "/about" },
   { label: "Projects", href: "/#projects" },
   { label: "Experience", href: "/#experience" },
   { label: "Skills", href: "/#skills" },
@@ -10,7 +11,7 @@ const navLinks = [
   { label: "Contact", href: "/#contact" },
 ];
 
-const cvHref = "assets/Reda_Alalach_Resume.pdf";
+const cvHref = "/Reda_Alalach_Resume.pdf";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -18,7 +19,11 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-background/70">
       <div className="mx-6 py-3 flex items-center justify-between">
-        <Link to="/" className="inline-flex items-center text-white">
+        <Link
+          to="/"
+          viewTransition
+          className="inline-flex items-center text-white"
+        >
           <Logo height={36} />
         </Link>
 
@@ -32,6 +37,7 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 to={link.href}
+                viewTransition
                 className="px-3 py-2 text-sm font-medium text-white/80 hover:text-white transition-colors"
               >
                 {link.label}
@@ -115,6 +121,7 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 to={link.href}
+                viewTransition
                 onClick={() => setMobileMenuOpen(false)}
                 className="px-4 py-3 text-sm font-medium text-white/80 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
               >
