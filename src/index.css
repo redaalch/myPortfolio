@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Map dark: variant to data-theme attribute */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 /* ── View Transition API ── */
 ::view-transition-old(root) {
   animation: vt-fade-out 0.25s cubic-bezier(0.4, 0, 0.2, 1) both;
@@ -39,6 +42,28 @@
   --color-muted: rgba(255, 255, 255, 0.6);
   --color-accent: #8b5cf6;
   --color-accent-light: #a78bfa;
+  --color-heading-from: #ffffff;
+  --color-heading-via: #ddd6fe;
+  --color-heading-to: #a78bfa;
+  --color-hero-from: #ffffff;
+  --color-hero-via: rgba(255, 255, 255, 0.9);
+  --color-hero-to: #ddd6fe;
+}
+
+/* ── Light theme override ── */
+[data-theme="light"] {
+  --color-background: #ffffff;
+  --color-foreground: #1a1a2e;
+  --color-muted: rgba(26, 26, 46, 0.6);
+  --color-accent: #7c3aed;
+  --color-accent-light: #6d28d9;
+  --color-heading-from: #1e1b4b;
+  --color-heading-via: #7c3aed;
+  --color-heading-to: #8b5cf6;
+  --color-hero-from: #1e1b4b;
+  --color-hero-via: #312e81;
+  --color-hero-to: #4c1d95;
+  --logo-invert: 0;
 }
 
 @layer base {
@@ -58,7 +83,25 @@
     color: var(--color-foreground);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow-x: hidden;
   }
+}
+
+/* Light-mode fixed radial glow backdrop */
+[data-theme="light"] body::before {
+  content: "";
+  position: fixed;
+  inset: -30%;
+  background: radial-gradient(
+    circle at 50% 35%,
+    rgba(139, 92, 246, 0.22) 0%,
+    rgba(139, 92, 246, 0) 55%
+  );
+  filter: blur(120px);
+  opacity: 0.7;
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* Animation keyframes */
@@ -216,14 +259,14 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+  background: color-mix(in srgb, var(--color-foreground) 5%, transparent);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: color-mix(in srgb, var(--color-foreground) 15%, transparent);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: color-mix(in srgb, var(--color-foreground) 25%, transparent);
 }
 
 /* Focus-visible ring for keyboard navigation */
@@ -302,10 +345,10 @@ button:focus-visible {
 }
 
 .sc-profile {
-  background: #2a2b2f;
+  background: var(--color-background);
   border-radius: 8px 12px;
   padding: 10px 18px 10px 14px;
-  border: 1px solid rgba(139, 92, 246, 0.6);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 60%, transparent);
   min-width: max-content;
 }
 
@@ -326,24 +369,24 @@ button:focus-visible {
 .sc-details {
   display: flex;
   flex-direction: column;
-  color: #fff;
+  color: var(--color-foreground);
 }
 
 .sc-name {
   font-size: 14px;
   font-weight: 700;
-  color: #a78bfa;
+  color: var(--color-accent-light);
 }
 
 .sc-username {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.5);
+  color: color-mix(in srgb, var(--color-foreground) 65%, transparent);
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .sc-about {
-  color: #ccc;
+  color: color-mix(in srgb, var(--color-foreground) 70%, transparent);
   padding-top: 4px;
   font-size: 11px;
 }
@@ -372,15 +415,15 @@ button:focus-visible {
   left: 0;
   height: 100%;
   width: 100%;
-  border: 1px solid #8b5cf6;
+  border: 1px solid var(--color-accent);
   border-radius: 5px;
   transition: all 0.3s;
-  color: #8b5cf6;
-  border-color: #8b5cf6;
+  color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 .sc-icon-link:hover .sc-layer span {
-  box-shadow: -1px 1px 3px #8b5cf6;
+  box-shadow: -1px 1px 3px var(--color-accent);
 }
 
 .sc-icon-link:hover .sc-layer span:nth-child(1) {
@@ -410,9 +453,9 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  fill: #8b5cf6;
-  color: #8b5cf6;
-  background: #000;
+  fill: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-background);
   border-radius: 5px;
   z-index: 1;
   width: 100%;
@@ -597,7 +640,7 @@ button:focus-visible {
 .project-card-hover:hover {
   box-shadow:
     0 20px 40px -12px rgba(139, 92, 246, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.08);
+    0 0 0 1px color-mix(in srgb, var(--color-foreground) 8%, transparent);
   filter: brightness(1.04);
 }
 
@@ -612,6 +655,266 @@ button:focus-visible {
     transform: none !important;
     transition: none !important;
   }
+}
+
+/* ===== Certifications container & cards ===== */
+.cert-container {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.08) 0%,
+    rgba(99, 102, 241, 0.06) 50%,
+    rgba(139, 92, 246, 0.1) 100%
+  );
+  border: 1px solid rgba(139, 92, 246, 0.12);
+}
+
+.cert-card {
+  background: color-mix(in srgb, var(--color-background) 60%, transparent);
+  backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in srgb, var(--color-foreground) 6%, transparent);
+  min-height: 340px;
+}
+
+.cert-card:hover {
+  background: color-mix(in srgb, var(--color-background) 80%, transparent);
+  border-color: rgba(139, 92, 246, 0.25);
+  box-shadow: 0 8px 32px -8px rgba(139, 92, 246, 0.15);
+  transform: translateY(-2px);
+}
+
+[data-theme="light"] .cert-container {
+  background: linear-gradient(
+    135deg,
+    #ede9fe 0%,
+    #e0e7ff 30%,
+    #f5f3ff 50%,
+    #ede9fe 70%,
+    #dbeafe 100%
+  );
+  border-color: rgba(196, 181, 253, 0.3);
+}
+
+[data-theme="light"] .cert-card {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] .cert-card:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(124, 58, 237, 0.2);
+  box-shadow: 0 8px 32px -8px rgba(124, 58, 237, 0.1);
+}
+
+/* ===== Skills section — light-mode glow blobs ===== */
+.skills-glow {
+  display: none;
+}
+
+[data-theme="light"] .skills-glow {
+  display: block;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.skills-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+[data-theme="light"] .skills-blob--1 {
+  width: 500px;
+  height: 500px;
+  top: -5%;
+  left: -8%;
+  background: radial-gradient(
+    circle,
+    rgba(196, 181, 253, 0.35) 0%,
+    rgba(233, 213, 255, 0.2) 40%,
+    transparent 70%
+  );
+  animation: glow-drift-1 20s ease-in-out infinite;
+}
+
+[data-theme="light"] .skills-blob--2 {
+  width: 450px;
+  height: 450px;
+  top: 30%;
+  right: -6%;
+  background: radial-gradient(
+    circle,
+    rgba(165, 180, 252, 0.3) 0%,
+    rgba(191, 219, 254, 0.2) 40%,
+    transparent 70%
+  );
+  animation: glow-drift-2 25s ease-in-out infinite;
+}
+
+[data-theme="light"] .skills-blob--3 {
+  width: 380px;
+  height: 380px;
+  bottom: -2%;
+  left: 25%;
+  background: radial-gradient(
+    circle,
+    rgba(232, 121, 249, 0.18) 0%,
+    rgba(244, 194, 255, 0.12) 40%,
+    transparent 70%
+  );
+  animation: glow-drift-1 28s ease-in-out infinite reverse;
+}
+
+/* ===== Section glow blobs (light-mode only) ===== */
+.section-glow {
+  display: none;
+}
+
+[data-theme="light"] .section-glow {
+  display: block;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.sg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+/* ── Projects blobs: warm violet + indigo ── */
+[data-theme="light"] .section-glow--projects .sg-blob--1 {
+  width: 480px;
+  height: 480px;
+  top: -10%;
+  right: -5%;
+  background: radial-gradient(
+    circle,
+    rgba(167, 139, 250, 0.28) 0%,
+    rgba(196, 181, 253, 0.15) 40%,
+    transparent 70%
+  );
+  animation: glow-drift-2 22s ease-in-out infinite;
+}
+
+[data-theme="light"] .section-glow--projects .sg-blob--2 {
+  width: 400px;
+  height: 400px;
+  bottom: 5%;
+  left: -8%;
+  background: radial-gradient(
+    circle,
+    rgba(129, 140, 248, 0.22) 0%,
+    rgba(199, 210, 254, 0.12) 40%,
+    transparent 70%
+  );
+  animation: glow-drift-1 26s ease-in-out infinite;
+}
+
+/* ── Experience blobs: teal + purple ── */
+[data-theme="light"] .section-glow--experience .sg-blob--1 {
+  width: 420px;
+  height: 420px;
+  top: 10%;
+  left: -10%;
+  background: radial-gradient(
+    circle,
+    rgba(94, 234, 212, 0.22) 0%,
+    rgba(153, 246, 228, 0.12) 40%,
+    transparent 70%
+  );
+  animation: glow-drift-1 24s ease-in-out infinite;
+}
+
+[data-theme="light"] .section-glow--experience .sg-blob--2 {
+  width: 360px;
+  height: 360px;
+  bottom: 0%;
+  right: -5%;
+  background: radial-gradient(
+    circle,
+    rgba(196, 181, 253, 0.25) 0%,
+    rgba(221, 214, 254, 0.14) 40%,
+    transparent 70%
+  );
+  animation: glow-drift-2 20s ease-in-out infinite;
+}
+
+/* ── Certifications blobs: pink + blue ── */
+[data-theme="light"] .section-glow--certs .sg-blob--1 {
+  width: 440px;
+  height: 440px;
+  top: -8%;
+  left: 10%;
+  background: radial-gradient(
+    circle,
+    rgba(244, 114, 182, 0.18) 0%,
+    rgba(251, 191, 222, 0.12) 40%,
+    transparent 70%
+  );
+  animation: glow-drift-2 25s ease-in-out infinite;
+}
+
+[data-theme="light"] .section-glow--certs .sg-blob--2 {
+  width: 380px;
+  height: 380px;
+  bottom: -5%;
+  right: -3%;
+  background: radial-gradient(
+    circle,
+    rgba(147, 197, 253, 0.24) 0%,
+    rgba(191, 219, 254, 0.14) 40%,
+    transparent 70%
+  );
+  animation: glow-drift-1 28s ease-in-out infinite reverse;
+}
+
+/* ── Contact blobs: violet + cyan + rose ── */
+[data-theme="light"] .section-glow--contact .sg-blob--1 {
+  width: 500px;
+  height: 500px;
+  top: -15%;
+  left: -10%;
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.2) 0%,
+    rgba(196, 181, 253, 0.12) 40%,
+    transparent 70%
+  );
+  animation: glow-drift-1 22s ease-in-out infinite;
+}
+
+[data-theme="light"] .section-glow--contact .sg-blob--2 {
+  width: 400px;
+  height: 400px;
+  top: 40%;
+  right: -8%;
+  background: radial-gradient(
+    circle,
+    rgba(103, 232, 249, 0.2) 0%,
+    rgba(165, 243, 252, 0.12) 40%,
+    transparent 70%
+  );
+  animation: glow-drift-2 26s ease-in-out infinite;
+}
+
+[data-theme="light"] .section-glow--contact .sg-blob--3 {
+  width: 350px;
+  height: 350px;
+  bottom: -5%;
+  left: 30%;
+  background: radial-gradient(
+    circle,
+    rgba(251, 113, 133, 0.16) 0%,
+    rgba(253, 164, 175, 0.1) 40%,
+    transparent 70%
+  );
+  animation: glow-drift-1 30s ease-in-out infinite reverse;
 }
 
 /* ===== Loading Screen ===== */
@@ -708,10 +1011,91 @@ button:focus-visible {
   0%,
   100% {
     opacity: 0.5;
-    filter: brightness(0) invert(1);
+    filter: brightness(0) invert(var(--logo-invert, 1));
   }
   50% {
     opacity: 1;
-    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(139, 92, 246, 0.6));
+    filter: brightness(0) invert(var(--logo-invert, 1))
+      drop-shadow(0 0 8px rgba(139, 92, 246, 0.6));
   }
+}
+
+/* ── Theme-aware logo filter ── */
+.logo-theme {
+  filter: brightness(0) invert(var(--logo-invert, 1));
+}
+
+/* ── Invert white-branded marquee icons in light mode ── */
+[data-theme="light"] img[data-icon-theme="invert"] {
+  filter: invert(1);
+}
+
+/* ── Light-mode ambient glow: soft pastel washes like bit.dev ── */
+[data-theme="light"] .ambient-glow::before {
+  width: 900px;
+  height: 900px;
+  top: -15%;
+  left: -5%;
+  background: radial-gradient(
+    circle,
+    transparent 30%,
+    rgba(196, 181, 253, 0.18) 45%,
+    rgba(233, 213, 255, 0.25) 55%,
+    rgba(244, 228, 255, 0.15) 70%,
+    transparent 85%
+  );
+  box-shadow: none;
+  animation: glow-drift-1 30s ease-in-out infinite;
+}
+
+[data-theme="light"] .ambient-glow::after {
+  width: 800px;
+  height: 800px;
+  bottom: 5%;
+  right: -10%;
+  background: radial-gradient(
+    circle,
+    transparent 30%,
+    rgba(191, 219, 254, 0.15) 45%,
+    rgba(221, 214, 254, 0.2) 55%,
+    rgba(199, 210, 254, 0.12) 70%,
+    transparent 85%
+  );
+  box-shadow: none;
+  animation: glow-drift-2 35s ease-in-out infinite;
+}
+
+/* Tone down bubbles in light mode */
+[data-theme="light"] .bg-bubbles span {
+  opacity: 0.35;
+}
+
+/* Softer card hover shadow in light mode */
+[data-theme="light"] .project-card-hover:hover {
+  box-shadow:
+    0 20px 40px -12px rgba(124, 58, 237, 0.12),
+    0 0 0 1px rgba(26, 26, 46, 0.06);
+}
+
+/* Hide the dark abstract-bg texture in light mode — clean white canvas */
+[data-theme="light"] .bg-cover {
+  opacity: 0;
+}
+
+/* Hide dark hero image in light mode; replace with soft pastel gradient */
+[data-theme="light"] section.isolate > img {
+  opacity: 0;
+}
+
+[data-theme="light"] section.isolate > img + div {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f5f3ff 25%,
+    #ede9fe 45%,
+    #e0e7ff 65%,
+    #f0f4ff 80%,
+    #ffffff 100%
+  );
+  opacity: 1;
 }
