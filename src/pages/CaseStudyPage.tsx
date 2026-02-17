@@ -66,11 +66,19 @@ export default function CaseStudyPage() {
       <div className="max-w-[900px] mx-auto px-5 lg:px-12 pt-36 pb-16">
         {/* Breadcrumb */}
         <nav className="text-sm text-white/80 mb-10">
-          <Link to="/" className="hover:underline transition-colors">
+          <Link
+            to="/"
+            viewTransition
+            className="hover:underline transition-colors"
+          >
             Home
           </Link>
           <span className="mx-2.5 opacity-60">/</span>
-          <Link to="/#projects" className="hover:underline transition-colors">
+          <Link
+            to="/#projects"
+            viewTransition
+            className="hover:underline transition-colors"
+          >
             Projects
           </Link>
           <span className="mx-2.5 opacity-60">/</span>
@@ -78,6 +86,7 @@ export default function CaseStudyPage() {
             <>
               <Link
                 to={`/projects/${project.slug}`}
+                viewTransition
                 className="hover:underline transition-colors"
               >
                 {project.title}
@@ -245,6 +254,7 @@ export default function CaseStudyPage() {
         <div className="pt-16 border-t border-white/12 mt-16 flex flex-col sm:flex-row items-center justify-between gap-5 mb-16">
           <Link
             to={project ? `/projects/${project.slug}` : "/#projects"}
+            viewTransition
             className="inline-flex items-center gap-2 px-6 py-4 rounded text-sm font-medium text-white/90 ring-1 ring-white/90 hover:bg-white/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -253,6 +263,7 @@ export default function CaseStudyPage() {
 
           <Link
             to="/#contact"
+            viewTransition
             className="inline-block px-6 py-4 rounded text-sm font-medium text-white/90 ring-1 ring-white/90 hover:bg-white/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
           >
             Start a Project &rsaquo;
