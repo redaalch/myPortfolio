@@ -82,10 +82,10 @@ src/
 │   └── ui/           # Reusable UI components (Navbar, Hero, …)
 ├── data/             # Static data (projects list, case studies)
 ├── hooks/            # Custom React hooks
-├── pages/            # Route pages (Home, ProjectDetails, CaseStudy)
+├── pages/            # Route pages (Home, About, ProjectDetails, CaseStudy)
 └── assets/           # Images and logos
 ```
 
 ## License
 
-[MIT](./LICENSE) © 2025 Reda Alalach
+[MIT](./LICENSE) © 2025–2026 Reda Alalach

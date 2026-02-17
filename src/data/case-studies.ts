@@ -226,6 +226,21 @@ export const caseStudies: CaseStudy[] = [
           "A visually-hidden skip-to-content link appears on Tab focus and jumps to <main id=main-content>. All navigation landmarks carry aria-label. Interactive elements show a visible :focus-visible ring (accent color, 2 px offset). Semantic HTML (header, nav, main, section, footer) throughout.",
       },
       {
+        heading: "View Transitions & Page Navigation",
+        content:
+          "All internal links use React Router v7's viewTransition prop, paired with ::view-transition-old/new(root) CSS rules. Page switches play a smooth crossfade (300 ms ease) instead of a hard repaint. The CSS also includes a reduced-motion media query that disables the animation for users who prefer it.",
+      },
+      {
+        heading: "About Page",
+        content:
+          "A dedicated /about route presents a personal timeline, stat highlights, tech stack breakdown, and interests. The page uses the shared scroll-reveal hook for entrance animations and links back to the home page with view transitions. A profile image and structured layout give recruiters a quick personality snapshot beyond the project list.",
+      },
+      {
+        heading: "Ambient Background & Visual Polish",
+        content:
+          "The homepage layers an abstract textured background (abstract-bg.jpg) under a semi-transparent overlay, floating glow orbs (CSS radial-gradient + keyframe drift), and rising bubble spans with randomised sizes, positions, and durations. These purely decorative elements are marked aria-hidden and add depth without affecting performance or accessibility.",
+      },
+      {
         heading: "CI / CD Pipeline",
         content:
           "GitHub Actions workflow: npm ci → ESLint → tsc --noEmit → vite build → Lighthouse CI (performance ≥ 0.9, CLS < 0.1). Dependabot keeps npm and Actions dependencies fresh weekly. CodeQL scans JavaScript/TypeScript on every push for security vulnerabilities. Deployment is automatic to GitHub Pages with a custom domain (remyportfolio.me).",
@@ -266,9 +281,10 @@ export const caseStudies: CaseStudy[] = [
       { label: "Hero image size", value: "5–15 KB (AVIF)" },
       { label: "Accessibility score", value: "100" },
       { label: "Code-split chunks", value: "6 lazy sections" },
+      { label: "Page transitions", value: "View Transition API (300 ms crossfade)" },
+      { label: "Routes", value: "5 (Home, About, Project, Case Study, 404 redirect)" },
     ],
     nextSteps: [
-      "Add view-transition API for smoother page navigations (React Router v7 supports it)",
       "Implement dark/light theme toggle with system preference detection",
       "Add a blog section using MDX for longer-form technical writing",
       "Set up Playwright E2E tests for critical user flows (navigation, case study links)",
