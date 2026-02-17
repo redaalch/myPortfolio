@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail, CheckCircle2, Gauge } from "lucide-react";
 import Logo from "../ui/Logo";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 const lighthouseScores = [
   { label: "Performance", score: "95+" },
@@ -9,9 +10,13 @@ const lighthouseScores = [
 ];
 
 export default function Footer() {
+  const { ref, visible } = useScrollReveal(0.1);
   return (
-    <footer className="py-12 relative">
-      <div className="max-w-7xl mx-auto px-6">
+    <footer className="py-16 relative">
+      <div
+        ref={ref}
+        className={`max-w-7xl mx-auto px-6 ${visible ? "reveal visible" : "reveal"}`}
+      >
         {/* Lighthouse scores */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
           <Gauge className="w-4 h-4 text-white/40" />

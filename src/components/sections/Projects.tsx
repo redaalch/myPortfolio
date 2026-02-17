@@ -56,13 +56,13 @@ export default function ProjectsSection() {
     slideDirection === "next" ? "project-slide-next" : "project-slide-prev";
 
   return (
-    <section id="projects" className="py-16 sm:py-24 relative overflow-hidden">
+    <section id="projects" className="py-24 sm:py-32 relative overflow-hidden">
       <div
         ref={ref}
         className={`max-w-7xl mx-auto px-4 sm:px-6 relative ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
       >
         <div className="text-center mb-10 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white font-instrument-serif italic">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent font-instrument-serif italic">
             Projects
           </h2>
         </div>
@@ -128,6 +128,7 @@ export default function ProjectsSection() {
                     {project.hasCaseStudy && (
                       <Link
                         to={`/case-study/${project.slug}`}
+                        viewTransition
                         className="inline-flex items-center gap-1.5 text-xs text-violet-300/90 hover:text-white transition-colors font-medium"
                       >
                         <BookOpen className="w-3.5 h-3.5" />
@@ -136,6 +137,7 @@ export default function ProjectsSection() {
                     )}
                     <Link
                       to={`/projects/${project.slug}`}
+                      viewTransition
                       className="inline-flex items-center gap-1.5 text-xs text-white/75 hover:text-white transition-colors"
                     >
                       More details

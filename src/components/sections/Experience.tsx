@@ -49,14 +49,14 @@ export default function ExperienceSection() {
   const active = experiences[activeIndex];
 
   return (
-    <section id="experience" className="py-16 sm:py-24 relative">
+    <section id="experience" className="py-24 sm:py-32 relative">
       <div
         ref={ref}
         className={`max-w-5xl mx-auto px-4 sm:px-6 relative ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
       >
         {/* Title with horizontal line */}
         <div className="flex items-center gap-4 sm:gap-6 mb-10 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-violet-400 font-instrument-serif italic shrink-0">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-violet-400 via-purple-300 to-indigo-400 bg-clip-text text-transparent font-instrument-serif italic shrink-0">
             My Work Experiences
           </h2>
           <div className="flex-1 h-px bg-white/15 hidden sm:block" />
