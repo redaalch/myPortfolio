@@ -9,12 +9,13 @@ import {
   Briefcase,
   GraduationCap,
   Rocket,
-  Heart,
   BookOpen,
   Coffee,
   Gamepad2,
   Globe,
   ArrowRight,
+  Cloud,
+  Server,
 } from "lucide-react";
 import Navbar from "../components/ui/Navbar";
 import { useScrollReveal } from "../hooks/useScrollReveal";
@@ -24,44 +25,60 @@ import profileImg from "../assets/profile.jpeg";
 /*  Data — replace with your real content                              */
 /* ================================================================== */
 const STATS = [
-  { value: "3+", label: "Years Coding" },
-  { value: "10+", label: "Projects Shipped" },
-  { value: "5", label: "Certifications" },
-  { value: "4", label: "Tech Stacks" },
+  { value: "4+", label: "Years Coding" },
+  { value: "5+", label: "Projects Shipped" },
+  { value: "3", label: "Certifications" },
+  { value: "2", label: "Internships" },
 ];
 
 const TIMELINE = [
   {
-    year: "2024",
-    title: "Full-Stack Portfolio Shipped",
+    year: "2025",
+    title: "Backend Developer Intern — Technocolabs",
     description:
-      "Built and deployed a production-grade portfolio with React 19, Tailwind v4, Docker, and CI/CD via GitHub Actions.",
-    icon: Rocket,
+      "Built secure JWT-authenticated APIs, integrated real-time notifications with Socket.io, and orchestrated production deployments across Render, Vercel, and Railway.",
+    icon: Server,
     color: "#8b5cf6",
   },
   {
-    year: "2023",
-    title: "DevOps & Cloud Certifications",
+    year: "2025",
+    title: "Web Developer Intern — ALCHDEV",
     description:
-      "Earned certifications in Docker, Kubernetes, and CI/CD pipelines. Started working with Jenkins and GitLab CI.",
-    icon: GraduationCap,
+      "Implemented pages in a React.js application, integrated REST APIs, and improved performance and cross-browser compatibility.",
+    icon: Briefcase,
     color: "#3b82f6",
   },
   {
-    year: "2022",
-    title: "First Full-Stack Projects",
+    year: "2025",
+    title: "Front-End Professional Certificate — Meta",
     description:
-      "Built real-time apps with Node.js, Express, MongoDB, and React. Learned Socket.io and JWT authentication.",
-    icon: Briefcase,
+      "Completed the Meta Front-End Developer Professional Certificate on Coursera, covering React, testing, and UX principles.",
+    icon: GraduationCap,
     color: "#10b981",
   },
   {
-    year: "2021",
-    title: "Started Coding Journey",
+    year: "2024",
+    title: "Full-Stack Portfolio & NotesBoard",
     description:
-      "Wrote my first lines of JavaScript and fell in love with building things for the web. Learned HTML, CSS, and React fundamentals.",
-    icon: Code2,
+      "Shipped a production-grade portfolio (React 19, Tailwind v4, Docker, CI/CD) and NotesBoard — a collaborative MERN platform with real-time editing.",
+    icon: Rocket,
     color: "#f97316",
+  },
+  {
+    year: "2021",
+    title: "B.Sc. Computer Science — FSDM, Fez",
+    description:
+      "Started a Computer Science degree at the Faculty of Sciences Dhar El Mahraz, Sidi Mohamed Ben Abdellah University. Currently in Year 3.",
+    icon: GraduationCap,
+    color: "#06b6d4",
+  },
+  {
+    year: "2021",
+    title: "Baccalaureate — Mathematical Sciences",
+    description:
+      "Graduated with a Baccalaureate in Mathematical Sciences (International Option) from Al-Wahda High School, Taounate.",
+    icon: Code2,
+    color: "#ec4899",
   },
 ];
 
@@ -87,14 +104,14 @@ const FUN_FACTS = [
     value: "Clean Code by Robert C. Martin",
   },
   {
-    icon: Heart,
-    label: "Passion",
-    value: "Open source & dev tools",
+    icon: Cloud,
+    label: "Learning",
+    value: "GCP, Cloud Functions & Firebase",
   },
   {
     icon: Code2,
     label: "Favorite Stack",
-    value: "React + Node + Docker",
+    value: "Node.js + Express + MongoDB",
   },
 ];
 
@@ -142,7 +159,7 @@ function RevealSection({
 /* ================================================================== */
 export default function AboutPage() {
   return (
-    <main className="relative min-h-screen bg-background text-white overflow-hidden">
+    <main className="relative min-h-screen bg-background text-foreground overflow-hidden">
       <Navbar />
 
       {/* ── Left social strip ── */}
@@ -174,24 +191,24 @@ export default function AboutPage() {
             <Mail className="w-5 h-5" />
           </a>
         </div>
-        <div className="w-px h-24 bg-white/15" />
+        <div className="w-px h-24 bg-foreground/15" />
       </aside>
 
       {/* ── Right email strip ── */}
       <aside className="hidden lg:flex fixed right-8 top-0 bottom-0 z-30 flex-col items-center justify-center gap-6">
         <a
           href="mailto:reda.alalach@gmail.com"
-          className="text-xs tracking-[0.18em] text-white/40 hover:text-violet-400 transition-colors"
+          className="text-xs tracking-[0.18em] text-foreground/70 hover:text-violet-400 transition-colors"
           style={{ writingMode: "vertical-rl" }}
         >
           reda.alalach@gmail.com
         </a>
-        <div className="w-px h-24 bg-white/15" />
+        <div className="w-px h-24 bg-foreground/15" />
       </aside>
 
       <div className="max-w-[1000px] mx-auto px-5 lg:px-12 pt-36 pb-16">
         {/* ── Breadcrumb ── */}
-        <nav className="text-sm text-white/80 mb-10">
+        <nav className="text-sm text-foreground/80 mb-10">
           <Link
             to="/"
             viewTransition
@@ -214,52 +231,49 @@ export default function AboutPage() {
               <img
                 src={profileImg}
                 alt="Reda Alalach"
-                className="relative w-40 h-40 md:w-48 md:h-48 rounded-full object-cover ring-2 ring-white/10"
+                className="relative w-40 h-40 md:w-48 md:h-48 rounded-full object-cover ring-2 ring-foreground/10"
               />
-              {/* Status badge */}
-              <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-3 py-1 text-[11px] font-medium text-emerald-400 ring-1 ring-emerald-500/25 whitespace-nowrap">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Open to opportunities
-              </span>
             </div>
 
             {/* Bio text */}
             <div className="text-center md:text-left">
-              <p className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
+              <p className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
                 About Me
               </p>
-              <h1 className="text-4xl sm:text-5xl font-bold font-instrument-serif italic bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent mb-6">
+              <h1 className="text-4xl sm:text-5xl font-bold font-instrument-serif italic bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-6">
                 Reda Alalach
               </h1>
-              <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-white/50 mb-6">
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-foreground/70 mb-6">
                 <span className="inline-flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5" />
                   Morocco
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <Briefcase className="w-3.5 h-3.5" />
-                  Full-Stack Developer
+                  Backend & Full-Stack Developer
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <Calendar className="w-3.5 h-3.5" />
-                  3+ years experience
+                  B.Sc. CS — Year 3
                 </span>
               </div>
 
-              {/* Bio paragraphs — replace with your own */}
-              <div className="space-y-4 text-white/70 leading-relaxed max-w-2xl">
+              {/* Bio paragraphs */}
+              <div className="space-y-4 text-foreground/70 leading-relaxed max-w-2xl">
                 <p>
-                  I'm a full-stack developer who thrives on turning ideas into
-                  polished, production-ready applications. I work across the
-                  entire stack — from crafting responsive React interfaces to
-                  building robust Node.js backends and containerized deployments
-                  with Docker and Kubernetes.
+                  I'm a backend-focused developer building secure REST APIs with
+                  Node.js/Express and database-backed business logic
+                  (MongoDB/Mongoose). I've delivered production-ready features
+                  including JWT authentication, middleware pipelines, global
+                  error handling, real-time events with Socket.io, and cloud
+                  deployments.
                 </p>
                 <p>
-                  When I'm not coding, I'm exploring new tools, contributing to
-                  open-source projects, or diving into DevOps best practices. I
-                  believe great software is built at the intersection of clean
-                  code, thoughtful design, and reliable infrastructure.
+                  I'm currently pursuing a B.Sc. in Computer Science at FSDM,
+                  Fez, and actively learning Google Cloud Platform, Cloud
+                  Functions, and Firebase to build scalable serverless backends.
+                  Remote-ready with strong written communication and clear
+                  documentation skills.
                 </p>
               </div>
             </div>
@@ -274,12 +288,12 @@ export default function AboutPage() {
             {STATS.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-xl bg-white/[0.03] ring-1 ring-white/8 p-6 text-center"
+                className="rounded-xl bg-foreground/[0.03] ring-1 ring-foreground/8 p-6 text-center"
               >
                 <p className="text-3xl font-bold bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent mb-1">
                   {stat.value}
                 </p>
-                <p className="text-sm text-white/50">{stat.label}</p>
+                <p className="text-sm text-foreground/70">{stat.label}</p>
               </div>
             ))}
           </section>
@@ -290,22 +304,22 @@ export default function AboutPage() {
         {/* ================================================================ */}
         <RevealSection>
           <section className="mb-24">
-            <p className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
+            <p className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
               How I work
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent mb-10">
+            <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-10">
               My Philosophy
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {PHILOSOPHY.map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-xl bg-white/[0.03] ring-1 ring-white/8 p-6 hover:ring-violet-500/30 transition-all duration-300"
+                  className="rounded-xl bg-foreground/[0.03] ring-1 ring-foreground/8 p-6 hover:ring-violet-500/30 transition-all duration-300"
                 >
-                  <h3 className="text-base font-semibold text-white mb-2">
+                  <h3 className="text-base font-semibold text-foreground mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-white/60 leading-relaxed">
+                  <p className="text-sm text-foreground/70 leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -319,15 +333,15 @@ export default function AboutPage() {
         {/* ================================================================ */}
         <RevealSection>
           <section className="mb-24">
-            <p className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
+            <p className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
               My journey
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent mb-10">
+            <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-10">
               Timeline
             </h2>
             <div className="relative">
               {/* Vertical line */}
-              <div className="absolute left-[19px] top-2 bottom-2 w-px bg-white/10" />
+              <div className="absolute left-[19px] top-2 bottom-2 w-px bg-foreground/10" />
 
               <div className="space-y-10">
                 {TIMELINE.map((item, i) => {
@@ -336,7 +350,7 @@ export default function AboutPage() {
                     <div key={i} className="relative flex gap-6">
                       {/* Dot */}
                       <div
-                        className="relative z-10 mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-2 ring-white/10 bg-background"
+                        className="relative z-10 mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-2 ring-foreground/10 bg-background"
                         style={{
                           boxShadow: `0 0 20px ${item.color}33`,
                         }}
@@ -348,13 +362,13 @@ export default function AboutPage() {
                       </div>
                       {/* Content */}
                       <div className="pb-2">
-                        <span className="text-xs font-medium text-white/40 tracking-widest uppercase">
+                        <span className="text-xs font-medium text-foreground/70 tracking-widest uppercase">
                           {item.year}
                         </span>
-                        <h3 className="text-lg font-semibold text-white mt-1">
+                        <h3 className="text-lg font-semibold text-foreground mt-1">
                           {item.title}
                         </h3>
-                        <p className="text-sm text-white/60 leading-relaxed mt-1 max-w-lg">
+                        <p className="text-sm text-foreground/70 leading-relaxed mt-1 max-w-lg">
                           {item.description}
                         </p>
                       </div>
@@ -371,10 +385,10 @@ export default function AboutPage() {
         {/* ================================================================ */}
         <RevealSection>
           <section className="mb-24">
-            <p className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
+            <p className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
               Beyond the code
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent mb-10">
+            <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-10">
               Fun Facts
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -383,16 +397,16 @@ export default function AboutPage() {
                 return (
                   <div
                     key={fact.label}
-                    className="flex items-start gap-4 rounded-xl bg-white/[0.03] ring-1 ring-white/8 p-5 hover:ring-violet-500/30 transition-all duration-300"
+                    className="flex items-start gap-4 rounded-xl bg-foreground/[0.03] ring-1 ring-foreground/8 p-5 hover:ring-violet-500/30 transition-all duration-300"
                   >
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-violet-500/10">
                       <Icon className="w-5 h-5 text-violet-400" />
                     </div>
                     <div>
-                      <p className="text-xs font-medium text-white/40 uppercase tracking-wider">
+                      <p className="text-xs font-medium text-foreground/70 uppercase tracking-wider">
                         {fact.label}
                       </p>
-                      <p className="text-sm text-white/80 mt-0.5">
+                      <p className="text-sm text-foreground/80 mt-0.5">
                         {fact.value}
                       </p>
                     </div>
@@ -408,10 +422,10 @@ export default function AboutPage() {
         {/* ================================================================ */}
         <RevealSection>
           <section className="text-center py-16 mb-8">
-            <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-4">
               Let's Work Together
             </h2>
-            <p className="text-white/50 max-w-md mx-auto mb-8">
+            <p className="text-foreground/70 max-w-md mx-auto mb-8">
               I'm always open to discussing new projects, creative ideas, or
               opportunities to be part of something great.
             </p>
@@ -427,7 +441,7 @@ export default function AboutPage() {
               <Link
                 to="/#projects"
                 viewTransition
-                className="inline-flex items-center gap-2 rounded-full bg-white/5 ring-1 ring-white/10 px-6 py-3 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 hover:ring-white/20 hover:scale-105 transition-all duration-300"
+                className="inline-flex items-center gap-2 rounded-full bg-foreground/5 ring-1 ring-foreground/10 px-6 py-3 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-foreground/10 hover:ring-foreground/20 hover:scale-105 transition-all duration-300"
               >
                 View My Work
               </Link>
