@@ -24,6 +24,7 @@
 - **Responsive carousel** for project cards with swipe-friendly navigation
 - **Case study pages** with architecture breakdowns and Mermaid sequence diagrams
 - **About page** with timeline, stats, philosophy, and fun facts
+- **Working contact form** via [Web3Forms](https://web3forms.com) — no backend required
 - **WCAG AA contrast** across both themes (audited, 40+ fixes applied)
 - **SEO**: canonical URL, Open Graph, Twitter Card, JSON-LD Person schema
 - **Accessibility**: skip-to-content link, focus-visible rings, semantic landmarks
@@ -48,6 +49,10 @@
 # Install dependencies
 npm ci
 
+# Set up environment variables
+cp .env.example .env
+# Edit .env and add your Web3Forms access key
+
 # Start dev server
 npm run dev
 
@@ -57,6 +62,14 @@ npm run lint
 # Build for production
 npm run build
 ```
+
+### Environment Variables
+
+| Variable | Description | Required |
+| --- | --- | --- |
+| `VITE_WEB3FORMS_KEY` | [Web3Forms](https://web3forms.com) access key for the contact form | Yes |
+
+For production (GitHub Pages), add `VITE_WEB3FORMS_KEY` as a **repository secret** in Settings → Secrets → Actions. The CI workflow injects it at build time.
 
 ### Docker (one-command run)
 
@@ -77,6 +90,7 @@ docker compose up --build
 | Dependabot        | Weekly             | npm + GitHub Actions         |
 | PR preview deploy | Pull requests      | Netlify + Lighthouse         |
 | Production deploy | Push to `main`     | GitHub Pages (custom domain) |
+| Secrets injection | Build step         | `VITE_WEB3FORMS_KEY` from repo secrets |
 
 ## Performance
 
