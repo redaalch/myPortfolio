@@ -10,7 +10,7 @@ export default function Logo({ className = "", height = 40 }: LogoProps) {
     <img
       src={logoSrc}
       alt="Reda Alalach"
-      className={`${className} brightness-0 invert`}
+      className={`${className} logo-theme`}
       style={{
         height,
         width: "auto",
