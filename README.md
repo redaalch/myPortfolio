@@ -14,6 +14,20 @@
 
 ---
 
+## Features
+
+- **Dark / Light theme** with system preference detection and zero-FOUC inline script
+- **View Transitions** via React Router v7 for smooth page-to-page crossfades
+- **Code-split sections** — hero ships first; 6 below-fold sections lazy-loaded
+- **AVIF hero images** at two breakpoints (5–15 KB) with `<link rel="preload">`
+- **Scroll-reveal animations** via Intersection Observer hook
+- **Responsive carousel** for project cards with swipe-friendly navigation
+- **Case study pages** with architecture breakdowns and Mermaid sequence diagrams
+- **About page** with timeline, stats, philosophy, and fun facts
+- **WCAG AA contrast** across both themes (audited, 40+ fixes applied)
+- **SEO**: canonical URL, Open Graph, Twitter Card, JSON-LD Person schema
+- **Accessibility**: skip-to-content link, focus-visible rings, semantic landmarks
+
 ## Tech Stack
 
 | Layer     | Technology                   |
@@ -73,15 +87,34 @@ Run through [WebPageTest](https://www.webpagetest.org/?url=https://remyportfolio
 - **CLS**: 0 (width/height on hero image, no layout shift)
 - **Total weight**: ~110 KB (gzip, including fonts)
 
+## Projects
+
+| Project                     | Description                                                                                               | Links                                                                            |
+| --------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **NotesBoard**              | Collaborative MERN platform with real-time editing (Yjs/Hocuspocus), shared dashboards, and offline cache | [Repo](https://github.com/redaalch/notesBoard) · [Live](https://notesboard.xyz/) |
+| **Real-time Notifications** | Event-driven Socket.io notifications with JWT auth, toast alerts, and REST history API                    | —                                                                                |
+| **Alarm Clock**             | PWA alarm clock with recurring schedules, local persistence, and desktop notifications                    | [Live](https://redaalch.github.io/alarm-clock/)                                  |
+| **Portfolio (This Site)**   | React 19 + Tailwind v4 + Vite 7 portfolio with dark/light theme, view transitions, and CI/CD              | You're here                                                                      |
+
+## Case Studies
+
+In-depth architecture breakdowns are available on the live site for:
+
+1. **[NotesBoard](https://remyportfolio.me/case-study/notesboard)** — CRDT-based real-time collaboration with Yjs, Hocuspocus, and offline-first sync
+2. **[Real-time Notifications](https://remyportfolio.me/case-study/real-time-notifications)** — Event-driven Socket.io notification delivery with sequence diagrams
+3. **[Portfolio Site](https://remyportfolio.me/case-study/portfolio-site)** — Performance engineering, image pipeline, code-splitting, and CI/CD decisions
+
+Each case study covers context, constraints, architecture, key decisions (with rationale), measurable outcomes, and next steps.
+
 ## Project Structure
 
 ```
 src/
 ├── components/
 │   ├── sections/     # Page sections (Projects, Experience, Skills, …)
-│   └── ui/           # Reusable UI components (Navbar, Hero, …)
+│   └── ui/           # Reusable UI (Navbar, Hero, ThemeToggle, …)
 ├── data/             # Static data (projects list, case studies)
-├── hooks/            # Custom React hooks
+├── hooks/            # Custom hooks (useScrollReveal, useTheme)
 ├── pages/            # Route pages (Home, About, ProjectDetails, CaseStudy)
 └── assets/           # Images and logos
 ```
