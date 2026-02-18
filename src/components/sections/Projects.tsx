@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Github, ArrowUpRight, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useTheme } from "../../hooks/useTheme";
 import { projects } from "../../data/projects";
 
 function useVisibleCount() {
@@ -25,6 +26,8 @@ function useVisibleCount() {
 
 export default function ProjectsSection() {
   const { ref, visible } = useScrollReveal();
+  const { theme } = useTheme();
+  const isLight = theme === "light";
   const visibleCount = useVisibleCount();
   const [rawStartIndex, setStartIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState<"next" | "prev">("next");
@@ -57,12 +60,16 @@ export default function ProjectsSection() {
 
   return (
     <section id="projects" className="py-24 sm:py-32 relative overflow-hidden">
+      <div className="section-glow section-glow--projects" aria-hidden="true">
+        <span className="sg-blob sg-blob--1" />
+        <span className="sg-blob sg-blob--2" />
+      </div>
       <div
         ref={ref}
         className={`max-w-7xl mx-auto px-4 sm:px-6 relative ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
       >
         <div className="text-center mb-10 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent font-instrument-serif italic">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent font-instrument-serif italic">
             Projects
           </h2>
         </div>
@@ -76,7 +83,7 @@ export default function ProjectsSection() {
             return (
               <article
                 key={`${project.title}-${startIndex}`}
-                className={`w-full sm:w-75 lg:w-87.5 min-h-105 sm:h-112.5 rounded-[20px] bg-linear-to-br ${project.color} p-4 sm:p-5 flex flex-col text-left box-border transition-all duration-500 ease-out transform-gpu hover:scale-[1.05] hover:rotate-0 project-card-hover ${rotation} ${slideClass}`}
+                className={`w-full sm:w-75 lg:w-87.5 min-h-105 sm:h-112.5 rounded-[20px] bg-linear-to-br ${isLight ? project.lightColor : project.color} ${isLight ? "ring-1 ring-foreground/8 shadow-md" : ""} p-4 sm:p-5 flex flex-col text-left box-border transition-all duration-500 ease-out transform-gpu hover:scale-[1.05] hover:rotate-0 project-card-hover ${rotation} ${slideClass}`}
               >
                 {/* Thumbnail */}
                 <div className="w-full">
@@ -91,14 +98,22 @@ export default function ProjectsSection() {
                       className="w-full h-auto rounded-[5px] object-cover"
                     />
                   ) : (
-                    <div className="w-full h-37.5 rounded-[5px] bg-white/10 flex items-center justify-center">
-                      <span className="text-white/30 text-sm">Preview</span>
+                    <div
+                      className={`w-full h-37.5 rounded-[5px] ${isLight ? "bg-foreground/5" : "bg-white/10"} flex items-center justify-center`}
+                    >
+                      <span
+                        className={`${isLight ? "text-foreground/60" : "text-white/60"} text-sm`}
+                      >
+                        Preview
+                      </span>
                     </div>
                   )}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl sm:text-2xl font-bold text-white mt-1.5 mb-0 leading-7 sm:leading-8">
+                <h3
+                  className={`text-xl sm:text-2xl font-bold ${isLight ? "text-foreground" : "text-white"} mt-1.5 mb-0 leading-7 sm:leading-8`}
+                >
                   {project.title}
                 </h3>
 
@@ -107,7 +122,7 @@ export default function ProjectsSection() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs px-1.5 py-1 rounded-[5px] bg-white/15 text-white/75 transition-opacity hover:opacity-100"
+                      className={`text-xs px-1.5 py-1 rounded-[5px] ${isLight ? "bg-foreground/8 text-foreground/65" : "bg-white/15 text-white/75"} transition-opacity hover:opacity-100`}
                     >
                       {tag}
                     </span>
@@ -115,13 +130,17 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* Description */}
-                <p className="text-[13px] text-white/75 leading-relaxed mt-1.5 mb-2.5">
+                <p
+                  className={`text-[13px] ${isLight ? "text-foreground/65" : "text-white/75"} leading-relaxed mt-1.5 mb-2.5`}
+                >
                   {project.description}
                 </p>
 
                 {/* Footer: Year + Links — pushed to bottom */}
                 <div className="flex items-center justify-between w-full mt-auto">
-                  <span className="text-sm font-bold text-white">
+                  <span
+                    className={`text-sm font-bold ${isLight ? "text-foreground" : "text-white"}`}
+                  >
                     {project.year}
                   </span>
                   <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-end">
@@ -129,7 +148,7 @@ export default function ProjectsSection() {
                       <Link
                         to={`/case-study/${project.slug}`}
                         viewTransition
-                        className="inline-flex items-center gap-1.5 text-xs text-violet-300/90 hover:text-white transition-colors font-medium"
+                        className={`inline-flex items-center gap-1.5 text-xs ${isLight ? "text-violet-600 hover:text-violet-800" : "text-violet-300/90 hover:text-white"} transition-colors font-medium`}
                       >
                         <BookOpen className="w-3.5 h-3.5" />
                         Case Study
@@ -138,7 +157,7 @@ export default function ProjectsSection() {
                     <Link
                       to={`/projects/${project.slug}`}
                       viewTransition
-                      className="inline-flex items-center gap-1.5 text-xs text-white/75 hover:text-white transition-colors"
+                      className={`inline-flex items-center gap-1.5 text-xs ${isLight ? "text-foreground/65 hover:text-foreground" : "text-white/75 hover:text-white"} transition-colors`}
                     >
                       More details
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -148,7 +167,7 @@ export default function ProjectsSection() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs text-white/70 hover:text-white underline transition-colors"
+                        className={`text-xs ${isLight ? "text-foreground/70 hover:text-foreground" : "text-white/70 hover:text-white"} underline transition-colors`}
                       >
                         Live
                       </a>
@@ -160,7 +179,9 @@ export default function ProjectsSection() {
                         rel="noopener noreferrer"
                         className="inline-block hover:opacity-75 transition-opacity"
                       >
-                        <Github className="w-5 h-5 sm:w-6.25 sm:h-6.25 text-white" />
+                        <Github
+                          className={`w-5 h-5 sm:w-6.25 sm:h-6.25 ${isLight ? "text-foreground" : "text-white"}`}
+                        />
                       </a>
                     )}
                   </div>
@@ -177,13 +198,13 @@ export default function ProjectsSection() {
             disabled={!canPrev}
             className={`bg-transparent border-none outline-none cursor-pointer text-sm transition-all ${
               canPrev
-                ? "text-white/60 hover:opacity-75"
-                : "text-white/15 cursor-default"
+                ? "text-foreground/70 hover:opacity-75"
+                : "text-foreground/15 cursor-default"
             }`}
           >
             ← Prev
           </button>
-          <span className="text-xs text-white/25">
+          <span className="text-xs text-foreground/60">
             {startIndex + 1}–
             {Math.min(startIndex + visibleCount, projects.length)} of{" "}
             {projects.length}
@@ -193,8 +214,8 @@ export default function ProjectsSection() {
             disabled={!canNext}
             className={`bg-transparent border-none outline-none cursor-pointer text-sm transition-all ${
               canNext
-                ? "text-white/60 hover:opacity-75"
-                : "text-white/15 cursor-default"
+                ? "text-foreground/70 hover:opacity-75"
+                : "text-foreground/15 cursor-default"
             }`}
           >
             Next →

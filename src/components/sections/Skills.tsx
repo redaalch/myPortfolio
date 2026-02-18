@@ -191,6 +191,12 @@ export default function SkillsSection() {
 
   return (
     <section id="skills" className="py-32 relative">
+      {/* Light-mode decorative glow blobs */}
+      <div className="skills-glow" aria-hidden="true">
+        <span className="skills-blob skills-blob--1" />
+        <span className="skills-blob skills-blob--2" />
+        <span className="skills-blob skills-blob--3" />
+      </div>
       <div
         ref={ref}
         className={`max-w-6xl mx-auto px-6 relative ${
@@ -198,13 +204,13 @@ export default function SkillsSection() {
         }`}
       >
         <div className="text-center mb-12">
-          <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest">
+          <span className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest">
             Toolkit
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent mt-3 font-instrument-serif italic">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mt-3 font-instrument-serif italic">
             Skills & Technologies
           </h2>
-          <p className="text-white/50 mt-4 max-w-2xl mx-auto text-lg">
+          <p className="text-foreground/70 mt-4 max-w-2xl mx-auto text-lg">
             Tools I use daily, plus what I'm actively leveling up.
           </p>
         </div>
@@ -214,14 +220,14 @@ export default function SkillsSection() {
           {CATEGORIES.map((cat, ci) => (
             <div
               key={ci}
-              className="rounded-xl border border-white/8 bg-white/3 p-5"
+              className="rounded-xl border border-foreground/8 bg-foreground/3 p-5"
             >
               <div className="flex items-center gap-2.5 mb-3">
                 <span
                   className="w-2.5 h-2.5 rounded-full"
                   style={{ backgroundColor: cat.color }}
                 />
-                <h3 className="text-sm font-semibold text-white tracking-wide">
+                <h3 className="text-sm font-semibold text-foreground tracking-wide">
                   {cat.title}
                 </h3>
               </div>
@@ -229,7 +235,7 @@ export default function SkillsSection() {
                 {cat.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="text-xs px-2.5 py-1.5 rounded-full border text-white/60"
+                    className="text-xs px-2.5 py-1.5 rounded-full border text-foreground/70"
                     style={{
                       borderColor: `${cat.color}30`,
                       backgroundColor: `${cat.color}08`,
@@ -242,7 +248,7 @@ export default function SkillsSection() {
               {cat.note && (
                 <p
                   className="text-[11px] mt-3 italic"
-                  style={{ color: `${cat.color}90` }}
+                  style={{ color: cat.color }}
                 >
                   {cat.note}
                 </p>
@@ -286,7 +292,8 @@ export default function SkillsSection() {
               cx={s.x}
               cy={s.y}
               r={s.r}
-              fill="white"
+              fill="currentColor"
+              className="text-foreground"
               style={{
                 opacity: visible ? s.o : 0,
                 transition: `opacity 1.2s ease ${0.2 + i * 0.02}s`,
@@ -301,7 +308,8 @@ export default function SkillsSection() {
               y1={a.y}
               x2={b.x}
               y2={b.y}
-              stroke="white"
+              stroke="currentColor"
+              className="text-foreground"
               strokeWidth="0.5"
               strokeDasharray="3 5"
               style={{
@@ -374,7 +382,11 @@ export default function SkillsSection() {
                         y={lp.y}
                         textAnchor={lp.anchor}
                         dominantBaseline="middle"
-                        fill={isHot ? cat.color : "rgba(255,255,255,0.4)"}
+                        fill={
+                          isHot
+                            ? cat.color
+                            : "color-mix(in srgb, var(--color-foreground) 65%, transparent)"
+                        }
                         style={{
                           fontSize: isHot ? "10px" : "8.5px",
                           fontWeight: isHot ? 600 : 400,
@@ -425,7 +437,11 @@ export default function SkillsSection() {
                     x={hub.x}
                     y={hub.y - 22}
                     textAnchor="middle"
-                    fill={isHot ? "white" : "rgba(255,255,255,0.65)"}
+                    fill={
+                      isHot
+                        ? "var(--color-foreground)"
+                        : "color-mix(in srgb, var(--color-foreground) 65%, transparent)"
+                    }
                     style={{
                       fontSize: "12px",
                       fontWeight: 700,
@@ -444,11 +460,11 @@ export default function SkillsSection() {
                     x={hub.x}
                     y={hub.y + 32}
                     textAnchor="middle"
-                    fill={`${cat.color}90`}
+                    fill={cat.color}
                     style={{
                       fontSize: "7.5px",
                       fontStyle: "italic",
-                      opacity: visible ? (isHot ? 0.8 : 0.35) : 0,
+                      opacity: visible ? (isHot ? 0.8 : 0.5) : 0,
                       transition: "opacity 0.4s ease 0.6s",
                       pointerEvents: "none",
                     }}
@@ -478,7 +494,7 @@ export default function SkillsSection() {
                 }}
               />
               <span
-                className="text-xs text-white/50"
+                className="text-xs text-foreground/70"
                 style={{ opacity: op(ci), transition: "opacity 0.3s" }}
               >
                 {cat.title}
@@ -490,8 +506,8 @@ export default function SkillsSection() {
         {/* ── Tech logo marquee ── */}
         <div className="mt-16 relative overflow-hidden">
           {/* Edge fades */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[#030014] to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-[#030014] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-background to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-background to-transparent" />
 
           <div className="marquee-track">
             {[0, 1].map((copy) => (
@@ -515,7 +531,7 @@ export default function SkillsSection() {
                       loading="lazy"
                       className="opacity-40 group-hover:opacity-90 transition-opacity duration-300"
                     />
-                    <span className="text-[10px] text-white/0 group-hover:text-white/50 transition-colors duration-300 whitespace-nowrap">
+                    <span className="text-[10px] text-foreground/0 group-hover:text-foreground/50 transition-colors duration-300 whitespace-nowrap">
                       {logo.name}
                     </span>
                   </div>
