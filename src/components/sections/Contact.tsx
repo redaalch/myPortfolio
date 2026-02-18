@@ -31,15 +31,34 @@ export default function ContactSection() {
   });
   const [cvHovered, setCvHovered] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormState("sending");
-    await new Promise((r) => setTimeout(r, 1500));
-    setFormState("sent");
-    setTimeout(() => {
+
+    try {
+      const body = new FormData(e.currentTarget);
+      body.append("access_key", import.meta.env.VITE_WEB3FORMS_KEY);
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body,
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        setFormState("sent");
+        setTimeout(() => {
+          setFormState("idle");
+          setFormData({ name: "", email: "", message: "" });
+        }, 2500);
+      } else {
+        console.error("Web3Forms error:", data);
+        setFormState("idle");
+      }
+    } catch (err) {
+      console.error("Submit failed:", err);
       setFormState("idle");
-      setFormData({ name: "", email: "", message: "" });
-    }, 2500);
+    }
   };
 
   return (
@@ -102,6 +121,7 @@ export default function ContactSection() {
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <input
                       type="text"
+                      name="name"
                       placeholder="Name"
                       required
                       value={formData.name}
@@ -112,6 +132,7 @@ export default function ContactSection() {
                     />
                     <input
                       type="email"
+                      name="email"
                       placeholder="Email"
                       required
                       value={formData.email}
@@ -122,6 +143,7 @@ export default function ContactSection() {
                     />
                   </div>
                   <textarea
+                    name="message"
                     placeholder="Your message..."
                     required
                     rows={4}
