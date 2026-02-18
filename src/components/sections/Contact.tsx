@@ -37,7 +37,10 @@ export default function ContactSection() {
 
     try {
       const body = new FormData(e.currentTarget);
-      body.append("access_key", import.meta.env.VITE_WEB3FORMS_KEY);
+      body.append(
+        "access_key",
+        (import.meta.env.VITE_WEB3FORMS_KEY ?? "").trim(),
+      );
 
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
