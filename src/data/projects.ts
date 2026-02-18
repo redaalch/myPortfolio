@@ -14,6 +14,7 @@ export interface Project {
   liveUrl?: string;
   image?: string;
   color: string;
+  lightColor: string;
   hasCaseStudy?: boolean;
 }
 
@@ -33,7 +34,8 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/redaalch/notesBoard",
     liveUrl: "https://notesboard.xyz/",
     image: notesBoardPreview,
-    color: "from-teal-700 to-teal-800",
+    color: "from-emerald-900/85 via-teal-800/75 to-cyan-900/80",
+    lightColor: "from-emerald-50/80 via-teal-50/70 to-cyan-50/60",
     hasCaseStudy: true,
   },
   {
@@ -49,7 +51,8 @@ export const projects: Project[] = [
     tags: ["Socket.io", "Express", "JWT", "REST"],
     year: "2025",
     image: notificationsPreview,
-    color: "from-purple-600/80 to-purple-800",
+    color: "from-indigo-900/80 via-violet-800/75 to-purple-900/85",
+    lightColor: "from-indigo-50/80 via-violet-50/70 to-purple-50/60",
     hasCaseStudy: true,
   },
   {
@@ -66,7 +69,8 @@ export const projects: Project[] = [
     year: "2025",
     liveUrl: "https://redaalch.github.io/alarm-clock/",
     image: alarmClockPreview,
-    color: "from-amber-700 to-amber-900",
+    color: "from-orange-900/80 via-amber-800/70 to-yellow-900/75",
+    lightColor: "from-orange-50/80 via-amber-50/70 to-yellow-50/60",
   },
   {
     slug: "portfolio-site",
@@ -81,7 +85,8 @@ export const projects: Project[] = [
     tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
     year: "2025",
     image: portfolioPreview,
-    color: "from-slate-600 to-slate-800",
+    color: "from-zinc-800/80 via-slate-700/70 to-stone-800/75",
+    lightColor: "from-zinc-50/80 via-slate-50/70 to-stone-50/60",
     hasCaseStudy: true,
   },
 ];

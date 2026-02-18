@@ -291,7 +291,6 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     nextSteps: [
-      "Implement dark/light theme toggle with system preference detection",
       "Add a blog section using MDX for longer-form technical writing",
       "Set up Playwright E2E tests for critical user flows (navigation, case study links)",
       "Add analytics (Plausible or Umami) to track which projects get the most attention",
