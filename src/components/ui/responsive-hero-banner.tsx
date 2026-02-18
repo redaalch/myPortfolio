@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 import profileImg from "../../assets/profile.jpeg";
 
 interface NavLink {
@@ -18,6 +20,7 @@ interface ResponsiveHeroBannerProps {
 
 const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
   navLinks = [
+    { label: "About", href: "/about" },
     { label: "Projects", href: "#projects" },
     { label: "Experience", href: "#experience" },
     { label: "Skills", href: "#skills" },
@@ -111,14 +114,19 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
 
       {/* ── Decorative grid dots (asymmetric, top-right) ── */}
       <div className="absolute top-20 right-12 w-48 h-48 opacity-[0.06] pointer-events-none hidden lg:block">
-        <svg width="100%" height="100%" viewBox="0 0 192 192">
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 192 192"
+          className="text-foreground"
+        >
           {Array.from({ length: 64 }, (_, i) => (
             <circle
               key={i}
               cx={(i % 8) * 24 + 12}
               cy={Math.floor(i / 8) * 24 + 12}
               r="1.5"
-              fill="white"
+              fill="currentColor"
             />
           ))}
         </svg>
@@ -131,7 +139,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
       <header className="z-10 xl:top-4 relative">
         <div className="mx-6">
           <div className="flex items-center justify-between pt-4">
-            <a href="#" className="inline-flex items-center text-white">
+            <a href="#" className="inline-flex items-center text-foreground">
               <Logo height={36} />
             </a>
 
@@ -139,23 +147,31 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
               aria-label="Main navigation"
               className="hidden md:flex items-center gap-2"
             >
-              <div className="flex items-center gap-1 rounded-full bg-white/5 px-1 py-1 ring-1 ring-white/10 backdrop-blur">
-                {navLinks.map((link, index) => (
-                  <a
-                    key={index}
-                    href={link.href}
-                    className={`px-3 py-2 text-sm font-medium hover:text-white transition-colors ${
-                      link.isActive ? "text-white/90" : "text-white/80"
-                    }`}
-                  >
-                    {link.label}
-                  </a>
-                ))}
+              <div className="flex items-center gap-1 rounded-full bg-foreground/5 px-1 py-1 ring-1 ring-foreground/10 backdrop-blur">
+                {navLinks.map((link, index) => {
+                  const cls = `px-3 py-2 text-sm font-medium hover:text-foreground transition-colors ${
+                    link.isActive ? "text-foreground/90" : "text-foreground/80"
+                  }`;
+                  return link.href.startsWith("/") ? (
+                    <Link
+                      key={index}
+                      to={link.href}
+                      viewTransition
+                      className={cls}
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a key={index} href={link.href} className={cls}>
+                      {link.label}
+                    </a>
+                  );
+                })}
                 <a
                   href={ctaButtonHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="ml-1 inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-2 text-sm font-medium text-neutral-900 hover:bg-white/90 transition-colors"
+                  className="ml-1 inline-flex items-center gap-2 rounded-full bg-foreground px-3.5 py-2 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
                 >
                   {ctaButtonText}
                   <svg
@@ -175,70 +191,88 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                   </svg>
                 </a>
               </div>
+              <ThemeToggle />
             </nav>
 
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 backdrop-blur"
-              aria-expanded={mobileMenuOpen}
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5 text-white/90"
-                >
-                  <path d="M18 6 6 18" />
-                  <path d="m6 6 12 12" />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5 text-white/90"
-                >
-                  <path d="M4 5h16" />
-                  <path d="M4 12h16" />
-                  <path d="M4 19h16" />
-                </svg>
-              )}
-            </button>
+            <div className="md:hidden flex items-center gap-2">
+              <ThemeToggle />
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-foreground/10 ring-1 ring-foreground/15 backdrop-blur"
+                aria-expanded={mobileMenuOpen}
+                aria-label="Toggle menu"
+              >
+                {mobileMenuOpen ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-5 w-5 text-foreground/90"
+                  >
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-5 w-5 text-foreground/90"
+                  >
+                    <path d="M4 5h16" />
+                    <path d="M4 12h16" />
+                    <path d="M4 19h16" />
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
 
           {/* Mobile menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden mt-4 rounded-2xl bg-black/60 ring-1 ring-white/10 backdrop-blur-xl p-4 animate-fade-slide-in-1">
+            <div className="md:hidden mt-4 rounded-2xl bg-background/60 ring-1 ring-foreground/10 backdrop-blur-xl p-4 animate-fade-slide-in-1">
               <div className="flex flex-col gap-1">
-                {navLinks.map((link, index) => (
-                  <a
-                    key={index}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="px-4 py-3 text-sm font-medium text-white/80 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                ))}
+                {navLinks.map((link, index) => {
+                  const cls =
+                    "px-4 py-3 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-foreground/5 rounded-lg transition-colors";
+                  return link.href.startsWith("/") ? (
+                    <Link
+                      key={index}
+                      to={link.href}
+                      viewTransition
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={cls}
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      key={index}
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={cls}
+                    >
+                      {link.label}
+                    </a>
+                  );
+                })}
                 <a
                   href={ctaButtonHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-medium text-neutral-900 hover:bg-white/90 transition-colors"
+                  className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
                 >
                   {ctaButtonText}
                   <svg
@@ -269,22 +303,22 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
           <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-between gap-12 lg:gap-16">
             {/* Left column — text */}
             <div className="max-w-2xl text-center lg:text-left">
-              <p className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-4 animate-fade-slide-in-1">
+              <p className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest mb-4 animate-fade-slide-in-1">
                 Backend / Full-Stack / DevOps — Open to internships
               </p>
 
-              <h1 className="sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] text-4xl text-white tracking-tight font-instrument-serif font-normal animate-fade-slide-in-2">
+              <h1 className="sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] text-4xl text-foreground tracking-tight font-instrument-serif font-normal animate-fade-slide-in-2">
                 Hi, I'm{" "}
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
                   Reda
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-white via-white/90 to-violet-200 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-hero-from via-hero-via to-hero-to bg-clip-text text-transparent">
                   Full-Stack Developer
                 </span>
               </h1>
 
-              <p className="sm:text-lg animate-fade-slide-in-3 text-base text-white/60 max-w-xl mt-6 leading-relaxed">
+              <p className="sm:text-lg animate-fade-slide-in-3 text-base text-foreground/70 max-w-xl mt-6 leading-relaxed">
                 I build reliable Node.js/Express backends, add real-time
                 features with Socket.io, and ship modern UIs with React.
                 Currently exploring Google Cloud &amp; Firebase.
@@ -314,10 +348,32 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-white/5 ring-1 ring-white/10 px-6 py-3 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 hover:ring-white/20 hover:scale-105 transition-all duration-300"
+                  className="inline-flex items-center gap-2 rounded-full bg-foreground/5 ring-1 ring-foreground/10 px-6 py-3 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-foreground/10 hover:ring-foreground/20 hover:scale-105 transition-all duration-300"
                 >
                   Contact Me
                 </a>
+                <Link
+                  to="/about"
+                  viewTransition
+                  className="inline-flex items-center gap-2 rounded-full bg-foreground/5 ring-1 ring-foreground/10 px-6 py-3 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-foreground/10 hover:ring-foreground/20 hover:scale-105 transition-all duration-300"
+                >
+                  About Me
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-4 w-4"
+                  >
+                    <circle cx="12" cy="8" r="5" />
+                    <path d="M20 21a8 8 0 0 0-16 0" />
+                  </svg>
+                </Link>
               </div>
             </div>
 
@@ -333,11 +389,11 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                   height={340}
                   loading="eager"
                   decoding="async"
-                  className="w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-2xl object-cover ring-1 ring-white/10 shadow-2xl"
+                  className="w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-2xl object-cover ring-1 ring-foreground/10 shadow-2xl"
                 />
                 {/* Corner accent */}
                 <div className="absolute -bottom-3 -right-3 w-20 h-20 rounded-br-2xl border-b-2 border-r-2 border-violet-400/30" />
-                <div className="absolute -top-3 -left-3 w-12 h-12 rounded-tl-2xl border-t-2 border-l-2 border-white/10" />
+                <div className="absolute -top-3 -left-3 w-12 h-12 rounded-tl-2xl border-t-2 border-l-2 border-foreground/10" />
               </div>
             </div>
           </div>

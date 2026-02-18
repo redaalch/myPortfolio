@@ -150,12 +150,12 @@ export default function VerticalBanner() {
       >
         <a
           href="mailto:reda.alalach@gmail.com"
-          className="text-xs tracking-[0.18em] text-white/40 hover:text-violet-400 transition-colors duration-200"
+          className="text-xs tracking-[0.18em] text-foreground/70 hover:text-violet-400 transition-colors duration-200"
           style={{ writingMode: "vertical-rl" }}
         >
           reda.alalach@gmail.com
         </a>
-        <div className="w-px h-24 bg-linear-to-b from-white/15 to-transparent" />
+        <div className="w-px h-24 bg-linear-to-b from-foreground/15 to-transparent" />
       </aside>
     </>
   );
