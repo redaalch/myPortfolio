@@ -65,9 +65,9 @@ npm run build
 
 ### Environment Variables
 
-| Variable | Description | Required |
-| --- | --- | --- |
-| `VITE_WEB3FORMS_KEY` | [Web3Forms](https://web3forms.com) access key for the contact form | Yes |
+| Variable             | Description                                                        | Required |
+| -------------------- | ------------------------------------------------------------------ | -------- |
+| `VITE_WEB3FORMS_KEY` | [Web3Forms](https://web3forms.com) access key for the contact form | Yes      |
 
 For production (GitHub Pages), add `VITE_WEB3FORMS_KEY` as a **repository secret** in Settings → Secrets → Actions. The CI workflow injects it at build time.
 
@@ -82,14 +82,14 @@ docker compose up --build
 
 ## CI / CD
 
-| Check             | Trigger            | Tool                         |
-| ----------------- | ------------------ | ---------------------------- |
-| Lint + Typecheck  | Every push         | ESLint + `tsc --noEmit`      |
-| Lighthouse CI     | Every push         | `@lhci/cli` (perf ≥ 0.9)     |
-| CodeQL scanning   | Push / PR / weekly | GitHub CodeQL                |
-| Dependabot        | Weekly             | npm + GitHub Actions         |
-| PR preview deploy | Pull requests      | Netlify + Lighthouse         |
-| Production deploy | Push to `main`     | GitHub Pages (custom domain) |
+| Check             | Trigger            | Tool                                   |
+| ----------------- | ------------------ | -------------------------------------- |
+| Lint + Typecheck  | Every push         | ESLint + `tsc --noEmit`                |
+| Lighthouse CI     | Every push         | `@lhci/cli` (perf ≥ 0.9)               |
+| CodeQL scanning   | Push / PR / weekly | GitHub CodeQL                          |
+| Dependabot        | Weekly             | npm + GitHub Actions                   |
+| PR preview deploy | Pull requests      | Netlify + Lighthouse                   |
+| Production deploy | Push to `main`     | GitHub Pages (custom domain)           |
 | Secrets injection | Build step         | `VITE_WEB3FORMS_KEY` from repo secrets |
 
 ## Performance
