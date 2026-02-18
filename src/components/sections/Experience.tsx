@@ -50,6 +50,10 @@ export default function ExperienceSection() {
 
   return (
     <section id="experience" className="py-24 sm:py-32 relative">
+      <div className="section-glow section-glow--experience" aria-hidden="true">
+        <span className="sg-blob sg-blob--1" />
+        <span className="sg-blob sg-blob--2" />
+      </div>
       <div
         ref={ref}
         className={`max-w-5xl mx-auto px-4 sm:px-6 relative ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
@@ -59,13 +63,13 @@ export default function ExperienceSection() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-violet-400 via-purple-300 to-indigo-400 bg-clip-text text-transparent font-instrument-serif italic shrink-0">
             My Work Experiences
           </h2>
-          <div className="flex-1 h-px bg-white/15 hidden sm:block" />
+          <div className="flex-1 h-px bg-foreground/15 hidden sm:block" />
         </div>
 
         {/* Tabbed layout — open/flat style */}
         <div className="flex flex-col md:flex-row gap-0">
           {/* Sidebar tabs with continuous left border */}
-          <nav className="flex md:flex-col shrink-0 md:w-48 border-b md:border-b-0 md:border-l-2 md:border-l-white/10 overflow-x-auto md:overflow-x-visible">
+          <nav className="flex md:flex-col shrink-0 md:w-48 border-b md:border-b-0 md:border-l-2 md:border-l-foreground/10 overflow-x-auto md:overflow-x-visible">
             {experiences.map((xp, i) => (
               <button
                 key={i}
@@ -74,7 +78,7 @@ export default function ExperienceSection() {
                   ${
                     activeIndex === i
                       ? "text-violet-400"
-                      : "text-white/30 hover:text-white/60"
+                      : "text-foreground/60 hover:text-foreground/80"
                   }`}
               >
                 {/* Active left indicator (overlaps the border) */}
@@ -98,14 +102,14 @@ export default function ExperienceSection() {
               <img
                 src={active.logo}
                 alt={`${active.company} logo`}
-                className="shrink-0 w-11 h-11 rounded-xl object-cover ring-1 ring-white/10"
+                className="shrink-0 w-11 h-11 rounded-xl object-cover ring-1 ring-foreground/10"
               />
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white leading-snug">
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground leading-snug">
                   {active.role}{" "}
                   <span className="text-violet-400">@ {active.company}</span>
                 </h3>
-                <p className="text-sm text-white/40 mt-1">
+                <p className="text-sm text-foreground/70 mt-1">
                   {active.type} | {active.period}
                 </p>
               </div>
@@ -115,7 +119,7 @@ export default function ExperienceSection() {
               {active.bullets.map((bullet, j) => (
                 <li
                   key={j}
-                  className="text-sm text-white/55 leading-relaxed pl-5 relative before:content-['▸'] before:text-violet-400 before:absolute before:left-0"
+                  className="text-sm text-foreground/70 leading-relaxed pl-5 relative before:content-['▸'] before:text-violet-400 before:absolute before:left-0"
                 >
                   {bullet}
                 </li>
