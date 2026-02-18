@@ -12,10 +12,10 @@ import {
 } from "lucide-react";
 
 const inputClass =
-  "w-full rounded-lg border border-white/10 bg-white/3 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition-colors focus:border-white/25 focus:bg-white/5";
+  "w-full rounded-lg border border-foreground/10 bg-foreground/3 px-4 py-2.5 text-sm text-foreground placeholder-foreground/50 outline-none transition-colors focus:border-foreground/25 focus:bg-foreground/5";
 
 const cellClass =
-  "rounded-2xl border border-white/6 bg-white/2 backdrop-blur-sm relative overflow-hidden";
+  "rounded-2xl border border-foreground/6 bg-foreground/2 backdrop-blur-sm relative overflow-hidden";
 
 const skills = ["Frontend", "Backend", "Full Stack"];
 
@@ -44,6 +44,11 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="relative px-6 py-24 sm:py-32">
+      <div className="section-glow section-glow--contact" aria-hidden="true">
+        <span className="sg-blob sg-blob--1" />
+        <span className="sg-blob sg-blob--2" />
+        <span className="sg-blob sg-blob--3" />
+      </div>
       <div
         ref={ref}
         className={`mx-auto grid max-w-6xl grid-cols-1 gap-3 lg:grid-cols-[1fr_2fr] ${visible ? "reveal visible" : "reveal"}`}
@@ -55,18 +60,18 @@ export default function ContactSection() {
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(139,92,246,0.08)_0%,transparent_60%)]" />
           <div className="relative z-10 flex h-full flex-col justify-between gap-6">
             <div>
-              <span className="text-[10px] font-medium tracking-[0.28em] uppercase text-white/40">
+              <span className="text-[10px] font-medium tracking-[0.28em] uppercase text-foreground/70">
                 Get in touch
               </span>
-              <h2 className="mt-3 text-5xl font-light leading-[0.93] tracking-tight sm:text-6xl lg:text-7xl font-instrument-serif italic bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent">
+              <h2 className="mt-3 text-5xl font-light leading-[0.93] tracking-tight sm:text-6xl lg:text-7xl font-instrument-serif italic bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent">
                 Let's
                 <br />
                 work
                 <br />
-                <span className="text-white/25">together</span>
+                <span className="text-foreground/50">together</span>
               </h2>
             </div>
-            <p className="max-w-xs text-[13px] leading-relaxed text-white/40">
+            <p className="max-w-xs text-[13px] leading-relaxed text-foreground/70">
               Have a project in mind or an internship opportunity? I'd love to
               build something great together.
             </p>
@@ -85,13 +90,13 @@ export default function ContactSection() {
                     className="size-9 text-emerald-400"
                     strokeWidth={1.5}
                   />
-                  <p className="text-sm font-light text-white/70">
+                  <p className="text-sm font-light text-foreground/70">
                     Message sent — I'll be in touch!
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                  <span className="mb-1 text-[10px] font-medium tracking-[0.28em] uppercase text-white/40">
+                  <span className="mb-1 text-[10px] font-medium tracking-[0.28em] uppercase text-foreground/70">
                     Send a message
                   </span>
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -129,7 +134,7 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={formState === "sending"}
-                    className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-6 py-2.5 text-sm font-medium text-background shadow-[0_0_20px_rgba(139,92,246,0.25)] transition-all duration-300 hover:bg-foreground/90 hover:shadow-[0_0_30px_rgba(139,92,246,0.35)] hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {formState === "sending" ? (
                       <>
@@ -160,7 +165,7 @@ export default function ContactSection() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
               </span>
-              <span className="text-sm font-medium text-white/80">
+              <span className="text-sm font-medium text-foreground/80">
                 Available for internships & projects
               </span>
             </div>
@@ -168,7 +173,7 @@ export default function ContactSection() {
               {skills.map((skill) => (
                 <span
                   key={skill}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-white/8 bg-white/3 px-3.5 py-1.5 text-xs font-medium text-white/60"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-foreground/8 bg-foreground/3 px-3.5 py-1.5 text-xs font-medium text-foreground/70"
                 >
                   <CircleDot
                     className="size-3 text-emerald-400/70"
@@ -189,18 +194,27 @@ export default function ContactSection() {
             onMouseLeave={() => setCvHovered(false)}
             className={`${cellClass} group flex items-center justify-between px-6 py-6 transition-all duration-400`}
             style={{
-              backgroundColor: cvHovered ? "rgba(255,255,255,0.06)" : undefined,
+              backgroundColor: cvHovered
+                ? "color-mix(in srgb, var(--color-foreground) 6%, transparent)"
+                : undefined,
             }}
           >
             <div className="flex items-center gap-3">
-              <FileText className="size-5 text-white/50" strokeWidth={1.5} />
+              <FileText
+                className="size-5 text-foreground/50"
+                strokeWidth={1.5}
+              />
               <div>
-                <p className="text-sm font-medium text-white/80">View CV</p>
-                <p className="text-[11px] text-white/35">Download resume</p>
+                <p className="text-sm font-medium text-foreground/80">
+                  View CV
+                </p>
+                <p className="text-[11px] text-foreground/65">
+                  Download resume
+                </p>
               </div>
             </div>
             <ArrowUpRight
-              className="size-5 text-white/30 transition-all duration-300 group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              className="size-5 text-foreground/60 transition-all duration-300 group-hover:text-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               strokeWidth={1.8}
             />
           </a>
@@ -208,19 +222,19 @@ export default function ContactSection() {
           {/* ── Email (50% of right col) ── */}
           <a
             href="mailto:reda.alalach@gmail.com"
-            className={`${cellClass} group flex items-center justify-between px-6 py-6 transition-all duration-400 hover:bg-white/4`}
+            className={`${cellClass} group flex items-center justify-between px-6 py-6 transition-all duration-400 hover:bg-foreground/4`}
           >
             <div className="flex items-center gap-3">
-              <Mail className="size-5 text-white/50" strokeWidth={1.5} />
+              <Mail className="size-5 text-foreground/50" strokeWidth={1.5} />
               <div>
-                <p className="text-sm font-medium text-white/80">Email</p>
-                <p className="text-[11px] text-white/35">
+                <p className="text-sm font-medium text-foreground/80">Email</p>
+                <p className="text-[11px] text-foreground/65">
                   reda.alalach@gmail.com
                 </p>
               </div>
             </div>
             <ArrowUpRight
-              className="size-5 text-white/30 transition-all duration-300 group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              className="size-5 text-foreground/60 transition-all duration-300 group-hover:text-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               strokeWidth={1.8}
             />
           </a>

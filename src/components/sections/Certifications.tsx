@@ -40,56 +40,62 @@ export default function CertificationsSection() {
 
   return (
     <section id="certifications" className="py-32 relative">
+      <div className="section-glow section-glow--certs" aria-hidden="true">
+        <span className="sg-blob sg-blob--1" />
+        <span className="sg-blob sg-blob--2" />
+      </div>
       <div
         ref={ref}
-        className={`max-w-[1000px] mx-auto px-6 relative ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
+        className={`max-w-[1200px] mx-auto px-6 relative ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
       >
         <div className="text-center mb-16">
-          <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest">
+          <span className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest">
             Credentials
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent mt-3 font-instrument-serif italic">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mt-3 font-instrument-serif italic">
             Licenses & Certifications
           </h2>
           <div className="mx-auto mt-4 h-px w-24 bg-violet-400/40" />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-          {certifications.map((cert, i) => (
-            <a
-              key={i}
-              href={cert.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col bg-white/[0.03] rounded-[4px] p-5 h-full transition-all duration-300"
-            >
-              {/* Head: Logo + external link */}
-              <div className="flex items-start justify-between">
-                <div
-                  className="w-[50px] h-[50px] rounded-[4px] bg-center bg-contain bg-no-repeat"
-                  style={{ backgroundImage: `url(${cert.issuerLogo})` }}
-                />
-                <ExternalLink className="w-[22px] h-[22px] text-white/40 group-hover:text-violet-400 transition-colors" />
-              </div>
+        <div className="cert-container rounded-3xl p-6 sm:p-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {certifications.map((cert, i) => (
+              <a
+                key={i}
+                href={cert.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col cert-card rounded-2xl p-5 h-full transition-all duration-300"
+              >
+                {/* Head: Logo + external link */}
+                <div className="flex items-start justify-between">
+                  <div
+                    className="w-[50px] h-[50px] rounded-xl bg-center bg-contain bg-no-repeat"
+                    style={{ backgroundImage: `url(${cert.issuerLogo})` }}
+                  />
+                  <ExternalLink className="w-[22px] h-[22px] text-foreground/60 group-hover:text-violet-400 transition-colors" />
+                </div>
 
-              {/* Title + Platform */}
-              <div className="flex-1">
-                <h3 className="mt-7 text-[clamp(20px,5vw,24px)] font-bold leading-[1.2] text-white group-hover:text-violet-400 transition-colors">
-                  {cert.title}
-                </h3>
-                <p className="mt-4 text-[clamp(15px,3.7vw,18px)] font-semibold leading-[1.2] text-white/60">
-                  {cert.issuer}
+                {/* Title + Platform */}
+                <div className="flex-1">
+                  <h3 className="mt-7 text-[clamp(20px,5vw,24px)] font-bold leading-[1.2] text-foreground group-hover:text-violet-400 transition-colors">
+                    {cert.title}
+                  </h3>
+                  <p className="mt-4 text-[clamp(15px,3.7vw,18px)] font-semibold leading-[1.2] text-foreground/70">
+                    {cert.issuer}
+                  </p>
+                </div>
+
+                {/* Date */}
+                <p className="mt-7 text-[clamp(12px,2.5vw,14px)] font-semibold leading-[1.2] text-foreground/70">
+                  {cert.status === "completed"
+                    ? `Issued ${cert.issuedDate} · No Expiration Date`
+                    : "In Progress"}
                 </p>
-              </div>
-
-              {/* Date */}
-              <p className="mt-7 text-[clamp(12px,2.5vw,14px)] font-semibold leading-[1.2] text-white/40">
-                {cert.status === "completed"
-                  ? `Issued ${cert.issuedDate} · No Expiration Date`
-                  : "In Progress"}
-              </p>
-            </a>
-          ))}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>
