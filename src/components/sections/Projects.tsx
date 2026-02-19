@@ -205,7 +205,7 @@ export default function ProjectsSection() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className={`text-xs px-1.5 py-1 rounded-[5px] ${isLight ? "bg-foreground/8 text-foreground/65" : "bg-white/15 text-white/75"} transition-opacity hover:opacity-100`}
+                      className={`text-xs px-1.5 py-1 rounded-[5px] ${isLight ? "bg-foreground/8 text-foreground/80" : "bg-white/15 text-white/90"} transition-opacity hover:opacity-100`}
                     >
                       {tag}
                     </span>
@@ -214,7 +214,7 @@ export default function ProjectsSection() {
 
                 {/* Description */}
                 <p
-                  className={`text-[13px] ${isLight ? "text-foreground/65" : "text-white/75"} leading-relaxed mt-1.5 mb-1`}
+                  className={`text-[13px] ${isLight ? "text-foreground/80" : "text-white/90"} leading-relaxed mt-1.5 mb-1`}
                 >
                   {project.description}
                 </p>
@@ -222,7 +222,7 @@ export default function ProjectsSection() {
                 {/* Impact / metrics */}
                 {project.impact && (
                   <p
-                    className={`text-[11px] ${isLight ? "text-violet-600/80" : "text-violet-300/70"} leading-relaxed mb-2.5 font-medium`}
+                    className={`text-[11px] ${isLight ? "text-violet-600" : "text-violet-300/90"} leading-relaxed mb-2.5 font-medium`}
                   >
                     {project.impact}
                   </p>
@@ -231,7 +231,7 @@ export default function ProjectsSection() {
                 {/* Repo note (e.g. "Private repo (internship)") */}
                 {project.repoNote && !project.repoUrl && (
                   <span
-                    className={`text-[10px] italic ${isLight ? "text-foreground/45" : "text-white/40"} mb-1`}
+                    className={`text-[10px] italic ${isLight ? "text-foreground/70" : "text-white/70"} mb-1`}
                   >
                     {project.repoNote}
                   </span>
@@ -258,7 +258,7 @@ export default function ProjectsSection() {
                     <Link
                       to={`/projects/${project.slug}`}
                       viewTransition
-                      className={`inline-flex items-center gap-1.5 text-xs ${isLight ? "text-foreground/65 hover:text-foreground" : "text-white/75 hover:text-white"} transition-colors`}
+                      className={`inline-flex items-center gap-1.5 text-xs ${isLight ? "text-foreground/80 hover:text-foreground" : "text-white/90 hover:text-white"} transition-colors`}
                     >
                       More details
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -278,6 +278,7 @@ export default function ProjectsSection() {
                         href={project.repoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label={`${project.title} GitHub repository`}
                         className="inline-block hover:opacity-75 transition-opacity"
                       >
                         <Github
@@ -303,20 +304,19 @@ export default function ProjectsSection() {
             disabled={!canPrev}
             aria-label="Previous projects"
             className={`bg-transparent border-none outline-none cursor-pointer text-sm transition-all ${
-              canPrev ? "text-foreground/70 hover:opacity-75" : "text-foreground/15 cursor-default"
+              canPrev ? "text-foreground/70 hover:opacity-75" : "text-foreground/40 cursor-default"
             }`}
           >
             ← Prev
           </button>
 
           {/* Dot indicators */}
-          <div className="flex items-center gap-2" role="tablist" aria-label="Project page">
+          <div className="flex items-center gap-2" aria-label="Project page">
             {Array.from({ length: totalDots }, (_, i) => (
               <button
                 key={i}
-                role="tab"
-                aria-selected={i === startIndex}
-                aria-label={`Page ${i + 1} of ${totalDots}`}
+                aria-current={i === startIndex ? "step" : undefined}
+                aria-label={`Go to slide ${i + 1} of ${totalDots}`}
                 onClick={() => {
                   setSlideDirection(i > startIndex ? "next" : "prev");
                   setStartIndex(i);
@@ -335,7 +335,7 @@ export default function ProjectsSection() {
             disabled={!canNext}
             aria-label="Next projects"
             className={`bg-transparent border-none outline-none cursor-pointer text-sm transition-all ${
-              canNext ? "text-foreground/70 hover:opacity-75" : "text-foreground/15 cursor-default"
+              canNext ? "text-foreground/70 hover:opacity-75" : "text-foreground/40 cursor-default"
             }`}
           >
             Next →

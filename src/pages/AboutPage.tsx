@@ -224,6 +224,8 @@ export default function AboutPage() {
               <img
                 src={profileImg}
                 alt="Reda Alalach"
+                width={192}
+                height={192}
                 className="relative w-40 h-40 md:w-48 md:h-48 rounded-full object-cover ring-2 ring-foreground/10"
               />
             </div>

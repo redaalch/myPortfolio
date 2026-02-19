@@ -102,6 +102,9 @@ export default function ExperienceSection() {
               <img
                 src={active.logo}
                 alt={`${active.company} logo`}
+                width={44}
+                height={44}
+                loading="lazy"
                 className="shrink-0 w-11 h-11 rounded-xl object-cover ring-1 ring-foreground/10"
               />
               <div>

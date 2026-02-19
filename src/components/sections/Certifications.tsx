@@ -70,9 +70,13 @@ export default function CertificationsSection() {
               >
                 {/* Head: Logo + external link */}
                 <div className="flex items-start justify-between">
-                  <div
-                    className="w-[50px] h-[50px] rounded-xl bg-center bg-contain bg-no-repeat"
-                    style={{ backgroundImage: `url(${cert.issuerLogo})` }}
+                  <img
+                    src={cert.issuerLogo}
+                    alt={`${cert.issuer} logo`}
+                    width={50}
+                    height={50}
+                    loading="lazy"
+                    className="w-[50px] h-[50px] rounded-xl object-contain"
                   />
                   <ExternalLink className="w-[22px] h-[22px] text-foreground/60 group-hover:text-violet-400 transition-colors" />
                 </div>

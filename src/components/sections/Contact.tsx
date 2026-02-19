@@ -4,7 +4,7 @@ import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { ArrowUpRight, FileText, Send, Loader2, CheckCircle2, Mail, CircleDot } from "lucide-react";
 
 const inputClass =
-  "w-full rounded-lg border border-foreground/10 bg-foreground/3 px-4 py-2.5 text-sm text-foreground placeholder-foreground/50 outline-none transition-colors focus:border-foreground/25 focus:bg-foreground/5";
+  "w-full rounded-lg border border-foreground/10 bg-foreground/3 px-4 py-2.5 text-sm text-foreground placeholder-foreground/60 outline-none transition-colors focus:border-foreground/25 focus:bg-foreground/5";
 
 const cellClass =
   "rounded-2xl border border-foreground/6 bg-foreground/2 backdrop-blur-sm relative overflow-hidden";
@@ -75,7 +75,7 @@ export default function ContactSection() {
                 <br />
                 work
                 <br />
-                <span className="text-foreground/50">together</span>
+                <span className="text-foreground/70">together</span>
               </h2>
             </div>
             <p className="max-w-xs text-[13px] leading-relaxed text-foreground/70">
@@ -133,6 +133,7 @@ export default function ContactSection() {
                       name="name"
                       placeholder="Name"
                       required
+                      aria-label="Name"
                       value={formData.name}
                       onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
                       className={inputClass}
@@ -142,6 +143,7 @@ export default function ContactSection() {
                       name="email"
                       placeholder="Email"
                       required
+                      aria-label="Email"
                       value={formData.email}
                       onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
                       className={inputClass}
@@ -151,6 +153,7 @@ export default function ContactSection() {
                     name="message"
                     placeholder="Your message..."
                     required
+                    aria-label="Message"
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))}
@@ -220,7 +223,7 @@ export default function ContactSection() {
               <FileText className="size-5 text-foreground/50" strokeWidth={1.5} />
               <div>
                 <p className="text-sm font-medium text-foreground/80">View CV</p>
-                <p className="text-[11px] text-foreground/65">Download resume</p>
+                <p className="text-[11px] text-foreground/70">Download resume</p>
               </div>
             </div>
             <ArrowUpRight
@@ -238,7 +241,7 @@ export default function ContactSection() {
               <Mail className="size-5 text-foreground/50" strokeWidth={1.5} />
               <div>
                 <p className="text-sm font-medium text-foreground/80">Email</p>
-                <p className="text-[11px] text-foreground/65">reda.alalach@gmail.com</p>
+                <p className="text-[11px] text-foreground/70">reda.alalach@gmail.com</p>
               </div>
             </div>
             <ArrowUpRight

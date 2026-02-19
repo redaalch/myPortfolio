@@ -16,11 +16,7 @@ const Footer = lazy(() => import("../components/sections/Footer"));
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/abstract-bg.jpg')" }}
-      />
-      <div className="absolute inset-0 bg-background/87" />
+      <div className="absolute inset-0 bg-background" />
 
       {/* Ambient floating glow orbs */}
       <div className="ambient-glow" aria-hidden="true" />

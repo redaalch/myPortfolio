@@ -51,7 +51,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/reda-alalach/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-foreground/5 ring-1 ring-foreground/10 flex items-center justify-center text-foreground/65 hover:text-foreground hover:bg-foreground/10 transition-colors"
+              className="w-9 h-9 rounded-full bg-foreground/5 ring-1 ring-foreground/10 flex items-center justify-center text-foreground/70 hover:text-foreground hover:bg-foreground/10 transition-colors"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-4 h-4" />
@@ -60,14 +60,14 @@ export default function Footer() {
               href="https://github.com/redaalch"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-foreground/5 ring-1 ring-foreground/10 flex items-center justify-center text-foreground/65 hover:text-foreground hover:bg-foreground/10 transition-colors"
+              className="w-9 h-9 rounded-full bg-foreground/5 ring-1 ring-foreground/10 flex items-center justify-center text-foreground/70 hover:text-foreground hover:bg-foreground/10 transition-colors"
               aria-label="GitHub"
             >
               <Github className="w-4 h-4" />
             </a>
             <a
               href="mailto:reda.alalach@gmail.com"
-              className="w-9 h-9 rounded-full bg-foreground/5 ring-1 ring-foreground/10 flex items-center justify-center text-foreground/65 hover:text-foreground hover:bg-foreground/10 transition-colors"
+              className="w-9 h-9 rounded-full bg-foreground/5 ring-1 ring-foreground/10 flex items-center justify-center text-foreground/70 hover:text-foreground hover:bg-foreground/10 transition-colors"
               aria-label="Email"
             >
               <Mail className="w-4 h-4" />
