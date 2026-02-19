@@ -7,9 +7,7 @@ import Navbar from "../components/ui/Navbar";
 export default function CaseStudyPage() {
   const { slug } = useParams();
   const caseStudy = slug ? getCaseStudyBySlug(slug) : undefined;
-  const project = caseStudy
-    ? getProjectBySlug(caseStudy.projectSlug)
-    : undefined;
+  const project = caseStudy ? getProjectBySlug(caseStudy.projectSlug) : undefined;
 
   if (!caseStudy) {
     return <Navigate to="/" replace />;
@@ -66,19 +64,11 @@ export default function CaseStudyPage() {
       <div className="max-w-[900px] mx-auto px-5 lg:px-12 pt-36 pb-16">
         {/* Breadcrumb */}
         <nav className="text-sm text-foreground/80 mb-10 flex flex-wrap items-center gap-y-1">
-          <Link
-            to="/"
-            viewTransition
-            className="hover:underline transition-colors"
-          >
+          <Link to="/" viewTransition className="hover:underline transition-colors">
             Home
           </Link>
           <span className="mx-2.5 opacity-60">/</span>
-          <Link
-            to="/#projects"
-            viewTransition
-            className="hover:underline transition-colors"
-          >
+          <Link to="/#projects" viewTransition className="hover:underline transition-colors">
             Projects
           </Link>
           <span className="mx-2.5 opacity-60">/</span>
@@ -128,22 +118,15 @@ export default function CaseStudyPage() {
         {/* Context section */}
         <section className="mb-14">
           <h2 className="text-2xl font-bold text-foreground mb-4">Context</h2>
-          <p className="text-base text-foreground/85 leading-[1.8]">
-            {caseStudy.context}
-          </p>
+          <p className="text-base text-foreground/85 leading-[1.8]">{caseStudy.context}</p>
         </section>
 
         {/* Constraints section */}
         <section className="mb-14">
-          <h2 className="text-2xl font-bold text-foreground mb-4">
-            Constraints
-          </h2>
+          <h2 className="text-2xl font-bold text-foreground mb-4">Constraints</h2>
           <ul className="space-y-3">
             {caseStudy.constraints.map((constraint, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-3 text-foreground/85 leading-relaxed"
-              >
+              <li key={i} className="flex items-start gap-3 text-foreground/85 leading-relaxed">
                 <span className="mt-1.5 h-2 w-2 rounded-full bg-violet-400 shrink-0" />
                 {constraint}
               </li>
@@ -153,21 +136,15 @@ export default function CaseStudyPage() {
 
         {/* Architecture section */}
         <section className="mb-14">
-          <h2 className="text-2xl font-bold text-foreground mb-6">
-            Architecture
-          </h2>
+          <h2 className="text-2xl font-bold text-foreground mb-6">Architecture</h2>
           <div className="space-y-6">
             {caseStudy.architectureSections.map((section, i) => (
               <div
                 key={i}
                 className="rounded-xl bg-foreground/[0.03] ring-1 ring-foreground/10 p-6"
               >
-                <h3 className="text-lg font-semibold text-violet-400 mb-3">
-                  {section.heading}
-                </h3>
-                <p className="text-sm text-foreground/80 leading-[1.8]">
-                  {section.content}
-                </p>
+                <h3 className="text-lg font-semibold text-violet-400 mb-3">{section.heading}</h3>
+                <p className="text-sm text-foreground/80 leading-[1.8]">{section.content}</p>
               </div>
             ))}
           </div>
@@ -176,9 +153,7 @@ export default function CaseStudyPage() {
         {/* Sequence Diagram (if available) */}
         {caseStudy.sequenceDiagram && (
           <section className="mb-14">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Notification Flow
-            </h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">Notification Flow</h2>
             <div className="rounded-xl bg-foreground/[0.03] ring-1 ring-foreground/10 p-6 overflow-x-auto">
               <pre className="text-sm text-foreground/70 leading-relaxed font-mono whitespace-pre">
                 {caseStudy.sequenceDiagram}
@@ -201,18 +176,14 @@ export default function CaseStudyPage() {
 
         {/* Key Decisions */}
         <section className="mb-14">
-          <h2 className="text-2xl font-bold text-foreground mb-6">
-            Key Decisions & Tradeoffs
-          </h2>
+          <h2 className="text-2xl font-bold text-foreground mb-6">Key Decisions & Tradeoffs</h2>
           <div className="space-y-6">
             {caseStudy.keyDecisions.map((decision, i) => (
               <div key={i} className="border-l-2 border-violet-400/40 pl-5">
                 <h3 className="text-base font-semibold text-foreground mb-2">
                   {decision.question}
                 </h3>
-                <p className="text-sm text-foreground/75 leading-[1.8]">
-                  {decision.answer}
-                </p>
+                <p className="text-sm text-foreground/75 leading-[1.8]">{decision.answer}</p>
               </div>
             ))}
           </div>
@@ -227,9 +198,7 @@ export default function CaseStudyPage() {
                 key={i}
                 className="rounded-xl bg-foreground/[0.03] ring-1 ring-foreground/10 p-5 text-center"
               >
-                <p className="text-2xl font-bold text-violet-400 mb-1">
-                  {outcome.value}
-                </p>
+                <p className="text-2xl font-bold text-violet-400 mb-1">{outcome.value}</p>
                 <p className="text-sm text-foreground/70">{outcome.label}</p>
               </div>
             ))}
@@ -238,15 +207,10 @@ export default function CaseStudyPage() {
 
         {/* What's Next */}
         <section className="mb-14">
-          <h2 className="text-2xl font-bold text-foreground mb-4">
-            What I'd Do Next
-          </h2>
+          <h2 className="text-2xl font-bold text-foreground mb-4">What I'd Do Next</h2>
           <ul className="space-y-3">
             {caseStudy.nextSteps.map((step, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-3 text-foreground/85 leading-relaxed"
-              >
+              <li key={i} className="flex items-start gap-3 text-foreground/85 leading-relaxed">
                 <span className="mt-1.5 h-2 w-2 rounded-full bg-foreground/30 shrink-0" />
                 {step}
               </li>

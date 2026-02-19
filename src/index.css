@@ -1015,8 +1015,7 @@ button:focus-visible {
   }
   50% {
     opacity: 1;
-    filter: brightness(0) invert(var(--logo-invert, 1))
-      drop-shadow(0 0 8px rgba(139, 92, 246, 0.6));
+    filter: brightness(0) invert(var(--logo-invert, 1)) drop-shadow(0 0 8px rgba(139, 92, 246, 0.6));
   }
 }
 

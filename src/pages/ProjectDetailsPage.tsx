@@ -62,19 +62,11 @@ export default function ProjectDetailsPage() {
       <div className="max-w-[1200px] mx-auto px-5 lg:px-12 pt-36 pb-16">
         {/* Breadcrumb */}
         <nav className="text-sm text-foreground/80 mb-10">
-          <Link
-            to="/"
-            viewTransition
-            className="hover:underline transition-colors"
-          >
+          <Link to="/" viewTransition className="hover:underline transition-colors">
             Home
           </Link>
           <span className="mx-2.5 opacity-60">/</span>
-          <Link
-            to="/#projects"
-            viewTransition
-            className="hover:underline transition-colors"
-          >
+          <Link to="/#projects" viewTransition className="hover:underline transition-colors">
             Projects
           </Link>
           <span className="mx-2.5 opacity-60">/</span>
@@ -96,9 +88,7 @@ export default function ProjectDetailsPage() {
             {project.description}
           </p>
 
-          <h3 className="text-lg font-semibold text-violet-400 mt-10 mb-4">
-            Technologies Used:
-          </h3>
+          <h3 className="text-lg font-semibold text-violet-400 mt-10 mb-4">Technologies Used:</h3>
           <div className="flex flex-wrap justify-center gap-2.5">
             {project.tags.map((tag) => (
               <span
@@ -125,12 +115,8 @@ export default function ProjectDetailsPage() {
                 />
               ) : (
                 <div className="text-center text-white/60 px-8">
-                  <p className="text-sm uppercase tracking-widest mb-3">
-                    Project Preview
-                  </p>
-                  <p className="text-3xl md:text-5xl font-bold">
-                    {project.title}
-                  </p>
+                  <p className="text-sm uppercase tracking-widest mb-3">Project Preview</p>
+                  <p className="text-3xl md:text-5xl font-bold">{project.title}</p>
                 </div>
               )}
             </div>
@@ -139,15 +125,10 @@ export default function ProjectDetailsPage() {
 
         {/* About section */}
         <section className="mb-16">
-          <h2 className="text-[32px] font-bold text-violet-400 mb-8">
-            About This Project
-          </h2>
+          <h2 className="text-[32px] font-bold text-violet-400 mb-8">About This Project</h2>
           <div className="space-y-5">
             {project.about.map((paragraph, index) => (
-              <p
-                key={index}
-                className="text-base text-foreground/90 leading-[1.8]"
-              >
+              <p key={index} className="text-base text-foreground/90 leading-[1.8]">
                 {paragraph}
               </p>
             ))}
@@ -165,9 +146,7 @@ export default function ProjectDetailsPage() {
               <div className="flex items-center gap-4">
                 <BookOpen className="w-6 h-6 text-violet-400 shrink-0" />
                 <div>
-                  <p className="text-base font-semibold text-foreground">
-                    Read the Case Study
-                  </p>
+                  <p className="text-base font-semibold text-foreground">Read the Case Study</p>
                   <p className="text-sm text-foreground/70">
                     Architecture decisions, tradeoffs, and outcomes
                   </p>

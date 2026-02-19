@@ -75,7 +75,8 @@ export default function ExperienceSection() {
                 key={i}
                 onClick={() => setActiveIndex(i)}
                 className={`relative text-left px-5 py-3 text-sm font-medium transition-colors duration-200 whitespace-nowrap
-                  ${activeIndex === i
+                  ${
+                    activeIndex === i
                       ? "text-violet-400"
                       : "text-foreground/70 hover:text-foreground/90"
                   }`}
