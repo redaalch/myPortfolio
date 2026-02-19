@@ -114,12 +114,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
 
       {/* ── Decorative grid dots (asymmetric, top-right) ── */}
       <div className="absolute top-20 right-12 w-48 h-48 opacity-[0.06] pointer-events-none hidden lg:block">
-        <svg
-          width="100%"
-          height="100%"
-          viewBox="0 0 192 192"
-          className="text-foreground"
-        >
+        <svg width="100%" height="100%" viewBox="0 0 192 192" className="text-foreground">
           {Array.from({ length: 64 }, (_, i) => (
             <circle
               key={i}
@@ -143,22 +138,14 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
               <Logo height={36} />
             </a>
 
-            <nav
-              aria-label="Main navigation"
-              className="hidden md:flex items-center gap-2"
-            >
+            <nav aria-label="Main navigation" className="hidden md:flex items-center gap-2">
               <div className="flex items-center gap-1 rounded-full bg-foreground/5 px-1 py-1 ring-1 ring-foreground/10 backdrop-blur">
                 {navLinks.map((link, index) => {
                   const cls = `px-3 py-2 text-sm font-medium hover:text-foreground transition-colors ${
                     link.isActive ? "text-foreground/90" : "text-foreground/80"
                   }`;
                   return link.href.startsWith("/") ? (
-                    <Link
-                      key={index}
-                      to={link.href}
-                      viewTransition
-                      className={cls}
-                    >
+                    <Link key={index} to={link.href} viewTransition className={cls}>
                       {link.label}
                     </Link>
                   ) : (
@@ -319,9 +306,8 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
               </h1>
 
               <p className="sm:text-lg animate-fade-slide-in-3 text-base text-foreground/70 max-w-xl mt-6 leading-relaxed">
-                I build reliable Node.js/Express backends, add real-time
-                features with Socket.io, and ship modern UIs with React.
-                Currently exploring Google Cloud &amp; Firebase.
+                I build reliable Node.js/Express backends, add real-time features with Socket.io,
+                and ship modern UIs with React. Currently exploring Google Cloud &amp; Firebase.
               </p>
 
               <div className="flex flex-col sm:flex-row sm:gap-4 mt-10 gap-3 items-center lg:items-start animate-fade-slide-in-4">

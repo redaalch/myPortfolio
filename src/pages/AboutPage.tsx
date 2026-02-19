@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import Navbar from "../components/ui/Navbar";
 import { useScrollReveal } from "../hooks/useScrollReveal";
-import profileImg from "../assets/profile.jpeg";
+import profileImg from "../assets/profile.avif";
 
 /* ================================================================== */
 /*  Data — replace with your real content                              */
@@ -68,7 +68,7 @@ const TIMELINE = [
     year: "2021",
     title: "B.Sc. Computer Science — FSDM, Fez",
     description:
-      "Started a Computer Science degree at the Faculty of Sciences Dhar El Mahraz, Sidi Mohamed Ben Abdellah University. Currently in Year 3.",
+      "Started a Computer Science degree at the Faculty of Sciences Dhar El Mahraz, Sidi Mohamed Ben Abdellah University. Graduating in 2026.",
     icon: GraduationCap,
     color: "#06b6d4",
   },
@@ -145,10 +145,7 @@ function RevealSection({
 }) {
   const { ref, visible } = useScrollReveal(0.1);
   return (
-    <div
-      ref={ref}
-      className={`${visible ? "reveal visible" : "reveal"} ${className}`}
-    >
+    <div ref={ref} className={`${visible ? "reveal visible" : "reveal"} ${className}`}>
       {children}
     </div>
   );
@@ -209,11 +206,7 @@ export default function AboutPage() {
       <div className="max-w-[1000px] mx-auto px-5 lg:px-12 pt-36 pb-16">
         {/* ── Breadcrumb ── */}
         <nav className="text-sm text-foreground/80 mb-10">
-          <Link
-            to="/"
-            viewTransition
-            className="hover:underline transition-colors"
-          >
+          <Link to="/" viewTransition className="hover:underline transition-colors">
             Home
           </Link>
           <span className="mx-2.5 opacity-60">/</span>
@@ -250,31 +243,46 @@ export default function AboutPage() {
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <Briefcase className="w-3.5 h-3.5" />
-                  Backend & Full-Stack Developer
+                  Full-Stack Developer
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <Calendar className="w-3.5 h-3.5" />
-                  B.Sc. CS — Year 3
+                  B.Sc. CS — Graduating 2026
                 </span>
               </div>
 
               {/* Bio paragraphs */}
               <div className="space-y-4 text-foreground/70 leading-relaxed max-w-2xl">
                 <p>
-                  I'm a backend-focused developer building secure REST APIs with
-                  Node.js/Express and database-backed business logic
-                  (MongoDB/Mongoose). I've delivered production-ready features
-                  including JWT authentication, middleware pipelines, global
-                  error handling, real-time events with Socket.io, and cloud
-                  deployments.
+                  I'm a full-stack developer building secure REST APIs with Node.js/Express and
+                  database-backed business logic (MongoDB/Mongoose). I've delivered production-ready
+                  features including JWT authentication, middleware pipelines, global error
+                  handling, real-time events with Socket.io, and cloud deployments.
                 </p>
                 <p>
-                  I'm currently pursuing a B.Sc. in Computer Science at FSDM,
-                  Fez, and actively learning Google Cloud Platform, Cloud
-                  Functions, and Firebase to build scalable serverless backends.
-                  Remote-ready with strong written communication and clear
-                  documentation skills.
+                  Graduating in 2026 with a B.Sc. in Computer Science from FSDM, Fez. Currently
+                  learning Google Cloud Platform, Cloud Functions, and Firebase to build scalable
+                  serverless backends.
                 </p>
+              </div>
+
+              {/* Quick recruiter facts */}
+              <div className="mt-6 flex flex-wrap gap-3">
+                {[
+                  { label: "Timezone", value: "GMT+1 (Morocco)" },
+                  { label: "Graduating", value: "2026" },
+                  { label: "Looking for", value: "Full-Stack / Backend roles" },
+                  { label: "Work style", value: "Remote-ready, strong async communication" },
+                  { label: "Open to", value: "Internships & junior positions" },
+                ].map((item) => (
+                  <span
+                    key={item.label}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-foreground/8 bg-foreground/3 px-3.5 py-1.5 text-xs text-foreground/70"
+                  >
+                    <span className="font-medium text-foreground/90">{item.label}:</span>{" "}
+                    {item.value}
+                  </span>
+                ))}
               </div>
             </div>
           </section>
@@ -316,12 +324,8 @@ export default function AboutPage() {
                   key={item.title}
                   className="rounded-xl bg-foreground/[0.03] ring-1 ring-foreground/8 p-6 hover:ring-violet-500/30 transition-all duration-300"
                 >
-                  <h3 className="text-base font-semibold text-foreground mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-foreground/70 leading-relaxed">
-                    {item.description}
-                  </p>
+                  <h3 className="text-base font-semibold text-foreground mb-2">{item.title}</h3>
+                  <p className="text-sm text-foreground/70 leading-relaxed">{item.description}</p>
                 </div>
               ))}
             </div>
@@ -355,19 +359,14 @@ export default function AboutPage() {
                           boxShadow: `0 0 20px ${item.color}33`,
                         }}
                       >
-                        <Icon
-                          className="w-4 h-4"
-                          style={{ color: item.color }}
-                        />
+                        <Icon className="w-4 h-4" style={{ color: item.color }} />
                       </div>
                       {/* Content */}
                       <div className="pb-2">
                         <span className="text-xs font-medium text-foreground/70 tracking-widest uppercase">
                           {item.year}
                         </span>
-                        <h3 className="text-lg font-semibold text-foreground mt-1">
-                          {item.title}
-                        </h3>
+                        <h3 className="text-lg font-semibold text-foreground mt-1">{item.title}</h3>
                         <p className="text-sm text-foreground/70 leading-relaxed mt-1 max-w-lg">
                           {item.description}
                         </p>
@@ -406,9 +405,7 @@ export default function AboutPage() {
                       <p className="text-xs font-medium text-foreground/70 uppercase tracking-wider">
                         {fact.label}
                       </p>
-                      <p className="text-sm text-foreground/80 mt-0.5">
-                        {fact.value}
-                      </p>
+                      <p className="text-sm text-foreground/80 mt-0.5">{fact.value}</p>
                     </div>
                   </div>
                 );
@@ -426,8 +423,8 @@ export default function AboutPage() {
               Let's Work Together
             </h2>
             <p className="text-foreground/70 max-w-md mx-auto mb-8">
-              I'm always open to discussing new projects, creative ideas, or
-              opportunities to be part of something great.
+              I'm always open to discussing new projects, creative ideas, or opportunities to be
+              part of something great.
             </p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <Link

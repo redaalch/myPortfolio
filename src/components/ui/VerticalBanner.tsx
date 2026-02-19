@@ -20,9 +20,7 @@ export default function VerticalBanner() {
       {/* ── Left strip: social links + line ── */}
       <aside
         className={`vertical-banner hidden lg:flex fixed left-8 top-0 bottom-0 z-30 flex-col items-center justify-center gap-6 transition-all duration-500 ${
-          visible
-            ? "opacity-100 translate-x-0"
-            : "opacity-0 -translate-x-4 pointer-events-none"
+          visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4 pointer-events-none"
         }`}
       >
         <div className="flex flex-col items-center gap-7">
@@ -31,11 +29,7 @@ export default function VerticalBanner() {
             <div className="sc-tooltip">
               <div className="sc-profile">
                 <div className="sc-user">
-                  <img
-                    src={profileImg}
-                    alt="Reda Alalach"
-                    className="sc-avatar"
-                  />
+                  <img src={profileImg} alt="Reda Alalach" className="sc-avatar" />
                   <div className="sc-details">
                     <div className="sc-name">Reda Alalach</div>
                     <div className="sc-username">@redaalch</div>
@@ -68,19 +62,13 @@ export default function VerticalBanner() {
             <div className="sc-tooltip">
               <div className="sc-profile">
                 <div className="sc-user">
-                  <img
-                    src={profileImg}
-                    alt="Reda Alalach"
-                    className="sc-avatar"
-                  />
+                  <img src={profileImg} alt="Reda Alalach" className="sc-avatar" />
                   <div className="sc-details">
                     <div className="sc-name">Reda Alalach</div>
                     <div className="sc-username">@reda-alalach</div>
                   </div>
                 </div>
-                <div className="sc-about">
-                  Full-Stack Developer · 500+ Connections
-                </div>
+                <div className="sc-about">Full-Stack Developer · 500+ Connections</div>
               </div>
             </div>
             <a
@@ -107,11 +95,7 @@ export default function VerticalBanner() {
             <div className="sc-tooltip">
               <div className="sc-profile">
                 <div className="sc-user">
-                  <img
-                    src={profileImg}
-                    alt="Reda Alalach"
-                    className="sc-avatar"
-                  />
+                  <img src={profileImg} alt="Reda Alalach" className="sc-avatar" />
                   <div className="sc-details">
                     <div className="sc-name">Reda Alalach</div>
                     <div className="sc-username">reda.alalach@gmail.com</div>
@@ -120,11 +104,7 @@ export default function VerticalBanner() {
                 <div className="sc-about">Feel free to reach out!</div>
               </div>
             </div>
-            <a
-              href="mailto:reda.alalach@gmail.com"
-              className="sc-icon-link"
-              aria-label="Email"
-            >
+            <a href="mailto:reda.alalach@gmail.com" className="sc-icon-link" aria-label="Email">
               <div className="sc-layer">
                 <span></span>
                 <span></span>
@@ -143,9 +123,7 @@ export default function VerticalBanner() {
       {/* ── Right strip: email ── */}
       <aside
         className={`vertical-banner hidden lg:flex fixed right-8 top-0 bottom-0 z-30 flex-col items-center justify-center gap-6 transition-all duration-500 ${
-          visible
-            ? "opacity-100 translate-x-0"
-            : "opacity-0 translate-x-4 pointer-events-none"
+          visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4 pointer-events-none"
         }`}
       >
         <a
