@@ -94,10 +94,7 @@ export default function ExperienceSection() {
           </nav>
 
           {/* Content panel */}
-          <div
-            key={activeIndex}
-            className="flex-1 md:pl-12 pt-6 md:pt-0 animate-fade-in"
-          >
+          <div key={activeIndex} className="flex-1 md:pl-12 pt-6 md:pt-0 animate-fade-in">
             <div className="flex items-start gap-4">
               <img
                 src={active.logo}
@@ -109,8 +106,7 @@ export default function ExperienceSection() {
               />
               <div>
                 <h3 className="text-xl sm:text-2xl font-bold text-foreground leading-snug">
-                  {active.role}{" "}
-                  <span className="text-violet-400">@ {active.company}</span>
+                  {active.role} <span className="text-violet-400">@ {active.company}</span>
                 </h3>
                 <p className="text-sm text-foreground/70 mt-1">
                   {active.type} | {active.period}

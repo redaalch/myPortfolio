@@ -55,7 +55,14 @@ export default function LoadingScreen({ minDuration = 300 }: LoadingScreenProps)
         <div className="loader-box" />
         <div className="loader-box" />
         <div className="loader-box" />
-        <img src={logoSrc} alt="" width={60} height={60} className="loader-logo" draggable={false} />
+        <img
+          src={logoSrc}
+          alt=""
+          width={60}
+          height={60}
+          className="loader-logo"
+          draggable={false}
+        />
       </div>
     </div>
   );

@@ -3,13 +3,9 @@ import ResponsiveHeroBanner from "../components/ui/responsive-hero-banner";
 import VerticalBanner from "../components/ui/VerticalBanner";
 
 const ProjectsSection = lazy(() => import("../components/sections/Projects"));
-const ExperienceSection = lazy(
-  () => import("../components/sections/Experience"),
-);
+const ExperienceSection = lazy(() => import("../components/sections/Experience"));
 const SkillsSection = lazy(() => import("../components/sections/Skills"));
-const CertificationsSection = lazy(
-  () => import("../components/sections/Certifications"),
-);
+const CertificationsSection = lazy(() => import("../components/sections/Certifications"));
 const ContactSection = lazy(() => import("../components/sections/Contact"));
 const Footer = lazy(() => import("../components/sections/Footer"));
 

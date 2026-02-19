@@ -29,7 +29,14 @@ export default function VerticalBanner() {
             <div className="sc-tooltip">
               <div className="sc-profile">
                 <div className="sc-user">
-                  <img src={profileImg} alt="Reda Alalach" width={40} height={40} loading="lazy" className="sc-avatar" />
+                  <img
+                    src={profileImg}
+                    alt="Reda Alalach"
+                    width={40}
+                    height={40}
+                    loading="lazy"
+                    className="sc-avatar"
+                  />
                   <div className="sc-details">
                     <div className="sc-name">Reda Alalach</div>
                     <div className="sc-username">@redaalch</div>
@@ -62,7 +69,14 @@ export default function VerticalBanner() {
             <div className="sc-tooltip">
               <div className="sc-profile">
                 <div className="sc-user">
-                  <img src={profileImg} alt="Reda Alalach" width={40} height={40} loading="lazy" className="sc-avatar" />
+                  <img
+                    src={profileImg}
+                    alt="Reda Alalach"
+                    width={40}
+                    height={40}
+                    loading="lazy"
+                    className="sc-avatar"
+                  />
                   <div className="sc-details">
                     <div className="sc-name">Reda Alalach</div>
                     <div className="sc-username">@reda-alalach</div>
@@ -95,7 +109,14 @@ export default function VerticalBanner() {
             <div className="sc-tooltip">
               <div className="sc-profile">
                 <div className="sc-user">
-                  <img src={profileImg} alt="Reda Alalach" width={40} height={40} loading="lazy" className="sc-avatar" />
+                  <img
+                    src={profileImg}
+                    alt="Reda Alalach"
+                    width={40}
+                    height={40}
+                    loading="lazy"
+                    className="sc-avatar"
+                  />
                   <div className="sc-details">
                     <div className="sc-name">Reda Alalach</div>
                     <div className="sc-username">reda.alalach@gmail.com</div>
