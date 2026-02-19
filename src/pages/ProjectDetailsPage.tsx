@@ -192,7 +192,7 @@ export default function ProjectDetailsPage() {
           <Link
             to="/#projects"
             viewTransition
-            className="inline-block px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
           >
             &lsaquo; Back to All Projects
           </Link>
@@ -200,7 +200,7 @@ export default function ProjectDetailsPage() {
           <Link
             to="/#contact"
             viewTransition
-            className="inline-block px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
           >
             Start a Project &rsaquo;
           </Link>

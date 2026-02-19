@@ -196,7 +196,9 @@ export const caseStudies: CaseStudy[] = [
       "Perfect Lighthouse accessibility score (skip-link, focus-visible, semantic HTML, ARIA labels)",
       "SEO: canonical URL, Open Graph, Twitter Card, JSON-LD Person schema — all server-rendered in the HTML shell",
       "Zero CMS dependency — content lives in TypeScript data files for type-safety and instant rebuilds",
+      "Contact form must work without a custom backend — no server to maintain",
       "CI must block broken deploys: lint, typecheck, and Lighthouse budgets run before every merge",
+      "Secrets (API keys) must stay out of the git repo while still being available at build time",
       "Bundle must stay lean — no heavy UI library; Tailwind v4 + Lucide icons only",
     ],
     architectureSections: [
@@ -241,9 +243,14 @@ export const caseStudies: CaseStudy[] = [
           "The homepage layers an abstract textured background (abstract-bg.jpg) under a semi-transparent overlay, floating glow orbs (CSS radial-gradient + keyframe drift), and rising bubble spans with randomised sizes, positions, and durations. These purely decorative elements are marked aria-hidden and add depth without affecting performance or accessibility.",
       },
       {
+        heading: "Contact Form",
+        content:
+          "The contact form submits to Web3Forms via a simple POST with FormData — no backend needed. The API key is stored in a .env file locally (VITE_WEB3FORMS_KEY) and injected at build time via a GitHub Actions repository secret. This keeps the key out of version control while allowing the CI pipeline to bake it into the production bundle.",
+      },
+      {
         heading: "CI / CD Pipeline",
         content:
-          "GitHub Actions workflow: npm ci → ESLint → tsc --noEmit → vite build → Lighthouse CI (performance ≥ 0.9, CLS < 0.1). Dependabot keeps npm and Actions dependencies fresh weekly. CodeQL scans JavaScript/TypeScript on every push for security vulnerabilities. Deployment is automatic to GitHub Pages with a custom domain (remyportfolio.me).",
+          "GitHub Actions workflow: npm ci → ESLint → tsc --noEmit → vite build (with VITE_WEB3FORMS_KEY from repo secrets) → Lighthouse CI (performance ≥ 0.9, CLS < 0.1). Dependabot keeps npm and Actions dependencies fresh weekly. CodeQL scans JavaScript/TypeScript on every push for security vulnerabilities. Deployment is automatic to GitHub Pages with a custom domain (remyportfolio.me).",
       },
     ],
     keyDecisions: [
@@ -273,6 +280,12 @@ export const caseStudies: CaseStudy[] = [
         answer:
           "The existing scroll-reveal hook only controls CSS opacity/transform — the JS and component tree still ship upfront. React.lazy() with Suspense actually defers parsing and evaluation of each section's code until React tries to render it. Combined, the user sees a smooth reveal animation while the browser does less work on first load.",
       },
+      {
+        question:
+          "Why Web3Forms over EmailJS or a custom backend for the contact form?",
+        answer:
+          "Web3Forms requires zero dependencies — just a fetch POST with FormData. EmailJS needs an SDK and exposes more config. A custom backend (e.g. Express + Nodemailer) means another service to maintain and deploy. For a single contact form, Web3Forms is the simplest correct solution: one API key, one HTTP call, emails forwarded to my inbox.",
+      },
     ],
     outcomes: [
       { label: "Lighthouse Performance", value: "95+" },
@@ -280,6 +293,7 @@ export const caseStudies: CaseStudy[] = [
       { label: "Initial JS payload", value: "~84 KB gzip" },
       { label: "Hero image size", value: "5–15 KB (AVIF)" },
       { label: "Accessibility score", value: "100" },
+      { label: "Contact form", value: "Web3Forms (no backend)" },
       { label: "Code-split chunks", value: "6 lazy sections" },
       {
         label: "Page transitions",

@@ -65,7 +65,7 @@ export default function CaseStudyPage() {
 
       <div className="max-w-[900px] mx-auto px-5 lg:px-12 pt-36 pb-16">
         {/* Breadcrumb */}
-        <nav className="text-sm text-foreground/80 mb-10">
+        <nav className="text-sm text-foreground/80 mb-10 flex flex-wrap items-center gap-y-1">
           <Link
             to="/"
             viewTransition
@@ -259,7 +259,7 @@ export default function CaseStudyPage() {
           <Link
             to={project ? `/projects/${project.slug}` : "/#projects"}
             viewTransition
-            className="inline-flex items-center gap-2 px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Project
@@ -268,7 +268,7 @@ export default function CaseStudyPage() {
           <Link
             to="/#contact"
             viewTransition
-            className="inline-block px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
           >
             Start a Project &rsaquo;
           </Link>

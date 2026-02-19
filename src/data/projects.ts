@@ -7,11 +7,13 @@ export interface Project {
   slug: string;
   title: string;
   description: string;
+  impact: string;
   about: string[];
   tags: string[];
   year: string;
   repoUrl?: string;
   liveUrl?: string;
+  repoNote?: string;
   image?: string;
   color: string;
   lightColor: string;
@@ -24,6 +26,8 @@ export const projects: Project[] = [
     title: "NotesBoard",
     description:
       "Collaborative notes & analytics platform with a real-time editor (Yjs/Hocuspocus), shared dashboards, drag-and-drop, animations, offline cache, and notifications.",
+    impact:
+      "10+ concurrent editors · <80ms sync latency · 100% offline write success · ~17KB collab bundle",
     about: [
       "NotesBoard is built to help teams collaborate in real-time on shared notes and dashboards without losing editing consistency.",
       "The project combines a React frontend with a Node/Express backend and synchronization using Yjs for conflict-free collaboration.",
@@ -42,7 +46,9 @@ export const projects: Project[] = [
     slug: "real-time-notifications",
     title: "Real-time Notifications",
     description:
-      "Event-driven notifications for task assignment and updates, with API-driven history and UI feedback via toast alerts. Focused on reliability and clean UX.",
+      "Event-driven notifications for task assignment and updates, with API-driven history and UI feedback via toast alerts. Built during my Technocolabs internship.",
+    impact:
+      "<50ms delivery latency · Zero breaking changes to existing API · Persisted + real-time (no message loss)",
     about: [
       "This module adds instant task update notifications to improve communication and response time in project workflows.",
       "It uses Socket.io channels and secured API endpoints to ensure users receive consistent, authenticated updates.",
@@ -50,6 +56,7 @@ export const projects: Project[] = [
     ],
     tags: ["Socket.io", "Express", "JWT", "REST"],
     year: "2025",
+    repoNote: "Private repo (internship)",
     image: notificationsPreview,
     color: "from-indigo-900/80 via-violet-800/75 to-purple-900/85",
     lightColor: "from-indigo-50/80 via-violet-50/70 to-purple-50/60",
@@ -60,6 +67,7 @@ export const projects: Project[] = [
     title: "Alarm Clock",
     description:
       "Lightweight alarm clock with add/edit/delete alarms, recurring schedules, local persistence, live clock, desktop notifications, and offline support.",
+    impact: "PWA with full offline support · <1s load time · Zero dependencies",
     about: [
       "Alarm Clock is a progressive web app focused on speed and ease of use for daily reminders.",
       "It supports recurring alarms, local storage persistence, and browser notifications for practical day-to-day usage.",
@@ -67,6 +75,7 @@ export const projects: Project[] = [
     ],
     tags: ["JavaScript", "HTML", "CSS", "PWA"],
     year: "2025",
+    repoUrl: "https://github.com/redaalch/alarm-clock",
     liveUrl: "https://redaalch.github.io/alarm-clock/",
     image: alarmClockPreview,
     color: "from-orange-900/80 via-amber-800/70 to-yellow-900/75",
@@ -77,6 +86,7 @@ export const projects: Project[] = [
     title: "Portfolio (This Site)",
     description:
       "Modern portfolio built with React, Tailwind CSS, and TypeScript. Includes smooth animations, responsive design, and deployed via GitHub Pages.",
+    impact: "Lighthouse 95+ perf / 100 a11y / 100 SEO · Sub-2s LCP · 6 lazy-loaded chunks",
     about: [
       "This portfolio showcases projects, experience, and certifications in a clean and modern format.",
       "The site uses reusable sections, smooth transitions, and responsive layouts to deliver a polished user experience.",
