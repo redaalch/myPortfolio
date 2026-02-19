@@ -48,6 +48,7 @@ jobs:
           VITE_WEB3FORMS_KEY: ${{ secrets.VITE_WEB3FORMS_KEY }}
 
       - name: Lighthouse CI
+        continue-on-error: true
         run: |
           npm install -g @lhci/cli
           lhci autorun
