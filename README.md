@@ -1,6 +1,6 @@
 # remyportfolio.me
 
-> Personal portfolio of **Reda Alalach** — backend & full-stack developer.
+> Personal portfolio of **Reda Alalach** — full-stack developer.
 
 [![Live Site](https://img.shields.io/badge/live-remyportfolio.me-8b5cf6?style=for-the-badge)](https://remyportfolio.me)
 [![Deploy](https://github.com/redaalch/myPortfolio/actions/workflows/static.yml/badge.svg)](https://github.com/redaalch/myPortfolio/actions/workflows/static.yml)
@@ -103,12 +103,12 @@ Run through [WebPageTest](https://www.webpagetest.org/?url=https://remyportfolio
 
 ## Projects
 
-| Project                     | Description                                                                                               | Links                                                                            |
-| --------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| **NotesBoard**              | Collaborative MERN platform with real-time editing (Yjs/Hocuspocus), shared dashboards, and offline cache | [Repo](https://github.com/redaalch/notesBoard) · [Live](https://notesboard.xyz/) |
-| **Real-time Notifications** | Event-driven Socket.io notifications with JWT auth, toast alerts, and REST history API                    | —                                                                                |
-| **Alarm Clock**             | PWA alarm clock with recurring schedules, local persistence, and desktop notifications                    | [Live](https://redaalch.github.io/alarm-clock/)                                  |
-| **Portfolio (This Site)**   | React 19 + Tailwind v4 + Vite 7 portfolio with dark/light theme, view transitions, and CI/CD              | You're here                                                                      |
+| Project                     | Description                                                                                               | Links                                                                                                 |
+| --------------------------- | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **NotesBoard**              | Collaborative MERN platform with real-time editing (Yjs/Hocuspocus), shared dashboards, and offline cache | [Repo](https://github.com/redaalch/notesBoard) · [Live](https://notesboard.xyz/)                      |
+| **Real-time Notifications** | Event-driven Socket.io notifications with JWT auth, toast alerts, and REST history API                    | Private repo (internship) · [Case Study](https://remyportfolio.me/case-study/real-time-notifications) |
+| **Alarm Clock**             | PWA alarm clock with recurring schedules, local persistence, and desktop notifications                    | [Repo](https://github.com/redaalch/alarm-clock) · [Live](https://redaalch.github.io/alarm-clock/)     |
+| **Portfolio (This Site)**   | React 19 + Tailwind v4 + Vite 7 portfolio with dark/light theme, view transitions, and CI/CD              | You're here                                                                                           |
 
 ## Case Studies
 
