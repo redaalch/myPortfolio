@@ -7,35 +7,26 @@
     <meta name="author" content="Reda Alalach" />
     <meta
       name="description"
-      content="Portfolio of Reda Alalach — backend & full-stack developer. Projects (MERN, real-time), internships, skills, and contact."
+      content="Portfolio of Reda Alalach — full-stack developer. Projects (MERN, real-time), internships, skills, and contact."
     />
 
     <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="Reda Alalach — Backend & Full-Stack Developer"
-    />
+    <meta property="og:title" content="Reda Alalach — Full-Stack Developer" />
     <meta
       property="og:description"
-      content="Backend-leaning full-stack developer building Node.js/Express APIs, real-time features with Socket.io, and modern React apps."
+      content="Full-stack developer building Node.js/Express APIs, real-time features with Socket.io, and modern React apps."
     />
     <meta property="og:url" content="https://remyportfolio.me/" />
     <meta property="og:image" content="https://remyportfolio.me/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Reda Alalach — Backend & Full-Stack Developer"
-    />
+    <meta name="twitter:title" content="Reda Alalach — Full-Stack Developer" />
     <meta
       name="twitter:description"
-      content="Backend-leaning full-stack developer building Node.js/Express APIs, real-time features with Socket.io, and modern React apps."
+      content="Full-stack developer building Node.js/Express APIs, real-time features with Socket.io, and modern React apps."
     />
-    <meta
-      name="twitter:image"
-      content="https://remyportfolio.me/og-image.png"
-    />
+    <meta name="twitter:image" content="https://remyportfolio.me/og-image.png" />
 
     <link rel="canonical" href="https://remyportfolio.me/" />
 
@@ -62,12 +53,9 @@
         "@type": "Person",
         "name": "Reda Alalach",
         "url": "https://remyportfolio.me",
-        "jobTitle": "Backend & Full-Stack Developer",
-        "sameAs": [
-          "https://github.com/redaalch",
-          "https://www.linkedin.com/in/reda-alalach/"
-        ],
-        "description": "Backend-leaning full-stack developer building Node.js/Express APIs, real-time features with Socket.io, and modern React apps.",
+        "jobTitle": "Full-Stack Developer",
+        "sameAs": ["https://github.com/redaalch", "https://www.linkedin.com/in/reda-alalach/"],
+        "description": "Full-stack developer building Node.js/Express APIs, real-time features with Socket.io, and modern React apps.",
         "knowsAbout": [
           "Node.js",
           "Express",
@@ -81,7 +69,7 @@
       }
     </script>
 
-    <title>Reda Alalach — Backend & Full-Stack Developer</title>
+    <title>Reda Alalach — Full-Stack Developer</title>
 
     <!-- Theme init — prevent FOUC -->
     <script>
@@ -90,55 +78,175 @@
           var t = localStorage.getItem("theme");
           t !== "dark" &&
             t !== "light" &&
-            (t = matchMedia("(prefers-color-scheme:dark)").matches
-              ? "dark"
-              : "light");
+            (t = matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light");
           document.documentElement.dataset.theme = t;
         } catch (e) {}
       })();
     </script>
+
+    <!-- SPA redirect restore — works with 404.html for GitHub Pages -->
+    <script>
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Static shell: visible before React hydrates, replaced on mount.
+           Feeds SEO crawlers, link-preview bots, and slow-connection users
+           with real content instead of a blank div. -->
+      <div
+        style="
+          max-width: 720px;
+          margin: 0 auto;
+          padding: 80px 24px 48px;
+          font-family:
+            system-ui,
+            -apple-system,
+            sans-serif;
+          color: #e4e4e7;
+        "
+      >
+        <p
+          style="
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #8b5cf6;
+            margin-bottom: 12px;
+          "
+        >
+          Backend / Full-Stack / DevOps — Open to internships
+        </p>
+        <h1 style="font-size: 2.5rem; line-height: 1.15; margin: 0 0 16px; font-weight: 400">
+          Hi, I'm <span style="color: #a78bfa">Reda Alalach</span><br />Full-Stack Developer
+        </h1>
+        <p
+          style="
+            font-size: 1.05rem;
+            line-height: 1.7;
+            opacity: 0.7;
+            max-width: 560px;
+            margin-bottom: 40px;
+          "
+        >
+          I build reliable Node.js/Express backends, add real-time features with Socket.io, and ship
+          modern UIs with React. Currently exploring Google Cloud &amp; Firebase.
+        </p>
+
+        <h2 style="font-size: 1.25rem; margin: 0 0 16px; font-weight: 600">Featured Projects</h2>
+        <ul style="list-style: none; padding: 0; margin: 0 0 40px">
+          <li style="margin-bottom: 14px">
+            <a
+              href="/case-study/notesboard"
+              style="color: #a78bfa; text-decoration: none; font-weight: 500"
+              >NotesBoard</a
+            >
+            — Collaborative notes &amp; analytics platform with real-time editing.
+            <br />
+            <span style="opacity: 0.5; font-size: 0.85rem"
+              >10+ concurrent editors · &lt;80ms sync · React · Express · MongoDB · Socket.io</span
+            >
+          </li>
+          <li style="margin-bottom: 14px">
+            <a
+              href="/case-study/real-time-notifications"
+              style="color: #a78bfa; text-decoration: none; font-weight: 500"
+              >Real-time Notifications</a
+            >
+            — Event-driven task notifications (internship, private repo).
+            <br />
+            <span style="opacity: 0.5; font-size: 0.85rem"
+              >&lt;50ms delivery · Zero breaking changes · Socket.io · Express · JWT</span
+            >
+          </li>
+          <li style="margin-bottom: 14px">
+            <a
+              href="https://redaalch.github.io/alarm-clock/"
+              style="color: #a78bfa; text-decoration: none; font-weight: 500"
+              >Alarm Clock</a
+            >
+            — Lightweight PWA with recurring alarms &amp; desktop notifications.
+            <br />
+            <span style="opacity: 0.5; font-size: 0.85rem"
+              >Full offline support · &lt;1s load · JavaScript · HTML · CSS · PWA</span
+            >
+          </li>
+        </ul>
+
+        <p style="font-size: 0.95rem; opacity: 0.6">
+          <a href="mailto:reda.alalach@gmail.com" style="color: #a78bfa">reda.alalach@gmail.com</a>
+          &nbsp;·&nbsp;
+          <a href="https://github.com/redaalch" style="color: #a78bfa">GitHub</a>
+          &nbsp;·&nbsp;
+          <a href="https://www.linkedin.com/in/reda-alalach/" style="color: #a78bfa">LinkedIn</a>
+        </p>
+      </div>
+    </div>
     <noscript>
+      <style>
+        /* Hide the JS-only loading screen when JS is disabled */
+        .loading-screen {
+          display: none !important;
+        }
+      </style>
       <div
         style="
           max-width: 700px;
           margin: 80px auto;
           padding: 24px;
-          color: #fff;
+          color: #e4e4e7;
           font-family: system-ui, sans-serif;
           text-align: center;
         "
       >
-        <h1 style="font-size: 2rem; margin-bottom: 16px">Reda Alalach</h1>
-        <p style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 24px">
-          Backend & Full-Stack Developer
+        <h1 style="font-size: 2rem; margin-bottom: 12px">Reda Alalach</h1>
+        <p style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 8px">Full-Stack Developer</p>
+        <p style="opacity: 0.7; line-height: 1.7; margin-bottom: 24px">
+          I build reliable Node.js/Express backends, add real-time features with Socket.io, and ship
+          modern UIs with React.
         </p>
-        <p style="opacity: 0.6; line-height: 1.7">
-          This portfolio requires JavaScript to run. Please enable JavaScript or
-          visit my profiles directly:
-        </p>
-        <div
+
+        <h2 style="font-size: 1.15rem; margin-bottom: 14px">Projects</h2>
+        <ul
           style="
-            margin-top: 24px;
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            max-width: 540px;
+            margin: 0 auto 32px;
           "
         >
-          <a href="https://github.com/redaalch" style="color: #a78bfa"
-            >GitHub</a
-          >
-          <a
-            href="https://www.linkedin.com/in/reda-alalach/"
-            style="color: #a78bfa"
-            >LinkedIn</a
-          >
-          <a href="mailto:reda.alalach@gmail.com" style="color: #a78bfa"
-            >Email</a
-          >
+          <li style="margin-bottom: 10px">
+            <strong style="color: #a78bfa">NotesBoard</strong> — Collaborative real-time notes &amp;
+            analytics platform (React, Express, MongoDB, Socket.io)
+          </li>
+          <li style="margin-bottom: 10px">
+            <strong style="color: #a78bfa">Real-time Notifications</strong> — Event-driven task
+            notifications (Socket.io, Express, JWT)
+          </li>
+          <li style="margin-bottom: 10px">
+            <a href="https://redaalch.github.io/alarm-clock/" style="color: #a78bfa"
+              ><strong>Alarm Clock</strong></a
+            >
+            — PWA with recurring alarms &amp; desktop notifications
+          </li>
+        </ul>
+
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap">
+          <a href="mailto:reda.alalach@gmail.com" style="color: #a78bfa">Email</a>
+          <a href="https://github.com/redaalch" style="color: #a78bfa">GitHub</a>
+          <a href="https://www.linkedin.com/in/reda-alalach/" style="color: #a78bfa">LinkedIn</a>
         </div>
       </div>
     </noscript>
