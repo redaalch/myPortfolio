@@ -14,9 +14,6 @@ export default function HomePage() {
     <div className="min-h-screen bg-background relative overflow-hidden">
       <div className="absolute inset-0 bg-background" />
 
-      {/* Ambient floating glow orbs */}
-      <div className="ambient-glow" aria-hidden="true" />
-
       {/* Ambient rising bubbles */}
       <div className="bg-bubbles" aria-hidden="true">
         <span

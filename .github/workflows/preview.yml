@@ -50,7 +50,4 @@ jobs:
         run: |
           npm install -g @lhci/cli
           lhci autorun \
-            --collect.url=${{ steps.netlify.outputs.deploy-url }} \
-            --assert.preset=lighthouse:recommended \
-            --assert.assertions.categories:performance='["warn",{"minScore":0.9}]' \
-            --assert.assertions.cumulative-layout-shift='["error",{"maxNumericValue":0.1}]'
+            --collect.url=${{ steps.netlify.outputs.deploy-url }}

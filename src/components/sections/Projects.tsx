@@ -161,7 +161,7 @@ export default function ProjectsSection() {
             // Only apply rotation on lg+ (3-card view)
             const rotation = visibleCount >= 3 ? rotations[i % 3] : "rotate-0";
             return (
-              <article
+              <div
                 key={`${project.title}-${startIndex}`}
                 role="group"
                 aria-roledescription="slide"
@@ -288,7 +288,7 @@ export default function ProjectsSection() {
                     )}
                   </div>
                 </div>
-              </article>
+              </div>
             );
           })}
         </div>

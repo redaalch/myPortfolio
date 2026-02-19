@@ -21,7 +21,7 @@ export default function ProjectDetailsPage() {
             href="https://github.com/redaalch"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-violet-400/70 hover:text-violet-400 transition-colors"
+            className="text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
             aria-label="GitHub"
           >
             <Github className="w-5 h-5" />
@@ -30,14 +30,14 @@ export default function ProjectDetailsPage() {
             href="https://www.linkedin.com/in/reda-alalach/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-violet-400/70 hover:text-violet-400 transition-colors"
+            className="text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
             aria-label="LinkedIn"
           >
             <Linkedin className="w-5 h-5" />
           </a>
           <a
             href="mailto:reda.alalach@gmail.com"
-            className="text-violet-400/70 hover:text-violet-400 transition-colors"
+            className="text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
             aria-label="Email"
           >
             <Mail className="w-5 h-5" />

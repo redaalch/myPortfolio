@@ -497,10 +497,10 @@ button:focus-visible {
 
 .ambient-glow {
   pointer-events: none;
-  position: absolute;
+  position: fixed;
   inset: 0;
   overflow: hidden;
-  z-index: 1;
+  z-index: 0;
 }
 
 .ambient-glow::before,

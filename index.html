@@ -29,24 +29,28 @@
     <meta name="twitter:image" content="https://remyportfolio.me/og-image.png" />
 
     <link rel="canonical" href="https://remyportfolio.me/" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="preload"
       as="style"
+      crossorigin
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Instrument+Serif&family=Roboto+Mono:wght@400;500&display=swap"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Instrument+Serif&family=Roboto+Mono:wght@400;500&display=swap"
       rel="stylesheet"
       media="print"
+      crossorigin
       onload="this.media = 'all'"
     />
     <noscript>
       <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Instrument+Serif&family=Roboto+Mono:wght@400;500&display=swap"
         rel="stylesheet"
+        crossorigin
       />
     </noscript>
 
@@ -108,12 +112,14 @@
               return s.replace(/~and~/g, "&");
             })
             .join("?");
-          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+          window.history.replaceState(null, "", l.pathname.slice(0, -1) + decoded + l.hash);
         }
       })(window.location);
     </script>
   </head>
   <body>
+    <!-- Ambient glow: rendered in static HTML to prevent CLS from React mount -->
+    <div class="ambient-glow" aria-hidden="true"></div>
     <div id="root">
       <!-- Static shell: visible before React hydrates, replaced on mount.
            Feeds SEO crawlers, link-preview bots, and slow-connection users

@@ -311,7 +311,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
               <div className="flex flex-col sm:flex-row sm:gap-4 mt-10 gap-3 items-center lg:items-start animate-fade-slide-in-4">
                 <a
                   href="#projects"
-                  className="inline-flex items-center gap-2 rounded-full bg-violet-500 px-6 py-3 text-sm font-medium text-white shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:bg-violet-400 hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:scale-105 transition-all duration-300"
+                  className="inline-flex items-center gap-2 rounded-full bg-violet-600 px-6 py-3 text-sm font-medium text-white shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:bg-violet-500 hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:scale-105 transition-all duration-300"
                 >
                   View Projects
                   <svg
@@ -369,8 +369,8 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                 <img
                   src={profileImg}
                   alt="Reda Alalach"
-                  width={340}
-                  height={340}
+                  width={480}
+                  height={480}
                   loading="eager"
                   decoding="async"
                   className="w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-2xl object-cover ring-1 ring-foreground/10 shadow-2xl"

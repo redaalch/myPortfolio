@@ -16,7 +16,7 @@ export default function Footer() {
       <div ref={ref} className={`max-w-7xl mx-auto px-6 ${visible ? "reveal visible" : "reveal"}`}>
         {/* Lighthouse scores */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-          <Gauge className="w-4 h-4 text-foreground/60" />
+          <Gauge className="w-4 h-4 text-foreground/70" />
           {lighthouseScores.map((item) => (
             <span
               key={item.label}

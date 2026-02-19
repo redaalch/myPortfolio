@@ -78,7 +78,7 @@ export default function CertificationsSection() {
                     loading="lazy"
                     className="w-[50px] h-[50px] rounded-xl object-contain"
                   />
-                  <ExternalLink className="w-[22px] h-[22px] text-foreground/60 group-hover:text-violet-400 transition-colors" />
+                  <ExternalLink className="w-[22px] h-[22px] text-foreground/70 group-hover:text-violet-400 transition-colors" />
                 </div>
 
                 {/* Title + Platform */}

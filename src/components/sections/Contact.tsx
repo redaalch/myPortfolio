@@ -106,7 +106,7 @@ export default function ContactSection() {
                   <p className="text-sm font-light text-foreground/70">
                     Something went wrong — please try again.
                   </p>
-                  <p className="text-xs text-foreground/50">
+                  <p className="text-xs text-foreground/70">
                     Or email me directly at{" "}
                     <a
                       href="mailto:reda.alalach@gmail.com"
@@ -220,14 +220,14 @@ export default function ContactSection() {
             }}
           >
             <div className="flex items-center gap-3">
-              <FileText className="size-5 text-foreground/50" strokeWidth={1.5} />
+              <FileText className="size-5 text-foreground/70" strokeWidth={1.5} />
               <div>
                 <p className="text-sm font-medium text-foreground/80">View CV</p>
                 <p className="text-[11px] text-foreground/70">Download resume</p>
               </div>
             </div>
             <ArrowUpRight
-              className="size-5 text-foreground/60 transition-all duration-300 group-hover:text-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              className="size-5 text-foreground/70 transition-all duration-300 group-hover:text-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               strokeWidth={1.8}
             />
           </a>
@@ -238,14 +238,14 @@ export default function ContactSection() {
             className={`${cellClass} group flex items-center justify-between px-6 py-6 transition-all duration-400 hover:bg-foreground/4`}
           >
             <div className="flex items-center gap-3">
-              <Mail className="size-5 text-foreground/50" strokeWidth={1.5} />
+              <Mail className="size-5 text-foreground/70" strokeWidth={1.5} />
               <div>
                 <p className="text-sm font-medium text-foreground/80">Email</p>
                 <p className="text-[11px] text-foreground/70">reda.alalach@gmail.com</p>
               </div>
             </div>
             <ArrowUpRight
-              className="size-5 text-foreground/60 transition-all duration-300 group-hover:text-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              className="size-5 text-foreground/70 transition-all duration-300 group-hover:text-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               strokeWidth={1.8}
             />
           </a>

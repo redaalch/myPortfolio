@@ -1,4 +1,4 @@
-import logoSrc from "@/assets/logo.avif";
+import logoSrc from "@/assets/logo.svg";
 
 interface LogoProps {
   className?: string;
@@ -10,7 +10,7 @@ export default function Logo({ className = "", height = 40 }: LogoProps) {
     <img
       src={logoSrc}
       alt="Reda Alalach"
-      width={Math.round(height * 1.5)}
+      width={Math.round(height * (910 / 233))}
       height={height}
       className={`${className} logo-theme`}
       style={{

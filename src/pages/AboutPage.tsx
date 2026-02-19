@@ -166,7 +166,7 @@ export default function AboutPage() {
             href="https://github.com/redaalch"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-violet-400/70 hover:text-violet-400 transition-colors"
+            className="text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
             aria-label="GitHub"
           >
             <Github className="w-5 h-5" />
@@ -175,14 +175,14 @@ export default function AboutPage() {
             href="https://www.linkedin.com/in/reda-alalach/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-violet-400/70 hover:text-violet-400 transition-colors"
+            className="text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
             aria-label="LinkedIn"
           >
             <Linkedin className="w-5 h-5" />
           </a>
           <a
             href="mailto:reda.alalach@gmail.com"
-            className="text-violet-400/70 hover:text-violet-400 transition-colors"
+            className="text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
             aria-label="Email"
           >
             <Mail className="w-5 h-5" />
@@ -432,7 +432,7 @@ export default function AboutPage() {
               <Link
                 to="/#contact"
                 viewTransition
-                className="inline-flex items-center gap-2 rounded-full bg-violet-500 px-6 py-3 text-sm font-medium text-white shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:bg-violet-400 hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:scale-105 transition-all duration-300"
+                className="inline-flex items-center gap-2 rounded-full bg-violet-600 px-6 py-3 text-sm font-medium text-white shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:bg-violet-500 hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:scale-105 transition-all duration-300"
               >
                 Get in Touch
                 <ArrowRight className="w-4 h-4" />
