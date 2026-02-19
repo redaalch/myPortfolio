@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
-import profileImg from "../../assets/profile.jpeg";
+import profileImg from "../../assets/profile.avif";
 
 interface NavLink {
   label: string;

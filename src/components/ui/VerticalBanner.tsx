@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Github, Linkedin, Mail } from "lucide-react";
-import profileImg from "../../assets/profile.jpeg";
+import profileImg from "../../assets/profile.avif";
 
 export default function VerticalBanner() {
   const [visible, setVisible] = useState(false);

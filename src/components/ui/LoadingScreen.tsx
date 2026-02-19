@@ -2,22 +2,46 @@ import { useEffect, useState } from "react";
 import logoSrc from "@/assets/logo.avif";
 
 interface LoadingScreenProps {
-  /** Minimum display time in ms (default: 1800) */
+  /**
+   * Minimum display time in ms (default: 300).
+   * Prevents a jarring flash on fast connections while still
+   * dismissing as soon as the page is genuinely ready.
+   */
   minDuration?: number;
 }
 
-export default function LoadingScreen({
-  minDuration = 1800,
-}: LoadingScreenProps) {
+export default function LoadingScreen({ minDuration = 300 }: LoadingScreenProps) {
   const [fadeOut, setFadeOut] = useState(false);
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    const fadeTimer = setTimeout(() => setFadeOut(true), minDuration);
-    const hideTimer = setTimeout(() => setHidden(true), minDuration + 600); // 600ms = CSS transition
+    const start = Date.now();
+    let cancelled = false;
+
+    // Real readiness: fonts rendered + all initial resources loaded
+    // (covers preloaded hero image, JS chunks, CSS)
+    const pageLoaded =
+      document.readyState === "complete"
+        ? Promise.resolve()
+        : new Promise<void>((r) => window.addEventListener("load", () => r(), { once: true }));
+
+    const ready = Promise.all([document.fonts.ready, pageLoaded]);
+
+    ready.then(() => {
+      if (cancelled) return;
+      const elapsed = Date.now() - start;
+      const remaining = Math.max(0, minDuration - elapsed);
+
+      setTimeout(() => {
+        if (!cancelled) setFadeOut(true);
+      }, remaining);
+      setTimeout(() => {
+        if (!cancelled) setHidden(true);
+      }, remaining + 600); // 600ms matches CSS transition
+    });
+
     return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(hideTimer);
+      cancelled = true;
     };
   }, [minDuration]);
 
