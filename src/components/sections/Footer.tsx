@@ -13,10 +13,7 @@ export default function Footer() {
   const { ref, visible } = useScrollReveal(0.1);
   return (
     <footer className="py-16 relative">
-      <div
-        ref={ref}
-        className={`max-w-7xl mx-auto px-6 ${visible ? "reveal visible" : "reveal"}`}
-      >
+      <div ref={ref} className={`max-w-7xl mx-auto px-6 ${visible ? "reveal visible" : "reveal"}`}>
         {/* Lighthouse scores */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
           <Gauge className="w-4 h-4 text-foreground/60" />
@@ -26,9 +23,7 @@ export default function Footer() {
               className="inline-flex items-center gap-1.5 rounded-full bg-foreground/[0.04] px-3 py-1.5 text-xs font-medium text-foreground/70 ring-1 ring-foreground/8"
             >
               {item.label}
-              <span className="text-violet-400 font-semibold">
-                {item.score}
-              </span>
+              <span className="text-violet-400 font-semibold">{item.score}</span>
             </span>
           ))}
         </div>
@@ -36,9 +31,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <Logo height={28} className="opacity-50" />
-            <span className="text-sm text-foreground/70">
-              &middot; Backend & Full-Stack Developer
-            </span>
+            <span className="text-sm text-foreground/70">&middot; Full-Stack Developer</span>
           </div>
 
           <div className="flex items-center gap-4">

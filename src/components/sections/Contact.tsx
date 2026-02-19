@@ -1,15 +1,7 @@
 import type React from "react";
 import { useState } from "react";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
-import {
-  ArrowUpRight,
-  FileText,
-  Send,
-  Loader2,
-  CheckCircle2,
-  Mail,
-  CircleDot,
-} from "lucide-react";
+import { ArrowUpRight, FileText, Send, Loader2, CheckCircle2, Mail, CircleDot } from "lucide-react";
 
 const inputClass =
   "w-full rounded-lg border border-foreground/10 bg-foreground/3 px-4 py-2.5 text-sm text-foreground placeholder-foreground/50 outline-none transition-colors focus:border-foreground/25 focus:bg-foreground/5";
@@ -21,9 +13,7 @@ const skills = ["Frontend", "Backend", "Full Stack"];
 
 export default function ContactSection() {
   const { ref, visible } = useScrollReveal(0.1);
-  const [formState, setFormState] = useState<"idle" | "sending" | "sent">(
-    "idle",
-  );
+  const [formState, setFormState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -37,10 +27,7 @@ export default function ContactSection() {
 
     try {
       const body = new FormData(e.currentTarget);
-      body.append(
-        "access_key",
-        (import.meta.env.VITE_WEB3FORMS_KEY ?? "").trim(),
-      );
+      body.append("access_key", (import.meta.env.VITE_WEB3FORMS_KEY ?? "").trim());
 
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -56,11 +43,11 @@ export default function ContactSection() {
         }, 2500);
       } else {
         console.error("Web3Forms error:", data);
-        setFormState("idle");
+        setFormState("error");
       }
     } catch (err) {
       console.error("Submit failed:", err);
-      setFormState("idle");
+      setFormState("error");
     }
   };
 
@@ -76,9 +63,7 @@ export default function ContactSection() {
         className={`mx-auto grid max-w-6xl grid-cols-1 gap-3 lg:grid-cols-[1fr_2fr] ${visible ? "reveal visible" : "reveal"}`}
       >
         {/* ── Cell 1: Heading ── */}
-        <div
-          className={`${cellClass} flex flex-col justify-between px-8 py-10 sm:py-12`}
-        >
+        <div className={`${cellClass} flex flex-col justify-between px-8 py-10 sm:py-12`}>
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(139,92,246,0.08)_0%,transparent_60%)]" />
           <div className="relative z-10 flex h-full flex-col justify-between gap-6">
             <div>
@@ -94,8 +79,8 @@ export default function ContactSection() {
               </h2>
             </div>
             <p className="max-w-xs text-[13px] leading-relaxed text-foreground/70">
-              Have a project in mind or an internship opportunity? I'd love to
-              build something great together.
+              Have a project in mind or an internship opportunity? I'd love to build something great
+              together.
             </p>
           </div>
         </div>
@@ -108,13 +93,34 @@ export default function ContactSection() {
             <div className="relative z-10">
               {formState === "sent" ? (
                 <div className="flex flex-col items-center gap-3 py-8 animate-fade-slide-in-1">
-                  <CheckCircle2
-                    className="size-9 text-emerald-400"
-                    strokeWidth={1.5}
-                  />
+                  <CheckCircle2 className="size-9 text-emerald-400" strokeWidth={1.5} />
                   <p className="text-sm font-light text-foreground/70">
                     Message sent — I'll be in touch!
                   </p>
+                </div>
+              ) : formState === "error" ? (
+                <div className="flex flex-col items-center gap-3 py-8 animate-fade-slide-in-1">
+                  <div className="size-9 rounded-full bg-red-500/15 flex items-center justify-center">
+                    <span className="text-red-400 text-lg font-semibold">!</span>
+                  </div>
+                  <p className="text-sm font-light text-foreground/70">
+                    Something went wrong — please try again.
+                  </p>
+                  <p className="text-xs text-foreground/50">
+                    Or email me directly at{" "}
+                    <a
+                      href="mailto:reda.alalach@gmail.com"
+                      className="text-violet-400 hover:underline"
+                    >
+                      reda.alalach@gmail.com
+                    </a>
+                  </p>
+                  <button
+                    onClick={() => setFormState("idle")}
+                    className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-foreground/5 ring-1 ring-foreground/10 px-4 py-2 text-xs font-medium text-foreground/70 hover:text-foreground hover:bg-foreground/10 transition-colors"
+                  >
+                    Try Again
+                  </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">
@@ -128,9 +134,7 @@ export default function ContactSection() {
                       placeholder="Name"
                       required
                       value={formData.name}
-                      onChange={(e) =>
-                        setFormData((p) => ({ ...p, name: e.target.value }))
-                      }
+                      onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
                       className={inputClass}
                     />
                     <input
@@ -139,9 +143,7 @@ export default function ContactSection() {
                       placeholder="Email"
                       required
                       value={formData.email}
-                      onChange={(e) =>
-                        setFormData((p) => ({ ...p, email: e.target.value }))
-                      }
+                      onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
                       className={inputClass}
                     />
                   </div>
@@ -151,9 +153,7 @@ export default function ContactSection() {
                     required
                     rows={4}
                     value={formData.message}
-                    onChange={(e) =>
-                      setFormData((p) => ({ ...p, message: e.target.value }))
-                    }
+                    onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))}
                     className={`resize-none ${inputClass}`}
                   />
                   <button
@@ -163,10 +163,7 @@ export default function ContactSection() {
                   >
                     {formState === "sending" ? (
                       <>
-                        <Loader2
-                          className="size-4 animate-spin"
-                          strokeWidth={2}
-                        />
+                        <Loader2 className="size-4 animate-spin" strokeWidth={2} />
                         Sending...
                       </>
                     ) : (
@@ -182,9 +179,7 @@ export default function ContactSection() {
           </div>
 
           {/* ── Availability (full width of right col) ── */}
-          <div
-            className={`${cellClass} flex flex-col gap-4 px-6 py-6 sm:col-span-2`}
-          >
+          <div className={`${cellClass} flex flex-col gap-4 px-6 py-6 sm:col-span-2`}>
             <div className="flex items-center gap-2.5">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
@@ -200,10 +195,7 @@ export default function ContactSection() {
                   key={skill}
                   className="inline-flex items-center gap-1.5 rounded-full border border-foreground/8 bg-foreground/3 px-3.5 py-1.5 text-xs font-medium text-foreground/70"
                 >
-                  <CircleDot
-                    className="size-3 text-emerald-400/70"
-                    strokeWidth={2}
-                  />
+                  <CircleDot className="size-3 text-emerald-400/70" strokeWidth={2} />
                   {skill}
                 </span>
               ))}
@@ -225,17 +217,10 @@ export default function ContactSection() {
             }}
           >
             <div className="flex items-center gap-3">
-              <FileText
-                className="size-5 text-foreground/50"
-                strokeWidth={1.5}
-              />
+              <FileText className="size-5 text-foreground/50" strokeWidth={1.5} />
               <div>
-                <p className="text-sm font-medium text-foreground/80">
-                  View CV
-                </p>
-                <p className="text-[11px] text-foreground/65">
-                  Download resume
-                </p>
+                <p className="text-sm font-medium text-foreground/80">View CV</p>
+                <p className="text-[11px] text-foreground/65">Download resume</p>
               </div>
             </div>
             <ArrowUpRight
@@ -253,9 +238,7 @@ export default function ContactSection() {
               <Mail className="size-5 text-foreground/50" strokeWidth={1.5} />
               <div>
                 <p className="text-sm font-medium text-foreground/80">Email</p>
-                <p className="text-[11px] text-foreground/65">
-                  reda.alalach@gmail.com
-                </p>
+                <p className="text-[11px] text-foreground/65">reda.alalach@gmail.com</p>
               </div>
             </div>
             <ArrowUpRight
