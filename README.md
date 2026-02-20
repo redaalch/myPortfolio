@@ -23,7 +23,8 @@
 - **Scroll-reveal animations** via Intersection Observer hook
 - **Responsive carousel** for project cards with swipe-friendly navigation
 - **Case study pages** with architecture breakdowns and Mermaid sequence diagrams
-- **About page** with timeline, stats, philosophy, and fun facts
+- **About page** with timeline, stats, philosophy, fun facts, and interactive "Let's Work Together" contact reveal
+- **Web CV page** — clean, minimal resume layout inspired by Figma with sticky sidebar navigation and intersection-observer-based section highlighting
 - **Working contact form** via [Web3Forms](https://web3forms.com) — no backend required
 - **WCAG AA contrast** across both themes (audited, 40+ fixes applied)
 - **SEO**: canonical URL, Open Graph, Twitter Card, JSON-LD Person schema
@@ -125,13 +126,23 @@ Each case study covers context, constraints, architecture, key decisions (with r
 ```
 src/
 ├── components/
-│   ├── sections/     # Page sections (Projects, Experience, Skills, …)
-│   └── ui/           # Reusable UI (Navbar, Hero, ThemeToggle, …)
+│   ├── sections/     # Page sections (Projects, Experience, Skills, Contact, …)
+│   └── ui/           # Reusable UI (Navbar, Logo, ThemeToggle, LetsWorkTogether, …)
 ├── data/             # Static data (projects list, case studies)
 ├── hooks/            # Custom hooks (useScrollReveal, useTheme)
-├── pages/            # Route pages (Home, About, ProjectDetails, CaseStudy)
+├── pages/            # Route pages (Home, About, CV, ProjectDetails, CaseStudy)
 └── assets/           # Images and logos
 ```
+
+## Pages
+
+| Route               | Description                                                                     |
+| ------------------- | ------------------------------------------------------------------------------- |
+| `/`                 | Home — hero, projects carousel, experience, skills, certifications, contact     |
+| `/about`            | About — bio, stats, philosophy, timeline, fun facts, interactive contact reveal |
+| `/cv`               | Web CV — minimal resume layout with sticky sidebar nav and section observer     |
+| `/projects/:slug`   | Project detail page                                                             |
+| `/case-study/:slug` | In-depth architecture case study                                                |
 
 ## License
 
