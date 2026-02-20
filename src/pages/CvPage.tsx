@@ -227,12 +227,12 @@ export default function CvPage() {
             <p className="text-lg text-foreground/70 sm:text-xl">Full-Stack Developer · Morocco</p>
             <div className="flex items-center gap-4 text-sm text-foreground/70">
               <a
-                href="https://redaalalach.me"
+                href="https://remyportfolio.me/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-foreground transition-colors underline decoration-foreground/30 underline-offset-4"
               >
-                redaalalach.me
+                remyportfolio.me
               </a>
               <span className="size-1 rounded-full bg-foreground/30" />
               <a
