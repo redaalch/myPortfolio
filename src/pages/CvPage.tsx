@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail, ArrowLeft, Download } from "lucide-react";
 import Navbar from "../components/ui/Navbar";
+import DarkGradientBg from "../components/ui/DarkGradientBg";
 import profileImg from "../assets/profile.avif";
 
 /* ================================================================== */
@@ -195,11 +196,12 @@ export default function CvPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <DarkGradientBg />
       <Navbar />
 
-      <div className="mx-auto max-w-6xl px-5 pb-24 pt-12 lg:px-12">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 pb-24 pt-12 lg:px-12 dark:rounded-2xl dark:bg-background/60 dark:shadow-2xl dark:shadow-black/20 dark:ring-1 dark:ring-white/4 dark:backdrop-blur-2xl">
         {/* ── Breadcrumb ── */}
-        <nav className="mb-12 flex items-center gap-3 text-sm text-foreground/60">
+        <nav className="mb-12 flex items-center gap-3 text-sm text-foreground/70">
           <Link
             to="/"
             viewTransition
@@ -222,20 +224,20 @@ export default function CvPage() {
                 Reda Alalach
               </span>
             </h1>
-            <p className="text-lg text-foreground/60 sm:text-xl">Full-Stack Developer · Morocco</p>
-            <div className="flex items-center gap-4 text-sm text-foreground/50">
+            <p className="text-lg text-foreground/70 sm:text-xl">Full-Stack Developer · Morocco</p>
+            <div className="flex items-center gap-4 text-sm text-foreground/70">
               <a
                 href="https://redaalalach.me"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-foreground transition-colors underline decoration-foreground/20 underline-offset-4"
+                className="hover:text-foreground transition-colors underline decoration-foreground/30 underline-offset-4"
               >
                 redaalalach.me
               </a>
-              <span className="size-1 rounded-full bg-foreground/20" />
+              <span className="size-1 rounded-full bg-foreground/30" />
               <a
                 href="mailto:reda.alalach@gmail.com"
-                className="hover:text-foreground transition-colors underline decoration-foreground/20 underline-offset-4"
+                className="hover:text-foreground transition-colors underline decoration-foreground/30 underline-offset-4"
               >
                 reda.alalach@gmail.com
               </a>
@@ -249,7 +251,7 @@ export default function CvPage() {
               alt="Reda Alalach"
               width={140}
               height={140}
-              className="relative size-28 rounded-full object-cover ring-2 ring-foreground/10 sm:size-32 lg:size-36"
+              className="relative size-28 rounded-full object-cover ring-2 ring-foreground/15 sm:size-32 lg:size-36"
             />
           </div>
         </header>
@@ -270,19 +272,19 @@ export default function CvPage() {
                 className={`rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                   activeSection === id
                     ? "bg-foreground/5 text-foreground"
-                    : "text-foreground/40 hover:text-foreground/70"
+                    : "text-foreground/70 hover:text-foreground/90"
                 }`}
               >
                 {SECTION_LABELS[id]}
               </a>
             ))}
 
-            <div className="mt-4 h-px bg-foreground/8" />
+            <div className="mt-4 h-px bg-foreground/15" />
             <a
               href="/Reda_Alalach_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-foreground/40 hover:text-foreground/70 transition-colors"
+              className="mt-2 inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-foreground/70 hover:text-foreground/90 transition-colors"
             >
               <Download className="size-3.5" />
               Download PDF
@@ -294,7 +296,7 @@ export default function CvPage() {
             {/* ── About ── */}
             <section id="about">
               <SectionHeading>About</SectionHeading>
-              <div className="space-y-4 text-foreground/70 leading-relaxed max-w-2xl">
+              <div className="space-y-4 text-foreground/80 leading-relaxed max-w-2xl">
                 <p>
                   Born and raised in Taounate, Morocco, I grew up surrounded by technology — both of
                   my brothers are in tech, and one of them is a DevSecOps engineer. Watching them
@@ -320,7 +322,7 @@ export default function CvPage() {
               <div className="space-y-10">
                 {EXPERIENCE.map((xp, i) => (
                   <div key={i} className="group flex flex-col gap-3 sm:flex-row sm:gap-10">
-                    <span className="shrink-0 text-sm tabular-nums text-foreground/40 sm:w-40 sm:pt-0.5">
+                    <span className="shrink-0 text-sm tabular-nums text-foreground/70 sm:w-40 sm:pt-0.5">
                       {xp.period}
                     </span>
                     <div className="min-w-0 flex-1">
@@ -332,12 +334,12 @@ export default function CvPage() {
                       >
                         {xp.title} at {xp.company}
                       </a>
-                      <p className="mt-0.5 text-sm text-foreground/50">{xp.location}</p>
+                      <p className="mt-0.5 text-sm text-foreground/70">{xp.location}</p>
                       <ul className="mt-3 space-y-1.5">
                         {xp.bullets.map((b, j) => (
                           <li
                             key={j}
-                            className="relative pl-4 text-sm text-foreground/60 leading-relaxed before:absolute before:left-0 before:top-[0.55em] before:size-1 before:rounded-full before:bg-foreground/25"
+                            className="relative pl-4 text-sm text-foreground/80 leading-relaxed before:absolute before:left-0 before:top-[0.55em] before:size-1 before:rounded-full before:bg-foreground/40"
                           >
                             {b}
                           </li>
@@ -355,7 +357,7 @@ export default function CvPage() {
               <div className="space-y-8">
                 {PROJECTS.map((p, i) => (
                   <div key={i} className="flex flex-col gap-2 sm:flex-row sm:gap-10">
-                    <span className="shrink-0 text-sm tabular-nums text-foreground/40 sm:w-40 sm:pt-0.5">
+                    <span className="shrink-0 text-sm tabular-nums text-foreground/70 sm:w-40 sm:pt-0.5">
                       {p.year}
                     </span>
                     <div className="min-w-0 flex-1">
@@ -371,14 +373,14 @@ export default function CvPage() {
                       ) : (
                         <span className="text-base font-semibold text-foreground">{p.title}</span>
                       )}
-                      <p className="mt-1 text-sm text-foreground/55 leading-relaxed">
+                      <p className="mt-1 text-sm text-foreground/80 leading-relaxed">
                         {p.description}
                       </p>
                       <div className="mt-2.5 flex flex-wrap gap-1.5">
                         {p.tags.map((t) => (
                           <span
                             key={t}
-                            className="rounded-full border border-foreground/8 bg-foreground/3 px-2.5 py-0.5 text-[11px] font-medium text-foreground/50"
+                            className="rounded-full border border-foreground/15 bg-foreground/5 px-2.5 py-0.5 text-[11px] font-medium text-foreground/70"
                           >
                             {t}
                           </span>
@@ -396,13 +398,13 @@ export default function CvPage() {
               <div className="space-y-8">
                 {EDUCATION.map((ed, i) => (
                   <div key={i} className="flex flex-col gap-2 sm:flex-row sm:gap-10">
-                    <span className="shrink-0 text-sm tabular-nums text-foreground/40 sm:w-40 sm:pt-0.5">
+                    <span className="shrink-0 text-sm tabular-nums text-foreground/70 sm:w-40 sm:pt-0.5">
                       {ed.period}
                     </span>
                     <div className="min-w-0 flex-1">
                       <span className="text-base font-semibold text-foreground">{ed.title}</span>
-                      <p className="mt-0.5 text-sm text-foreground/50">{ed.institution}</p>
-                      <p className="text-sm text-foreground/40">{ed.location}</p>
+                      <p className="mt-0.5 text-sm text-foreground/70">{ed.institution}</p>
+                      <p className="text-sm text-foreground/70">{ed.location}</p>
                     </div>
                   </div>
                 ))}
@@ -415,7 +417,7 @@ export default function CvPage() {
               <div className="space-y-6">
                 {CERTIFICATIONS.map((c, i) => (
                   <div key={i} className="flex flex-col gap-2 sm:flex-row sm:gap-10">
-                    <span className="shrink-0 text-sm tabular-nums text-foreground/40 sm:w-40 sm:pt-0.5">
+                    <span className="shrink-0 text-sm tabular-nums text-foreground/70 sm:w-40 sm:pt-0.5">
                       {c.year}
                     </span>
                     <div className="min-w-0 flex-1">
@@ -427,7 +429,7 @@ export default function CvPage() {
                       >
                         {c.title}
                       </a>
-                      <p className="mt-0.5 text-sm text-foreground/50">{c.issuer}</p>
+                      <p className="mt-0.5 text-sm text-foreground/70">{c.issuer}</p>
                       {c.status === "in-progress" && (
                         <span className="mt-1.5 inline-block rounded-full border border-amber-500/20 bg-amber-500/10 px-2.5 py-0.5 text-[11px] font-medium text-amber-400">
                           In Progress
@@ -446,7 +448,7 @@ export default function CvPage() {
                 {SKILLS.map((s) => (
                   <span
                     key={s}
-                    className="rounded-full border border-foreground/8 bg-foreground/3 px-3.5 py-1.5 text-sm text-foreground/60"
+                    className="rounded-full border border-foreground/15 bg-foreground/5 px-3.5 py-1.5 text-sm text-foreground/70"
                   >
                     {s}
                   </span>
@@ -462,7 +464,7 @@ export default function CvPage() {
                   const Icon = c.icon;
                   return (
                     <div key={c.platform} className="flex items-center gap-10">
-                      <span className="shrink-0 text-sm text-foreground/40 sm:w-40">
+                      <span className="shrink-0 text-sm text-foreground/70 sm:w-40">
                         {c.platform}
                       </span>
                       <a
@@ -471,7 +473,7 @@ export default function CvPage() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-violet-400 transition-colors"
                       >
-                        <Icon className="size-4 text-foreground/40" />
+                        <Icon className="size-4 text-foreground/70" />
                         {c.handle}
                       </a>
                     </div>
@@ -481,7 +483,7 @@ export default function CvPage() {
             </section>
 
             {/* ── Footer ── */}
-            <div className="border-t border-foreground/8 pt-8 text-center text-xs text-foreground/30">
+            <div className="border-t border-foreground/15 pt-8 text-center text-xs text-foreground/70">
               Last updated February 2026 · Built with React + Tailwind CSS
             </div>
           </div>
@@ -500,7 +502,7 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
       <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
         {children}
       </h2>
-      <div className="h-px flex-1 bg-foreground/8" />
+      <div className="h-px flex-1 bg-foreground/15" />
     </div>
   );
 }

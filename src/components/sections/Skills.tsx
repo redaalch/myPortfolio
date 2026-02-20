@@ -8,7 +8,7 @@ const MARQUEE_LOGOS = [
   { name: "React", slug: "react", color: "61DAFB" },
   { name: "TypeScript", slug: "typescript", color: "3178C6" },
   { name: "Node.js", slug: "nodedotjs", color: "5FA04E" },
-  { name: "Express", slug: "express", color: "white" },
+  { name: "Express", slug: "express", color: "1a1a2e", invertDark: true },
   { name: "MongoDB", slug: "mongodb", color: "47A248" },
   { name: "Docker", slug: "docker", color: "2496ED" },
   { name: "Kubernetes", slug: "kubernetes", color: "326CE5" },
@@ -19,7 +19,7 @@ const MARQUEE_LOGOS = [
   { name: "Linux", slug: "linux", color: "FCC624" },
   { name: "Jenkins", slug: "jenkins", color: "D24939" },
   { name: "GitLab CI", slug: "gitlab", color: "FC6D26" },
-  { name: "Socket.io", slug: "socketdotio", color: "white" },
+  { name: "Socket.io", slug: "socketdotio", color: "1a1a2e", invertDark: true },
   { name: "Vitest", slug: "vitest", color: "6E9F18" },
   { name: "Framer Motion", slug: "framer", color: "0055FF" },
 ];
@@ -38,27 +38,12 @@ const CATEGORIES: Category[] = [
   {
     title: "Backend",
     color: "#8b5cf6",
-    skills: [
-      "Node.js",
-      "Express",
-      "REST APIs",
-      "JWT Auth",
-      "Socket.io",
-      "MongoDB",
-      "Mongoose",
-    ],
+    skills: ["Node.js", "Express", "REST APIs", "JWT Auth", "Socket.io", "MongoDB", "Mongoose"],
   },
   {
     title: "Cloud & DevOps",
     color: "#3b82f6",
-    skills: [
-      "Docker",
-      "Kubernetes",
-      "GitHub Actions",
-      "GitLab CI",
-      "Jenkins",
-      "Linux",
-    ],
+    skills: ["Docker", "Kubernetes", "GitHub Actions", "GitLab CI", "Jenkins", "Linux"],
     note: "Learning: GCP + Firebase",
   },
   {
@@ -77,12 +62,7 @@ const CATEGORIES: Category[] = [
   {
     title: "Quality",
     color: "#f97316",
-    skills: [
-      "Testing Library",
-      "Vitest",
-      "Error Handling",
-      "Logging & Monitoring",
-    ],
+    skills: ["Testing Library", "Vitest", "Error Handling", "Logging & Monitoring"],
   },
 ];
 
@@ -156,10 +136,7 @@ function labelPos(sx: number, sy: number, hx: number, hy: number) {
   return {
     x: sx + d * cos,
     y: sy + d * Math.sin(a),
-    anchor: (cos > 0.3 ? "start" : cos < -0.3 ? "end" : "middle") as
-      | "start"
-      | "end"
-      | "middle",
+    anchor: (cos > 0.3 ? "start" : cos < -0.3 ? "end" : "middle") as "start" | "end" | "middle",
   };
 }
 
@@ -186,8 +163,7 @@ export default function SkillsSection() {
 
   const op = (ci: number) => (active == null ? 1 : active === ci ? 1 : 0.1);
 
-  const lop = (ci: number) =>
-    active == null ? 0.18 : active === ci ? 0.5 : 0.03;
+  const lop = (ci: number) => (active == null ? 0.18 : active === ci ? 0.5 : 0.03);
 
   return (
     <section id="skills" className="py-32 relative">
@@ -199,9 +175,7 @@ export default function SkillsSection() {
       </div>
       <div
         ref={ref}
-        className={`max-w-6xl mx-auto px-6 relative ${
-          visible ? "reveal visible" : "reveal"
-        }`}
+        className={`max-w-6xl mx-auto px-6 relative ${visible ? "reveal visible" : "reveal"}`}
       >
         <div className="text-center mb-12">
           <span className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest">
@@ -218,18 +192,10 @@ export default function SkillsSection() {
         {/* ── Mobile fallback: card grid ── */}
         <div className="grid grid-cols-1 gap-4 md:hidden">
           {CATEGORIES.map((cat, ci) => (
-            <div
-              key={ci}
-              className="rounded-xl border border-foreground/8 bg-foreground/3 p-5"
-            >
+            <div key={ci} className="rounded-xl border border-foreground/8 bg-foreground/3 p-5">
               <div className="flex items-center gap-2.5 mb-3">
-                <span
-                  className="w-2.5 h-2.5 rounded-full"
-                  style={{ backgroundColor: cat.color }}
-                />
-                <h3 className="text-sm font-semibold text-foreground tracking-wide">
-                  {cat.title}
-                </h3>
+                <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: cat.color }} />
+                <h3 className="text-sm font-semibold text-foreground tracking-wide">{cat.title}</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {cat.skills.map((skill) => (
@@ -246,10 +212,7 @@ export default function SkillsSection() {
                 ))}
               </div>
               {cat.note && (
-                <p
-                  className="text-[11px] mt-3 italic"
-                  style={{ color: cat.color }}
-                >
+                <p className="text-[11px] mt-3 italic" style={{ color: cat.color }}>
                   {cat.note}
                 </p>
               )}
@@ -267,14 +230,7 @@ export default function SkillsSection() {
         >
           <defs>
             {CATEGORIES.map((cat, i) => (
-              <filter
-                key={i}
-                id={`cg${i}`}
-                x="-50%"
-                y="-50%"
-                width="200%"
-                height="200%"
-              >
+              <filter key={i} id={`cg${i}`} x="-50%" y="-50%" width="200%" height="200%">
                 <feGaussianBlur stdDeviation="4" result="b" />
                 <feFlood floodColor={cat.color} floodOpacity="0.5" result="c" />
                 <feComposite in="c" in2="b" operator="in" result="g" />
@@ -416,8 +372,7 @@ export default function SkillsSection() {
                       opacity: visible ? op(ci) : 0,
                       transformOrigin: `${hub.x}px ${hub.y}px`,
                       transform: isHot ? "scale(2)" : "scale(1)",
-                      transition:
-                        "opacity 0.5s ease 0.2s, transform 0.35s ease",
+                      transition: "opacity 0.5s ease 0.2s, transform 0.35s ease",
                     }}
                   />
                   <circle
@@ -504,11 +459,15 @@ export default function SkillsSection() {
         </div>
 
         {/* ── Tech logo marquee ── */}
-        <div className="mt-16 relative overflow-hidden">
-          {/* Edge fades */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-background to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-background to-transparent" />
-
+        <div
+          className="mt-16 relative overflow-hidden"
+          style={{
+            maskImage:
+              "linear-gradient(to right, transparent, black 6rem, black calc(100% - 6rem), transparent)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent, black 6rem, black calc(100% - 6rem), transparent)",
+          }}
+        >
           <div className="marquee-track">
             {[0, 1].map((copy) => (
               <div
@@ -529,11 +488,9 @@ export default function SkillsSection() {
                       width={28}
                       height={28}
                       loading="lazy"
-                      className="opacity-40 group-hover:opacity-90 transition-opacity duration-300"
+                      className={`opacity-40 group-hover:opacity-90 transition-opacity duration-300${"invertDark" in logo && logo.invertDark ? " dark:invert" : ""}`}
                     />
-                    <span className="text-[10px] text-foreground/0 group-hover:text-foreground/50 transition-colors duration-300 whitespace-nowrap">
-                      {logo.name}
-                    </span>
+                    <span className="sr-only">{logo.name}</span>
                   </div>
                 ))}
                 {/* spacer to match gap at the seam */}

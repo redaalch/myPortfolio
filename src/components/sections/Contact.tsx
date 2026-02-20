@@ -4,10 +4,10 @@ import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { ArrowUpRight, FileText, Send, Loader2, CheckCircle2, Mail, CircleDot } from "lucide-react";
 
 const inputClass =
-  "w-full rounded-lg border border-foreground/10 bg-foreground/3 px-4 py-2.5 text-sm text-foreground placeholder-foreground/60 outline-none transition-colors focus:border-foreground/25 focus:bg-foreground/5";
+  "w-full rounded-lg border border-foreground/20 bg-foreground/3 px-4 py-2.5 text-sm text-foreground placeholder-foreground/60 outline-none transition-colors focus:border-foreground/40 focus:bg-foreground/5";
 
 const cellClass =
-  "rounded-2xl border border-foreground/6 bg-foreground/2 backdrop-blur-sm relative overflow-hidden";
+  "rounded-2xl border border-foreground/15 bg-foreground/2 backdrop-blur-sm relative overflow-hidden";
 
 const skills = ["Frontend", "Backend", "Full Stack"];
 

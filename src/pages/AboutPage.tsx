@@ -17,6 +17,7 @@ import {
   Server,
 } from "lucide-react";
 import Navbar from "../components/ui/Navbar";
+import DarkGradientBg from "../components/ui/DarkGradientBg";
 import LetsWorkTogether from "../components/ui/LetsWorkTogether";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import profileImg from "../assets/profile.avif";
@@ -157,6 +158,7 @@ function RevealSection({
 export default function AboutPage() {
   return (
     <main className="relative min-h-screen bg-background text-foreground overflow-hidden">
+      <DarkGradientBg />
       <Navbar />
 
       {/* ── Left social strip ── */}

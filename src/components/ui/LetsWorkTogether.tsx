@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ArrowUpRight, Send, Loader2, CheckCircle2 } from "lucide-react";
 
 const inputClass =
-  "w-full rounded-lg border border-foreground/10 bg-foreground/3 px-4 py-2.5 text-sm text-foreground placeholder-foreground/60 outline-none transition-colors focus:border-foreground/25 focus:bg-foreground/5";
+  "w-full rounded-lg border border-foreground/20 bg-foreground/3 px-4 py-2.5 text-sm text-foreground placeholder-foreground/60 outline-none transition-colors focus:border-foreground/40 focus:bg-foreground/5";
 
 export default function LetsWorkTogether() {
   const [isHovered, setIsHovered] = useState(false);
@@ -83,7 +83,7 @@ export default function LetsWorkTogether() {
 
           {/* Form */}
           <div
-            className="w-full rounded-2xl border border-foreground/6 bg-foreground/2 backdrop-blur-sm p-6 sm:p-8 transition-all duration-500"
+            className="w-full rounded-2xl border border-foreground/15 bg-foreground/2 backdrop-blur-sm p-6 sm:p-8 transition-all duration-500"
             style={{
               transform: showForm ? "translateY(0)" : "translateY(15px)",
               opacity: showForm ? 1 : 0,
@@ -181,7 +181,7 @@ export default function LetsWorkTogether() {
 
           {/* Email hint */}
           <span
-            className="text-xs tracking-widest uppercase text-foreground/40 transition-all duration-500"
+            className="text-xs tracking-widest uppercase text-foreground/60 transition-all duration-500"
             style={{
               transform: showForm ? "translateY(0)" : "translateY(10px)",
               opacity: showForm ? 1 : 0,
@@ -325,7 +325,7 @@ export default function LetsWorkTogether() {
             Have a project in mind or an internship opportunity? I'd love to hear about it. Let's
             create something exceptional together.
           </p>
-          <span className="text-xs tracking-widest uppercase text-foreground/40">
+          <span className="text-xs tracking-widest uppercase text-foreground/60">
             reda.alalach@gmail.com
           </span>
         </div>
