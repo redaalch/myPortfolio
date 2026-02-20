@@ -3,7 +3,7 @@ import { Github, ArrowUpRight, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTheme } from "../../hooks/useTheme";
-import { projects } from "../../data/projects";
+import { projects, type Project } from "../../data/projects";
 
 function useVisibleCount() {
   const getCount = () => {
@@ -81,11 +81,158 @@ function useSwipe(onSwipeLeft: () => void, onSwipeRight: () => void) {
   return ref;
 }
 
+/* ================================================================== */
+/*  Shared project card — used by both grid and carousel              */
+/* ================================================================== */
+export function ProjectCard({
+  project,
+  isLight,
+  rotation = "rotate-0",
+  slideClass = "",
+  variant = "carousel",
+}: {
+  project: Project;
+  isLight: boolean;
+  rotation?: string;
+  slideClass?: string;
+  variant?: "carousel" | "grid";
+}) {
+  const isGrid = variant === "grid";
+  return (
+    <div
+      className={`rounded-[20px] bg-linear-to-br ${isLight ? project.lightColor : project.color} ${isLight ? "ring-1 ring-foreground/8 shadow-md" : ""} p-4 sm:p-5 flex flex-col text-left box-border transition-all duration-500 ease-out transform-gpu project-card-hover ${
+        isGrid
+          ? "h-full hover:scale-[1.03]"
+          : `w-full sm:w-75 lg:w-87.5 min-h-120 sm:h-130 hover:scale-[1.05] hover:rotate-0 ${rotation} ${slideClass}`
+      }`}
+    >
+      {/* Thumbnail */}
+      <div className="w-full">
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={project.title}
+            width={700}
+            height={438}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-auto rounded-[5px] object-cover"
+          />
+        ) : (
+          <div
+            className={`w-full h-37.5 rounded-[5px] ${isLight ? "bg-foreground/5" : "bg-white/10"} flex items-center justify-center`}
+          >
+            <span className={`${isLight ? "text-foreground/60" : "text-white/60"} text-sm`}>
+              Preview
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* Title */}
+      <h3
+        className={`text-xl sm:text-2xl font-bold ${isLight ? "text-foreground" : "text-white"} mt-1.5 mb-0 leading-7 sm:leading-8`}
+      >
+        {project.title}
+      </h3>
+
+      {/* Tags */}
+      <div className="flex flex-wrap gap-1.5 sm:gap-2.5 mt-1.5">
+        {project.tags.map((tag) => (
+          <span
+            key={tag}
+            className={`text-xs px-1.5 py-1 rounded-[5px] ${isLight ? "bg-foreground/8 text-foreground/80" : "bg-white/15 text-white/90"} transition-opacity hover:opacity-100`}
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      {/* Description */}
+      <p
+        className={`text-[13px] ${isLight ? "text-foreground/80" : "text-white/90"} leading-relaxed mt-1.5 mb-1`}
+      >
+        {project.description}
+      </p>
+
+      {/* Impact / metrics */}
+      {project.impact && (
+        <p
+          className={`text-[11px] ${isLight ? "text-violet-600" : "text-violet-300/90"} leading-relaxed mb-2.5 font-medium`}
+        >
+          {project.impact}
+        </p>
+      )}
+
+      {/* Repo note (e.g. "Private repo (internship)") */}
+      {project.repoNote && !project.repoUrl && (
+        <span
+          className={`text-[10px] italic ${isLight ? "text-foreground/70" : "text-white/70"} mb-1`}
+        >
+          {project.repoNote}
+        </span>
+      )}
+
+      {/* Footer: Year + Links — pushed to bottom */}
+      <div className="flex items-center justify-between w-full mt-auto">
+        <span className={`text-sm font-bold ${isLight ? "text-foreground" : "text-white"}`}>
+          {project.year}
+        </span>
+        <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-end">
+          {project.hasCaseStudy && (
+            <Link
+              to={`/case-study/${project.slug}`}
+              viewTransition
+              className={`inline-flex items-center gap-1.5 text-xs ${isLight ? "text-violet-600 hover:text-violet-800" : "text-violet-300/90 hover:text-white"} transition-colors font-medium`}
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              Case Study
+            </Link>
+          )}
+          <Link
+            to={`/projects/${project.slug}`}
+            viewTransition
+            className={`inline-flex items-center gap-1.5 text-xs ${isLight ? "text-foreground/80 hover:text-foreground" : "text-white/90 hover:text-white"} transition-colors`}
+          >
+            More details
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-xs ${isLight ? "text-foreground/70 hover:text-foreground" : "text-white/70 hover:text-white"} underline transition-colors`}
+            >
+              Live
+            </a>
+          )}
+          {project.repoUrl && (
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${project.title} GitHub repository`}
+              className="inline-block hover:opacity-75 transition-opacity"
+            >
+              <Github
+                className={`w-5 h-5 sm:w-6.25 sm:h-6.25 ${isLight ? "text-foreground" : "text-white"}`}
+              />
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ProjectsSection() {
   const { ref, visible } = useScrollReveal();
   const { theme } = useTheme();
   const isLight = theme === "light";
   const visibleCount = useVisibleCount();
+  const showGrid = visibleCount >= 3; // lg+ → show all projects in a grid
+
   const [rawStartIndex, setStartIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState<"next" | "prev">("next");
 
@@ -141,212 +288,108 @@ export default function ProjectsSection() {
         className={`max-w-7xl mx-auto px-4 sm:px-6 relative ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
       >
         <div className="text-center mb-10 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent font-instrument-serif italic">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent font-instrument-serif italic">
             Projects
           </h2>
         </div>
 
-        {/* Cards — responsive carousel */}
-        <div
-          ref={swipeRef}
-          role="region"
-          aria-roledescription="carousel"
-          aria-label="Featured projects"
-          tabIndex={0}
-          onKeyDown={onKeyDown}
-          className="flex justify-center items-end gap-4 sm:gap-6 lg:gap-10 touch-pan-y select-none outline-none focus-visible:ring-2 focus-visible:ring-violet-500/50 focus-visible:rounded-2xl"
-        >
-          {visibleProjects.map((project, i) => {
-            const rotations = ["-rotate-3", "rotate-0", "rotate-3"];
-            // Only apply rotation on lg+ (3-card view)
-            const rotation = visibleCount >= 3 ? rotations[i % 3] : "rotate-0";
-            return (
-              <div
-                key={`${project.title}-${startIndex}`}
-                role="group"
-                aria-roledescription="slide"
-                aria-label={`${i + 1} of ${visibleCount}: ${project.title}`}
-                className={`w-full sm:w-75 lg:w-87.5 min-h-120 sm:h-130 rounded-[20px] bg-linear-to-br ${isLight ? project.lightColor : project.color} ${isLight ? "ring-1 ring-foreground/8 shadow-md" : ""} p-4 sm:p-5 flex flex-col text-left box-border transition-all duration-500 ease-out transform-gpu hover:scale-[1.05] hover:rotate-0 project-card-hover ${rotation} ${slideClass}`}
-              >
-                {/* Thumbnail */}
-                <div className="w-full">
-                  {project.image ? (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      width={700}
-                      height={438}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-auto rounded-[5px] object-cover"
-                    />
-                  ) : (
-                    <div
-                      className={`w-full h-37.5 rounded-[5px] ${isLight ? "bg-foreground/5" : "bg-white/10"} flex items-center justify-center`}
-                    >
-                      <span
-                        className={`${isLight ? "text-foreground/60" : "text-white/60"} text-sm`}
-                      >
-                        Preview
-                      </span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Title */}
-                <h3
-                  className={`text-xl sm:text-2xl font-bold ${isLight ? "text-foreground" : "text-white"} mt-1.5 mb-0 leading-7 sm:leading-8`}
-                >
-                  {project.title}
-                </h3>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 sm:gap-2.5 mt-1.5">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className={`text-xs px-1.5 py-1 rounded-[5px] ${isLight ? "bg-foreground/8 text-foreground/80" : "bg-white/15 text-white/90"} transition-opacity hover:opacity-100`}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Description */}
-                <p
-                  className={`text-[13px] ${isLight ? "text-foreground/80" : "text-white/90"} leading-relaxed mt-1.5 mb-1`}
-                >
-                  {project.description}
-                </p>
-
-                {/* Impact / metrics */}
-                {project.impact && (
-                  <p
-                    className={`text-[11px] ${isLight ? "text-violet-600" : "text-violet-300/90"} leading-relaxed mb-2.5 font-medium`}
-                  >
-                    {project.impact}
-                  </p>
-                )}
-
-                {/* Repo note (e.g. "Private repo (internship)") */}
-                {project.repoNote && !project.repoUrl && (
-                  <span
-                    className={`text-[10px] italic ${isLight ? "text-foreground/70" : "text-white/70"} mb-1`}
-                  >
-                    {project.repoNote}
-                  </span>
-                )}
-
-                {/* Footer: Year + Links — pushed to bottom */}
-                <div className="flex items-center justify-between w-full mt-auto">
-                  <span
-                    className={`text-sm font-bold ${isLight ? "text-foreground" : "text-white"}`}
-                  >
-                    {project.year}
-                  </span>
-                  <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-end">
-                    {project.hasCaseStudy && (
-                      <Link
-                        to={`/case-study/${project.slug}`}
-                        viewTransition
-                        className={`inline-flex items-center gap-1.5 text-xs ${isLight ? "text-violet-600 hover:text-violet-800" : "text-violet-300/90 hover:text-white"} transition-colors font-medium`}
-                      >
-                        <BookOpen className="w-3.5 h-3.5" />
-                        Case Study
-                      </Link>
-                    )}
-                    <Link
-                      to={`/projects/${project.slug}`}
-                      viewTransition
-                      className={`inline-flex items-center gap-1.5 text-xs ${isLight ? "text-foreground/80 hover:text-foreground" : "text-white/90 hover:text-white"} transition-colors`}
-                    >
-                      More details
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </Link>
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`text-xs ${isLight ? "text-foreground/70 hover:text-foreground" : "text-white/70 hover:text-white"} underline transition-colors`}
-                      >
-                        Live
-                      </a>
-                    )}
-                    {project.repoUrl && (
-                      <a
-                        href={project.repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${project.title} GitHub repository`}
-                        className="inline-block hover:opacity-75 transition-opacity"
-                      >
-                        <Github
-                          className={`w-5 h-5 sm:w-6.25 sm:h-6.25 ${isLight ? "text-foreground" : "text-white"}`}
-                        />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Navigation */}
-        <div
-          className="flex items-center justify-between mt-6 px-2"
-          role="group"
-          aria-label="Carousel controls"
-        >
-          <button
-            onClick={prev}
-            disabled={!canPrev}
-            aria-label="Previous projects"
-            className={`bg-transparent border-none outline-none cursor-pointer text-sm transition-all ${
-              canPrev ? "text-foreground/70 hover:opacity-75" : "text-foreground/40 cursor-default"
-            }`}
-          >
-            ← Prev
-          </button>
-
-          {/* Dot indicators */}
-          <div className="flex items-center gap-2" aria-label="Project page">
-            {Array.from({ length: totalDots }, (_, i) => (
-              <button
-                key={i}
-                aria-current={i === startIndex ? "step" : undefined}
-                aria-label={`Go to slide ${i + 1} of ${totalDots}`}
-                onClick={() => {
-                  setSlideDirection(i > startIndex ? "next" : "prev");
-                  setStartIndex(i);
-                }}
-                className={`rounded-full border-none outline-none transition-all duration-300 cursor-pointer ${
-                  i === startIndex
-                    ? "w-6 h-2 bg-violet-500"
-                    : "w-2 h-2 bg-foreground/20 hover:bg-foreground/40"
-                }`}
-              />
+        {showGrid ? (
+          /* ── Desktop: all-visible grid ── */
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project) => (
+              <ProjectCard key={project.slug} project={project} isLight={isLight} variant="grid" />
             ))}
           </div>
+        ) : (
+          /* ── Mobile / Tablet: carousel ── */
+          <>
+            <div
+              ref={swipeRef}
+              role="region"
+              aria-roledescription="carousel"
+              aria-label="Featured projects"
+              tabIndex={0}
+              onKeyDown={onKeyDown}
+              className="flex justify-center items-end gap-4 sm:gap-6 touch-pan-y select-none outline-none focus-visible:ring-2 focus-visible:ring-violet-500/50 focus-visible:rounded-2xl"
+            >
+              {visibleProjects.map((project, i) => (
+                <div
+                  key={`${project.title}-${startIndex}`}
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-label={`${i + 1} of ${visibleCount}: ${project.title}`}
+                >
+                  <ProjectCard
+                    project={project}
+                    isLight={isLight}
+                    rotation="rotate-0"
+                    slideClass={slideClass}
+                    variant="carousel"
+                  />
+                </div>
+              ))}
+            </div>
 
-          <button
-            onClick={next}
-            disabled={!canNext}
-            aria-label="Next projects"
-            className={`bg-transparent border-none outline-none cursor-pointer text-sm transition-all ${
-              canNext ? "text-foreground/70 hover:opacity-75" : "text-foreground/40 cursor-default"
-            }`}
-          >
-            Next →
-          </button>
-        </div>
+            {/* Navigation */}
+            <div
+              className="flex items-center justify-between mt-6 px-2"
+              role="group"
+              aria-label="Carousel controls"
+            >
+              <button
+                onClick={prev}
+                disabled={!canPrev}
+                aria-label="Previous projects"
+                className={`bg-transparent border-none outline-none cursor-pointer text-sm transition-all ${
+                  canPrev
+                    ? "text-foreground/70 hover:opacity-75"
+                    : "text-foreground/40 cursor-default"
+                }`}
+              >
+                ← Prev
+              </button>
 
-        {/* Live region for screen readers */}
-        <div className="sr-only" aria-live="polite" aria-atomic="true">
-          Showing projects {startIndex + 1} to{" "}
-          {Math.min(startIndex + visibleCount, projects.length)} of {projects.length}
-        </div>
+              {/* Dot indicators */}
+              <div className="flex items-center gap-2" aria-label="Project page">
+                {Array.from({ length: totalDots }, (_, i) => (
+                  <button
+                    key={i}
+                    aria-current={i === startIndex ? "step" : undefined}
+                    aria-label={`Go to slide ${i + 1} of ${totalDots}`}
+                    onClick={() => {
+                      setSlideDirection(i > startIndex ? "next" : "prev");
+                      setStartIndex(i);
+                    }}
+                    className={`rounded-full border-none outline-none transition-all duration-300 cursor-pointer ${
+                      i === startIndex
+                        ? "w-6 h-2 bg-violet-500"
+                        : "w-2 h-2 bg-foreground/20 hover:bg-foreground/40"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={next}
+                disabled={!canNext}
+                aria-label="Next projects"
+                className={`bg-transparent border-none outline-none cursor-pointer text-sm transition-all ${
+                  canNext
+                    ? "text-foreground/70 hover:opacity-75"
+                    : "text-foreground/40 cursor-default"
+                }`}
+              >
+                Next →
+              </button>
+            </div>
+
+            {/* Live region for screen readers */}
+            <div className="sr-only" aria-live="polite" aria-atomic="true">
+              Showing projects {startIndex + 1} to{" "}
+              {Math.min(startIndex + visibleCount, projects.length)} of {projects.length}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
