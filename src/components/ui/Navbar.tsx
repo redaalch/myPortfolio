@@ -25,7 +25,7 @@ export default function Navbar() {
           viewTransition
           className="inline-flex items-center text-foreground"
         >
-          <Logo height={36} />
+          <Logo height={56} />
         </Link>
 
         {/* Desktop nav */}

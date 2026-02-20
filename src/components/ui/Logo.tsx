@@ -1,22 +1,24 @@
-import logoSrc from "@/assets/logo.svg";
+import logoSrc from "@/assets/logo.avif";
 
 interface LogoProps {
   className?: string;
   height?: number;
 }
 
-export default function Logo({ className = "", height = 40 }: LogoProps) {
+export default function Logo({ className = "", height = 56 }: LogoProps) {
+  const width = Math.round(height * (910 / 233));
   return (
     <img
       src={logoSrc}
       alt="Reda Alalach"
-      width={Math.round(height * (910 / 233))}
+      width={width}
       height={height}
       className={`${className} logo-theme`}
       style={{
         height,
-        width: "auto",
-        objectFit: "contain",
+        width,
+        objectFit: "cover",
+        objectPosition: "center",
       }}
     />
   );

@@ -166,7 +166,7 @@ export default function ProjectsSection() {
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`${i + 1} of ${visibleCount}: ${project.title}`}
-                className={`w-full sm:w-75 lg:w-87.5 min-h-105 sm:h-112.5 rounded-[20px] bg-linear-to-br ${isLight ? project.lightColor : project.color} ${isLight ? "ring-1 ring-foreground/8 shadow-md" : ""} p-4 sm:p-5 flex flex-col text-left box-border transition-all duration-500 ease-out transform-gpu hover:scale-[1.05] hover:rotate-0 project-card-hover ${rotation} ${slideClass}`}
+                className={`w-full sm:w-75 lg:w-87.5 min-h-120 sm:h-130 rounded-[20px] bg-linear-to-br ${isLight ? project.lightColor : project.color} ${isLight ? "ring-1 ring-foreground/8 shadow-md" : ""} p-4 sm:p-5 flex flex-col text-left box-border transition-all duration-500 ease-out transform-gpu hover:scale-[1.05] hover:rotate-0 project-card-hover ${rotation} ${slideClass}`}
               >
                 {/* Thumbnail */}
                 <div className="w-full">

@@ -30,7 +30,7 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <Logo height={28} className="opacity-50" />
+            <Logo height={44} className="opacity-50" />
             <span className="text-sm text-foreground/70">&middot; Full-Stack Developer</span>
           </div>
 
