@@ -12,7 +12,7 @@ const navLinks = [
   { label: "Contact", href: "/#contact" },
 ];
 
-const cvHref = "/Reda_Alalach_Resume.pdf";
+const cvHref = "/cv";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -20,19 +20,12 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-background/70">
       <div className="mx-6 py-3 flex items-center justify-between">
-        <Link
-          to="/"
-          viewTransition
-          className="inline-flex items-center text-foreground"
-        >
-          <Logo height={56} />
+        <Link to="/" viewTransition className="inline-flex items-center text-foreground">
+          <Logo height={44} />
         </Link>
 
         {/* Desktop nav */}
-        <nav
-          aria-label="Main navigation"
-          className="hidden md:flex items-center gap-2"
-        >
+        <nav aria-label="Main navigation" className="hidden md:flex items-center gap-2">
           <div className="flex items-center gap-1 rounded-full bg-foreground/5 px-1 py-1 ring-1 ring-foreground/10">
             {navLinks.map((link) => (
               <Link
@@ -44,10 +37,9 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <a
-              href={cvHref}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to={cvHref}
+              viewTransition
               className="ml-1 inline-flex items-center gap-2 rounded-full bg-foreground px-3.5 py-2 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
             >
               View CV
@@ -66,7 +58,7 @@ export default function Navbar() {
                 <path d="M7 7h10v10" />
                 <path d="M7 17 17 7" />
               </svg>
-            </a>
+            </Link>
           </div>
           <ThemeToggle />
         </nav>
@@ -133,10 +125,10 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <a
-              href={cvHref}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to={cvHref}
+              viewTransition
+              onClick={() => setMobileMenuOpen(false)}
               className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
             >
               View CV
@@ -155,7 +147,7 @@ export default function Navbar() {
                 <path d="M7 7h10v10" />
                 <path d="M7 17 17 7" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       )}

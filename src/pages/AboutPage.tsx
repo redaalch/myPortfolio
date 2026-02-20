@@ -13,11 +13,11 @@ import {
   Coffee,
   Gamepad2,
   Globe,
-  ArrowRight,
   Cloud,
   Server,
 } from "lucide-react";
 import Navbar from "../components/ui/Navbar";
+import LetsWorkTogether from "../components/ui/LetsWorkTogether";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import profileImg from "../assets/profile.avif";
 
@@ -256,6 +256,12 @@ export default function AboutPage() {
               {/* Bio paragraphs */}
               <div className="space-y-4 text-foreground/70 leading-relaxed max-w-2xl">
                 <p>
+                  Born and raised in Taounate, Morocco, I grew up surrounded by technology — both of
+                  my brothers are in tech, and one of them is a DevSecOps engineer. Watching them
+                  work sparked my curiosity early on and set me on the path to becoming a developer
+                  myself.
+                </p>
+                <p>
                   I'm a full-stack developer building secure REST APIs with Node.js/Express and
                   database-backed business logic (MongoDB/Mongoose). I've delivered production-ready
                   features including JWT authentication, middleware pipelines, global error
@@ -417,35 +423,10 @@ export default function AboutPage() {
         </RevealSection>
 
         {/* ================================================================ */}
-        {/*  6. CTA                                                          */}
+        {/*  6. CTA — Interactive contact                                    */}
         {/* ================================================================ */}
         <RevealSection>
-          <section className="text-center py-16 mb-8">
-            <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-4">
-              Let's Work Together
-            </h2>
-            <p className="text-foreground/70 max-w-md mx-auto mb-8">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be
-              part of something great.
-            </p>
-            <div className="flex items-center justify-center gap-4 flex-wrap">
-              <Link
-                to="/#contact"
-                viewTransition
-                className="inline-flex items-center gap-2 rounded-full bg-violet-600 px-6 py-3 text-sm font-medium text-white shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:bg-violet-500 hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:scale-105 transition-all duration-300"
-              >
-                Get in Touch
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                to="/#projects"
-                viewTransition
-                className="inline-flex items-center gap-2 rounded-full bg-foreground/5 ring-1 ring-foreground/10 px-6 py-3 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-foreground/10 hover:ring-foreground/20 hover:scale-105 transition-all duration-300"
-              >
-                View My Work
-              </Link>
-            </div>
-          </section>
+          <LetsWorkTogether />
         </RevealSection>
       </div>
     </main>
