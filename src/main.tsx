@@ -8,6 +8,7 @@ import ProjectDetailsPage from "./pages/ProjectDetailsPage.tsx";
 import CaseStudyPage from "./pages/CaseStudyPage.tsx";
 import AboutPage from "./pages/AboutPage.tsx";
 import CvPage from "./pages/CvPage.tsx";
+import ProjectsPage from "./pages/ProjectsPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "about", element: <AboutPage /> },
       { path: "cv", element: <CvPage /> },
+      { path: "projects", element: <ProjectsPage /> },
       { path: "projects/:slug", element: <ProjectDetailsPage /> },
       { path: "case-study/:slug", element: <CaseStudyPage /> },
       { path: "*", element: <Navigate to="/" replace /> },
