@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/generate-static-pages.js",
+    "build": "tsc -b && vite build && node scripts/generate-og-images.js && node scripts/generate-static-pages.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"*.{json,md,html}\"",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@napi-rs/canvas": "^0.1.94",
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.2.3",
     "@types/react": "^19.2.7",
