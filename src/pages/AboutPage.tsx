@@ -334,7 +334,9 @@ export default function AboutPage() {
                   key={item.title}
                   className="rounded-xl bg-foreground/[0.03] ring-1 ring-foreground/8 p-6 hover:ring-violet-500/30 transition-all duration-300"
                 >
-                  <h3 className="text-base font-semibold text-foreground mb-2">{item.title}</h3>
+                  <h3 className="text-base font-semibold text-teal-600 dark:text-teal-400 mb-2">
+                    {item.title}
+                  </h3>
                   <p className="text-sm text-foreground/70 leading-relaxed">{item.description}</p>
                 </div>
               ))}
@@ -376,7 +378,9 @@ export default function AboutPage() {
                         <span className="text-xs font-medium text-foreground/70 tracking-widest uppercase">
                           {item.year}
                         </span>
-                        <h3 className="text-lg font-semibold text-foreground mt-1">{item.title}</h3>
+                        <h3 className="text-lg font-semibold text-teal-600 dark:text-teal-400 mt-1">
+                          {item.title}
+                        </h3>
                         <p className="text-sm text-foreground/70 leading-relaxed mt-1 max-w-lg">
                           {item.description}
                         </p>
