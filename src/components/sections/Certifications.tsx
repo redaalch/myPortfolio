@@ -83,7 +83,7 @@ export default function CertificationsSection() {
 
                 {/* Title + Platform */}
                 <div className="flex-1">
-                  <h3 className="mt-7 text-[clamp(20px,5vw,24px)] font-bold leading-[1.2] text-foreground group-hover:text-violet-400 transition-colors">
+                  <h3 className="mt-7 text-[clamp(20px,5vw,24px)] font-bold leading-[1.2] text-teal-600 dark:text-teal-400 group-hover:text-violet-400 dark:group-hover:text-violet-300 transition-colors">
                     {cert.title}
                   </h3>
                   <p className="mt-4 text-[clamp(15px,3.7vw,18px)] font-semibold leading-[1.2] text-foreground/70">
