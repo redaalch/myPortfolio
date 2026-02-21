@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Github, ArrowUpRight, BookOpen, ExternalLink } from "lucide-react";
+import { ArrowLeft, Github, BookOpen, ExternalLink } from "lucide-react";
 import Navbar from "../components/ui/Navbar";
 import DarkGradientBg from "../components/ui/DarkGradientBg";
 import { useTheme } from "../hooks/useTheme";
@@ -9,16 +9,15 @@ import { projects, type Project } from "../data/projects";
 function ProjectGridCard({ project, isLight }: { project: Project; isLight: boolean }) {
   return (
     <div
-      className={`group rounded-2xl overflow-hidden flex flex-col h-full transition-transform duration-300 hover:-translate-y-1 ${
+      className={`group rounded-2xl overflow-hidden flex flex-col transition-transform duration-300 hover:-translate-y-1 ${
         isLight
           ? "bg-white ring-1 ring-foreground/8 shadow-md hover:shadow-lg"
-          : "bg-[#111a28] ring-1 ring-white/6 hover:ring-white/12"
+          : "bg-[#1a2535] ring-1 ring-white/6 hover:ring-white/12"
       }`}
+      style={{ height: 520 }}
     >
       {/* ── Image banner ── */}
-      <div
-        className={`relative bg-linear-to-br ${isLight ? project.lightColor : project.color} p-5 h-48 flex items-center justify-center overflow-hidden`}
-      >
+      <div className="relative overflow-hidden shrink-0" style={{ height: 200 }}>
         {project.image ? (
           <img
             src={project.image}
@@ -27,19 +26,23 @@ function ProjectGridCard({ project, isLight }: { project: Project; isLight: bool
             height={438}
             loading="lazy"
             decoding="async"
-            className="w-full h-full object-cover rounded-lg"
+            className="w-full h-full object-cover"
           />
         ) : (
-          <span
-            className={`text-2xl font-bold ${isLight ? "text-foreground/40" : "text-white/40"}`}
+          <div
+            className={`w-full h-full bg-linear-to-br ${isLight ? project.lightColor : project.color} flex items-center justify-center`}
           >
-            {project.title}
-          </span>
+            <span
+              className={`text-2xl font-bold ${isLight ? "text-foreground/40" : "text-white/40"}`}
+            >
+              {project.title}
+            </span>
+          </div>
         )}
       </div>
 
       {/* ── Content ── */}
-      <div className="flex flex-col flex-1 p-5 sm:p-6">
+      <div className="flex flex-col flex-1 p-5 sm:p-6 min-h-0">
         {/* Label */}
         <span
           className={`text-[10px] font-semibold uppercase tracking-[1.5px] ${
@@ -85,7 +88,9 @@ function ProjectGridCard({ project, isLight }: { project: Project; isLight: bool
         <div className="flex-1 min-h-4" />
 
         {/* ── Footer actions ── */}
-        <div className="flex items-center flex-wrap gap-x-3 gap-y-2 mt-5 pt-4 border-t border-foreground/6">
+        <div
+          className={`flex items-center flex-wrap gap-x-3 gap-y-2 mt-5 pt-4 border-t ${isLight ? "border-foreground/6" : "border-white/8"}`}
+        >
           {/* View Details (primary) */}
           <Link
             to={`/projects/${project.slug}`}
@@ -93,11 +98,10 @@ function ProjectGridCard({ project, isLight }: { project: Project; isLight: bool
             className={`inline-flex items-center gap-1.5 text-xs font-medium px-4 py-2 rounded-lg transition-colors ${
               isLight
                 ? "ring-1 ring-teal-600/40 text-teal-700 hover:bg-teal-50"
-                : "ring-1 ring-teal-400/30 text-teal-400 hover:bg-teal-400/10"
+                : "ring-1 ring-white/20 text-white/90 hover:bg-white/5"
             }`}
           >
             View Details
-            <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
 
           {/* Case Study */}
@@ -202,7 +206,7 @@ export default function ProjectsPage() {
         </div>
 
         {/* ── Grid ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
             <ProjectGridCard key={project.slug} project={project} isLight={isLight} />
           ))}
