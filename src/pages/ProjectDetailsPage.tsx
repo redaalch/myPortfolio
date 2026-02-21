@@ -79,7 +79,7 @@ export default function ProjectDetailsPage() {
             Featured Project
           </p>
           <h1
-            className="font-bold text-violet-400 mb-6 leading-[1.2]"
+            className="font-bold text-teal-600 dark:text-teal-400 mb-6 leading-[1.2]"
             style={{ fontSize: "clamp(32px, 6vw, 48px)" }}
           >
             {project.title}
@@ -88,7 +88,9 @@ export default function ProjectDetailsPage() {
             {project.description}
           </p>
 
-          <h3 className="text-lg font-semibold text-violet-400 mt-10 mb-4">Technologies Used:</h3>
+          <h3 className="text-lg font-semibold text-teal-600 dark:text-teal-400 mt-10 mb-4">
+            Technologies Used:
+          </h3>
           <div className="flex flex-wrap justify-center gap-2.5">
             {project.tags.map((tag) => (
               <span
@@ -125,7 +127,9 @@ export default function ProjectDetailsPage() {
 
         {/* About section */}
         <section className="mb-16">
-          <h2 className="text-[32px] font-bold text-violet-400 mb-8">About This Project</h2>
+          <h2 className="text-[32px] font-bold text-teal-600 dark:text-teal-400 mb-8">
+            About This Project
+          </h2>
           <div className="space-y-5">
             {project.about.map((paragraph, index) => (
               <p key={index} className="text-base text-foreground/90 leading-[1.8]">
