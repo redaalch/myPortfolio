@@ -93,7 +93,7 @@ export default function CaseStudyPage() {
             Case Study
           </p>
           <h1
-            className="font-bold text-violet-400 mb-4 leading-[1.2]"
+            className="font-bold text-teal-600 dark:text-teal-400 mb-4 leading-[1.2]"
             style={{ fontSize: "clamp(28px, 5vw, 44px)" }}
           >
             {caseStudy.title}
@@ -114,6 +114,75 @@ export default function CaseStudyPage() {
             </a>
           )}
         </header>
+
+        {/* At a Glance */}
+        <section className="mb-14 rounded-2xl bg-foreground/[0.03] ring-1 ring-foreground/10 overflow-hidden">
+          {/* Header bar */}
+          <div className="px-6 sm:px-8 py-4 border-b border-foreground/8 flex items-center gap-3">
+            <span className="h-2 w-2 rounded-full bg-teal-500" />
+            <h2 className="text-sm font-semibold text-foreground/90 uppercase tracking-[0.12em]">
+              At a Glance
+            </h2>
+          </div>
+
+          <div className="px-6 sm:px-8 py-6 sm:py-8">
+            {/* Key highlights */}
+            <ul className="space-y-3 mb-8">
+              {caseStudy.tldr.bullets.map((b, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3 text-sm text-foreground/85 leading-relaxed"
+                >
+                  <svg
+                    className="mt-0.5 h-4 w-4 shrink-0 text-teal-500"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                  >
+                    <path
+                      d="M13.5 4.5L6.5 11.5L2.5 7.5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  {b}
+                </li>
+              ))}
+            </ul>
+
+            {/* Metadata grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-foreground/8">
+              <div>
+                <p className="text-[11px] font-medium text-foreground/40 uppercase tracking-[0.15em] mb-2">
+                  Stack
+                </p>
+                <p className="text-sm text-foreground/75 leading-relaxed">{caseStudy.tldr.stack}</p>
+              </div>
+              <div>
+                <p className="text-[11px] font-medium text-foreground/40 uppercase tracking-[0.15em] mb-2">
+                  Role
+                </p>
+                <p className="text-sm text-foreground/75 leading-relaxed">{caseStudy.tldr.role}</p>
+              </div>
+              <div>
+                <p className="text-[11px] font-medium text-foreground/40 uppercase tracking-[0.15em] mb-2">
+                  Key Results
+                </p>
+                <div className="flex flex-wrap gap-2 mt-1">
+                  {caseStudy.tldr.results.map((r, i) => (
+                    <span
+                      key={i}
+                      className="inline-flex items-center rounded-md bg-teal-500/10 px-2.5 py-1 text-xs font-medium text-teal-600 dark:text-teal-400 ring-1 ring-teal-500/20"
+                    >
+                      {r}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Context section */}
         <section className="mb-14">
@@ -143,7 +212,9 @@ export default function CaseStudyPage() {
                 key={i}
                 className="rounded-xl bg-foreground/[0.03] ring-1 ring-foreground/10 p-6"
               >
-                <h3 className="text-lg font-semibold text-violet-400 mb-3">{section.heading}</h3>
+                <h3 className="text-lg font-semibold text-teal-600 dark:text-teal-400 mb-3">
+                  {section.heading}
+                </h3>
                 <p className="text-sm text-foreground/80 leading-[1.8]">{section.content}</p>
               </div>
             ))}
