@@ -1,4 +1,5 @@
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useTheme } from "../../hooks/useTheme";
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 
 /* ================================================================== */
@@ -145,6 +146,8 @@ function labelPos(sx: number, sy: number, hx: number, hy: number) {
 /* ================================================================== */
 export default function SkillsSection() {
   const { ref, visible } = useScrollReveal();
+  const { theme } = useTheme();
+  const isLight = theme === "light";
   const [active, setActive] = useState<number | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
@@ -195,7 +198,9 @@ export default function SkillsSection() {
             <div key={ci} className="rounded-xl border border-foreground/8 bg-foreground/3 p-5">
               <div className="flex items-center gap-2.5 mb-3">
                 <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: cat.color }} />
-                <h3 className="text-sm font-semibold text-foreground tracking-wide">{cat.title}</h3>
+                <h3 className="text-sm font-semibold text-teal-600 dark:text-teal-400 tracking-wide">
+                  {cat.title}
+                </h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {cat.skills.map((skill) => (
@@ -394,8 +399,12 @@ export default function SkillsSection() {
                     textAnchor="middle"
                     fill={
                       isHot
-                        ? "var(--color-foreground)"
-                        : "color-mix(in srgb, var(--color-foreground) 65%, transparent)"
+                        ? isLight
+                          ? "#0d9488"
+                          : "#2dd4bf"
+                        : "color-mix(in srgb, " +
+                          (isLight ? "#0d9488" : "#2dd4bf") +
+                          " 75%, transparent)"
                     }
                     style={{
                       fontSize: "12px",
