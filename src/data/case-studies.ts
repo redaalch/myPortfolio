@@ -3,6 +3,12 @@ export interface CaseStudy {
   projectSlug: string;
   title: string;
   subtitle: string;
+  tldr: {
+    bullets: string[];
+    stack: string;
+    role: string;
+    results: string[];
+  };
   context: string;
   constraints: string[];
   architectureSections: {
@@ -28,6 +34,16 @@ export const caseStudies: CaseStudy[] = [
     title: "NotesBoard — Real-Time Collaborative Notes",
     subtitle:
       "A deep dive into building a collaborative notes platform with conflict-free real-time editing",
+    tldr: {
+      bullets: [
+        "Built a real-time collaborative notes app where 10+ users edit the same document without conflicts.",
+        "Chose Yjs (CRDT) over OT for conflict-free merging — ~17 KB bundle, offline-first via IndexedDB.",
+        "Achieved <80 ms sync latency and 100% offline write success with auto-reconnect.",
+      ],
+      stack: "React · Tiptap · Yjs · Hocuspocus · Node.js · Express · MongoDB · Socket.io",
+      role: "Solo developer — designed architecture, built frontend & backend, deployed to production.",
+      results: ["10+ concurrent editors", "<80 ms sync (p95)", "100% offline write success"],
+    },
     context:
       "Built a collaborative notes platform for teams who need real-time editing without losing data integrity. The app supports multiple concurrent editors, shared dashboards, drag-and-drop organization, and offline-first caching — all synchronized through a WebSocket-based architecture.",
     constraints: [
@@ -106,8 +122,21 @@ export const caseStudies: CaseStudy[] = [
     slug: "real-time-notifications",
     projectSlug: "real-time-notifications",
     title: "Real-Time Notifications System",
-    subtitle:
-      "Event-driven notification architecture using Socket.io for instant task updates",
+    subtitle: "Event-driven notification architecture using Socket.io for instant task updates",
+    tldr: {
+      bullets: [
+        "Added instant in-app notifications to an existing task management platform — zero breaking changes.",
+        "Used Socket.io rooms + JWT auth to deliver targeted alerts in <50 ms.",
+        "Notifications are persisted to MongoDB so nothing is lost if a user is offline.",
+      ],
+      stack: "Socket.io · Express · MongoDB · JWT · REST API",
+      role: "Intern at Technocolabs — owned the full notification feature end-to-end (design → deploy).",
+      results: [
+        "<50 ms delivery",
+        "Zero breaking changes",
+        "No message loss (persisted + real-time)",
+      ],
+    },
     context:
       "Built during my internship at Technocolabs, this module adds instant notification delivery to a task management platform. When a task is assigned or updated, the relevant user receives an immediate in-app notification via WebSocket, with a full REST API for notification history and read-state management.",
     constraints: [
@@ -189,6 +218,16 @@ export const caseStudies: CaseStudy[] = [
     title: "Portfolio Site — Engineering a High-Performance Personal Portfolio",
     subtitle:
       "How I built a sub-2s LCP portfolio with React 19, Tailwind v4, and Vite 7 — and the architectural decisions behind it",
+    tldr: {
+      bullets: [
+        "Built a portfolio that scores 95+ on Lighthouse performance, 100 on accessibility and SEO.",
+        "Hero image pipeline: AVIF at 2 breakpoints (5–15 KB), preloaded before React hydrates.",
+        "6 lazy-loaded section chunks keep initial JS at ~84 KB gzip.",
+      ],
+      stack: "React 19 · TypeScript · Tailwind CSS v4 · Vite 7 · React Router v7 · GitHub Actions",
+      role: "Solo developer — architecture, design, implementation, CI/CD, and deployment.",
+      results: ["Lighthouse 95+ / 100 / 100", "<1.2 s LCP (desktop)", "~84 KB initial JS"],
+    },
     context:
       "I needed a portfolio that loads fast, ranks well on Google, and clearly communicates my engineering depth — not just a list of projects. The site had to be fully responsive, accessible, SEO-optimized, and easy to maintain as I add new work. It also serves as a live demonstration of the frontend and DevOps skills I claim to have.",
     constraints: [
@@ -275,14 +314,12 @@ export const caseStudies: CaseStudy[] = [
           "AVIF achieves 30-50 % smaller file sizes than WebP at equivalent quality, and browser support now covers ~93 % of users (Chrome, Firefox, Safari 16+). The 1200 w hero weighs just 5.3 KB in AVIF vs ~12 KB in WebP. For the small percentage on older browsers, the srcset falls back gracefully.",
       },
       {
-        question:
-          "Why lazy-load sections instead of using Intersection Observer alone?",
+        question: "Why lazy-load sections instead of using Intersection Observer alone?",
         answer:
           "The existing scroll-reveal hook only controls CSS opacity/transform — the JS and component tree still ship upfront. React.lazy() with Suspense actually defers parsing and evaluation of each section's code until React tries to render it. Combined, the user sees a smooth reveal animation while the browser does less work on first load.",
       },
       {
-        question:
-          "Why Web3Forms over EmailJS or a custom backend for the contact form?",
+        question: "Why Web3Forms over EmailJS or a custom backend for the contact form?",
         answer:
           "Web3Forms requires zero dependencies — just a fetch POST with FormData. EmailJS needs an SDK and exposes more config. A custom backend (e.g. Express + Nodemailer) means another service to maintain and deploy. For a single contact form, Web3Forms is the simplest correct solution: one API key, one HTTP call, emails forwarded to my inbox.",
       },
