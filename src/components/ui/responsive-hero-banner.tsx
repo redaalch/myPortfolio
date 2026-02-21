@@ -308,6 +308,15 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                 and ship modern UIs with React. Currently exploring Google Cloud &amp; Firebase.
               </p>
 
+              {/* Recruiter at-a-glance */}
+              <div className="animate-fade-slide-in-3 mt-5 flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-1.5 text-xs sm:text-sm text-foreground/50">
+                <span>Backend / Full-Stack Intern</span>
+                <span className="hidden sm:inline opacity-40">·</span>
+                <span>Morocco · GMT+1 · Remote-friendly</span>
+                <span className="hidden sm:inline opacity-40">·</span>
+                <span>Available now</span>
+              </div>
+
               <div className="flex flex-col sm:flex-row sm:gap-4 mt-10 gap-3 items-center lg:items-start animate-fade-slide-in-4">
                 <a
                   href="#projects"
