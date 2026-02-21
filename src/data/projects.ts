@@ -25,7 +25,7 @@ export const projects: Project[] = [
     slug: "notesboard",
     title: "NotesBoard",
     description:
-      "Collaborative notes & analytics platform with a real-time editor (Yjs/Hocuspocus), shared dashboards, drag-and-drop, animations, offline cache, and notifications.",
+      "Collaborative notes & analytics platform featuring a real-time rich-text editor powered by Yjs and Hocuspocus for conflict-free, multi-user editing. Includes shared dashboards with drag-and-drop widgets, smooth Framer Motion animations, full offline cache via service workers, and a notification system for instant team updates. Users can organize notes into folders, tag and search content, and view analytics on editing activity — all synced across devices in under 80ms.",
     impact:
       "10+ concurrent editors · <80ms sync latency · 100% offline write success · ~17KB collab bundle",
     about: [
@@ -46,7 +46,7 @@ export const projects: Project[] = [
     slug: "real-time-notifications",
     title: "Real-time Notifications",
     description:
-      "Event-driven notifications for task assignment and updates, with API-driven history and UI feedback via toast alerts. Built during my Technocolabs internship.",
+      "Event-driven real-time notification module built during my Technocolabs internship. The system delivers instant alerts for task assignments, status changes, and team updates through Socket.io channels with JWT-authenticated connections. Features include a persistent notification history accessible via REST API, read/unread state management, toast-style UI alerts with auto-dismiss, and graceful reconnection handling. Designed to integrate seamlessly into the existing project management platform without breaking changes.",
     impact:
       "<50ms delivery latency · Zero breaking changes to existing API · Persisted + real-time (no message loss)",
     about: [
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     slug: "alarm-clock",
     title: "Alarm Clock",
     description:
-      "Lightweight alarm clock with add/edit/delete alarms, recurring schedules, local persistence, live clock, desktop notifications, and offline support.",
+      "A lightweight progressive web app for managing daily alarms with zero external dependencies. Users can create, edit, and delete alarms, set recurring schedules by day of the week, and receive browser desktop notifications even when the tab is in the background. The app features a live animated clock, local storage persistence so alarms survive page reloads, and full offline support through a custom service worker. Responsive across desktop and mobile with a clean, distraction-free interface.",
     impact: "PWA with full offline support · <1s load time · Zero dependencies",
     about: [
       "Alarm Clock is a progressive web app focused on speed and ease of use for daily reminders.",
@@ -85,7 +85,7 @@ export const projects: Project[] = [
     slug: "portfolio-site",
     title: "Portfolio (This Site)",
     description:
-      "Modern portfolio built with React, Tailwind CSS, and TypeScript. Includes smooth animations, responsive design, and deployed via GitHub Pages.",
+      "A modern, performance-focused portfolio built with React 19, TypeScript, and Tailwind CSS v4. Features include scroll-reveal animations, view transitions between pages, a dark/light theme toggle with system preference detection, and lazy-loaded route chunks for fast initial loads. The site scores 95+ on Lighthouse performance, 100 on accessibility, and 100 on SEO. Deployed via GitHub Pages with a custom domain, automated CI through GitHub Actions, and end-to-end smoke tests using Playwright.",
     impact: "Lighthouse 95+ perf / 100 a11y / 100 SEO · Sub-2s LCP · 6 lazy-loaded chunks",
     about: [
       "This portfolio showcases projects, experience, and certifications in a clean and modern format.",
