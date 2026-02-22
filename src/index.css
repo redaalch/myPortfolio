@@ -1098,3 +1098,86 @@ button:focus-visible {
   );
   opacity: 1;
 }
+
+/* ── Print stylesheet (CV page) ── */
+@media print {
+  /* Force light colours */
+  * {
+    color: #1a1a2e !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body,
+  html {
+    background: #fff !important;
+  }
+
+  /* Hide chrome: navbar, sidebar nav, breadcrumb, back-to-top, gradient bg, blur glow */
+  header.sticky,
+  nav[aria-label="CV sections"],
+  nav.mb-12,
+  .loading-screen,
+  [class*="DarkGradientBg"],
+  [class*="BackToTop"],
+  button[aria-label="Back to top"],
+  [class*="blur-xl"] {
+    display: none !important;
+  }
+
+  /* Remove gradient text — make it plain */
+  [class*="bg-clip-text"] {
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #1a1a2e !important;
+    color: #1a1a2e !important;
+    background-image: none !important;
+  }
+
+  /* Full-width layout (no sidebar gap) */
+  main {
+    min-height: auto !important;
+    padding: 0 !important;
+  }
+
+  main > div {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    ring: none !important;
+  }
+
+  /* Remove ring and backdrop styles */
+  [class*="ring-"] {
+    --tw-ring-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Links: show URL */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.7em;
+    font-weight: normal;
+    color: #666 !important;
+    word-break: break-all;
+  }
+
+  /* Compact spacing in print */
+  section {
+    margin-bottom: 1.5rem !important;
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 80px !important;
+    height: auto !important;
+  }
+
+  /* Ensure page breaks don't split entries */
+  .flex.flex-col.gap-3,
+  .flex.flex-col.gap-2 {
+    page-break-inside: avoid;
+  }
+}
