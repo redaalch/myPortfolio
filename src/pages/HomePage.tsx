@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import DarkGradientBg from "../components/ui/DarkGradientBg";
 import ResponsiveHeroBanner from "../components/ui/responsive-hero-banner";
 import VerticalBanner from "../components/ui/VerticalBanner";
+import BackToTop from "../components/ui/BackToTop";
 
 const ProjectsSection = lazy(() => import("../components/sections/Projects"));
 const ExperienceSection = lazy(() => import("../components/sections/Experience"));
@@ -164,6 +165,7 @@ export default function HomePage() {
         <Suspense fallback={null}>
           <Footer />
         </Suspense>
+        <BackToTop />
       </div>
     </div>
   );

@@ -1,11 +1,46 @@
 import { Github, Linkedin, Mail, BookOpen } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { getProjectBySlug } from "../data/projects";
 import Navbar from "../components/ui/Navbar";
+import BackToTop from "../components/ui/BackToTop";
 
 export default function ProjectDetailsPage() {
   const { slug } = useParams();
   const project = slug ? getProjectBySlug(slug) : undefined;
+
+  // Inject JSON-LD structured data for SEO
+  useEffect(() => {
+    if (!project) return;
+
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: project.title,
+      description: project.description,
+      applicationCategory: "WebApplication",
+      operatingSystem: "Any",
+      author: {
+        "@type": "Person",
+        name: "Reda Alalach",
+        url: "https://remyportfolio.me",
+      },
+      ...(project.repoUrl && { codeRepository: project.repoUrl }),
+      ...(project.liveUrl && { url: project.liveUrl }),
+      datePublished: `${project.year}-01-01`,
+      keywords: project.tags.join(", "),
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "project-jsonld";
+    script.textContent = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+
+    return () => {
+      document.getElementById("project-jsonld")?.remove();
+    };
+  }, [project]);
 
   if (!project) {
     return <Navigate to="/" replace />;
@@ -59,7 +94,7 @@ export default function ProjectDetailsPage() {
       </aside>
 
       {/* ── Main content ── */}
-      <div className="max-w-[1200px] mx-auto px-5 lg:px-12 pt-36 pb-16">
+      <div className="max-w-300 mx-auto px-5 lg:px-12 pt-36 pb-16">
         {/* Breadcrumb */}
         <nav className="text-sm text-foreground/80 mb-10">
           <Link to="/" viewTransition className="hover:underline transition-colors">
@@ -84,7 +119,7 @@ export default function ProjectDetailsPage() {
           >
             {project.title}
           </h1>
-          <p className="max-w-[700px] mx-auto text-lg text-foreground/90 leading-[1.6]">
+          <p className="max-w-175 mx-auto text-lg text-foreground/90 leading-[1.6]">
             {project.description}
           </p>
 
@@ -106,7 +141,7 @@ export default function ProjectDetailsPage() {
         {/* Project preview image */}
         <div className="mb-20">
           <div
-            className={`rounded-2xl bg-linear-to-br ${project.color} p-4 md:p-6 shadow-[0_20px_60px_-10px_rgba(0,0,0,0.4)] max-w-[800px] mx-auto`}
+            className={`rounded-2xl bg-linear-to-br ${project.color} p-4 md:p-6 shadow-[0_20px_60px_-10px_rgba(0,0,0,0.4)] max-w-200 mx-auto`}
           >
             <div className="h-72 md:h-112 rounded-xl bg-white/10 overflow-hidden flex items-center justify-center">
               {project.image ? (
@@ -189,6 +224,7 @@ export default function ProjectDetailsPage() {
           </Link>
         </div>
       </div>
+      <BackToTop />
     </main>
   );
 }

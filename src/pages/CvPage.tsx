@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail, ArrowLeft, Download } from "lucide-react";
 import Navbar from "../components/ui/Navbar";
+import BackToTop from "../components/ui/BackToTop";
 import DarkGradientBg from "../components/ui/DarkGradientBg";
 import profileImg from "../assets/profile.avif";
 
@@ -496,6 +497,7 @@ export default function CvPage() {
           </div>
         </div>
       </div>
+      <BackToTop />
     </main>
   );
 }
