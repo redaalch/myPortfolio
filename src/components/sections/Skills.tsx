@@ -184,7 +184,7 @@ export default function SkillsSection() {
           <span className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest">
             Toolkit
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mt-3 font-instrument-serif italic">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mt-3 font-instrument-serif italic">
             Skills & Technologies
           </h2>
           <p className="text-foreground/70 mt-4 max-w-2xl mx-auto text-lg">
