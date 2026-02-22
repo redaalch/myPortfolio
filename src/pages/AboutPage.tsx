@@ -205,7 +205,7 @@ export default function AboutPage() {
         <div className="w-px h-24 bg-foreground/15" />
       </aside>
 
-      <div className="max-w-[1000px] mx-auto px-5 lg:px-12 pt-36 pb-16">
+      <div className="max-w-250 mx-auto px-5 lg:px-12 pt-36 pb-16">
         {/* ── Breadcrumb ── */}
         <nav className="text-sm text-foreground/80 mb-10">
           <Link to="/" viewTransition className="hover:underline transition-colors">
@@ -237,7 +237,7 @@ export default function AboutPage() {
               <p className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
                 About Me
               </p>
-              <h1 className="text-4xl sm:text-5xl font-bold font-instrument-serif italic bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-6">
+              <h1 className="text-4xl sm:text-5xl font-bold font-instrument-serif italic bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-6">
                 Reda Alalach
               </h1>
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-foreground/70 mb-6">
@@ -308,7 +308,7 @@ export default function AboutPage() {
                 key={stat.label}
                 className="rounded-xl bg-foreground/[0.03] ring-1 ring-foreground/8 p-6 text-center"
               >
-                <p className="text-3xl font-bold bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent mb-1">
+                <p className="text-3xl font-bold bg-linear-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent mb-1">
                   {stat.value}
                 </p>
                 <p className="text-sm text-foreground/70">{stat.label}</p>
@@ -325,7 +325,7 @@ export default function AboutPage() {
             <p className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
               How I work
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-10">
+            <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-10">
               My Philosophy
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -352,7 +352,7 @@ export default function AboutPage() {
             <p className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
               My journey
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-10">
+            <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-10">
               Timeline
             </h2>
             <div className="relative">
@@ -401,7 +401,7 @@ export default function AboutPage() {
             <p className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
               Beyond the code
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-10">
+            <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-10">
               Fun Facts
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">

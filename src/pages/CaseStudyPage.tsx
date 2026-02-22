@@ -1,13 +1,49 @@
 import { Github, Linkedin, Mail, ArrowLeft, ExternalLink } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { getCaseStudyBySlug } from "../data/case-studies";
 import { getProjectBySlug } from "../data/projects";
 import Navbar from "../components/ui/Navbar";
+import BackToTop from "../components/ui/BackToTop";
 
 export default function CaseStudyPage() {
   const { slug } = useParams();
   const caseStudy = slug ? getCaseStudyBySlug(slug) : undefined;
   const project = caseStudy ? getProjectBySlug(caseStudy.projectSlug) : undefined;
+
+  // Inject JSON-LD structured data for SEO
+  useEffect(() => {
+    if (!caseStudy || !project) return;
+
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: caseStudy.title,
+      description: caseStudy.subtitle,
+      author: {
+        "@type": "Person",
+        name: "Reda Alalach",
+        url: "https://remyportfolio.me",
+      },
+      about: {
+        "@type": "SoftwareApplication",
+        name: project.title,
+        ...(project.liveUrl && { url: project.liveUrl }),
+      },
+      keywords: project.tags.join(", "),
+      datePublished: `${project.year}-01-01`,
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "casestudy-jsonld";
+    script.textContent = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+
+    return () => {
+      document.getElementById("casestudy-jsonld")?.remove();
+    };
+  }, [caseStudy, project]);
 
   if (!caseStudy) {
     return <Navigate to="/" replace />;
@@ -61,7 +97,7 @@ export default function CaseStudyPage() {
         <div className="w-px h-24 bg-foreground/15" />
       </aside>
 
-      <div className="max-w-[900px] mx-auto px-5 lg:px-12 pt-36 pb-16">
+      <div className="max-w-225 mx-auto px-5 lg:px-12 pt-36 pb-16">
         {/* Breadcrumb */}
         <nav className="text-sm text-foreground/80 mb-10 flex flex-wrap items-center gap-y-1">
           <Link to="/" viewTransition className="hover:underline transition-colors">
@@ -98,7 +134,7 @@ export default function CaseStudyPage() {
           >
             {caseStudy.title}
           </h1>
-          <p className="text-lg text-foreground/80 leading-relaxed max-w-[750px]">
+          <p className="text-lg text-foreground/80 leading-relaxed max-w-187.5">
             {caseStudy.subtitle}
           </p>
           {project?.repoUrl && (
@@ -309,6 +345,7 @@ export default function CaseStudyPage() {
           </Link>
         </div>
       </div>
+      <BackToTop />
     </main>
   );
 }
