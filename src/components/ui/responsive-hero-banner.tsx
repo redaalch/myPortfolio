@@ -294,11 +294,11 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
 
               <h1 className="sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] text-4xl text-foreground tracking-tight font-instrument-serif font-normal animate-fade-slide-in-2">
                 Hi, I'm{" "}
-                <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
                   Reda
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-hero-from via-hero-via to-hero-to bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-hero-from via-hero-via to-hero-to bg-clip-text text-transparent">
                   Full-Stack Developer
                 </span>
               </h1>
