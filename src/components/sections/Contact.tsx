@@ -70,7 +70,7 @@ export default function ContactSection() {
               <span className="text-[10px] font-medium tracking-[0.28em] uppercase text-foreground/70">
                 Get in touch
               </span>
-              <h2 className="mt-3 text-5xl font-light leading-[0.93] tracking-tight sm:text-6xl lg:text-7xl font-instrument-serif italic bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent">
+              <h2 className="mt-3 text-5xl font-light leading-[0.93] tracking-tight sm:text-6xl lg:text-7xl font-instrument-serif italic bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent">
                 Let's
                 <br />
                 work

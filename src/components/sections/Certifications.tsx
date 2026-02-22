@@ -46,13 +46,13 @@ export default function CertificationsSection() {
       </div>
       <div
         ref={ref}
-        className={`max-w-[1200px] mx-auto px-6 relative ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
+        className={`max-w-300 mx-auto px-6 relative ${visible ? "" : "reveal"} ${visible ? "reveal visible" : ""}`}
       >
         <div className="text-center mb-16">
           <span className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest">
             Credentials
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mt-3 font-instrument-serif italic">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mt-3 font-instrument-serif italic">
             Licenses & Certifications
           </h2>
           <div className="mx-auto mt-4 h-px w-24 bg-violet-400/40" />
