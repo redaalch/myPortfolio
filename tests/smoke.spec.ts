@@ -33,6 +33,57 @@ test.describe("Smoke tests — key pages render", () => {
   });
 });
 
+test.describe("Deep link routes — static pages serve correctly", () => {
+  test("project detail page loads via direct URL (/projects/notesboard)", async ({ page }) => {
+    await page.goto("/projects/notesboard");
+    await expect(page.locator("h1")).toBeVisible({ timeout: 10_000 });
+    await expect(page.locator("h1")).toContainText("NotesBoard");
+  });
+
+  test("project detail page loads via direct URL (/projects/real-time-notifications)", async ({
+    page,
+  }) => {
+    await page.goto("/projects/real-time-notifications");
+    await expect(page.locator("h1")).toBeVisible({ timeout: 10_000 });
+    await expect(page.locator("h1")).toContainText("Real-time Notifications");
+  });
+
+  test("case study page loads via direct URL (/case-study/real-time-notifications)", async ({
+    page,
+  }) => {
+    await page.goto("/case-study/real-time-notifications");
+    await expect(page.locator("h1")).toBeVisible({ timeout: 10_000 });
+    await expect(page.locator("h1")).toContainText("Real-Time Notifications");
+  });
+
+  test("case study page loads via direct URL (/case-study/portfolio-site)", async ({ page }) => {
+    await page.goto("/case-study/portfolio-site");
+    await expect(page.locator("h1")).toBeVisible({ timeout: 10_000 });
+    await expect(page.locator("h1")).toContainText("Portfolio");
+  });
+
+  test("projects listing page loads (/projects)", async ({ page }) => {
+    await page.goto("/projects");
+    await expect(page.locator("h1, h2").first()).toBeVisible({ timeout: 10_000 });
+  });
+
+  test("CV page loads (/cv)", async ({ page }) => {
+    await page.goto("/cv");
+    await expect(page.locator("h1")).toBeVisible({ timeout: 10_000 });
+    await expect(page.locator("h1")).toContainText("Reda Alalach");
+  });
+
+  test("non-existent project slug redirects to home", async ({ page }) => {
+    await page.goto("/projects/does-not-exist");
+    await expect(page).toHaveURL("/", { timeout: 10_000 });
+  });
+
+  test("non-existent case study slug redirects to home", async ({ page }) => {
+    await page.goto("/case-study/does-not-exist");
+    await expect(page).toHaveURL("/", { timeout: 10_000 });
+  });
+});
+
 test.describe("Navigation", () => {
   test("can navigate from home to about via nav link", async ({ page }) => {
     await page.goto("/");
