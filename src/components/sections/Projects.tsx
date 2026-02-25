@@ -225,11 +225,7 @@ export default function ProjectsSection() {
           <Link
             to="/projects"
             viewTransition
-            className={`inline-flex items-center text-sm font-semibold uppercase tracking-widest px-8 py-3.5 rounded transition-colors ${
-              isLight
-                ? "ring-1 ring-foreground/20 text-foreground hover:bg-foreground/5"
-                : "ring-1 ring-white/20 text-white hover:bg-white/5"
-            }`}
+            className="contact-cta inline-flex items-center text-sm font-semibold uppercase tracking-widest px-8 py-3.5 rounded-xl"
           >
             View All Projects
           </Link>
