@@ -14,9 +14,10 @@ export default function BackToTop() {
     <button
       aria-label="Back to top"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className={`fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-violet-600 text-white shadow-lg shadow-violet-600/30 transition-all duration-300 hover:bg-violet-500 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 ${
+      className={`fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-violet-600 text-white shadow-lg shadow-violet-600/30 transition-all duration-300 hover:bg-violet-500 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 sm:bottom-6 sm:right-6 ${
         visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none"
       }`}
+      style={{ bottom: "max(1.5rem, calc(1rem + env(safe-area-inset-bottom)))" }}
     >
       <ArrowUp className="h-5 w-5" />
     </button>
