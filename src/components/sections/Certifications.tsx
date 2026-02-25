@@ -7,6 +7,8 @@ interface Certification {
   issuerLogo: string;
   status: "completed" | "in-progress";
   issuedDate?: string;
+  credentialId?: string;
+  progressNote?: string;
   link: string;
 }
 
@@ -17,6 +19,7 @@ const certifications: Certification[] = [
     issuerLogo: "https://cdn.simpleicons.org/meta/0081FB",
     status: "completed",
     issuedDate: "Jan 2025",
+    credentialId: "62TQTQSEFIFT",
     link: "https://www.coursera.org/account/accomplishments/professional-cert/62TQTQSEFIFT",
   },
   {
@@ -24,6 +27,7 @@ const certifications: Certification[] = [
     issuer: "IBM — Coursera",
     issuerLogo: "https://cdn-icons-png.flaticon.com/512/5969/5969147.png",
     status: "in-progress",
+    progressNote: "Next: Express & Databases module",
     link: "https://www.coursera.org/professional-certificates/backend-javascript-developer",
   },
   {
@@ -31,9 +35,29 @@ const certifications: Certification[] = [
     issuer: "Linux Professional Institute",
     issuerLogo: "https://cdn.simpleicons.org/linux/FCC624",
     status: "in-progress",
+    progressNote: "Target: Summer 2026",
     link: "https://www.lpi.org/our-certifications/lpic-1-overview/",
   },
 ];
+
+/* ── Status pill component ── */
+function StatusPill({ status }: { status: Certification["status"] }) {
+  const isComplete = status === "completed";
+  return (
+    <span
+      className={`cert-status-pill ${
+        isComplete ? "cert-status-pill--completed" : "cert-status-pill--progress"
+      }`}
+    >
+      <span
+        className={`inline-block size-1.5 rounded-full ${
+          isComplete ? "bg-emerald-400" : "bg-amber-400"
+        }`}
+      />
+      {isComplete ? "Completed" : "In Progress"}
+    </span>
+  );
+}
 
 export default function CertificationsSection() {
   const { ref, visible } = useScrollReveal();
@@ -58,7 +82,7 @@ export default function CertificationsSection() {
           <div className="mx-auto mt-4 h-px w-24 bg-violet-400/40" />
         </div>
 
-        <div className="cert-container rounded-3xl p-6 sm:p-10">
+        <div className="cert-container rounded-3xl p-4 sm:p-6 md:p-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {certifications.map((cert, i) => (
               <a
@@ -68,35 +92,52 @@ export default function CertificationsSection() {
                 rel="noopener noreferrer"
                 className="group flex flex-col cert-card rounded-2xl p-5 h-full transition-all duration-300"
               >
-                {/* Head: Logo + external link */}
+                {/* Head: Logo box + external link */}
                 <div className="flex items-start justify-between">
-                  <img
-                    src={cert.issuerLogo}
-                    alt={`${cert.issuer} logo`}
-                    width={50}
-                    height={50}
-                    loading="lazy"
-                    className="w-[50px] h-[50px] rounded-xl object-contain"
-                  />
-                  <ExternalLink className="w-[22px] h-[22px] text-foreground/70 group-hover:text-violet-400 transition-colors" />
+                  <div className="cert-logo-box">
+                    <img
+                      src={cert.issuerLogo}
+                      alt={`${cert.issuer} logo`}
+                      width={36}
+                      height={36}
+                      loading="lazy"
+                      className="size-9 object-contain"
+                    />
+                  </div>
+                  <span
+                    className="cert-external-link"
+                    aria-label="View credential"
+                    title="View credential"
+                  >
+                    <ExternalLink className="size-4" strokeWidth={1.8} />
+                  </span>
                 </div>
 
                 {/* Title + Platform */}
-                <div className="flex-1">
-                  <h3 className="mt-7 text-[clamp(20px,5vw,24px)] font-bold leading-[1.2] text-teal-600 dark:text-teal-400 group-hover:text-violet-400 dark:group-hover:text-violet-300 transition-colors">
+                <div className="flex-1 mt-5">
+                  <h3 className="text-lg font-semibold leading-snug text-teal-600/90 dark:text-teal-400/85 group-hover:text-violet-400 dark:group-hover:text-violet-300 transition-colors line-clamp-2">
                     {cert.title}
                   </h3>
-                  <p className="mt-4 text-[clamp(15px,3.7vw,18px)] font-semibold leading-[1.2] text-foreground/70">
-                    {cert.issuer}
-                  </p>
+                  <p className="mt-2.5 text-sm font-medium text-foreground/60">{cert.issuer}</p>
                 </div>
 
-                {/* Date */}
-                <p className="mt-7 text-[clamp(12px,2.5vw,14px)] font-semibold leading-[1.2] text-foreground/70">
-                  {cert.status === "completed"
-                    ? `Issued ${cert.issuedDate} · No Expiration Date`
-                    : "In Progress"}
-                </p>
+                {/* Footer: status pill + metadata */}
+                <div className="cert-card-footer">
+                  <StatusPill status={cert.status} />
+                  <p className="text-xs text-foreground/50">
+                    {cert.status === "completed"
+                      ? `Issued ${cert.issuedDate} · No Expiration`
+                      : null}
+                  </p>
+                  {cert.progressNote && (
+                    <p className="text-xs text-foreground/45 italic">{cert.progressNote}</p>
+                  )}
+                  {cert.credentialId && (
+                    <p className="text-[10px] font-mono text-foreground/35 tracking-wide">
+                      ID: {cert.credentialId}
+                    </p>
+                  )}
+                </div>
               </a>
             ))}
           </div>
