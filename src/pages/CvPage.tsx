@@ -203,7 +203,7 @@ export default function CvPage() {
       {/* ── Mobile section jump nav (hidden on lg+, where sidebar takes over) ── */}
       <nav
         aria-label="CV sections"
-        className="lg:hidden sticky top-[65px] z-30 w-full bg-background/85 backdrop-blur-md border-b border-foreground/8 overflow-x-auto"
+        className="lg:hidden sticky top-[65px] z-30 w-full bg-background border-b border-foreground/8 overflow-x-auto"
         style={{ scrollbarWidth: "none" }}
       >
         <div className="flex items-center gap-1.5 px-5 py-2 w-max">
@@ -223,7 +223,7 @@ export default function CvPage() {
         </div>
       </nav>
 
-      <div className="relative z-10 mx-auto max-w-6xl px-5 pb-24 pt-4 sm:pt-10 lg:px-12 dark:rounded-2xl dark:bg-background/60 dark:shadow-2xl dark:shadow-black/20 dark:ring-1 dark:ring-white/4 dark:backdrop-blur-2xl">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 pb-24 pt-4 sm:pt-10 lg:px-12 dark:rounded-2xl dark:bg-background/80 dark:shadow-2xl dark:shadow-black/20 dark:ring-1 dark:ring-white/4">
         {/* ── Breadcrumb ── */}
         <nav className="mb-12 flex items-center gap-3 text-sm text-foreground/70">
           <Link
