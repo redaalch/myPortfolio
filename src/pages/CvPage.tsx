@@ -200,7 +200,30 @@ export default function CvPage() {
       <DarkGradientBg />
       <Navbar />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-5 pb-24 pt-12 lg:px-12 dark:rounded-2xl dark:bg-background/60 dark:shadow-2xl dark:shadow-black/20 dark:ring-1 dark:ring-white/4 dark:backdrop-blur-2xl">
+      {/* ── Mobile section jump nav (hidden on lg+, where sidebar takes over) ── */}
+      <nav
+        aria-label="CV sections"
+        className="lg:hidden sticky top-[65px] z-30 w-full bg-background/85 backdrop-blur-md border-b border-foreground/8 overflow-x-auto"
+        style={{ scrollbarWidth: "none" }}
+      >
+        <div className="flex items-center gap-1.5 px-5 py-2 w-max">
+          {SECTIONS.map((id) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-colors duration-200 ${
+                activeSection === id
+                  ? "bg-foreground/10 text-foreground"
+                  : "text-foreground/55 hover:text-foreground/90"
+              }`}
+            >
+              {SECTION_LABELS[id]}
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <div className="relative z-10 mx-auto max-w-6xl px-5 pb-24 pt-4 sm:pt-10 lg:px-12 dark:rounded-2xl dark:bg-background/60 dark:shadow-2xl dark:shadow-black/20 dark:ring-1 dark:ring-white/4 dark:backdrop-blur-2xl">
         {/* ── Breadcrumb ── */}
         <nav className="mb-12 flex items-center gap-3 text-sm text-foreground/70">
           <Link
@@ -218,9 +241,9 @@ export default function CvPage() {
         {/* ================================================================ */}
         {/*  Header                                                          */}
         {/* ================================================================ */}
-        <header className="mb-20 flex flex-col items-start gap-10 sm:flex-row sm:items-center sm:justify-between">
+        <header className="mb-8 sm:mb-20 flex flex-col items-center gap-8 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
           <div className="space-y-4">
-            <h1 className="text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-7xl">
               <span className="bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent font-instrument-serif italic">
                 Reda Alalach
               </span>
@@ -250,6 +273,17 @@ export default function CvPage() {
                 reda.alalach@gmail.com
               </a>
             </div>
+
+            {/* Download button — only shown on mobile; desktop gets it in the sidebar */}
+            <a
+              href="/Reda_Alalach_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lg:hidden inline-flex items-center gap-2 rounded-lg border border-foreground/20 bg-foreground/5 px-4 py-2 text-sm font-medium text-foreground/80 hover:bg-foreground/10 hover:text-foreground transition-colors"
+            >
+              <Download className="size-4" />
+              Download PDF
+            </a>
           </div>
 
           <div className="relative shrink-0">
@@ -259,7 +293,7 @@ export default function CvPage() {
               alt="Reda Alalach"
               width={140}
               height={140}
-              className="relative size-28 rounded-full object-cover ring-2 ring-foreground/15 sm:size-32 lg:size-36"
+              className="relative size-24 rounded-full object-cover ring-2 ring-foreground/15 sm:size-32 lg:size-36"
             />
           </div>
         </header>
@@ -300,7 +334,7 @@ export default function CvPage() {
           </nav>
 
           {/* ── Main content ── */}
-          <div className="min-w-0 flex-1 space-y-20">
+          <div className="min-w-0 flex-1 space-y-12 sm:space-y-20">
             {/* ── About ── */}
             <section id="about">
               <SectionHeading>About</SectionHeading>
@@ -471,8 +505,8 @@ export default function CvPage() {
                 {CONTACT.map((c) => {
                   const Icon = c.icon;
                   return (
-                    <div key={c.platform} className="flex items-center gap-10">
-                      <span className="shrink-0 text-sm text-foreground/70 sm:w-40">
+                    <div key={c.platform} className="flex items-center gap-4 sm:gap-10">
+                      <span className="shrink-0 w-16 sm:w-40 text-sm text-foreground/70">
                         {c.platform}
                       </span>
                       <a
