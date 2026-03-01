@@ -17,7 +17,7 @@ export default function HomePage() {
       <DarkGradientBg />
       <div className="absolute inset-0 bg-background dark:bg-transparent" />
 
-      {/* Ambient rising bubbles */}
+      {/* Ambient rising bubbles — kept to 6 to balance visual effect vs CPU cost */}
       <div className="bg-bubbles" aria-hidden="true">
         <span
           style={{
@@ -70,82 +70,12 @@ export default function HomePage() {
         />
         <span
           style={{
-            left: "20%",
-            width: 32,
-            height: 32,
-            background: "rgba(139,92,246,0.10)",
-            animationDuration: "24s",
-            animationDelay: "6s",
-          }}
-        />
-        <span
-          style={{
-            left: "60%",
-            width: 24,
-            height: 24,
-            background: "rgba(129,140,248,0.10)",
-            animationDuration: "12s",
-            animationDelay: "1.5s",
-          }}
-        />
-        <span
-          style={{
-            left: "42%",
-            width: 44,
-            height: 44,
-            background: "rgba(192,132,252,0.11)",
-            animationDuration: "17s",
-            animationDelay: "7s",
-          }}
-        />
-        <span
-          style={{
-            left: "5%",
+            left: "22%",
             width: 36,
             height: 36,
-            background: "rgba(167,139,250,0.13)",
-            animationDuration: "19s",
-            animationDelay: "8s",
-          }}
-        />
-        <span
-          style={{
-            left: "75%",
-            width: 28,
-            height: 28,
-            background: "rgba(139,92,246,0.11)",
-            animationDuration: "15s",
-            animationDelay: "5s",
-          }}
-        />
-        <span
-          style={{
-            left: "92%",
-            width: 52,
-            height: 52,
-            background: "rgba(99,102,241,0.09)",
-            animationDuration: "21s",
-            animationDelay: "9s",
-          }}
-        />
-        <span
-          style={{
-            left: "38%",
-            width: 20,
-            height: 20,
-            background: "rgba(168,85,247,0.14)",
-            animationDuration: "13s",
-            animationDelay: "3.5s",
-          }}
-        />
-        <span
-          style={{
-            left: "55%",
-            width: 72,
-            height: 72,
-            background: "rgba(196,181,253,0.07)",
-            animationDuration: "26s",
-            animationDelay: "10s",
+            background: "rgba(139,92,246,0.10)",
+            animationDuration: "24s",
+            animationDelay: "7s",
           }}
         />
       </div>
