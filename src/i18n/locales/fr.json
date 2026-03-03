@@ -1,0 +1,654 @@
+{
+  "nav": {
+    "about": "À propos",
+    "projects": "Projets",
+    "experience": "Expérience",
+    "skills": "Compétences",
+    "certifications": "Certifications",
+    "contact": "Contact",
+    "viewCv": "Voir le CV",
+    "home": "Accueil",
+    "toggleMenu": "Basculer le menu"
+  },
+  "hero": {
+    "tagline": "Backend / Full-Stack / DevOps — Ouvert aux stages",
+    "greeting": "Bonjour, je suis",
+    "name": "Reda",
+    "role": "Développeur Full-Stack",
+    "description": "Je construis des backends fiables avec Node.js/Express, j'ajoute des fonctionnalités en temps réel avec Socket.io et je livre des interfaces modernes avec React. J'explore actuellement Google Cloud & Firebase.",
+    "roleShort": "Stagiaire Backend / Full-Stack",
+    "location": "Maroc · GMT+1 · Ouvert au télétravail",
+    "availability": "Disponible maintenant",
+    "viewProjects": "Voir les projets",
+    "contactMe": "Me contacter",
+    "aboutMe": "À propos"
+  },
+  "projects": {
+    "sectionTitle": "Projets",
+    "featuredProject": "Projet phare",
+    "viewDetails": "Voir les détails",
+    "caseStudy": "Étude de cas",
+    "live": "Démo",
+    "viewAllProjects": "Voir tous les projets",
+    "allProjects": "Tous les projets",
+    "allProjectsDescription": "Une collection complète de plateformes, d'outils et d'applications que j'ai construits avec des technologies modernes.",
+    "backToAllProjects": "Retour aux projets",
+    "startAProject": "Démarrer un projet",
+    "featuredProjectLabel": "Projet phare",
+    "technologiesUsed": "Technologies utilisées :",
+    "projectPreview": "Aperçu du projet",
+    "aboutThisProject": "À propos de ce projet",
+    "readCaseStudy": "Lire l'étude de cas",
+    "caseStudySubtext": "Décisions d'architecture, compromis et résultats",
+    "items": {
+      "notesboard": {
+        "description": "Plateforme collaborative de notes et d'analytique avec un éditeur de texte riche en temps réel propulsé par Yjs et Hocuspocus pour l'édition multi-utilisateurs sans conflit. Inclut des tableaux de bord partagés avec glisser-déposer, des animations Framer Motion fluides, un cache hors ligne complet via service workers, et un système de notifications pour les mises à jour instantanées. Les utilisateurs peuvent organiser leurs notes en dossiers, taguer et rechercher du contenu, et consulter les statistiques d'activité — le tout synchronisé entre appareils en moins de 80 ms.",
+        "impact": "10+ éditeurs simultanés · <80 ms de latence sync · 100 % de succès d'écriture hors ligne · ~17 Ko de bundle collab",
+        "about": [
+          "NotesBoard est conçu pour aider les équipes à collaborer en temps réel sur des notes et tableaux de bord partagés sans perdre la cohérence d'édition.",
+          "Le projet combine un frontend React avec un backend Node/Express et la synchronisation via Yjs pour une collaboration sans conflit.",
+          "Les fonctionnalités principales incluent l'édition en direct, les notifications et une interface épurée axée sur la productivité."
+        ]
+      },
+      "real-time-notifications": {
+        "description": "Module de notifications en temps réel orienté événements, développé durant mon stage chez Technocolabs. Le système délivre des alertes instantanées pour les assignations de tâches, les changements de statut et les mises à jour d'équipe via des canaux Socket.io avec des connexions authentifiées par JWT. Comprend un historique persistant accessible via API REST, la gestion des états lu/non lu, des alertes toast avec fermeture automatique et une reconnexion gracieuse. Conçu pour s'intégrer sans rupture dans la plateforme de gestion de projet existante.",
+        "impact": "<50 ms de latence de livraison · Zéro changement cassant sur l'API existante · Persisté + temps réel (aucune perte de message)",
+        "about": [
+          "Ce module ajoute des notifications instantanées de mise à jour de tâches pour améliorer la communication et le temps de réponse dans les flux de travail.",
+          "Il utilise des canaux Socket.io et des endpoints API sécurisés pour garantir des mises à jour cohérentes et authentifiées.",
+          "L'implémentation met l'accent sur la fiabilité, le retour clair et l'intégration transparente avec les flux UI existants."
+        ]
+      },
+      "alarm-clock": {
+        "description": "Une application web progressive légère pour gérer les alarmes quotidiennes sans aucune dépendance externe. Les utilisateurs peuvent créer, modifier et supprimer des alarmes, définir des horaires récurrents par jour de la semaine, et recevoir des notifications desktop même lorsque l'onglet est en arrière-plan. L'application propose une horloge animée, la persistance en stockage local pour que les alarmes survivent aux rechargements, et un support hors ligne complet via un service worker. Responsive sur desktop et mobile avec une interface épurée.",
+        "impact": "PWA avec support hors ligne complet · <1 s de chargement · Zéro dépendance",
+        "about": [
+          "Alarm Clock est une application web progressive axée sur la rapidité et la facilité d'utilisation pour les rappels quotidiens.",
+          "Elle supporte les alarmes récurrentes, la persistance en stockage local et les notifications navigateur pour un usage pratique au quotidien.",
+          "L'application est optimisée pour la disponibilité hors ligne et le comportement responsive sur desktop et mobile."
+        ]
+      },
+      "portfolio-site": {
+        "description": "Un portfolio moderne et performant construit avec React 19, TypeScript et Tailwind CSS v4. Comprend des animations de scroll-reveal, des transitions de vue entre pages, un basculement thème sombre/clair avec détection des préférences système, et des chunks de routes chargés paresseusement. Le site obtient 95+ en performance Lighthouse, 100 en accessibilité et 100 en SEO. Déployé via GitHub Pages avec un domaine personnalisé, CI automatisée via GitHub Actions et tests end-to-end avec Playwright.",
+        "impact": "Lighthouse 95+ perf / 100 a11y / 100 SEO · LCP <2 s · 6 chunks chargés paresseusement",
+        "about": [
+          "Ce portfolio présente les projets, l'expérience et les certifications dans un format propre et moderne.",
+          "Le site utilise des sections réutilisables, des transitions fluides et des mises en page responsive pour une expérience utilisateur soignée.",
+          "Il est construit avec React et TypeScript pour la maintenabilité et une architecture de composants évolutive."
+        ]
+      }
+    }
+  },
+  "experience": {
+    "sectionTitle": "Mes expériences professionnelles",
+    "items": {
+      "technocolabs": {
+        "role": "Stagiaire Développeur Full-Stack (MERN)",
+        "period": "Oct 2025 – Présent",
+        "type": "Télétravail",
+        "bullets": [
+          "Développé un système de notifications en temps réel avec Socket.io délivrant des alertes en <50 ms sur 3 canaux (assignation de tâche, changement de statut, mention).",
+          "Implémenté un middleware d'authentification JWT sécurisant 100 % des routes API et des handshakes WebSocket, réduisant les tentatives d'accès non autorisé à zéro en staging.",
+          "Déployé des environnements full-stack sur 4 plateformes (Render, Vercel, Railway, Netlify), réduisant les problèmes de déploiement en standardisant la configuration des variables d'environnement.",
+          "Ajouté un endpoint /health permettant la surveillance de la disponibilité — adopté par le responsable d'équipe pour la réponse aux incidents dès la première semaine."
+        ]
+      },
+      "alchdev": {
+        "role": "Stagiaire Développeur Web",
+        "period": "Juil 2025 – Sep 2025",
+        "type": "Sur site",
+        "bullets": [
+          "Développé plus de 5 pages dans une application React.js et intégré 3 endpoints d'API REST, réduisant le temps de livraison des fonctionnalités d'environ 20 %.",
+          "Standardisé les composants UI avec React Router, Redux et une bibliothèque de composants partagée, réduisant les incohérences inter-pages d'environ 40 %.",
+          "Refactorisé la logique de rendu et corrigé les problèmes CSS cross-browser, améliorant le score Lighthouse de ~70 à 85+."
+        ]
+      }
+    }
+  },
+  "skills": {
+    "sectionLabel": "Boîte à outils",
+    "sectionTitle": "Compétences & Technologies",
+    "sectionDescription": "Les outils que j'utilise au quotidien, plus ceux que j'apprends activement.",
+    "constellationAria": "Carte en constellation des compétences et technologies",
+    "categories": {
+      "backend": "Backend",
+      "cloud": "Cloud & DevOps",
+      "frontend": "Frontend",
+      "quality": "Qualité"
+    }
+  },
+  "certifications": {
+    "sectionLabel": "Accréditations",
+    "sectionTitle": "Licences & Certifications",
+    "completed": "Complétées",
+    "inProgress": "En cours",
+    "viewCredential": "Voir l'attestation",
+    "issued": "Délivrée",
+    "noExpiration": "Sans expiration",
+    "items": {
+      "meta-frontend": {
+        "title": "Certificat professionnel de développeur Front-End",
+        "issuer": "Meta — Coursera",
+        "issuedDate": "Jan 2025",
+        "issuedText": "Délivrée jan 2025 · Sans expiration"
+      },
+      "ibm-backend": {
+        "title": "Certificat professionnel de développeur JavaScript Back-End",
+        "issuer": "IBM — Coursera",
+        "progressNote": "Suivant : module Express & Bases de données"
+      },
+      "lpic1": {
+        "title": "LPIC-1 : Administrateur système",
+        "issuer": "Linux Professional Institute",
+        "progressNote": "Objectif : été 2026"
+      }
+    }
+  },
+  "contact": {
+    "getInTouch": "Me contacter",
+    "letsWork": "Travaillons",
+    "work": "travaillons",
+    "together": "ensemble",
+    "contactDescription": "Vous avez un projet en tête ou une opportunité de stage ? J'adorerais construire quelque chose de grand ensemble.",
+    "sendMessage": "Envoyer un message",
+    "whatLookingFor": "Que recherchez-vous ?",
+    "helpsRoute": "Aide à orienter votre message",
+    "name": "Nom",
+    "namePlaceholder": "Votre nom",
+    "email": "Email",
+    "emailPlaceholder": "vous@exemple.com",
+    "message": "Message",
+    "messagePlaceholder": "Parlez-moi de votre projet ou opportunité…",
+    "sendBtn": "Envoyer",
+    "sending": "Envoi…",
+    "messageSent": "Message envoyé !",
+    "replyTime": "Je réponds généralement sous 24 à 48 heures.",
+    "somethingWentWrong": "Une erreur s'est produite",
+    "emailDirectly": "Ou envoyez-moi un email directement à",
+    "tryAgain": "Réessayer",
+    "replyTimeShort": "Réponse sous 1 à 24h",
+    "emailPrivate": "Votre email reste confidentiel",
+    "availableFor": "Disponible pour stages & projets",
+    "viewCvCard": "Voir le CV",
+    "downloadResume": "Télécharger le CV",
+    "emailLabel": "Email",
+    "copied": "Copié !",
+    "copyEmail": "Copier l'adresse email",
+    "projectTypes": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "fullStack": "Full Stack",
+      "internship": "Stage"
+    },
+    "validation": {
+      "nameRequired": "Veuillez entrer votre nom",
+      "emailRequired": "Veuillez entrer votre email",
+      "messageRequired": "Veuillez entrer un message",
+      "emailInvalid": "Veuillez entrer un email valide"
+    }
+  },
+  "letsWorkTogether": {
+    "letsTalk": "Discutons",
+    "getInTouch": "Me contacter",
+    "sendMessage": "Envoyer un message",
+    "namePlaceholder": "Nom",
+    "emailPlaceholder": "Email",
+    "messagePlaceholder": "Votre message...",
+    "sendBtn": "Envoyer",
+    "sending": "Envoi...",
+    "messageSent": "Message envoyé — je vous recontacte bientôt !",
+    "errorMessage": "Une erreur s'est produite — veuillez réessayer.",
+    "errorEmailHint": "Ou envoyez-moi un email à",
+    "tryAgain": "Réessayer",
+    "availableForProjects": "Disponible pour des projets",
+    "letsWork": "Travaillons",
+    "together": "ensemble",
+    "ctaDescription": "Vous avez un projet en tête ou une opportunité de stage ? J'adorerais en entendre parler. Créons quelque chose d'exceptionnel ensemble."
+  },
+  "about": {
+    "breadcrumb": "À propos",
+    "label": "À propos",
+    "title": "Reda Alalach",
+    "locationLabel": "Maroc",
+    "roleLabel": "Développeur Full-Stack",
+    "educationLabel": "Licence Info — Diplôme en 2026",
+    "bio1": "Né et grandi à Taounate, au Maroc, j'ai grandi entouré de technologie — mes deux frères travaillent dans la tech, et l'un d'eux est ingénieur DevSecOps. Les voir travailler a éveillé ma curiosité très tôt et m'a mis sur la voie pour devenir développeur.",
+    "bio2": "Je suis un développeur full-stack qui construit des API REST sécurisées avec Node.js/Express et une logique métier adossée à des bases de données (MongoDB/Mongoose). J'ai livré des fonctionnalités prêtes pour la production, notamment l'authentification JWT, les pipelines de middleware, la gestion globale des erreurs, les événements en temps réel avec Socket.io, et les déploiements cloud.",
+    "bio3": "Diplôme prévu en 2026 avec une Licence en informatique de la FSDM, Fès. J'apprends actuellement Google Cloud Platform, Cloud Functions et Firebase pour construire des backends serverless évolutifs.",
+    "quickFacts": {
+      "timezone": "Fuseau horaire",
+      "timezoneValue": "GMT+1 (Maroc)",
+      "graduating": "Diplôme",
+      "graduatingValue": "2026",
+      "lookingFor": "Recherche",
+      "lookingForValue": "Postes Full-Stack / Backend",
+      "workStyle": "Style de travail",
+      "workStyleValue": "Prêt pour le télétravail, bonne communication asynchrone",
+      "openTo": "Ouvert à",
+      "openToValue": "Stages & postes juniors"
+    },
+    "stats": {
+      "yearsCoding": "Années de code",
+      "projectsShipped": "Projets livrés",
+      "certifications": "Certifications",
+      "internships": "Stages"
+    },
+    "philosophyLabel": "Ma méthode",
+    "philosophyTitle": "Ma philosophie",
+    "philosophy": {
+      "cleanCode": "Un code propre plutôt que malin",
+      "cleanCodeDesc": "J'écris du code que mon futur moi (et mes coéquipiers) peuvent comprendre. La lisibilité et la maintenabilité passent toujours en premier.",
+      "shipEarly": "Livrer tôt, itérer vite",
+      "shipEarlyDesc": "Je crois qu'il faut mettre les choses entre les mains des utilisateurs rapidement et s'améliorer en fonction des retours réels plutôt que de perfectionner en isolation.",
+      "automate": "Tout automatiser",
+      "automateDesc": "Des pipelines CI/CD aux tests en passant par les déploiements — si je le fais deux fois, je l'automatise la troisième."
+    },
+    "timelineLabel": "Mon parcours",
+    "timelineTitle": "Chronologie",
+    "funFactsLabel": "Au-delà du code",
+    "funFactsTitle": "Anecdotes",
+    "funFacts": {
+      "fuel": "Carburant",
+      "fuelValue": "Café & thé vert",
+      "downtime": "Temps libre",
+      "downtimeValue": "Jeux vidéo & projets perso",
+      "languages": "Langues",
+      "languagesValue": "Anglais, français, arabe",
+      "reading": "Lecture en cours",
+      "readingValue": "Clean Code de Robert C. Martin",
+      "learning": "Apprentissage",
+      "learningValue": "GCP, Cloud Functions & Firebase",
+      "favStack": "Stack préférée",
+      "favStackValue": "Node.js + Express + MongoDB"
+    }
+  },
+  "footer": {
+    "role": "Développeur Full-Stack",
+    "ciPassing": "CI réussi",
+    "copyright": "© {{year}} Reda Alalach. Tous droits réservés.",
+    "lighthouse": {
+      "performance": "Performance",
+      "accessibility": "Accessibilité",
+      "bestPractices": "Bonnes pratiques",
+      "seo": "SEO"
+    }
+  },
+  "errorBoundary": {
+    "title": "Une erreur s'est produite",
+    "titleSection": "Une erreur s'est produite dans « {{section}} »",
+    "description": "Une erreur inattendue s'est produite. Vous pouvez réessayer ou rafraîchir la page.",
+    "retry": "Réessayer"
+  },
+  "loading": {
+    "backToTop": "Retour en haut"
+  },
+  "theme": {
+    "switchTo": "Passer au thème {{theme}}",
+    "dark": "sombre",
+    "light": "clair"
+  },
+  "cv": {
+    "breadcrumb": "CV",
+    "subtitle": "Développeur Full-Stack · Maroc",
+    "seeking": "Recherche : Stagiaire Backend · Junior Backend · Junior Full-Stack",
+    "locationRemote": "Maroc (GMT+1) · Ouvert au télétravail · Disponible maintenant",
+    "stackSummary": "Stack : Node.js · Express · MongoDB · React · TypeScript · Docker",
+    "downloadPdf": "Télécharger le PDF",
+    "sections": {
+      "about": "À propos",
+      "experience": "Expérience professionnelle",
+      "projects": "Projets",
+      "education": "Formation",
+      "certifications": "Certifications",
+      "skills": "Compétences",
+      "contact": "Contact"
+    },
+    "inProgress": "En cours",
+    "lastUpdated": "Dernière mise à jour février 2026 · Construit avec React + Tailwind CSS",
+    "about": {
+      "p1": "Né et grandi à Taounate, au Maroc, j'ai grandi entouré de technologie — mes deux frères travaillent dans la tech, et l'un d'eux est ingénieur DevSecOps. Les voir travailler a éveillé ma curiosité très tôt et m'a mis sur la voie pour devenir développeur.",
+      "p2": "Je suis un développeur full-stack qui construit des API REST sécurisées avec Node.js/Express et une logique métier adossée à des bases de données (MongoDB/Mongoose). J'ai livré des fonctionnalités prêtes pour la production, notamment l'authentification JWT, les pipelines de middleware, la gestion globale des erreurs, les événements en temps réel avec Socket.io, et les déploiements cloud.",
+      "p3": "Diplôme prévu en 2026 avec une Licence en informatique de la FSDM, Fès. J'apprends actuellement Google Cloud Platform, Cloud Functions et Firebase pour construire des backends serverless évolutifs. Ouvert aux stages et postes juniors full-stack / backend."
+    },
+    "experience": {
+      "technocolabs": {
+        "period": "Oct 2025 — Présent",
+        "title": "Stagiaire développeur Full-Stack",
+        "location": "Télétravail",
+        "titleAtCompany": "Stagiaire développeur Full-Stack chez Technocolabs Softwares Inc.",
+        "bullets": [
+          "Développé un système de notifications en temps réel avec Socket.io — livraison <50 ms sur 3 canaux (assignation, statut, mention).",
+          "Implémenté un middleware d'authentification JWT sécurisant 100 % des routes API et connexions WebSocket.",
+          "Déployé sur 4 plateformes (Render, Vercel, Railway, Netlify) avec une configuration d'environnement standardisée.",
+          "Ajouté un endpoint /health permettant le monitoring de disponibilité — adopté pour la gestion d'incidents dès la première semaine."
+        ]
+      },
+      "alchdev": {
+        "period": "Juil 2025 — Sep 2025",
+        "title": "Stagiaire développeur Web",
+        "location": "Sur site",
+        "titleAtCompany": "Stagiaire développeur Web chez ALCHDEV BUSINESS",
+        "bullets": [
+          "Développé 5+ pages et intégré 3 endpoints d'API REST, réduisant le délai de livraison de ~20 %.",
+          "Standardisé l'UI avec React Router, Redux et une bibliothèque de composants partagés — réduit les incohérences inter-pages de ~40 %.",
+          "Refactorisé le rendu et corrigé des problèmes CSS cross-navigateur, améliorant le score Lighthouse de ~70 à 85+."
+        ]
+      }
+    },
+    "projects": {
+      "notesboard": {
+        "description": "Plateforme collaborative de notes et d'analytique avec édition en temps réel (Yjs/Hocuspocus), tableaux de bord partagés, glisser-déposer et cache hors ligne."
+      },
+      "real-time-notifications": {
+        "description": "Notifications orientées événements pour mises à jour de tâches avec livraison <50 ms, historique persisté et feedback toast. Développé durant le stage chez Technocolabs."
+      },
+      "alarm-clock": {
+        "description": "Application web progressive légère avec alarmes récurrentes, persistance locale, notifications bureau et support hors ligne complet."
+      },
+      "portfolio-site": {
+        "description": "Portfolio moderne avec React 19, Tailwind v4, animations fluides, études de cas et scores Lighthouse 95+."
+      }
+    },
+    "education": {
+      "bsc": {
+        "period": "2021 — 2026",
+        "title": "Licence en informatique",
+        "institution": "FSDM, Université Sidi Mohamed Ben Abdellah",
+        "location": "Fès, Maroc"
+      },
+      "bac": {
+        "period": "2021",
+        "title": "Baccalauréat — Sciences mathématiques",
+        "institution": "Lycée Al-Wahda (Option internationale)",
+        "location": "Taounate, Maroc"
+      }
+    }
+  },
+  "caseStudy": {
+    "breadcrumb": "Étude de cas",
+    "label": "Étude de cas",
+    "viewSourceCode": "Voir le code source",
+    "atAGlance": "En bref",
+    "stack": "Stack",
+    "role": "Rôle",
+    "keyResults": "Résultats clés",
+    "context": "Contexte",
+    "constraints": "Contraintes",
+    "architecture": "Architecture",
+    "notificationFlow": "Flux de notifications",
+    "mermaidHint": "Diagramme de séquence Mermaid — collez dans",
+    "mermaidHintAction": "pour un rendu interactif.",
+    "keyDecisions": "Décisions clés & Compromis",
+    "outcomes": "Résultats",
+    "whatsNext": "Prochaines étapes",
+    "backToProject": "Retour au projet",
+    "startAProject": "Démarrer un projet",
+    "items": {
+      "notesboard": {
+        "title": "NotesBoard — Notes collaboratives en temps réel",
+        "subtitle": "Plongée dans la construction d'une plateforme de notes collaborative avec édition en temps réel sans conflit",
+        "tldr": {
+          "bullets": [
+            "Développé une application de notes collaborative en temps réel où 10+ utilisateurs éditent le même document sans conflit.",
+            "Choisi Yjs (CRDT) plutôt que OT pour la fusion sans conflit — ~17 Ko de bundle, offline-first via IndexedDB.",
+            "Atteint <80 ms de latence de synchronisation et 100 % de succès d'écriture hors ligne avec reconnexion automatique."
+          ],
+          "stack": "React · Tiptap · Yjs · Hocuspocus · Node.js · Express · MongoDB · Socket.io",
+          "role": "Développeur solo — conception de l'architecture, développement frontend & backend, déploiement en production.",
+          "results": [
+            "10+ éditeurs simultanés",
+            "<80 ms sync (p95)",
+            "100 % succès d'écriture hors ligne"
+          ]
+        },
+        "context": "Développé une plateforme de notes collaborative pour les équipes nécessitant de l'édition en temps réel sans perte d'intégrité des données. L'application supporte plusieurs éditeurs simultanés, des tableaux de bord partagés, l'organisation par glisser-déposer et la mise en cache offline-first — le tout synchronisé via une architecture WebSocket.",
+        "constraints": [
+          "Devait supporter l'édition simultanée sans conflit ni perte de données",
+          "Nécessitait une capacité offline-first pour que les éditions persistent même hors connexion",
+          "Synchronisation à faible latence (<100 ms) pour un ressenti véritablement temps réel",
+          "Devait gérer le contexte d'authentification sur les connexions REST et WebSocket",
+          "Garder le bundle léger — pas de frameworks d'édition collaborative lourds"
+        ],
+        "architectureSections": [
+          {
+            "heading": "Frontend",
+            "content": "React avec un éditeur de texte riche basé sur Tiptap, connecté au modèle de document Yjs. Tiptap fournit l'interface d'édition tandis que Yjs gère l'état CRDT en dessous. Le HocuspocusProvider gère le transport WebSocket entre le document Yjs du client et le serveur de collaboration."
+          },
+          {
+            "heading": "Serveur de collaboration",
+            "content": "Une instance Hocuspocus gère la synchronisation des documents en temps réel. Elle reçoit les mises à jour Yjs des clients connectés, les fusionne via la logique CRDT et diffuse le résultat à tous les pairs. L'état du document est persisté dans MongoDB à intervalles configurables et à la déconnexion."
+          },
+          {
+            "heading": "API Backend",
+            "content": "Node.js/Express gère les endpoints REST pour l'authentification (JWT), le CRUD des projets, les données du tableau de bord et la livraison des notifications. Socket.io tourne en parallèle pour les notifications push (assignations de tâches, mises à jour). MongoDB stocke les documents, données utilisateur et historique des notifications."
+          },
+          {
+            "heading": "Flux de données",
+            "content": "Édition utilisateur → Tiptap → CRDT Yjs → HocuspocusProvider → WebSocket → Serveur Hocuspocus → fusion & diffusion → tous les clients connectés. L'API REST gère tout le reste : authentification, gestion de projet, notifications."
+          }
+        ],
+        "keyDecisions": [
+          {
+            "question": "Pourquoi Yjs plutôt que d'autres alternatives CRDT (Automerge, Y-Sweet) ?",
+            "answer": "Yjs a la plus petite taille de bundle (~13 Ko gzippé), les intégrations d'éditeur les plus matures (Tiptap, ProseMirror, CodeMirror) et une excellente résolution de conflits pour le texte riche. Automerge est plus lourd et orienté documents JSON. Y-Sweet ajoute une couche serveur gérée dont nous n'avions pas besoin puisque nous contrôlons notre propre instance Hocuspocus."
+          },
+          {
+            "question": "Pourquoi MongoDB plutôt que PostgreSQL ?",
+            "answer": "Le stockage orienté document se mappe naturellement aux snapshots binaires Yjs (stockés en Buffer). La nature sans schéma convenait à l'itération rapide sur la structure des notes. Pour ce MVP, nous n'avions pas besoin de jointures relationnelles — notes, projets et utilisateurs sont principalement accédés par ID. Si les requêtes relationnelles deviennent critiques, migrer vers Postgres serait la bonne décision."
+          },
+          {
+            "question": "Comment avez-vous géré l'authentification dans les connexions WebSocket ?",
+            "answer": "Le JWT est envoyé comme paramètre de requête pendant le handshake WebSocket. Le serveur Hocuspocus le valide dans le hook onAuthenticate avant d'autoriser la connexion. Côté Socket.io, le middleware extrait et vérifie le token du header d'authentification. Le rafraîchissement du token est géré côté REST ; les connexions WebSocket se rétablissent si le token expire."
+          },
+          {
+            "question": "Comment fonctionne l'édition hors ligne ?",
+            "answer": "Yjs persiste l'état local du document dans IndexedDB via y-indexeddb. Quand l'utilisateur passe hors ligne, les éditions continuent contre le CRDT local. À la reconnexion, HocuspocusProvider synchronise les changements accumulés — la fusion CRDT de Yjs garantit la convergence sans résolution manuelle de conflit."
+          }
+        ],
+        "outcomes": [
+          { "label": "Éditeurs simultanés supportés", "value": "10+" },
+          { "label": "Latence de sync (p95)", "value": "<80 ms" },
+          { "label": "Succès d'écriture hors ligne", "value": "100 %" },
+          {
+            "label": "Persistance des documents",
+            "value": "Auto-save par intervalle + déconnexion"
+          },
+          { "label": "Impact bundle initial", "value": "~13 Ko (Yjs) + ~4 Ko (client Hocuspocus)" }
+        ],
+        "nextSteps": [
+          "Ajouter des benchmarks de comparaison OT vs approche CRDT",
+          "Migrer vers PostgreSQL pour les requêtes relationnelles et la recherche inter-projets",
+          "Ajouter des tests end-to-end avec Playwright pour les flux de collaboration en temps réel",
+          "Implémenter la présence des curseurs (afficher les curseurs des autres utilisateurs en temps réel)",
+          "Ajouter un historique de versions avec des snapshots de documents à un instant T"
+        ]
+      },
+      "real-time-notifications": {
+        "title": "Système de notifications en temps réel",
+        "subtitle": "Architecture de notifications orientée événements utilisant Socket.io pour des mises à jour de tâches instantanées",
+        "tldr": {
+          "bullets": [
+            "Ajouté des notifications in-app instantanées à une plateforme de gestion de tâches existante — zéro changement cassant.",
+            "Utilisé les rooms Socket.io + authentification JWT pour délivrer des alertes ciblées en <50 ms.",
+            "Les notifications sont persistées dans MongoDB pour ne rien perdre si un utilisateur est hors ligne."
+          ],
+          "stack": "Socket.io · Express · MongoDB · JWT · API REST",
+          "role": "Stagiaire chez Technocolabs — responsable de la fonctionnalité notification de bout en bout (conception → déploiement).",
+          "results": [
+            "<50 ms de livraison",
+            "Zéro changement cassant",
+            "Aucune perte de message (persisté + temps réel)"
+          ]
+        },
+        "context": "Développé durant mon stage chez Technocolabs, ce module ajoute la livraison instantanée de notifications à une plateforme de gestion de tâches. Quand une tâche est assignée ou mise à jour, l'utilisateur concerné reçoit une notification in-app immédiate via WebSocket, avec une API REST complète pour l'historique et la gestion de l'état lu/non lu.",
+        "constraints": [
+          "Doit s'intégrer dans un codebase Express + MongoDB existant sans refactoring majeur",
+          "Les notifications doivent être livrées en temps réel mais aussi persistées pour l'historique",
+          "L'authentification doit être cohérente entre les couches REST et WebSocket",
+          "Le middleware de gestion d'erreurs doit attraper et signaler les échecs avec grâce"
+        ],
+        "architectureSections": [
+          {
+            "heading": "Architecture orientée événements",
+            "content": "Le système suit un pattern publish-subscribe. Quand un endpoint REST crée ou met à jour une tâche, il émet un événement interne. Un service de notifications écoute ces événements, crée un enregistrement dans MongoDB et le pousse vers la room Socket.io de l'utilisateur cible en temps réel."
+          },
+          {
+            "heading": "Intégration Socket.io",
+            "content": "Chaque utilisateur authentifié rejoint une room privée (indexée par ID utilisateur) à la connexion WebSocket. Le serveur émet des notifications ciblées vers des rooms spécifiques, garantissant que les utilisateurs ne reçoivent que leurs propres événements. L'authentification de connexion utilise un middleware JWT sur le handshake Socket.io."
+          },
+          {
+            "heading": "Gestion des erreurs",
+            "content": "Un middleware global de gestion d'erreurs Express attrape toutes les erreurs sync/async et retourne des réponses JSON structurées. Les erreurs Socket.io sont attrapées dans les gestionnaires d'événements et loguées. Un endpoint /health a été ajouté pour la surveillance de la disponibilité et de la connectivité."
+          }
+        ],
+        "keyDecisions": [
+          {
+            "question": "Pourquoi Socket.io plutôt que SSE ou WebSockets bruts ?",
+            "answer": "Socket.io fournit la reconnexion automatique, le ciblage par room et les transports de fallback prêts à l'emploi. SSE est unidirectionnel (serveur→client uniquement) et les WebSockets bruts nécessitent de construire la logique de reconnexion manuellement. Pour un système de notifications, l'abstraction de rooms de Socket.io simplifie considérablement le ciblage d'utilisateurs spécifiques."
+          },
+          {
+            "question": "Comment les notifications sont-elles persistées ?",
+            "answer": "Chaque notification est sauvegardée dans MongoDB avant d'être poussée via Socket.io. Cela garantit que l'API d'historique a toujours un enregistrement complet, même si l'utilisateur est hors ligne quand l'événement se déclenche. À la reconnexion, le client récupère les notifications manquées via l'endpoint REST."
+          }
+        ],
+        "outcomes": [
+          { "label": "Latence de livraison", "value": "<50 ms" },
+          {
+            "label": "Impact architectural",
+            "value": "Zéro changement cassant sur l'API existante"
+          },
+          {
+            "label": "Types de notifications",
+            "value": "Assignation de tâche, mise à jour de statut, mention"
+          },
+          { "label": "Fiabilité", "value": "Persisté + temps réel (aucune perte de message)" }
+        ],
+        "nextSteps": [
+          "Ajouter des préférences de notification (muet, mode digest)",
+          "Implémenter les notifications push via Web Push API pour la livraison en arrière-plan",
+          "Ajouter un rate limiting pour prévenir le spam de notifications",
+          "Construire un tableau de bord d'analytique des notifications"
+        ]
+      },
+      "portfolio-site": {
+        "title": "Site Portfolio — Ingénierie d'un portfolio personnel haute performance",
+        "subtitle": "Comment j'ai construit un portfolio avec un LCP <2 s avec React 19, Tailwind v4 et Vite 7 — et les décisions architecturales derrière",
+        "tldr": {
+          "bullets": [
+            "Construit un portfolio qui obtient 95+ en performance Lighthouse, 100 en accessibilité et SEO.",
+            "Pipeline d'image hero : AVIF à 2 breakpoints (5–15 Ko), préchargée avant l'hydratation React.",
+            "6 chunks de sections chargés paresseusement maintiennent le JS initial à ~84 Ko gzip."
+          ],
+          "stack": "React 19 · TypeScript · Tailwind CSS v4 · Vite 7 · React Router v7 · GitHub Actions",
+          "role": "Développeur solo — architecture, design, implémentation, CI/CD et déploiement.",
+          "results": ["Lighthouse 95+ / 100 / 100", "<1.2 s LCP (desktop)", "~84 Ko JS initial"]
+        },
+        "context": "J'avais besoin d'un portfolio qui charge vite, se classe bien sur Google et communique clairement ma profondeur technique — pas seulement une liste de projets. Le site devait être entièrement responsive, accessible, optimisé SEO et facile à maintenir. Il sert aussi de démonstration vivante des compétences frontend et DevOps que je revendique.",
+        "constraints": [
+          "Le LCP doit rester sous 2.5 s sur une connexion 4G — les recruteurs n'attendent pas",
+          "Score d'accessibilité Lighthouse parfait (skip-link, focus-visible, HTML sémantique, labels ARIA)",
+          "SEO : URL canonique, Open Graph, Twitter Card, schéma JSON-LD Person — tout dans le shell HTML",
+          "Zéro dépendance CMS — le contenu vit dans des fichiers TypeScript pour la type-safety et les rebuilds instantanés",
+          "Le formulaire de contact doit fonctionner sans backend personnalisé — pas de serveur à maintenir",
+          "La CI doit bloquer les déploiements cassés : lint, typecheck et budgets Lighthouse avant chaque merge",
+          "Les secrets (clés API) doivent rester hors du repo git tout en étant disponibles au build",
+          "Le bundle doit rester léger — pas de bibliothèque UI lourde ; Tailwind v4 + icônes Lucide uniquement"
+        ],
+        "architectureSections": [
+          {
+            "heading": "Stack & Outillage",
+            "content": "React 19 avec TypeScript 5.9 pour l'UI, Tailwind CSS v4 (mode CSS-in-JS natif via @tailwindcss/vite) pour le style, et Vite 7 pour un HMR quasi-instantané et des builds de production optimisés. React Router v7 gère le routage côté client pour les pages de détail projet et d'étude de cas. Lucide React fournit le jeu d'icônes."
+          },
+          {
+            "heading": "Pipeline d'images",
+            "content": "L'image hero était le principal goulot d'étranglement LCP — à l'origine un JPEG 3840 w servi depuis Supabase. Je l'ai téléchargée, convertie en AVIF à deux breakpoints (1200 w / 5 Ko, 2400 w / 15 Ko), et servie via <img srcset> avec loading=eager et fetchpriority=high. Un <link rel=preload as=image> dans le <head> HTML assure que le navigateur la récupère avant même l'hydratation React. Résultat : ~90 % de réduction de taille et un LCP <1 s sur câble."
+          },
+          {
+            "heading": "Code-Splitting & Lazy Loading",
+            "content": "Seul le banner hero est dans le bundle initial. Chaque section sous la ligne de flottaison (Projets, Expérience, Compétences, Certifications, Contact, Footer) est enveloppée dans React.lazy() + Suspense, produisant six chunks séparés. Combiné avec le hook scroll-reveal, l'utilisateur ne remarque jamais les chargements différés, mais la charge JS initiale baisse significativement."
+          },
+          {
+            "heading": "SEO & Données structurées",
+            "content": "Le shell HTML inclut rel=canonical, les tags Open Graph, les meta Twitter Card et un schéma JSON-LD Person (name, jobTitle, sameAs pour GitHub/LinkedIn). Cela permet à Google de comprendre le site comme un portfolio personnel et active les aperçus enrichis sur les réseaux sociaux — le tout sans SSR."
+          },
+          {
+            "heading": "Accessibilité",
+            "content": "Un lien skip-to-content visuellement masqué apparaît au focus Tab et saute vers <main id=main-content>. Tous les repères de navigation portent un aria-label. Les éléments interactifs affichent un ring :focus-visible visible (couleur d'accent, 2 px d'offset). HTML sémantique (header, nav, main, section, footer) partout."
+          },
+          {
+            "heading": "Transitions de vue & Navigation",
+            "content": "Tous les liens internes utilisent la prop viewTransition de React Router v7, associée aux règles CSS ::view-transition-old/new(root). Les changements de page jouent un crossfade fluide (300 ms ease) au lieu d'un repaint brutal. Le CSS inclut aussi une media query reduced-motion qui désactive l'animation pour les utilisateurs qui le préfèrent."
+          },
+          {
+            "heading": "Page À propos",
+            "content": "Une route dédiée /about présente une chronologie personnelle, des statistiques clés, un aperçu du stack technique et des centres d'intérêt. La page utilise le hook partagé scroll-reveal pour les animations d'entrée et renvoie vers la page d'accueil avec des transitions de vue. Une photo de profil et une mise en page structurée donnent aux recruteurs un aperçu rapide de la personnalité au-delà de la liste de projets."
+          },
+          {
+            "heading": "Arrière-plan ambiant & Polish visuel",
+            "content": "La page d'accueil superpose un fond texturé abstrait sous un overlay semi-transparent, des orbes lumineuses flottantes (CSS radial-gradient + keyframe drift) et des bulles montantes avec tailles, positions et durées aléatoires. Ces éléments purement décoratifs sont marqués aria-hidden et ajoutent de la profondeur sans affecter la performance ou l'accessibilité."
+          },
+          {
+            "heading": "Formulaire de contact",
+            "content": "Le formulaire de contact soumet à Web3Forms via un simple POST avec FormData — pas de backend nécessaire. La clé API est stockée dans un fichier .env localement (VITE_WEB3FORMS_KEY) et injectée au build via un secret de repository GitHub Actions. Cela garde la clé hors du contrôle de version tout en permettant au pipeline CI de l'intégrer dans le bundle de production."
+          },
+          {
+            "heading": "Pipeline CI / CD",
+            "content": "Workflow GitHub Actions : npm ci → ESLint → tsc --noEmit → vite build (avec VITE_WEB3FORMS_KEY des secrets repo) → Lighthouse CI (performance ≥ 0.9, CLS < 0.1). Dependabot maintient les dépendances npm et Actions à jour chaque semaine. CodeQL scanne JavaScript/TypeScript à chaque push pour les vulnérabilités de sécurité. Le déploiement est automatique vers GitHub Pages avec un domaine personnalisé (remyportfolio.me)."
+          }
+        ],
+        "keyDecisions": [
+          {
+            "question": "Pourquoi Vite 7 plutôt que Next.js ou Astro ?",
+            "answer": "Le site est une single-page app sans récupération de données côté serveur — le SSR ajoute de la complexité sans bénéfice ici. Vite offre un HMR quasi-instantané, le tree-shaking et l'ESM natif en dev. L'architecture en îlots d'Astro est intéressante pour les sites riches en contenu mais surdimensionnée pour un petit SPA React. Garder le stack simple signifie aussi moins de choses à déboguer en CI."
+          },
+          {
+            "question": "Pourquoi Tailwind v4 plutôt que v3 ou CSS Modules ?",
+            "answer": "Tailwind v4 embarque un plugin Vite natif (@tailwindcss/vite) qui élimine l'étape PostCSS et active le theming basé sur les CSS layers avec @theme. Le résultat : des builds plus rapides et une sortie plus petite. CSS Modules ajouteraient une prolifération de fichiers pour les mêmes patterns utility-first que j'écrirais de toute façon."
+          },
+          {
+            "question": "Pourquoi stocker le contenu dans des fichiers .ts plutôt qu'un CMS ou MDX ?",
+            "answer": "Les fichiers de données TypeScript donnent une type-safety complète (interfaces Project, CaseStudy), l'autocomplétion IDE instantanée et zéro plugin de build. Ajouter un nouveau projet est une simple entrée dans un tableau — pas de dashboard CMS, pas d'étape de compilation MDX, pas de récupération en runtime. Pour un site personnel avec <20 éléments de contenu, c'est la solution correcte la plus simple."
+          },
+          {
+            "question": "Pourquoi AVIF plutôt que WebP pour l'image hero ?",
+            "answer": "AVIF atteint 30-50 % de fichiers plus petits que WebP à qualité équivalente, et le support navigateur couvre maintenant ~93 % des utilisateurs (Chrome, Firefox, Safari 16+). Le hero 1200 w ne pèse que 5.3 Ko en AVIF contre ~12 Ko en WebP. Pour le petit pourcentage sur des navigateurs plus anciens, le srcset fait un fallback gracieux."
+          },
+          {
+            "question": "Pourquoi lazy-loader les sections plutôt qu'utiliser uniquement l'Intersection Observer ?",
+            "answer": "Le hook scroll-reveal existant ne contrôle que l'opacité/transform CSS — le JS et l'arbre de composants sont toujours envoyés en amont. React.lazy() avec Suspense diffère réellement le parsing et l'évaluation du code de chaque section jusqu'à ce que React essaie de le rendre. Combiné, l'utilisateur voit une animation de révélation fluide pendant que le navigateur fait moins de travail au premier chargement."
+          },
+          {
+            "question": "Pourquoi Web3Forms plutôt qu'EmailJS ou un backend personnalisé pour le formulaire de contact ?",
+            "answer": "Web3Forms ne requiert zéro dépendance — juste un fetch POST avec FormData. EmailJS nécessite un SDK et expose plus de configuration. Un backend personnalisé (ex. Express + Nodemailer) signifie un autre service à maintenir et déployer. Pour un simple formulaire de contact, Web3Forms est la solution correcte la plus simple : une clé API, un appel HTTP, les emails transférés dans ma boîte."
+          }
+        ],
+        "outcomes": [
+          { "label": "Performance Lighthouse", "value": "95+" },
+          { "label": "LCP (desktop / câble)", "value": "<1.2 s" },
+          { "label": "Charge JS initiale", "value": "~84 Ko gzip" },
+          { "label": "Taille image hero", "value": "5–15 Ko (AVIF)" },
+          { "label": "Score accessibilité", "value": "100" },
+          { "label": "Formulaire de contact", "value": "Web3Forms (sans backend)" },
+          { "label": "Chunks code-split", "value": "6 sections lazy" },
+          { "label": "Transitions de page", "value": "View Transition API (crossfade 300 ms)" },
+          {
+            "label": "Routes",
+            "value": "5 (Accueil, À propos, Projet, Étude de cas, redirection 404)"
+          }
+        ],
+        "nextSteps": [
+          "Ajouter une section blog utilisant MDX pour de la rédaction technique longue",
+          "Mettre en place des tests E2E Playwright pour les flux utilisateurs critiques (navigation, liens d'études de cas)",
+          "Ajouter de l'analytique (Plausible ou Umami) pour suivre quels projets attirent le plus l'attention",
+          "Générer des images OG par projet dynamiquement avec @vercel/og ou un script de build"
+        ]
+      }
+    }
+  },
+  "a11y": {
+    "skipToContent": "Aller au contenu principal",
+    "mainNavigation": "Navigation principale",
+    "projectType": "Type de projet",
+    "backToTop": "Retour en haut"
+  }
+}
