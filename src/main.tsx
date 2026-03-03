@@ -2,7 +2,9 @@ import { StrictMode, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import "./index.css";
+import "./i18n";
 import App from "./App.tsx";
+import ErrorBoundary from "./components/ui/ErrorBoundary.tsx";
 
 const HomePage = lazy(() => import("./pages/HomePage.tsx"));
 const ProjectDetailsPage = lazy(() => import("./pages/ProjectDetailsPage.tsx"));
@@ -39,7 +41,11 @@ function PageSkeleton() {
 }
 
 function SuspenseWrapper({ children }: { children: React.ReactNode }) {
-  return <Suspense fallback={<PageSkeleton />}>{children}</Suspense>;
+  return (
+    <ErrorBoundary>
+      <Suspense fallback={<PageSkeleton />}>{children}</Suspense>
+    </ErrorBoundary>
+  );
 }
 
 const router = createBrowserRouter([
