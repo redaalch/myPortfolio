@@ -1,41 +1,34 @@
 import { ExternalLink } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import "./certifications.css";
 
 interface Certification {
-  title: string;
-  issuer: string;
+  key: string;
   issuerLogo: string;
   status: "completed" | "in-progress";
-  issuedDate?: string;
   credentialId?: string;
-  progressNote?: string;
   link: string;
 }
 
 const certifications: Certification[] = [
   {
-    title: "Front-End Developer Professional Certificate",
-    issuer: "Meta — Coursera",
+    key: "meta-frontend",
     issuerLogo: "https://cdn.simpleicons.org/meta/0081FB",
     status: "completed",
-    issuedDate: "Jan 2025",
     credentialId: "62TQTQSEFIFT",
     link: "https://www.coursera.org/account/accomplishments/professional-cert/62TQTQSEFIFT",
   },
   {
-    title: "Back-End JavaScript Developer Professional Certificate",
-    issuer: "IBM — Coursera",
+    key: "ibm-backend",
     issuerLogo: "https://cdn-icons-png.flaticon.com/512/5969/5969147.png",
     status: "in-progress",
-    progressNote: "Next: Express & Databases module",
     link: "https://www.coursera.org/professional-certificates/backend-javascript-developer",
   },
   {
-    title: "LPIC-1: System Administrator",
-    issuer: "Linux Professional Institute",
+    key: "lpic1",
     issuerLogo: "https://cdn.simpleicons.org/linux/FCC624",
     status: "in-progress",
-    progressNote: "Target: Summer 2026",
     link: "https://www.lpi.org/our-certifications/lpic-1-overview/",
   },
 ];
@@ -43,6 +36,7 @@ const certifications: Certification[] = [
 /* ── Status pill component ── */
 function StatusPill({ status }: { status: Certification["status"] }) {
   const isComplete = status === "completed";
+  const { t } = useTranslation();
   return (
     <span
       className={`cert-status-pill ${
@@ -54,13 +48,14 @@ function StatusPill({ status }: { status: Certification["status"] }) {
           isComplete ? "bg-emerald-400" : "bg-amber-400"
         }`}
       />
-      {isComplete ? "Completed" : "In Progress"}
+      {isComplete ? t("certifications.completed") : t("certifications.inProgress")}
     </span>
   );
 }
 
 export default function CertificationsSection() {
   const { ref, visible } = useScrollReveal();
+  const { t } = useTranslation();
 
   return (
     <section id="certifications" className="py-32 relative">
@@ -74,10 +69,10 @@ export default function CertificationsSection() {
       >
         <div className="text-center mb-16">
           <span className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest">
-            Credentials
+            {t("certifications.sectionLabel")}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mt-3 font-instrument-serif italic">
-            Licenses & Certifications
+            {t("certifications.sectionTitle")}
           </h2>
           <div className="mx-auto mt-4 h-px w-24 bg-violet-400/40" />
         </div>
@@ -97,7 +92,7 @@ export default function CertificationsSection() {
                   <div className="cert-logo-box">
                     <img
                       src={cert.issuerLogo}
-                      alt={`${cert.issuer} logo`}
+                      alt={`${t(`certifications.items.${cert.key}.issuer`)} logo`}
                       width={36}
                       height={36}
                       loading="lazy"
@@ -106,8 +101,8 @@ export default function CertificationsSection() {
                   </div>
                   <span
                     className="cert-external-link"
-                    aria-label="View credential"
-                    title="View credential"
+                    aria-label={t("certifications.viewCredential")}
+                    title={t("certifications.viewCredential")}
                   >
                     <ExternalLink className="size-4" strokeWidth={1.8} />
                   </span>
@@ -116,9 +111,11 @@ export default function CertificationsSection() {
                 {/* Title + Platform */}
                 <div className="flex-1 mt-5">
                   <h3 className="text-lg font-semibold leading-snug text-teal-600/90 dark:text-teal-400/85 group-hover:text-violet-400 dark:group-hover:text-violet-300 transition-colors line-clamp-2">
-                    {cert.title}
+                    {t(`certifications.items.${cert.key}.title`)}
                   </h3>
-                  <p className="mt-2.5 text-sm font-medium text-foreground/60">{cert.issuer}</p>
+                  <p className="mt-2.5 text-sm font-medium text-foreground/60">
+                    {t(`certifications.items.${cert.key}.issuer`)}
+                  </p>
                 </div>
 
                 {/* Footer: status pill + metadata */}
@@ -126,11 +123,13 @@ export default function CertificationsSection() {
                   <StatusPill status={cert.status} />
                   <p className="text-xs text-foreground/50">
                     {cert.status === "completed"
-                      ? `Issued ${cert.issuedDate} · No Expiration`
+                      ? t(`certifications.items.${cert.key}.issuedText`)
                       : null}
                   </p>
-                  {cert.progressNote && (
-                    <p className="text-xs text-foreground/45 italic">{cert.progressNote}</p>
+                  {cert.status === "in-progress" && (
+                    <p className="text-xs text-foreground/45 italic">
+                      {t(`certifications.items.${cert.key}.progressNote`)}
+                    </p>
                   )}
                   {cert.credentialId && (
                     <p className="text-[10px] font-mono text-foreground/35 tracking-wide">

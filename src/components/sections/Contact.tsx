@@ -1,6 +1,8 @@
 import type React from "react";
 import { useState, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import "./contact.css";
 import {
   ArrowUpRight,
   FileText,
@@ -51,8 +53,8 @@ function Field({
 }
 
 /* ── Project-type options for the toggle group ── */
-const projectTypes = ["Frontend", "Backend", "Full Stack", "Internship"] as const;
-type ProjectType = (typeof projectTypes)[number];
+const projectTypeKeys = ["frontend", "backend", "fullStack", "internship"] as const;
+type ProjectType = (typeof projectTypeKeys)[number];
 
 /* ── Inline validation helpers ── */
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -71,6 +73,7 @@ function validateField(name: string, value: string): string | null {
 
 export default function ContactSection() {
   const { ref, visible } = useScrollReveal(0.1);
+  const { t } = useTranslation();
   const [formState, setFormState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [touched, setTouched] = useState<Record<string, boolean>>({});
@@ -79,9 +82,12 @@ export default function ContactSection() {
 
   /* ── Derive field errors (only shown after blur) ── */
   const getError = useCallback(
-    (field: string) =>
-      touched[field] ? validateField(field, formData[field as keyof typeof formData]) : null,
-    [formData, touched],
+    (field: string) => {
+      if (!touched[field]) return null;
+      const key = validateField(field, formData[field as keyof typeof formData]);
+      return key ? t(key) : null;
+    },
+    [formData, touched, t],
   );
 
   const handleBlur = (field: string) => setTouched((t) => ({ ...t, [field]: true }));
@@ -201,20 +207,19 @@ export default function ContactSection() {
           <div className="relative z-10 flex h-full flex-col justify-between gap-8">
             <div>
               <span className="text-[11px] font-medium tracking-[0.25em] uppercase text-foreground/60">
-                Get in touch
+                {t("contact.getInTouch")}
               </span>
               <h2 className="mt-3 sm:mt-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[0.93] tracking-tight font-instrument-serif italic bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent">
-                Let's
+                {t("contact.letsWork")}
                 <br />
-                work
+                {t("contact.work")}
                 <br />
-                <span className="text-foreground/60">together</span>
+                <span className="text-foreground/60">{t("contact.together")}</span>
               </h2>
             </div>
 
             <p className="max-w-xs text-sm leading-relaxed text-foreground/65">
-              Have a project in mind or an internship opportunity? I'd love to build something great
-              together.
+              {t("contact.contactDescription")}
             </p>
           </div>
         </div>
@@ -241,10 +246,10 @@ export default function ContactSection() {
                     <CheckCircle2 className="size-6 text-emerald-400" strokeWidth={1.5} />
                   </div>
                   <div className="text-center">
-                    <p className="text-sm font-medium text-foreground/90">Message sent!</p>
-                    <p className="mt-1 text-xs text-foreground/60">
-                      I typically respond within 24–48 hours.
+                    <p className="text-sm font-medium text-foreground/90">
+                      {t("contact.messageSent")}
                     </p>
+                    <p className="mt-1 text-xs text-foreground/60">{t("contact.replyTime")}</p>
                   </div>
                 </div>
               ) : formState === "error" ? (
@@ -254,9 +259,11 @@ export default function ContactSection() {
                     <span className="text-red-400 text-lg font-semibold">!</span>
                   </div>
                   <div className="text-center">
-                    <p className="text-sm font-medium text-foreground/90">Something went wrong</p>
+                    <p className="text-sm font-medium text-foreground/90">
+                      {t("contact.somethingWentWrong")}
+                    </p>
                     <p className="mt-1 text-xs text-foreground/60">
-                      Or email me directly at{" "}
+                      {t("contact.emailDirectly")}{" "}
                       <a
                         href="mailto:reda.alalach@gmail.com"
                         className="text-accent-light hover:underline"
@@ -271,57 +278,57 @@ export default function ContactSection() {
                     className="mt-1 contact-cta"
                     style={{ width: "auto", padding: "0 24px", height: 40 }}
                   >
-                    Try Again
+                    {t("contact.tryAgain")}
                   </button>
                 </div>
               ) : (
                 /* ── Form (idle / sending) ── */
                 <form onSubmit={handleSubmit} className="flex flex-col gap-1" noValidate>
                   <span className="mb-3 text-[11px] font-medium tracking-[0.25em] uppercase text-foreground/60">
-                    Send a message
+                    {t("contact.sendMessage")}
                   </span>
 
                   {/* ── What are you looking for? — chip toggle group ── */}
                   <div className="mb-2 flex flex-col gap-2">
                     <span className="text-xs font-medium text-foreground/50">
-                      What are you looking for?
+                      {t("contact.whatLookingFor")}
                     </span>
                     <div
                       className="flex flex-wrap gap-2 contact-chip-scroll"
                       role="group"
                       aria-label="Project type"
                     >
-                      {projectTypes.map((type) => {
-                        const selected = selectedTypes.has(type);
+                      {projectTypeKeys.map((typeKey) => {
+                        const selected = selectedTypes.has(typeKey);
                         return (
                           <button
-                            key={type}
+                            key={typeKey}
                             type="button"
                             aria-pressed={selected}
-                            onClick={() => toggleType(type)}
+                            onClick={() => toggleType(typeKey)}
                             className={`contact-chip ${selected ? "contact-chip--selected" : ""}`}
                           >
                             {selected && <span className="contact-chip-dot" />}
-                            {type}
+                            {t(`contact.projectTypes.${typeKey}`)}
                           </button>
                         );
                       })}
                     </div>
                     <span className="text-[11px] text-foreground/50">
-                      Helps me route your message
+                      {t("contact.helpsRoute")}
                     </span>
                   </div>
 
                   {/* ── Name & Email ── */}
                   <div className="grid grid-cols-1 gap-x-4 gap-y-0 sm:grid-cols-2">
-                    <Field label="Name" name="name" error={getError("name")}>
+                    <Field label={t("contact.name")} name="name" error={getError("name")}>
                       <input
                         id="contact-name"
                         type="text"
                         name="name"
                         required
                         autoComplete="name"
-                        placeholder="Your name"
+                        placeholder={t("contact.namePlaceholder")}
                         value={formData.name}
                         onChange={(e) => handleChange("name", e.target.value)}
                         onBlur={() => handleBlur("name")}
@@ -329,14 +336,14 @@ export default function ContactSection() {
                         className={`contact-input ${getError("name") ? "has-error" : ""}`}
                       />
                     </Field>
-                    <Field label="Email" name="email" error={getError("email")}>
+                    <Field label={t("contact.email")} name="email" error={getError("email")}>
                       <input
                         id="contact-email"
                         type="email"
                         name="email"
                         required
                         autoComplete="email"
-                        placeholder="you@example.com"
+                        placeholder={t("contact.emailPlaceholder")}
                         value={formData.email}
                         onChange={(e) => handleChange("email", e.target.value)}
                         onBlur={() => handleBlur("email")}
@@ -347,13 +354,13 @@ export default function ContactSection() {
                   </div>
 
                   {/* ── Message ── */}
-                  <Field label="Message" name="message" error={getError("message")}>
+                  <Field label={t("contact.message")} name="message" error={getError("message")}>
                     <textarea
                       id="contact-message"
                       name="message"
                       required
                       autoComplete="off"
-                      placeholder="Tell me about your project or opportunity…"
+                      placeholder={t("contact.messagePlaceholder")}
                       rows={4}
                       value={formData.message}
                       onChange={(e) => handleChange("message", e.target.value)}
@@ -372,22 +379,22 @@ export default function ContactSection() {
                     {formState === "sending" ? (
                       <>
                         <Loader2 className="size-4 animate-spin" strokeWidth={2} />
-                        <span>Sending…</span>
+                        <span>{t("contact.sending")}</span>
                       </>
                     ) : (
                       <>
                         <Send className="size-4" strokeWidth={1.8} />
-                        <span>Send Message</span>
+                        <span>{t("contact.sendBtn")}</span>
                       </>
                     )}
                   </button>
 
                   {/* ── Form footer bar ── */}
                   <div className="contact-form-footer">
-                    <span>I typically reply within 1–24h</span>
+                    <span>{t("contact.replyTimeShort")}</span>
                     <span className="inline-flex items-center gap-1">
                       <Lock className="size-3" strokeWidth={1.5} />
-                      Your email stays private
+                      {t("contact.emailPrivate")}
                     </span>
                   </div>
                 </form>
@@ -406,7 +413,7 @@ export default function ContactSection() {
                 <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
               </span>
               <span className="text-[13px] font-medium text-foreground/70">
-                Available for internships &amp; projects
+                {t("contact.availableFor")}
               </span>
             </div>
           </div>
@@ -423,8 +430,8 @@ export default function ContactSection() {
                 <FileText className="size-5 text-foreground/60" strokeWidth={1.5} />
               </div>
               <div>
-                <p className="text-sm font-medium text-foreground/85">View CV</p>
-                <p className="text-[11px] text-foreground/55">Download resume</p>
+                <p className="text-sm font-medium text-foreground/85">{t("contact.viewCvCard")}</p>
+                <p className="text-[11px] text-foreground/55">{t("contact.downloadResume")}</p>
               </div>
             </div>
             <ArrowUpRight
@@ -446,7 +453,7 @@ export default function ContactSection() {
                 <Mail className="size-5 text-foreground/60" strokeWidth={1.5} />
               </div>
               <div className="min-w-0">
-                <p className="text-sm font-medium text-foreground/85">Email</p>
+                <p className="text-sm font-medium text-foreground/85">{t("contact.emailLabel")}</p>
                 <p className="truncate text-[11px] text-foreground/55">reda.alalach@gmail.com</p>
               </div>
             </a>
@@ -455,7 +462,7 @@ export default function ContactSection() {
             <button
               type="button"
               onClick={copyEmail}
-              aria-label="Copy email address"
+              aria-label={t("contact.copyEmail")}
               className="relative ml-2 flex size-8 shrink-0 items-center justify-center rounded-lg bg-foreground/5 text-foreground/40 transition-colors hover:bg-foreground/10 hover:text-foreground/70"
             >
               {emailCopied ? (
@@ -470,7 +477,7 @@ export default function ContactSection() {
                   className="contact-toast absolute -top-8 whitespace-nowrap rounded-md bg-foreground/90 px-2 py-1 text-[10px] font-medium text-background"
                   style={{ insetInlineEnd: 0 }}
                 >
-                  Copied!
+                  {t("contact.copied")}
                 </span>
               )}
             </button>
