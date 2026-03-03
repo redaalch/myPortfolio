@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import technocolabsLogo from "../../assets/technocolabs_logo.avif";
 import alchdevLogo from "../../assets/alchdev.avif";
@@ -13,39 +14,35 @@ interface Experience {
   bullets: string[];
 }
 
-const experiences: Experience[] = [
-  {
-    company: "Technocolabs Softwares Inc.",
-    shortName: "Technocolabs",
-    logo: technocolabsLogo,
-    role: "Full-Stack Developer Intern (MERN)",
-    period: "Oct 2025 – Present",
-    type: "Remote",
-    bullets: [
-      "Built a real-time notification system with Socket.io delivering alerts in <50 ms to 3 notification channels (task assignment, status change, mention).",
-      "Implemented JWT auth middleware that secured 100% of API routes and WebSocket handshakes, cutting unauthorized access attempts to zero in staging.",
-      "Deployed full-stack environments across 4 platforms (Render, Vercel, Railway, Netlify), reducing deployment issues by standardizing env config across services.",
-      "Added /health endpoint enabling uptime monitoring for the first time — adopted by the team lead for incident response within the first week.",
-    ],
-  },
-  {
-    company: "ALCHDEV BUSINESS",
-    shortName: "ALCHDEV",
-    logo: alchdevLogo,
-    role: "Web Developer Intern",
-    period: "Jul 2025 – Sep 2025",
-    type: "On-site",
-    bullets: [
-      "Built 5+ new pages in a React.js application and integrated 3 REST API endpoints, reducing feature delivery time by ~20%.",
-      "Standardized UI patterns with React Router, Redux, and a shared component library, cutting cross-page inconsistencies by ~40%.",
-      "Refactored rendering logic and fixed cross-browser CSS issues, improving Lighthouse performance score from ~70 to 85+.",
-    ],
-  },
-];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getExperiences(t: (key: string, opts?: any) => any): Experience[] {
+  return [
+    {
+      company: "Technocolabs Softwares Inc.",
+      shortName: "Technocolabs",
+      logo: technocolabsLogo,
+      role: t("experience.items.technocolabs.role") as string,
+      period: t("experience.items.technocolabs.period") as string,
+      type: t("experience.items.technocolabs.type") as string,
+      bullets: t("experience.items.technocolabs.bullets", { returnObjects: true }) as string[],
+    },
+    {
+      company: "ALCHDEV BUSINESS",
+      shortName: "ALCHDEV",
+      logo: alchdevLogo,
+      role: t("experience.items.alchdev.role") as string,
+      period: t("experience.items.alchdev.period") as string,
+      type: t("experience.items.alchdev.type") as string,
+      bullets: t("experience.items.alchdev.bullets", { returnObjects: true }) as string[],
+    },
+  ];
+}
 
 export default function ExperienceSection() {
   const { ref, visible } = useScrollReveal();
   const [activeIndex, setActiveIndex] = useState(0);
+  const { t } = useTranslation();
+  const experiences = getExperiences(t);
   const active = experiences[activeIndex];
 
   return (
@@ -61,7 +58,7 @@ export default function ExperienceSection() {
         {/* Title with horizontal line */}
         <div className="flex items-center gap-4 sm:gap-6 mb-10 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-violet-400 via-purple-300 to-indigo-400 bg-clip-text text-transparent font-instrument-serif italic shrink-0">
-            My Work Experiences
+            {t("experience.sectionTitle")}
           </h2>
           <div className="flex-1 h-px bg-foreground/15 hidden sm:block" />
         </div>

@@ -1,8 +1,9 @@
 import { Github, BookOpen, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTheme } from "../../hooks/useTheme";
-import { projects, type Project } from "../../data/projects";
+import { getLocalizedProjects, type Project } from "../../data/projects";
 
 /* ================================================================== */
 /*  Alternating project row — reference: muhammadaamirmalik.com       */
@@ -17,6 +18,7 @@ function ProjectRow({
   isLight: boolean;
 }) {
   const isEven = index % 2 === 0; // even → text left / image right
+  const { t } = useTranslation();
 
   /* ── Image element (reused in both layouts) ── */
   const image = project.image ? (
@@ -50,7 +52,7 @@ function ProjectRow({
     >
       {/* Featured label */}
       <span className={`text-xs tracking-wide ${isLight ? "text-foreground/50" : "text-white/50"}`}>
-        Featured Project
+        {t("projects.featuredProject")}
       </span>
 
       {/* Title */}
@@ -118,7 +120,7 @@ function ProjectRow({
               : "ring-1 ring-white/20 text-white hover:bg-white/5"
           }`}
         >
-          View Details
+          {t("projects.viewDetails")}
         </Link>
 
         {/* Case Study */}
@@ -133,7 +135,7 @@ function ProjectRow({
             }`}
           >
             <BookOpen className="w-3.5 h-3.5" />
-            Case Study
+            {t("projects.caseStudy")}
           </Link>
         )}
 
@@ -151,7 +153,7 @@ function ProjectRow({
             }`}
           >
             <ExternalLink className="w-3.5 h-3.5" />
-            Live
+            {t("projects.live")}
           </a>
         )}
 
@@ -195,6 +197,7 @@ function ProjectRow({
 export default function ProjectsSection() {
   const { ref, visible } = useScrollReveal();
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const isLight = theme === "light";
 
   return (
@@ -209,13 +212,13 @@ export default function ProjectsSection() {
       >
         <div className="text-center mb-10 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent font-instrument-serif italic">
-            Projects
+            {t("projects.sectionTitle")}
           </h2>
         </div>
 
         {/* ── Alternating project rows ── */}
         <div className="flex flex-col gap-20 lg:gap-28">
-          {projects.map((project, i) => (
+          {getLocalizedProjects(t).map((project, i) => (
             <ProjectRow key={project.slug} project={project} index={i} isLight={isLight} />
           ))}
         </div>
@@ -227,7 +230,7 @@ export default function ProjectsSection() {
             viewTransition
             className="contact-cta inline-flex items-center text-sm font-semibold uppercase tracking-widest px-8 py-3.5 rounded-xl"
           >
-            View All Projects
+            {t("projects.viewAllProjects")}
           </Link>
         </div>
       </div>

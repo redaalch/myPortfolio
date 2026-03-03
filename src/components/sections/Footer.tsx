@@ -1,28 +1,30 @@
 import { Github, Linkedin, Mail, CheckCircle2, Gauge } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import Logo from "../ui/Logo";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 
-const lighthouseScores = [
-  { label: "Performance", score: "95+" },
-  { label: "Accessibility", score: "100" },
-  { label: "Best Practices", score: "100" },
-  { label: "SEO", score: "100" },
+const lighthouseKeys = [
+  { key: "performance", score: "95+" },
+  { key: "accessibility", score: "100" },
+  { key: "bestPractices", score: "100" },
+  { key: "seo", score: "100" },
 ];
 
 export default function Footer() {
   const { ref, visible } = useScrollReveal(0.1);
+  const { t } = useTranslation();
   return (
     <footer className="py-16 relative">
       <div ref={ref} className={`max-w-7xl mx-auto px-6 ${visible ? "reveal visible" : "reveal"}`}>
         {/* Lighthouse scores */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
           <Gauge className="w-4 h-4 text-foreground/70" />
-          {lighthouseScores.map((item) => (
+          {lighthouseKeys.map((item) => (
             <span
-              key={item.label}
+              key={item.key}
               className="inline-flex items-center gap-1.5 rounded-full bg-foreground/[0.04] px-3 py-1.5 text-xs font-medium text-foreground/70 ring-1 ring-foreground/8"
             >
-              {item.label}
+              {t(`footer.lighthouse.${item.key}`)}
               <span className="text-violet-400 font-semibold">{item.score}</span>
             </span>
           ))}
@@ -31,7 +33,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <Logo height={44} className="opacity-50" />
-            <span className="text-sm text-foreground/70">&middot; Full-Stack Developer</span>
+            <span className="text-sm text-foreground/70">&middot; {t("footer.role")}</span>
           </div>
 
           <div className="flex items-center gap-4">
@@ -44,7 +46,7 @@ export default function Footer() {
               aria-label="CI status"
             >
               <CheckCircle2 className="w-3 h-3" />
-              CI passing
+              {t("footer.ciPassing")}
             </a>
 
             <a
@@ -76,7 +78,7 @@ export default function Footer() {
         </div>
 
         <p className="text-center text-xs text-foreground/70 mt-8">
-          &copy; {new Date().getFullYear()} Reda Alalach. All rights reserved.
+          {t("footer.copyright", { year: new Date().getFullYear() })}
         </p>
       </div>
     </footer>
