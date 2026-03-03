@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail, ArrowLeft, Download } from "lucide-react";
 import Navbar from "../components/ui/Navbar";
@@ -7,105 +8,67 @@ import DarkGradientBg from "../components/ui/DarkGradientBg";
 import profileImg from "../assets/profile.avif";
 
 /* ================================================================== */
-/*  Data                                                               */
+/*  Static data (non-translatable fields only)                         */
 /* ================================================================== */
 
-const EXPERIENCE = [
+const EXPERIENCE_META = [
   {
-    period: "Oct 2025 — Present",
-    title: "Full-Stack Developer Intern",
+    key: "technocolabs",
     company: "Technocolabs Softwares Inc.",
-    location: "Remote",
     link: "https://technocolabs.com/",
-    bullets: [
-      "Built real-time notification system with Socket.io — <50 ms delivery across 3 channels (assignment, status, mention).",
-      "Implemented JWT auth middleware securing 100% of API routes and WebSocket connections.",
-      "Deployed across 4 platforms (Render, Vercel, Railway, Netlify) with standardized env config.",
-      "Added /health endpoint enabling uptime monitoring — adopted for incident response within first week.",
-    ],
   },
   {
-    period: "Jul 2025 — Sep 2025",
-    title: "Web Developer Intern",
+    key: "alchdev",
     company: "ALCHDEV BUSINESS",
-    location: "On-site",
     link: "https://alchdev.com/",
-    bullets: [
-      "Built 5+ pages and integrated 3 REST API endpoints, reducing feature delivery time by ~20%.",
-      "Standardized UI with React Router, Redux, and shared components — cut cross-page inconsistencies ~40%.",
-      "Refactored rendering and fixed cross-browser CSS issues, improving Lighthouse performance from ~70 to 85+.",
-    ],
   },
 ];
 
-const PROJECTS = [
+const PROJECTS_META = [
   {
+    key: "notesboard",
     year: "2025",
     title: "NotesBoard",
-    description:
-      "Collaborative notes & analytics platform with real-time editing (Yjs/Hocuspocus), shared dashboards, drag-and-drop, and offline cache.",
     link: "https://notesboard.xyz/",
     tags: ["React", "Express", "MongoDB", "Yjs", "Socket.io"],
   },
   {
+    key: "real-time-notifications",
     year: "2025",
     title: "Real-time Notifications Module",
-    description:
-      "Event-driven notifications for task updates with <50ms delivery, persisted history, and toast UI feedback. Built during Technocolabs internship.",
     tags: ["Socket.io", "Express", "JWT", "REST"],
   },
   {
+    key: "alarm-clock",
     year: "2025",
     title: "Alarm Clock PWA",
-    description:
-      "Lightweight progressive web app with recurring alarms, local persistence, desktop notifications, and full offline support.",
     link: "https://redaalch.github.io/alarm-clock/",
     tags: ["JavaScript", "HTML", "CSS", "PWA"],
   },
   {
+    key: "portfolio-site",
     year: "2025",
     title: "Portfolio (This Site)",
-    description:
-      "Modern portfolio with React 19, Tailwind v4, smooth animations, case studies, and Lighthouse 95+ scores.",
     link: "https://redaalalach.me/",
     tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
   },
 ];
 
-const EDUCATION = [
-  {
-    period: "2021 — 2026",
-    title: "B.Sc. Computer Science",
-    institution: "FSDM, Sidi Mohamed Ben Abdellah University",
-    location: "Fez, Morocco",
-  },
-  {
-    period: "2021",
-    title: "Baccalaureate — Mathematical Sciences",
-    institution: "Al-Wahda High School (International Option)",
-    location: "Taounate, Morocco",
-  },
-];
+const EDUCATION_META = [{ key: "bsc" }, { key: "bac" }];
 
-const CERTIFICATIONS = [
+const CERTIFICATIONS_META = [
   {
-    year: "Jan 2025",
-    title: "Front-End Developer Professional Certificate",
-    issuer: "Meta — Coursera",
+    key: "meta-frontend",
     status: "completed" as const,
     link: "https://www.coursera.org/account/accomplishments/professional-cert/62TQTQSEFIFT",
   },
   {
-    year: "In Progress",
-    title: "Back-End JavaScript Developer Professional Certificate",
-    issuer: "IBM — Coursera",
+    key: "ibm-backend",
     status: "in-progress" as const,
     link: "https://www.coursera.org/professional-certificates/backend-javascript-developer",
   },
   {
-    year: "In Progress",
-    title: "LPIC-1: System Administrator",
-    issuer: "Linux Professional Institute",
+    key: "lpic1",
     status: "in-progress" as const,
     link: "https://www.lpi.org/our-certifications/lpic-1-overview/",
   },
@@ -161,20 +124,21 @@ const SECTIONS = [
 
 type SectionId = (typeof SECTIONS)[number];
 
-const SECTION_LABELS: Record<SectionId, string> = {
-  about: "About",
-  experience: "Work Experience",
-  projects: "Projects",
-  education: "Education",
-  certifications: "Certifications",
-  skills: "Skills",
-  contact: "Contact",
+const SECTION_KEYS: Record<SectionId, string> = {
+  about: "about",
+  experience: "experience",
+  projects: "projects",
+  education: "education",
+  certifications: "certifications",
+  skills: "skills",
+  contact: "contact",
 };
 
 /* ================================================================== */
 /*  Component                                                          */
 /* ================================================================== */
 export default function CvPage() {
+  const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState<SectionId>("about");
 
   /* ── Intersection Observer for sidebar highlight ── */
@@ -217,7 +181,7 @@ export default function CvPage() {
                   : "text-foreground/55 hover:text-foreground/90"
               }`}
             >
-              {SECTION_LABELS[id]}
+              {t(`cv.sections.${SECTION_KEYS[id]}`)}
             </a>
           ))}
         </div>
@@ -232,10 +196,10 @@ export default function CvPage() {
             className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"
           >
             <ArrowLeft className="size-3.5" />
-            Home
+            {t("nav.home")}
           </Link>
           <span className="opacity-40">/</span>
-          <span className="text-foreground/80">CV</span>
+          <span className="text-foreground/80">{t("cv.breadcrumb")}</span>
         </nav>
 
         {/* ================================================================ */}
@@ -248,13 +212,13 @@ export default function CvPage() {
                 Reda Alalach
               </span>
             </h1>
-            <p className="text-lg text-foreground/70 sm:text-xl">Full-Stack Developer · Morocco</p>
+            <p className="text-lg text-foreground/70 sm:text-xl">{t("cv.subtitle")}</p>
             <p className="text-sm text-foreground/50 leading-relaxed">
-              Seeking: Backend Intern · Junior Backend · Junior Full-Stack
+              {t("cv.seeking")}
               <br />
-              Morocco (GMT+1) · Remote-friendly · Available now
+              {t("cv.locationRemote")}
               <br />
-              Stack: Node.js · Express · MongoDB · React · TypeScript · Docker
+              {t("cv.stackSummary")}
             </p>
             <div className="flex items-center gap-4 text-sm text-foreground/70">
               <a
@@ -282,7 +246,7 @@ export default function CvPage() {
               className="lg:hidden inline-flex items-center gap-2 rounded-lg border border-foreground/20 bg-foreground/5 px-4 py-2 text-sm font-medium text-foreground/80 hover:bg-foreground/10 hover:text-foreground transition-colors"
             >
               <Download className="size-4" />
-              Download PDF
+              {t("cv.downloadPdf")}
             </a>
           </div>
 
@@ -317,7 +281,7 @@ export default function CvPage() {
                     : "text-foreground/70 hover:text-foreground/90"
                 }`}
               >
-                {SECTION_LABELS[id]}
+                {t(`cv.sections.${SECTION_KEYS[id]}`)}
               </a>
             ))}
 
@@ -329,7 +293,7 @@ export default function CvPage() {
               className="mt-2 inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-foreground/70 hover:text-foreground/90 transition-colors"
             >
               <Download className="size-3.5" />
-              Download PDF
+              {t("cv.downloadPdf")}
             </a>
           </nav>
 
@@ -337,35 +301,22 @@ export default function CvPage() {
           <div className="min-w-0 flex-1 space-y-12 sm:space-y-20">
             {/* ── About ── */}
             <section id="about">
-              <SectionHeading>About</SectionHeading>
+              <SectionHeading>{t("cv.sections.about")}</SectionHeading>
               <div className="space-y-4 text-foreground/80 leading-relaxed max-w-2xl">
-                <p>
-                  Born and raised in Taounate, Morocco, I grew up surrounded by technology — both of
-                  my brothers are in tech, and one of them is a DevSecOps engineer. Watching them
-                  work sparked my curiosity early on and set me on the path to becoming a developer.
-                </p>
-                <p>
-                  I'm a full-stack developer building secure REST APIs with Node.js/Express and
-                  database-backed business logic (MongoDB/Mongoose). I've delivered production-ready
-                  features including JWT authentication, middleware pipelines, global error
-                  handling, real-time events with Socket.io, and cloud deployments.
-                </p>
-                <p>
-                  Graduating in 2026 with a B.Sc. in Computer Science from FSDM, Fez. Currently
-                  learning Google Cloud Platform, Cloud Functions, and Firebase to build scalable
-                  serverless backends. Open to internships and junior full-stack / backend roles.
-                </p>
+                <p>{t("cv.about.p1")}</p>
+                <p>{t("cv.about.p2")}</p>
+                <p>{t("cv.about.p3")}</p>
               </div>
             </section>
 
             {/* ── Work Experience ── */}
             <section id="experience">
-              <SectionHeading>Work Experience</SectionHeading>
+              <SectionHeading>{t("cv.sections.experience")}</SectionHeading>
               <div className="space-y-10">
-                {EXPERIENCE.map((xp, i) => (
+                {EXPERIENCE_META.map((xp, i) => (
                   <div key={i} className="group flex flex-col gap-3 sm:flex-row sm:gap-10">
                     <span className="shrink-0 text-sm tabular-nums text-foreground/70 sm:w-40 sm:pt-0.5">
-                      {xp.period}
+                      {t(`cv.experience.${xp.key}.period`)}
                     </span>
                     <div className="min-w-0 flex-1">
                       <a
@@ -374,11 +325,15 @@ export default function CvPage() {
                         rel="noopener noreferrer"
                         className="text-base font-semibold text-foreground hover:text-violet-400 transition-colors"
                       >
-                        {xp.title} at {xp.company}
+                        {t(`cv.experience.${xp.key}.titleAtCompany`)}
                       </a>
-                      <p className="mt-0.5 text-sm text-foreground/70">{xp.location}</p>
+                      <p className="mt-0.5 text-sm text-foreground/70">
+                        {t(`cv.experience.${xp.key}.location`)}
+                      </p>
                       <ul className="mt-3 space-y-1.5">
-                        {xp.bullets.map((b, j) => (
+                        {(
+                          t(`cv.experience.${xp.key}.bullets`, { returnObjects: true }) as string[]
+                        ).map((b, j) => (
                           <li
                             key={j}
                             className="relative pl-4 text-sm text-foreground/80 leading-relaxed before:absolute before:left-0 before:top-[0.55em] before:size-1 before:rounded-full before:bg-foreground/40"
@@ -395,9 +350,9 @@ export default function CvPage() {
 
             {/* ── Projects ── */}
             <section id="projects">
-              <SectionHeading>Projects</SectionHeading>
+              <SectionHeading>{t("cv.sections.projects")}</SectionHeading>
               <div className="space-y-8">
-                {PROJECTS.map((p, i) => (
+                {PROJECTS_META.map((p, i) => (
                   <div key={i} className="flex flex-col gap-2 sm:flex-row sm:gap-10">
                     <span className="shrink-0 text-sm tabular-nums text-foreground/70 sm:w-40 sm:pt-0.5">
                       {p.year}
@@ -416,15 +371,15 @@ export default function CvPage() {
                         <span className="text-base font-semibold text-foreground">{p.title}</span>
                       )}
                       <p className="mt-1 text-sm text-foreground/80 leading-relaxed">
-                        {p.description}
+                        {t(`cv.projects.${p.key}.description`)}
                       </p>
                       <div className="mt-2.5 flex flex-wrap gap-1.5">
-                        {p.tags.map((t) => (
+                        {p.tags.map((tag) => (
                           <span
-                            key={t}
+                            key={tag}
                             className="rounded-full border border-foreground/15 bg-foreground/5 px-2.5 py-0.5 text-[11px] font-medium text-foreground/70"
                           >
-                            {t}
+                            {tag}
                           </span>
                         ))}
                       </div>
@@ -436,17 +391,23 @@ export default function CvPage() {
 
             {/* ── Education ── */}
             <section id="education">
-              <SectionHeading>Education</SectionHeading>
+              <SectionHeading>{t("cv.sections.education")}</SectionHeading>
               <div className="space-y-8">
-                {EDUCATION.map((ed, i) => (
+                {EDUCATION_META.map((ed, i) => (
                   <div key={i} className="flex flex-col gap-2 sm:flex-row sm:gap-10">
                     <span className="shrink-0 text-sm tabular-nums text-foreground/70 sm:w-40 sm:pt-0.5">
-                      {ed.period}
+                      {t(`cv.education.${ed.key}.period`)}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <span className="text-base font-semibold text-foreground">{ed.title}</span>
-                      <p className="mt-0.5 text-sm text-foreground/70">{ed.institution}</p>
-                      <p className="text-sm text-foreground/70">{ed.location}</p>
+                      <span className="text-base font-semibold text-foreground">
+                        {t(`cv.education.${ed.key}.title`)}
+                      </span>
+                      <p className="mt-0.5 text-sm text-foreground/70">
+                        {t(`cv.education.${ed.key}.institution`)}
+                      </p>
+                      <p className="text-sm text-foreground/70">
+                        {t(`cv.education.${ed.key}.location`)}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -455,12 +416,14 @@ export default function CvPage() {
 
             {/* ── Certifications ── */}
             <section id="certifications">
-              <SectionHeading>Certifications</SectionHeading>
+              <SectionHeading>{t("cv.sections.certifications")}</SectionHeading>
               <div className="space-y-6">
-                {CERTIFICATIONS.map((c, i) => (
+                {CERTIFICATIONS_META.map((c, i) => (
                   <div key={i} className="flex flex-col gap-2 sm:flex-row sm:gap-10">
                     <span className="shrink-0 text-sm tabular-nums text-foreground/70 sm:w-40 sm:pt-0.5">
-                      {c.year}
+                      {c.status === "completed"
+                        ? t(`certifications.items.${c.key}.issuedDate`)
+                        : t("cv.inProgress")}
                     </span>
                     <div className="min-w-0 flex-1">
                       <a
@@ -469,12 +432,14 @@ export default function CvPage() {
                         rel="noopener noreferrer"
                         className="text-base font-semibold text-foreground hover:text-violet-400 transition-colors"
                       >
-                        {c.title}
+                        {t(`certifications.items.${c.key}.title`)}
                       </a>
-                      <p className="mt-0.5 text-sm text-foreground/70">{c.issuer}</p>
+                      <p className="mt-0.5 text-sm text-foreground/70">
+                        {t(`certifications.items.${c.key}.issuer`)}
+                      </p>
                       {c.status === "in-progress" && (
                         <span className="mt-1.5 inline-block rounded-full border border-amber-500/20 bg-amber-500/10 px-2.5 py-0.5 text-[11px] font-medium text-amber-400">
-                          In Progress
+                          {t("cv.inProgress")}
                         </span>
                       )}
                     </div>
@@ -485,7 +450,7 @@ export default function CvPage() {
 
             {/* ── Skills ── */}
             <section id="skills">
-              <SectionHeading>Skills</SectionHeading>
+              <SectionHeading>{t("cv.sections.skills")}</SectionHeading>
               <div className="flex flex-wrap gap-2">
                 {SKILLS.map((s) => (
                   <span
@@ -500,7 +465,7 @@ export default function CvPage() {
 
             {/* ── Contact ── */}
             <section id="contact">
-              <SectionHeading>Contact</SectionHeading>
+              <SectionHeading>{t("cv.sections.contact")}</SectionHeading>
               <div className="space-y-4">
                 {CONTACT.map((c) => {
                   const Icon = c.icon;
@@ -526,7 +491,7 @@ export default function CvPage() {
 
             {/* ── Footer ── */}
             <div className="border-t border-foreground/15 pt-8 text-center text-xs text-foreground/70">
-              Last updated February 2026 · Built with React + Tailwind CSS
+              {t("cv.lastUpdated")}
             </div>
           </div>
         </div>

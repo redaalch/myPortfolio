@@ -1,15 +1,18 @@
-import { Github, Linkedin, Mail, ArrowLeft, ExternalLink } from "lucide-react";
+import { Github, ArrowLeft, ExternalLink } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { getCaseStudyBySlug } from "../data/case-studies";
-import { getProjectBySlug } from "../data/projects";
+import { useTranslation } from "react-i18next";
+import { getLocalizedCaseStudyBySlug } from "../data/case-studies";
+import { getLocalizedProjectBySlug } from "../data/projects";
 import Navbar from "../components/ui/Navbar";
 import BackToTop from "../components/ui/BackToTop";
+import SocialSidebar from "../components/ui/SocialSidebar";
 
 export default function CaseStudyPage() {
   const { slug } = useParams();
-  const caseStudy = slug ? getCaseStudyBySlug(slug) : undefined;
-  const project = caseStudy ? getProjectBySlug(caseStudy.projectSlug) : undefined;
+  const { t } = useTranslation();
+  const caseStudy = slug ? getLocalizedCaseStudyBySlug(slug, t) : undefined;
+  const project = caseStudy ? getLocalizedProjectBySlug(caseStudy.projectSlug, t) : undefined;
 
   // Inject JSON-LD structured data for SEO
   useEffect(() => {
@@ -53,59 +56,17 @@ export default function CaseStudyPage() {
     <main className="relative min-h-screen bg-background text-foreground">
       <Navbar />
 
-      {/* Left social strip */}
-      <aside className="hidden lg:flex fixed left-8 top-0 bottom-0 z-30 flex-col items-center justify-center gap-6">
-        <div className="flex flex-col items-center gap-5">
-          <a
-            href="https://github.com/redaalch"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
-            aria-label="GitHub"
-          >
-            <Github className="w-5 h-5" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/reda-alalach/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="w-5 h-5" />
-          </a>
-          <a
-            href="mailto:reda.alalach@gmail.com"
-            className="text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
-            aria-label="Email"
-          >
-            <Mail className="w-5 h-5" />
-          </a>
-        </div>
-        <div className="w-px h-24 bg-foreground/15" />
-      </aside>
-
-      {/* Right email strip */}
-      <aside className="hidden lg:flex fixed right-8 top-0 bottom-0 z-30 flex-col items-center justify-center gap-6">
-        <a
-          href="mailto:reda.alalach@gmail.com"
-          className="text-xs tracking-[0.18em] text-foreground/70 hover:text-violet-400 transition-colors"
-          style={{ writingMode: "vertical-rl" }}
-        >
-          reda.alalach@gmail.com
-        </a>
-        <div className="w-px h-24 bg-foreground/15" />
-      </aside>
+      <SocialSidebar />
 
       <div className="max-w-225 mx-auto px-5 lg:px-12 pt-36 pb-16">
         {/* Breadcrumb */}
         <nav className="text-sm text-foreground/80 mb-10 flex flex-wrap items-center gap-y-1">
           <Link to="/" viewTransition className="hover:underline transition-colors">
-            Home
+            {t("nav.home")}
           </Link>
           <span className="mx-2.5 opacity-60">/</span>
           <Link to="/#projects" viewTransition className="hover:underline transition-colors">
-            Projects
+            {t("nav.projects")}
           </Link>
           <span className="mx-2.5 opacity-60">/</span>
           {project && (
@@ -120,13 +81,13 @@ export default function CaseStudyPage() {
               <span className="mx-2.5 opacity-60">/</span>
             </>
           )}
-          <span>Case Study</span>
+          <span>{t("caseStudy.breadcrumb")}</span>
         </nav>
 
         {/* Header */}
         <header className="mb-16">
           <p className="uppercase tracking-[1px] text-[13px] text-foreground/70 mb-4 font-normal">
-            Case Study
+            {t("caseStudy.label")}
           </p>
           <h1
             className="font-bold text-teal-600 dark:text-teal-400 mb-4 leading-[1.2]"
@@ -145,7 +106,7 @@ export default function CaseStudyPage() {
               className="inline-flex items-center gap-2 mt-6 text-sm text-violet-400 hover:text-violet-300 transition-colors"
             >
               <Github className="w-4 h-4" />
-              View Source Code
+              {t("caseStudy.viewSourceCode")}
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           )}
@@ -157,7 +118,7 @@ export default function CaseStudyPage() {
           <div className="px-6 sm:px-8 py-4 border-b border-foreground/8 flex items-center gap-3">
             <span className="h-2 w-2 rounded-full bg-teal-500" />
             <h2 className="text-sm font-semibold text-foreground/90 uppercase tracking-[0.12em]">
-              At a Glance
+              {t("caseStudy.atAGlance")}
             </h2>
           </div>
 
@@ -191,19 +152,19 @@ export default function CaseStudyPage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-foreground/8">
               <div>
                 <p className="text-[11px] font-medium text-foreground/40 uppercase tracking-[0.15em] mb-2">
-                  Stack
+                  {t("caseStudy.stack")}
                 </p>
                 <p className="text-sm text-foreground/75 leading-relaxed">{caseStudy.tldr.stack}</p>
               </div>
               <div>
                 <p className="text-[11px] font-medium text-foreground/40 uppercase tracking-[0.15em] mb-2">
-                  Role
+                  {t("caseStudy.role")}
                 </p>
                 <p className="text-sm text-foreground/75 leading-relaxed">{caseStudy.tldr.role}</p>
               </div>
               <div>
                 <p className="text-[11px] font-medium text-foreground/40 uppercase tracking-[0.15em] mb-2">
-                  Key Results
+                  {t("caseStudy.keyResults")}
                 </p>
                 <div className="flex flex-wrap gap-2 mt-1">
                   {caseStudy.tldr.results.map((r, i) => (
@@ -222,13 +183,13 @@ export default function CaseStudyPage() {
 
         {/* Context section */}
         <section className="mb-14">
-          <h2 className="text-2xl font-bold text-foreground mb-4">Context</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-4">{t("caseStudy.context")}</h2>
           <p className="text-base text-foreground/85 leading-[1.8]">{caseStudy.context}</p>
         </section>
 
         {/* Constraints section */}
         <section className="mb-14">
-          <h2 className="text-2xl font-bold text-foreground mb-4">Constraints</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-4">{t("caseStudy.constraints")}</h2>
           <ul className="space-y-3">
             {caseStudy.constraints.map((constraint, i) => (
               <li key={i} className="flex items-start gap-3 text-foreground/85 leading-relaxed">
@@ -241,7 +202,7 @@ export default function CaseStudyPage() {
 
         {/* Architecture section */}
         <section className="mb-14">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Architecture</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-6">{t("caseStudy.architecture")}</h2>
           <div className="space-y-6">
             {caseStudy.architectureSections.map((section, i) => (
               <div
@@ -260,14 +221,16 @@ export default function CaseStudyPage() {
         {/* Sequence Diagram (if available) */}
         {caseStudy.sequenceDiagram && (
           <section className="mb-14">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Notification Flow</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">
+              {t("caseStudy.notificationFlow")}
+            </h2>
             <div className="rounded-xl bg-foreground/[0.03] ring-1 ring-foreground/10 p-6 overflow-x-auto">
               <pre className="text-sm text-foreground/70 leading-relaxed font-mono whitespace-pre">
                 {caseStudy.sequenceDiagram}
               </pre>
             </div>
             <p className="text-xs text-foreground/70 mt-2">
-              Mermaid sequence diagram — paste into{" "}
+              {t("caseStudy.mermaidHint")}{" "}
               <a
                 href="https://mermaid.live"
                 target="_blank"
@@ -276,14 +239,14 @@ export default function CaseStudyPage() {
               >
                 mermaid.live
               </a>{" "}
-              to render interactively.
+              {t("caseStudy.mermaidHintAction")}
             </p>
           </section>
         )}
 
         {/* Key Decisions */}
         <section className="mb-14">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Key Decisions & Tradeoffs</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-6">{t("caseStudy.keyDecisions")}</h2>
           <div className="space-y-6">
             {caseStudy.keyDecisions.map((decision, i) => (
               <div key={i} className="border-l-2 border-violet-400/40 pl-5">
@@ -298,7 +261,7 @@ export default function CaseStudyPage() {
 
         {/* Outcomes */}
         <section className="mb-14">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Outcomes</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-6">{t("caseStudy.outcomes")}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {caseStudy.outcomes.map((outcome, i) => (
               <div
@@ -314,7 +277,7 @@ export default function CaseStudyPage() {
 
         {/* What's Next */}
         <section className="mb-14">
-          <h2 className="text-2xl font-bold text-foreground mb-4">What I'd Do Next</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-4">{t("caseStudy.whatsNext")}</h2>
           <ul className="space-y-3">
             {caseStudy.nextSteps.map((step, i) => (
               <li key={i} className="flex items-start gap-3 text-foreground/85 leading-relaxed">
@@ -333,7 +296,7 @@ export default function CaseStudyPage() {
             className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Project
+            {t("caseStudy.backToProject")}
           </Link>
 
           <Link
@@ -341,7 +304,7 @@ export default function CaseStudyPage() {
             viewTransition
             className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
           >
-            Start a Project &rsaquo;
+            {t("caseStudy.startAProject")} &rsaquo;
           </Link>
         </div>
       </div>
