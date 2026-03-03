@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
-  Github,
-  Linkedin,
-  Mail,
   MapPin,
   Calendar,
   Code2,
@@ -19,18 +17,13 @@ import {
 import Navbar from "../components/ui/Navbar";
 import DarkGradientBg from "../components/ui/DarkGradientBg";
 import LetsWorkTogether from "../components/ui/LetsWorkTogether";
+import SocialSidebar from "../components/ui/SocialSidebar";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import profileImg from "../assets/profile.avif";
 
 /* ================================================================== */
 /*  Data — replace with your real content                              */
 /* ================================================================== */
-const STATS = [
-  { value: "4+", label: "Years Coding" },
-  { value: "5+", label: "Projects Shipped" },
-  { value: "3", label: "Certifications" },
-  { value: "2", label: "Internships" },
-];
 
 const TIMELINE = [
   {
@@ -83,57 +76,6 @@ const TIMELINE = [
   },
 ];
 
-const FUN_FACTS = [
-  {
-    icon: Coffee,
-    label: "Fuel",
-    value: "Coffee & green tea",
-  },
-  {
-    icon: Gamepad2,
-    label: "Downtime",
-    value: "Gaming & side projects",
-  },
-  {
-    icon: Globe,
-    label: "Languages",
-    value: "English, French, Arabic",
-  },
-  {
-    icon: BookOpen,
-    label: "Currently Reading",
-    value: "Clean Code by Robert C. Martin",
-  },
-  {
-    icon: Cloud,
-    label: "Learning",
-    value: "GCP, Cloud Functions & Firebase",
-  },
-  {
-    icon: Code2,
-    label: "Favorite Stack",
-    value: "Node.js + Express + MongoDB",
-  },
-];
-
-const PHILOSOPHY = [
-  {
-    title: "Clean code over clever code",
-    description:
-      "I write code that my future self (and teammates) can understand. Readability and maintainability always come first.",
-  },
-  {
-    title: "Ship early, iterate fast",
-    description:
-      "I believe in getting things in front of users quickly and improving based on real feedback rather than perfecting in isolation.",
-  },
-  {
-    title: "Automate everything",
-    description:
-      "From CI/CD pipelines to testing to deployments — if I'm doing it twice, I'm automating it the third time.",
-  },
-];
-
 /* ================================================================== */
 /*  Reusable reveal wrapper                                            */
 /* ================================================================== */
@@ -156,63 +98,63 @@ function RevealSection({
 /*  Component                                                          */
 /* ================================================================== */
 export default function AboutPage() {
+  const { t } = useTranslation();
+
+  const STATS = [
+    { value: "4+", label: t("about.stats.yearsCoding") },
+    { value: "5+", label: t("about.stats.projectsShipped") },
+    { value: "3", label: t("about.stats.certifications") },
+    { value: "2", label: t("about.stats.internships") },
+  ];
+
+  const PHILOSOPHY = [
+    {
+      title: t("about.philosophy.cleanCode"),
+      description: t("about.philosophy.cleanCodeDesc"),
+    },
+    {
+      title: t("about.philosophy.shipEarly"),
+      description: t("about.philosophy.shipEarlyDesc"),
+    },
+    {
+      title: t("about.philosophy.automate"),
+      description: t("about.philosophy.automateDesc"),
+    },
+  ];
+
+  const FUN_FACTS = [
+    { icon: Coffee, label: t("about.funFacts.fuel"), value: t("about.funFacts.fuelValue") },
+    {
+      icon: Gamepad2,
+      label: t("about.funFacts.downtime"),
+      value: t("about.funFacts.downtimeValue"),
+    },
+    {
+      icon: Globe,
+      label: t("about.funFacts.languages"),
+      value: t("about.funFacts.languagesValue"),
+    },
+    { icon: BookOpen, label: t("about.funFacts.reading"), value: t("about.funFacts.readingValue") },
+    { icon: Cloud, label: t("about.funFacts.learning"), value: t("about.funFacts.learningValue") },
+    { icon: Code2, label: t("about.funFacts.favStack"), value: t("about.funFacts.favStackValue") },
+  ];
+
   return (
     <main className="relative min-h-screen bg-background text-foreground overflow-hidden">
       <DarkGradientBg />
       <Navbar />
 
       {/* ── Left social strip ── */}
-      <aside className="hidden lg:flex fixed left-8 top-0 bottom-0 z-30 flex-col items-center justify-center gap-6">
-        <div className="flex flex-col items-center gap-5">
-          <a
-            href="https://github.com/redaalch"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
-            aria-label="GitHub"
-          >
-            <Github className="w-5 h-5" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/reda-alalach/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="w-5 h-5" />
-          </a>
-          <a
-            href="mailto:reda.alalach@gmail.com"
-            className="text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
-            aria-label="Email"
-          >
-            <Mail className="w-5 h-5" />
-          </a>
-        </div>
-        <div className="w-px h-24 bg-foreground/15" />
-      </aside>
-
-      {/* ── Right email strip ── */}
-      <aside className="hidden lg:flex fixed right-8 top-0 bottom-0 z-30 flex-col items-center justify-center gap-6">
-        <a
-          href="mailto:reda.alalach@gmail.com"
-          className="text-xs tracking-[0.18em] text-foreground/70 hover:text-violet-400 transition-colors"
-          style={{ writingMode: "vertical-rl" }}
-        >
-          reda.alalach@gmail.com
-        </a>
-        <div className="w-px h-24 bg-foreground/15" />
-      </aside>
+      <SocialSidebar />
 
       <div className="max-w-250 mx-auto px-5 lg:px-12 pt-36 pb-16">
         {/* ── Breadcrumb ── */}
         <nav className="text-sm text-foreground/80 mb-10">
           <Link to="/" viewTransition className="hover:underline transition-colors">
-            Home
+            {t("nav.home")}
           </Link>
           <span className="mx-2.5 opacity-60">/</span>
-          <span>About</span>
+          <span>{t("about.breadcrumb")}</span>
         </nav>
 
         {/* ================================================================ */}
@@ -235,55 +177,53 @@ export default function AboutPage() {
             {/* Bio text */}
             <div className="text-center md:text-left">
               <p className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
-                About Me
+                {t("about.label")}
               </p>
               <h1 className="text-4xl sm:text-5xl font-bold font-instrument-serif italic bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-6">
-                Reda Alalach
+                {t("about.title")}
               </h1>
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-foreground/70 mb-6">
                 <span className="inline-flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5" />
-                  Morocco
+                  {t("about.locationLabel")}
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <Briefcase className="w-3.5 h-3.5" />
-                  Full-Stack Developer
+                  {t("about.roleLabel")}
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <Calendar className="w-3.5 h-3.5" />
-                  B.Sc. CS — Graduating 2026
+                  {t("about.educationLabel")}
                 </span>
               </div>
 
               {/* Bio paragraphs */}
               <div className="space-y-4 text-foreground/70 leading-relaxed max-w-2xl">
-                <p>
-                  Born and raised in Taounate, Morocco, I grew up surrounded by technology — both of
-                  my brothers are in tech, and one of them is a DevSecOps engineer. Watching them
-                  work sparked my curiosity early on and set me on the path to becoming a developer
-                  myself.
-                </p>
-                <p>
-                  I'm a full-stack developer building secure REST APIs with Node.js/Express and
-                  database-backed business logic (MongoDB/Mongoose). I've delivered production-ready
-                  features including JWT authentication, middleware pipelines, global error
-                  handling, real-time events with Socket.io, and cloud deployments.
-                </p>
-                <p>
-                  Graduating in 2026 with a B.Sc. in Computer Science from FSDM, Fez. Currently
-                  learning Google Cloud Platform, Cloud Functions, and Firebase to build scalable
-                  serverless backends.
-                </p>
+                <p>{t("about.bio1")}</p>
+                <p>{t("about.bio2")}</p>
+                <p>{t("about.bio3")}</p>
               </div>
 
               {/* Quick recruiter facts */}
               <div className="mt-6 flex flex-wrap gap-3">
                 {[
-                  { label: "Timezone", value: "GMT+1 (Morocco)" },
-                  { label: "Graduating", value: "2026" },
-                  { label: "Looking for", value: "Full-Stack / Backend roles" },
-                  { label: "Work style", value: "Remote-ready, strong async communication" },
-                  { label: "Open to", value: "Internships & junior positions" },
+                  {
+                    label: t("about.quickFacts.timezone"),
+                    value: t("about.quickFacts.timezoneValue"),
+                  },
+                  {
+                    label: t("about.quickFacts.graduating"),
+                    value: t("about.quickFacts.graduatingValue"),
+                  },
+                  {
+                    label: t("about.quickFacts.lookingFor"),
+                    value: t("about.quickFacts.lookingForValue"),
+                  },
+                  {
+                    label: t("about.quickFacts.workStyle"),
+                    value: t("about.quickFacts.workStyleValue"),
+                  },
+                  { label: t("about.quickFacts.openTo"), value: t("about.quickFacts.openToValue") },
                 ].map((item) => (
                   <span
                     key={item.label}
@@ -323,10 +263,10 @@ export default function AboutPage() {
         <RevealSection>
           <section className="mb-24">
             <p className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
-              How I work
+              {t("about.philosophyLabel")}
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-10">
-              My Philosophy
+              {t("about.philosophyTitle")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {PHILOSOPHY.map((item) => (
@@ -350,10 +290,10 @@ export default function AboutPage() {
         <RevealSection>
           <section className="mb-24">
             <p className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
-              My journey
+              {t("about.timelineLabel")}
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-10">
-              Timeline
+              {t("about.timelineTitle")}
             </h2>
             <div className="relative">
               {/* Vertical line */}
@@ -399,10 +339,10 @@ export default function AboutPage() {
         <RevealSection>
           <section className="mb-24">
             <p className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">
-              Beyond the code
+              {t("about.funFactsLabel")}
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold font-instrument-serif italic bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mb-10">
-              Fun Facts
+              {t("about.funFactsTitle")}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {FUN_FACTS.map((fact) => {
