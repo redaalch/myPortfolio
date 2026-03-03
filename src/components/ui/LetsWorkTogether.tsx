@@ -1,11 +1,13 @@
 import type React from "react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ArrowUpRight, Send, Loader2, CheckCircle2 } from "lucide-react";
 
 const inputClass =
   "w-full rounded-lg border border-foreground/20 bg-foreground/3 px-4 py-2.5 text-sm text-foreground placeholder-foreground/60 outline-none transition-colors focus:border-foreground/40 focus:bg-foreground/5";
 
 export default function LetsWorkTogether() {
+  const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -67,7 +69,7 @@ export default function LetsWorkTogether() {
                 transitionDelay: "100ms",
               }}
             >
-              Let's talk
+              {t("letsWorkTogether.letsTalk")}
             </span>
             <h3
               className="text-3xl font-bold font-instrument-serif italic bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent transition-all duration-500 sm:text-4xl"
@@ -77,7 +79,7 @@ export default function LetsWorkTogether() {
                 transitionDelay: "200ms",
               }}
             >
-              Get in Touch
+              {t("letsWorkTogether.getInTouch")}
             </h3>
           </div>
 
@@ -94,7 +96,7 @@ export default function LetsWorkTogether() {
               <div className="flex flex-col items-center gap-3 py-8">
                 <CheckCircle2 className="size-9 text-emerald-400" strokeWidth={1.5} />
                 <p className="text-sm font-light text-foreground/70">
-                  Message sent — I'll be in touch!
+                  {t("letsWorkTogether.messageSent")}
                 </p>
               </div>
             ) : formState === "error" ? (
@@ -103,10 +105,10 @@ export default function LetsWorkTogether() {
                   <span className="text-red-400 text-lg font-semibold">!</span>
                 </div>
                 <p className="text-sm font-light text-foreground/70">
-                  Something went wrong — please try again.
+                  {t("letsWorkTogether.errorMessage")}
                 </p>
                 <p className="text-xs text-foreground/70">
-                  Or email me at{" "}
+                  {t("letsWorkTogether.errorEmailHint")}{" "}
                   <a
                     href="mailto:reda.alalach@gmail.com"
                     className="text-violet-400 hover:underline"
@@ -118,21 +120,21 @@ export default function LetsWorkTogether() {
                   onClick={() => setFormState("idle")}
                   className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-foreground/5 ring-1 ring-foreground/10 px-4 py-2 text-xs font-medium text-foreground/70 hover:text-foreground hover:bg-foreground/10 transition-colors"
                 >
-                  Try Again
+                  {t("letsWorkTogether.tryAgain")}
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                 <span className="mb-1 text-[10px] font-medium tracking-[0.28em] uppercase text-foreground/70">
-                  Send a message
+                  {t("letsWorkTogether.sendMessage")}
                 </span>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <input
                     type="text"
                     name="name"
-                    placeholder="Name"
+                    placeholder={t("letsWorkTogether.namePlaceholder")}
                     required
-                    aria-label="Name"
+                    aria-label={t("letsWorkTogether.namePlaceholder")}
                     value={formData.name}
                     onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
                     className={inputClass}
@@ -140,9 +142,9 @@ export default function LetsWorkTogether() {
                   <input
                     type="email"
                     name="email"
-                    placeholder="Email"
+                    placeholder={t("letsWorkTogether.emailPlaceholder")}
                     required
-                    aria-label="Email"
+                    aria-label={t("letsWorkTogether.emailPlaceholder")}
                     value={formData.email}
                     onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
                     className={inputClass}
@@ -150,9 +152,9 @@ export default function LetsWorkTogether() {
                 </div>
                 <textarea
                   name="message"
-                  placeholder="Your message..."
+                  placeholder={t("letsWorkTogether.messagePlaceholder")}
                   required
-                  aria-label="Message"
+                  aria-label={t("letsWorkTogether.messagePlaceholder")}
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))}
@@ -166,12 +168,12 @@ export default function LetsWorkTogether() {
                   {formState === "sending" ? (
                     <>
                       <Loader2 className="size-4 animate-spin" strokeWidth={2} />
-                      Sending...
+                      {t("letsWorkTogether.sending")}
                     </>
                   ) : (
                     <>
                       <Send className="size-4" strokeWidth={1.8} />
-                      Send Message
+                      {t("letsWorkTogether.sendBtn")}
                     </>
                   )}
                 </button>
@@ -206,7 +208,7 @@ export default function LetsWorkTogether() {
             <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
           </span>
           <span className="text-sm font-medium tracking-widest uppercase text-foreground/60">
-            Available for projects
+            {t("letsWorkTogether.availableForProjects")}
           </span>
         </div>
 
@@ -232,7 +234,7 @@ export default function LetsWorkTogether() {
                     transform: isHovered && !isClicked ? "translateY(-8%)" : "translateY(0)",
                   }}
                 >
-                  Let's work
+                  {t("letsWorkTogether.letsWork")}
                 </span>
               </span>
               <span className="block overflow-hidden">
@@ -242,7 +244,7 @@ export default function LetsWorkTogether() {
                     transform: isHovered && !isClicked ? "translateY(-8%)" : "translateY(0)",
                   }}
                 >
-                  <span className="text-foreground/60">together</span>
+                  <span className="text-foreground/60">{t("letsWorkTogether.together")}</span>
                 </span>
               </span>
             </h2>
@@ -322,8 +324,7 @@ export default function LetsWorkTogether() {
           }}
         >
           <p className="max-w-md text-sm leading-relaxed text-foreground/60">
-            Have a project in mind or an internship opportunity? I'd love to hear about it. Let's
-            create something exceptional together.
+            {t("letsWorkTogether.ctaDescription")}
           </p>
           <span className="text-xs tracking-widest uppercase text-foreground/60">
             reda.alalach@gmail.com

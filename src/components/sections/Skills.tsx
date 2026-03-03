@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTheme } from "../../hooks/useTheme";
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
@@ -147,6 +148,7 @@ function labelPos(sx: number, sy: number, hx: number, hy: number) {
 export default function SkillsSection() {
   const { ref, visible } = useScrollReveal();
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const isLight = theme === "light";
   const [active, setActive] = useState<number | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -182,13 +184,13 @@ export default function SkillsSection() {
       >
         <div className="text-center mb-12">
           <span className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest">
-            Toolkit
+            {t("skills.sectionLabel")}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent mt-3 font-instrument-serif italic">
-            Skills & Technologies
+            {t("skills.sectionTitle")}
           </h2>
           <p className="text-foreground/70 mt-4 max-w-2xl mx-auto text-lg">
-            Tools I use daily, plus what I'm actively leveling up.
+            {t("skills.sectionDescription")}
           </p>
         </div>
 
