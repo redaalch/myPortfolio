@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import logoSrc from "@/assets/logo.avif";
+import "./loading-screen.css";
 
 interface LoadingScreenProps {
   /**
