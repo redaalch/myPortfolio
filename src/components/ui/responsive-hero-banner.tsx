@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
+import LanguageToggle from "./LanguageToggle";
 import profileImg from "../../assets/profile.avif";
 
 interface NavLink {
@@ -29,6 +31,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
   ctaButtonHref = "/Reda_Alalach_Resume.pdf",
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <section className="w-full isolate min-h-screen overflow-hidden relative">
@@ -131,16 +134,23 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
 
       <header className="z-10 xl:top-4 relative">
         <div className="mx-6">
-          <div className="flex items-center justify-between pt-4">
-            <a href="#" className="inline-flex items-center text-foreground">
+          <div className="flex items-center justify-between pt-4 relative">
+            {/* Left — Logo */}
+            <a href="#" className="inline-flex items-center text-foreground shrink-0">
               <Logo height={36} />
             </a>
 
-            <nav aria-label="Main navigation" className="hidden md:flex items-center gap-2">
-              <div className="flex items-center gap-1 rounded-full bg-foreground/5 px-1 py-1 ring-1 ring-foreground/10 backdrop-blur">
+            {/* Center — Floating glass pill (desktop) */}
+            <nav
+              aria-label="Main navigation"
+              className="hidden lg:flex absolute left-1/2 -translate-x-1/2 top-4 z-10"
+            >
+              <div className="flex items-center gap-1 rounded-full backdrop-blur-md bg-foreground/4 px-1.5 py-1 ring-1 ring-foreground/10">
                 {navLinks.map((link, index) => {
-                  const cls = `px-3 py-2 text-sm font-medium hover:text-foreground transition-colors ${
-                    link.isActive ? "text-foreground/90" : "text-foreground/80"
+                  const cls = `px-3.5 py-2 text-sm font-medium transition-all duration-200 rounded-full ${
+                    link.isActive
+                      ? "bg-violet-500/15 text-foreground"
+                      : "text-foreground/45 hover:text-foreground hover:bg-white/[0.08] dark:hover:bg-white/[0.08]"
                   }`;
                   return link.href.startsWith("/") ? (
                     <Link key={index} to={link.href} viewTransition className={cls}>
@@ -152,34 +162,41 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                     </a>
                   );
                 })}
-                <a
-                  href={ctaButtonHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ml-1 inline-flex items-center gap-2 rounded-full bg-foreground px-3.5 py-2 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
-                >
-                  {ctaButtonText}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-4 w-4"
-                  >
-                    <path d="M7 7h10v10" />
-                    <path d="M7 17 17 7" />
-                  </svg>
-                </a>
               </div>
-              <ThemeToggle />
             </nav>
 
-            <div className="md:hidden flex items-center gap-2">
+            {/* Right — Actions (desktop) */}
+            <div className="hidden lg:flex items-center gap-2 shrink-0">
+              <a
+                href={ctaButtonHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
+              >
+                {ctaButtonText}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </a>
+              <LanguageToggle />
+              <ThemeToggle />
+            </div>
+
+            {/* Mobile / tablet controls */}
+            <div className="lg:hidden flex items-center gap-2">
+              <LanguageToggle />
               <ThemeToggle />
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -227,11 +244,11 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
 
           {/* Mobile menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden mt-4 rounded-2xl bg-background/60 ring-1 ring-foreground/10 backdrop-blur-xl p-4 animate-fade-slide-in-1">
+            <div className="lg:hidden mt-4 rounded-2xl bg-background/60 ring-1 ring-foreground/10 backdrop-blur-xl p-4 animate-fade-slide-in-1">
               <div className="flex flex-col gap-1">
                 {navLinks.map((link, index) => {
                   const cls =
-                    "px-4 py-3 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-foreground/5 rounded-lg transition-colors";
+                    "px-4 py-3 text-sm font-medium text-foreground/50 hover:text-foreground hover:bg-foreground/5 rounded-lg transition-colors";
                   return link.href.startsWith("/") ? (
                     <Link
                       key={index}
@@ -285,36 +302,73 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
       {/* ── Hero content: left-aligned text + right photo ── */}
       <div className="z-10 relative">
         <div className="sm:pt-28 md:pt-32 lg:pt-36 max-w-7xl mx-auto pt-24 px-6 pb-16">
-          <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-between gap-12 lg:gap-16">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-between gap-10 lg:gap-10">
             {/* Left column — text */}
             <div className="max-w-2xl text-center lg:text-left">
               <p className="text-violet-600 dark:text-violet-400 text-sm font-semibold uppercase tracking-widest mb-4 animate-fade-slide-in-1">
-                Backend / Full-Stack / DevOps — Open to internships
+                {t("hero.tagline")}
               </p>
 
               <h1 className="sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] text-4xl text-foreground tracking-tight font-instrument-serif font-normal animate-fade-slide-in-2">
-                Hi, I'm{" "}
+                {t("hero.greeting")}{" "}
                 <span className="bg-linear-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
-                  Reda
+                  {t("hero.name")}
                 </span>
                 <br />
                 <span className="bg-linear-to-r from-hero-from via-hero-via to-hero-to bg-clip-text text-transparent">
-                  Full-Stack Developer
+                  {t("hero.role")}
                 </span>
               </h1>
 
               <p className="sm:text-lg animate-fade-slide-in-3 text-base text-foreground/70 max-w-xl mt-6 leading-relaxed">
-                I build reliable Node.js/Express backends, add real-time features with Socket.io,
-                and ship modern UIs with React. Currently exploring Google Cloud &amp; Firebase.
+                {t("hero.description")}
               </p>
 
               {/* Recruiter at-a-glance */}
-              <div className="animate-fade-slide-in-3 mt-5 flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-1.5 text-xs sm:text-sm text-foreground/50">
-                <span>Backend / Full-Stack Intern</span>
-                <span className="hidden sm:inline opacity-40">·</span>
-                <span>Morocco · GMT+1 · Remote-friendly</span>
-                <span className="hidden sm:inline opacity-40">·</span>
-                <span>Available now</span>
+              <div className="animate-fade-slide-in-3 mt-5 flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 text-xs sm:text-sm text-foreground/50">
+                <span className="inline-flex items-center gap-1.5">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-violet-400/70 shrink-0"
+                  >
+                    <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                  </svg>
+                  {t("hero.roleShort")}
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-violet-400/70 shrink-0"
+                  >
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  {t("hero.location")}
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <span className="relative flex h-2 w-2 shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                  </span>
+                  {t("hero.availability")}
+                </span>
               </div>
 
               <div className="flex flex-col sm:flex-row sm:gap-4 mt-10 gap-3 items-center lg:items-start animate-fade-slide-in-4">
@@ -322,7 +376,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                   href="#projects"
                   className="inline-flex items-center gap-2 rounded-full bg-violet-600 px-6 py-3 text-sm font-medium text-white shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:bg-violet-500 hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:scale-105 transition-all duration-300"
                 >
-                  View Projects
+                  {t("hero.viewProjects")}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -343,37 +397,15 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                   href="#contact"
                   className="inline-flex items-center gap-2 rounded-full bg-foreground/5 ring-1 ring-foreground/10 px-6 py-3 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-foreground/10 hover:ring-foreground/20 hover:scale-105 transition-all duration-300"
                 >
-                  Contact Me
+                  {t("hero.contactMe")}
                 </a>
-                <Link
-                  to="/about"
-                  viewTransition
-                  className="inline-flex items-center gap-2 rounded-full bg-foreground/5 ring-1 ring-foreground/10 px-6 py-3 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-foreground/10 hover:ring-foreground/20 hover:scale-105 transition-all duration-300"
-                >
-                  About Me
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-4 w-4"
-                  >
-                    <circle cx="12" cy="8" r="5" />
-                    <path d="M20 21a8 8 0 0 0-16 0" />
-                  </svg>
-                </Link>
               </div>
             </div>
 
             {/* Right column — photo */}
             <div className="relative shrink-0 animate-fade-slide-in-3">
               {/* Glow behind photo */}
-              <div className="absolute -inset-4 rounded-full bg-violet-500/10 blur-3xl" />
+              <div className="absolute -inset-6 rounded-3xl bg-violet-500/15 blur-3xl" />
               <div className="relative">
                 <img
                   src={profileImg}
@@ -382,7 +414,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                   height={480}
                   loading="eager"
                   decoding="async"
-                  className="w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-2xl object-cover ring-1 ring-foreground/10 shadow-2xl"
+                  className="w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-2xl object-cover ring-1 ring-white/10 shadow-[0_0_40px_rgba(139,92,246,0.25),0_0_80px_rgba(139,92,246,0.1)]"
                 />
                 {/* Corner accent */}
                 <div className="absolute -bottom-3 -right-3 w-20 h-20 rounded-br-2xl border-b-2 border-r-2 border-violet-400/30" />

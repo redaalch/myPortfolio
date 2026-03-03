@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Github, Linkedin, Mail } from "lucide-react";
 import profileImg from "../../assets/profile.avif";
+import styles from "./SocialTooltip.module.css";
 
 export default function VerticalBanner() {
   const [visible, setVisible] = useState(false);
@@ -25,39 +26,39 @@ export default function VerticalBanner() {
       >
         <div className="flex flex-col items-center gap-7">
           {/* GitHub with tooltip profile card + layer stack */}
-          <div className="sc-tooltip-container">
-            <div className="sc-tooltip">
-              <div className="sc-profile">
-                <div className="sc-user">
+          <div className={styles.tooltipContainer}>
+            <div className={styles.tooltip}>
+              <div className={styles.profile}>
+                <div className={styles.user}>
                   <img
                     src={profileImg}
                     alt="Reda Alalach"
                     width={40}
                     height={40}
                     loading="lazy"
-                    className="sc-avatar"
+                    className={styles.avatar}
                   />
-                  <div className="sc-details">
-                    <div className="sc-name">Reda Alalach</div>
-                    <div className="sc-username">@redaalch</div>
+                  <div className={styles.details}>
+                    <div className={styles.name}>Reda Alalach</div>
+                    <div className={styles.username}>@redaalch</div>
                   </div>
                 </div>
-                <div className="sc-about">Open Source & Full-Stack Dev</div>
+                <div className={styles.about}>Open Source & Full-Stack Dev</div>
               </div>
             </div>
             <a
               href="https://github.com/redaalch"
               target="_blank"
               rel="noopener noreferrer"
-              className="sc-icon-link"
+              className={styles.iconLink}
               aria-label="GitHub"
             >
-              <div className="sc-layer">
+              <div className={styles.layer}>
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
-                <span className="sc-layer-icon">
+                <span className={styles.layerIcon}>
                   <Github className="w-6 h-6" />
                 </span>
               </div>
@@ -65,39 +66,39 @@ export default function VerticalBanner() {
           </div>
 
           {/* LinkedIn with tooltip profile card + layer stack */}
-          <div className="sc-tooltip-container">
-            <div className="sc-tooltip">
-              <div className="sc-profile">
-                <div className="sc-user">
+          <div className={styles.tooltipContainer}>
+            <div className={styles.tooltip}>
+              <div className={styles.profile}>
+                <div className={styles.user}>
                   <img
                     src={profileImg}
                     alt="Reda Alalach"
                     width={40}
                     height={40}
                     loading="lazy"
-                    className="sc-avatar"
+                    className={styles.avatar}
                   />
-                  <div className="sc-details">
-                    <div className="sc-name">Reda Alalach</div>
-                    <div className="sc-username">@reda-alalach</div>
+                  <div className={styles.details}>
+                    <div className={styles.name}>Reda Alalach</div>
+                    <div className={styles.username}>@reda-alalach</div>
                   </div>
                 </div>
-                <div className="sc-about">Full-Stack Developer · 500+ Connections</div>
+                <div className={styles.about}>Full-Stack Developer · 500+ Connections</div>
               </div>
             </div>
             <a
               href="https://www.linkedin.com/in/reda-alalach/"
               target="_blank"
               rel="noopener noreferrer"
-              className="sc-icon-link"
+              className={styles.iconLink}
               aria-label="LinkedIn"
             >
-              <div className="sc-layer">
+              <div className={styles.layer}>
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
-                <span className="sc-layer-icon">
+                <span className={styles.layerIcon}>
                   <Linkedin className="w-6 h-6" />
                 </span>
               </div>
@@ -105,33 +106,33 @@ export default function VerticalBanner() {
           </div>
 
           {/* Email with tooltip card + layer stack */}
-          <div className="sc-tooltip-container">
-            <div className="sc-tooltip">
-              <div className="sc-profile">
-                <div className="sc-user">
+          <div className={styles.tooltipContainer}>
+            <div className={styles.tooltip}>
+              <div className={styles.profile}>
+                <div className={styles.user}>
                   <img
                     src={profileImg}
                     alt="Reda Alalach"
                     width={40}
                     height={40}
                     loading="lazy"
-                    className="sc-avatar"
+                    className={styles.avatar}
                   />
-                  <div className="sc-details">
-                    <div className="sc-name">Reda Alalach</div>
-                    <div className="sc-username">reda.alalach@gmail.com</div>
+                  <div className={styles.details}>
+                    <div className={styles.name}>Reda Alalach</div>
+                    <div className={styles.username}>reda.alalach@gmail.com</div>
                   </div>
                 </div>
-                <div className="sc-about">Feel free to reach out!</div>
+                <div className={styles.about}>Feel free to reach out!</div>
               </div>
             </div>
-            <a href="mailto:reda.alalach@gmail.com" className="sc-icon-link" aria-label="Email">
-              <div className="sc-layer">
+            <a href="mailto:reda.alalach@gmail.com" className={styles.iconLink} aria-label="Email">
+              <div className={styles.layer}>
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
-                <span className="sc-layer-icon">
+                <span className={styles.layerIcon}>
                   <Mail className="w-6 h-6" />
                 </span>
               </div>
