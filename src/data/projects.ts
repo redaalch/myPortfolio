@@ -104,3 +104,25 @@ export const projects: Project[] = [
 export function getProjectBySlug(slug: string) {
   return projects.find((project) => project.slug === slug);
 }
+
+/* ── Localized helpers ── */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type TFn = (key: string, opts?: any) => any;
+
+function localizeProject(p: Project, t: TFn): Project {
+  return {
+    ...p,
+    description: t(`projects.items.${p.slug}.description`) as string,
+    impact: t(`projects.items.${p.slug}.impact`) as string,
+    about: t(`projects.items.${p.slug}.about`, { returnObjects: true }) as string[],
+  };
+}
+
+export function getLocalizedProjects(t: TFn): Project[] {
+  return projects.map((p) => localizeProject(p, t));
+}
+
+export function getLocalizedProjectBySlug(slug: string, t: TFn): Project | undefined {
+  const p = getProjectBySlug(slug);
+  return p ? localizeProject(p, t) : undefined;
+}

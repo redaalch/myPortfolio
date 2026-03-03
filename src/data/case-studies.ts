@@ -357,3 +357,48 @@ export function getCaseStudyBySlug(slug: string) {
 export function getCaseStudyByProjectSlug(projectSlug: string) {
   return caseStudies.find((cs) => cs.projectSlug === projectSlug);
 }
+
+/* ── Localized helpers ── */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type TFn = (key: string, opts?: any) => any;
+
+function localizeCaseStudy(cs: CaseStudy, t: TFn): CaseStudy {
+  const key = cs.slug;
+  return {
+    ...cs,
+    title: t(`caseStudy.items.${key}.title`) as string,
+    subtitle: t(`caseStudy.items.${key}.subtitle`) as string,
+    tldr: {
+      bullets: t(`caseStudy.items.${key}.tldr.bullets`, { returnObjects: true }) as string[],
+      stack: t(`caseStudy.items.${key}.tldr.stack`) as string,
+      role: t(`caseStudy.items.${key}.tldr.role`) as string,
+      results: t(`caseStudy.items.${key}.tldr.results`, { returnObjects: true }) as string[],
+    },
+    context: t(`caseStudy.items.${key}.context`) as string,
+    constraints: t(`caseStudy.items.${key}.constraints`, { returnObjects: true }) as string[],
+    architectureSections: t(`caseStudy.items.${key}.architectureSections`, {
+      returnObjects: true,
+    }) as CaseStudy["architectureSections"],
+    keyDecisions: t(`caseStudy.items.${key}.keyDecisions`, {
+      returnObjects: true,
+    }) as CaseStudy["keyDecisions"],
+    outcomes: t(`caseStudy.items.${key}.outcomes`, {
+      returnObjects: true,
+    }) as CaseStudy["outcomes"],
+    nextSteps: t(`caseStudy.items.${key}.nextSteps`, { returnObjects: true }) as string[],
+    // sequenceDiagram stays as-is (Mermaid syntax — not translatable)
+  };
+}
+
+export function getLocalizedCaseStudyBySlug(slug: string, t: TFn): CaseStudy | undefined {
+  const cs = getCaseStudyBySlug(slug);
+  return cs ? localizeCaseStudy(cs, t) : undefined;
+}
+
+export function getLocalizedCaseStudyByProjectSlug(
+  projectSlug: string,
+  t: TFn,
+): CaseStudy | undefined {
+  const cs = getCaseStudyByProjectSlug(projectSlug);
+  return cs ? localizeCaseStudy(cs, t) : undefined;
+}
