@@ -1,13 +1,16 @@
-import { Github, Linkedin, Mail, BookOpen } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { getProjectBySlug } from "../data/projects";
+import { useTranslation } from "react-i18next";
+import { getLocalizedProjectBySlug } from "../data/projects";
 import Navbar from "../components/ui/Navbar";
 import BackToTop from "../components/ui/BackToTop";
+import SocialSidebar from "../components/ui/SocialSidebar";
 
 export default function ProjectDetailsPage() {
   const { slug } = useParams();
-  const project = slug ? getProjectBySlug(slug) : undefined;
+  const { t } = useTranslation();
+  const project = slug ? getLocalizedProjectBySlug(slug, t) : undefined;
 
   // Inject JSON-LD structured data for SEO
   useEffect(() => {
@@ -49,60 +52,18 @@ export default function ProjectDetailsPage() {
   return (
     <main className="relative min-h-screen bg-background text-foreground">
       <Navbar />
-      {/* ── Left social strip (hidden on mobile) ── */}
-      <aside className="hidden lg:flex fixed left-8 top-0 bottom-0 z-30 flex-col items-center justify-center gap-6">
-        <div className="flex flex-col items-center gap-5">
-          <a
-            href="https://github.com/redaalch"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
-            aria-label="GitHub"
-          >
-            <Github className="w-5 h-5" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/reda-alalach/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="w-5 h-5" />
-          </a>
-          <a
-            href="mailto:reda.alalach@gmail.com"
-            className="text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors"
-            aria-label="Email"
-          >
-            <Mail className="w-5 h-5" />
-          </a>
-        </div>
-        <div className="w-px h-24 bg-foreground/15" />
-      </aside>
-
-      {/* ── Right email strip (hidden on mobile) ── */}
-      <aside className="hidden lg:flex fixed right-8 top-0 bottom-0 z-30 flex-col items-center justify-center gap-6">
-        <a
-          href="mailto:reda.alalach@gmail.com"
-          className="text-xs tracking-[0.18em] text-foreground/70 hover:text-violet-400 transition-colors"
-          style={{ writingMode: "vertical-rl" }}
-        >
-          reda.alalach@gmail.com
-        </a>
-        <div className="w-px h-24 bg-foreground/15" />
-      </aside>
+      <SocialSidebar />
 
       {/* ── Main content ── */}
       <div className="max-w-300 mx-auto px-5 lg:px-12 pt-36 pb-16">
         {/* Breadcrumb */}
         <nav className="text-sm text-foreground/80 mb-10">
           <Link to="/" viewTransition className="hover:underline transition-colors">
-            Home
+            {t("nav.home")}
           </Link>
           <span className="mx-2.5 opacity-60">/</span>
           <Link to="/#projects" viewTransition className="hover:underline transition-colors">
-            Projects
+            {t("nav.projects")}
           </Link>
           <span className="mx-2.5 opacity-60">/</span>
           <span>{project.title}</span>
@@ -111,7 +72,7 @@ export default function ProjectDetailsPage() {
         {/* Hero section */}
         <div className="text-center mb-16">
           <p className="uppercase tracking-[1px] text-[13px] text-foreground/80 mb-4 font-normal">
-            Featured Project
+            {t("projects.featuredProjectLabel")}
           </p>
           <h1
             className="font-bold text-teal-600 dark:text-teal-400 mb-6 leading-[1.2]"
@@ -124,7 +85,7 @@ export default function ProjectDetailsPage() {
           </p>
 
           <h3 className="text-lg font-semibold text-teal-600 dark:text-teal-400 mt-10 mb-4">
-            Technologies Used:
+            {t("projects.technologiesUsed")}
           </h3>
           <div className="flex flex-wrap justify-center gap-2.5">
             {project.tags.map((tag) => (
@@ -152,7 +113,9 @@ export default function ProjectDetailsPage() {
                 />
               ) : (
                 <div className="text-center text-white/60 px-8">
-                  <p className="text-sm uppercase tracking-widest mb-3">Project Preview</p>
+                  <p className="text-sm uppercase tracking-widest mb-3">
+                    {t("projects.projectPreview")}
+                  </p>
                   <p className="text-3xl md:text-5xl font-bold">{project.title}</p>
                 </div>
               )}
@@ -163,7 +126,7 @@ export default function ProjectDetailsPage() {
         {/* About section */}
         <section className="mb-16">
           <h2 className="text-[32px] font-bold text-teal-600 dark:text-teal-400 mb-8">
-            About This Project
+            {t("projects.aboutThisProject")}
           </h2>
           <div className="space-y-5">
             {project.about.map((paragraph, index) => (
@@ -185,10 +148,10 @@ export default function ProjectDetailsPage() {
               <div className="flex items-center gap-4">
                 <BookOpen className="w-6 h-6 text-violet-400 shrink-0" />
                 <div>
-                  <p className="text-base font-semibold text-foreground">Read the Case Study</p>
-                  <p className="text-sm text-foreground/70">
-                    Architecture decisions, tradeoffs, and outcomes
+                  <p className="text-base font-semibold text-foreground">
+                    {t("projects.readCaseStudy")}
                   </p>
+                  <p className="text-sm text-foreground/70">{t("projects.caseStudySubtext")}</p>
                 </div>
               </div>
               <span className="text-violet-400 group-hover:translate-x-1 transition-transform">
@@ -212,7 +175,7 @@ export default function ProjectDetailsPage() {
             viewTransition
             className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
           >
-            &lsaquo; Back to All Projects
+            &lsaquo; {t("projects.backToAllProjects")}
           </Link>
 
           <Link
@@ -220,7 +183,7 @@ export default function ProjectDetailsPage() {
             viewTransition
             className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
           >
-            Start a Project &rsaquo;
+            {t("projects.startAProject")} &rsaquo;
           </Link>
         </div>
       </div>

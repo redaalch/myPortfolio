@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft, Github, BookOpen, ExternalLink } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import Navbar from "../components/ui/Navbar";
 import DarkGradientBg from "../components/ui/DarkGradientBg";
 import { useTheme } from "../hooks/useTheme";
-import { projects, type Project } from "../data/projects";
+import { getLocalizedProjects, type Project } from "../data/projects";
 
 /* ── Card designed for the all-projects grid page ── */
 function ProjectGridCard({ project, isLight }: { project: Project; isLight: boolean }) {
+  const { t } = useTranslation();
   return (
     <div
       className={`group rounded-2xl overflow-hidden flex flex-col transition-transform duration-300 hover:-translate-y-1 ${
@@ -49,7 +51,7 @@ function ProjectGridCard({ project, isLight }: { project: Project; isLight: bool
             isLight ? "text-foreground/45" : "text-white/40"
           }`}
         >
-          Featured Project
+          {t("projects.featuredProject")}
         </span>
 
         {/* Title */}
@@ -101,7 +103,7 @@ function ProjectGridCard({ project, isLight }: { project: Project; isLight: bool
                 : "ring-1 ring-white/20 text-white/90 hover:bg-white/5"
             }`}
           >
-            View Details
+            {t("projects.viewDetails")}
           </Link>
 
           {/* Case Study */}
@@ -116,7 +118,7 @@ function ProjectGridCard({ project, isLight }: { project: Project; isLight: bool
               }`}
             >
               <BookOpen className="w-3.5 h-3.5" />
-              Case Study
+              {t("projects.caseStudy")}
             </Link>
           )}
 
@@ -172,6 +174,7 @@ function ProjectGridCard({ project, isLight }: { project: Project; isLight: bool
 
 export default function ProjectsPage() {
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const isLight = theme === "light";
 
   return (
@@ -188,26 +191,25 @@ export default function ProjectsPage() {
             className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"
           >
             <ArrowLeft className="size-3.5" />
-            Home
+            {t("nav.home")}
           </Link>
           <span className="opacity-40">/</span>
-          <span className="text-foreground/80">Projects</span>
+          <span className="text-foreground/80">{t("nav.projects")}</span>
         </nav>
 
         {/* ── Heading ── */}
         <div className="mb-14 text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent font-instrument-serif italic">
-            All Projects
+            {t("projects.allProjects")}
           </h1>
           <p className="mt-4 text-foreground/60 text-lg max-w-2xl mx-auto leading-relaxed">
-            A comprehensive collection of platforms, tools, and apps I&rsquo;ve built using modern
-            technologies.
+            {t("projects.allProjectsDescription")}
           </p>
         </div>
 
         {/* ── Grid ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
+          {getLocalizedProjects(t).map((project) => (
             <ProjectGridCard key={project.slug} project={project} isLight={isLight} />
           ))}
         </div>

@@ -3,6 +3,7 @@ import DarkGradientBg from "../components/ui/DarkGradientBg";
 import ResponsiveHeroBanner from "../components/ui/responsive-hero-banner";
 import VerticalBanner from "../components/ui/VerticalBanner";
 import BackToTop from "../components/ui/BackToTop";
+import ErrorBoundary from "../components/ui/ErrorBoundary";
 
 const ProjectsSection = lazy(() => import("../components/sections/Projects"));
 const ExperienceSection = lazy(() => import("../components/sections/Experience"));
@@ -84,13 +85,31 @@ export default function HomePage() {
         <ResponsiveHeroBanner />
         <VerticalBanner />
         <main id="main-content">
-          <Suspense fallback={null}>
-            <ProjectsSection />
-            <ExperienceSection />
-            <SkillsSection />
-            <CertificationsSection />
-            <ContactSection />
-          </Suspense>
+          <ErrorBoundary section="Projects">
+            <Suspense fallback={null}>
+              <ProjectsSection />
+            </Suspense>
+          </ErrorBoundary>
+          <ErrorBoundary section="Experience">
+            <Suspense fallback={null}>
+              <ExperienceSection />
+            </Suspense>
+          </ErrorBoundary>
+          <ErrorBoundary section="Skills">
+            <Suspense fallback={null}>
+              <SkillsSection />
+            </Suspense>
+          </ErrorBoundary>
+          <ErrorBoundary section="Certifications">
+            <Suspense fallback={null}>
+              <CertificationsSection />
+            </Suspense>
+          </ErrorBoundary>
+          <ErrorBoundary section="Contact">
+            <Suspense fallback={null}>
+              <ContactSection />
+            </Suspense>
+          </ErrorBoundary>
         </main>
         <Suspense fallback={null}>
           <Footer />
