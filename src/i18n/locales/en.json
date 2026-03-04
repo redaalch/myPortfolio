@@ -38,6 +38,8 @@
     "technologiesUsed": "Technologies Used:",
     "projectPreview": "Project Preview",
     "aboutThisProject": "About This Project",
+    "viewLiveApp": "View Live App",
+    "viewSourceCode": "View Source Code",
     "readCaseStudy": "Read the Case Study",
     "caseStudySubtext": "Architecture decisions, tradeoffs, and outcomes",
     "items": {

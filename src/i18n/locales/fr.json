@@ -38,6 +38,8 @@
     "technologiesUsed": "Technologies utilisées :",
     "projectPreview": "Aperçu du projet",
     "aboutThisProject": "À propos de ce projet",
+    "viewLiveApp": "Voir l'app en ligne",
+    "viewSourceCode": "Voir le code source",
     "readCaseStudy": "Lire l'étude de cas",
     "caseStudySubtext": "Décisions d'architecture, compromis et résultats",
     "items": {
