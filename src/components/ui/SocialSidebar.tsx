@@ -9,7 +9,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
  */
 export default function SocialSidebar() {
   const iconClass =
-    "text-violet-600 dark:text-violet-400/70 hover:text-violet-700 dark:hover:text-violet-400 transition-colors";
+    "text-gray-500 dark:text-violet-400/70 hover:text-violet-600 dark:hover:text-violet-400 transition-colors";
 
   return (
     <>
@@ -38,19 +38,19 @@ export default function SocialSidebar() {
             <Mail className="w-5 h-5" />
           </a>
         </div>
-        <div className="w-px h-24 bg-foreground/15" />
+        <div className="w-px h-24 bg-gray-200 dark:bg-foreground/15" />
       </aside>
 
       {/* ── Right strip: email ── */}
       <aside className="hidden lg:flex fixed right-8 top-0 bottom-0 z-30 flex-col items-center justify-center gap-6">
         <a
           href="mailto:reda.alalach@gmail.com"
-          className="text-xs tracking-[0.18em] text-foreground/70 hover:text-violet-400 transition-colors"
+          className="text-xs tracking-[0.18em] text-gray-500 dark:text-foreground/70 hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
           style={{ writingMode: "vertical-rl" }}
         >
           reda.alalach@gmail.com
         </a>
-        <div className="w-px h-24 bg-foreground/15" />
+        <div className="w-px h-24 bg-gray-200 dark:bg-foreground/15" />
       </aside>
     </>
   );

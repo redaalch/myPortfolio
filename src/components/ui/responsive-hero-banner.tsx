@@ -114,7 +114,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
       </div>
 
       {/* ── Decorative grid dots (asymmetric, top-right) ── */}
-      <div className="absolute top-20 right-12 w-48 h-48 opacity-[0.06] pointer-events-none hidden lg:block">
+      <div className="absolute top-20 right-12 w-48 h-48 opacity-[0.12] dark:opacity-[0.06] pointer-events-none hidden lg:block">
         <svg width="100%" height="100%" viewBox="0 0 192 192" className="text-foreground">
           {Array.from({ length: 64 }, (_, i) => (
             <circle
@@ -127,6 +127,15 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
           ))}
         </svg>
       </div>
+
+      {/* ── Light-mode depth: soft pastel purple radial gradient ── */}
+      <div
+        className="absolute top-0 right-0 w-150 h-150 pointer-events-none dark:hidden"
+        style={{
+          background:
+            "radial-gradient(circle at 70% 30%, rgba(139,92,246,0.07) 0%, rgba(139,92,246,0.02) 45%, transparent 70%)",
+        }}
+      />
 
       {/* ── Decorative line accent (bottom-left) ── */}
       <div className="absolute bottom-24 left-0 w-32 h-px bg-linear-to-r from-transparent via-violet-400/20 to-transparent hidden lg:block" />
@@ -145,7 +154,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
               aria-label="Main navigation"
               className="hidden lg:flex absolute left-1/2 -translate-x-1/2 top-4 z-10"
             >
-              <div className="flex items-center gap-1 rounded-full backdrop-blur-md bg-foreground/4 px-1.5 py-1 ring-1 ring-foreground/10">
+              <div className="flex items-center gap-1 rounded-full backdrop-blur-md bg-foreground/4 px-1.5 py-1 ring-1 ring-gray-200 dark:ring-foreground/10 shadow-md dark:shadow-none">
                 {navLinks.map((link, index) => {
                   const cls = `px-3.5 py-2 text-sm font-medium transition-all duration-200 rounded-full ${
                     link.isActive
@@ -244,11 +253,11 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
 
           {/* Mobile menu */}
           {mobileMenuOpen && (
-            <div className="lg:hidden mt-4 rounded-2xl bg-background/60 ring-1 ring-foreground/10 backdrop-blur-xl p-4 animate-fade-slide-in-1">
+            <div className="lg:hidden mt-4 rounded-2xl bg-white/90 dark:bg-[#030014]/80 ring-1 ring-gray-200 dark:ring-white/10 border border-gray-200 dark:border-white/10 backdrop-blur-xl shadow-2xl p-4 animate-fade-slide-in-1">
               <div className="flex flex-col gap-1">
                 {navLinks.map((link, index) => {
                   const cls =
-                    "px-4 py-3 text-sm font-medium text-foreground/50 hover:text-foreground hover:bg-foreground/5 rounded-lg transition-colors";
+                    "px-4 py-4 text-sm font-medium text-foreground/50 hover:text-foreground hover:bg-foreground/5 rounded-lg transition-colors";
                   return link.href.startsWith("/") ? (
                     <Link
                       key={index}
@@ -274,7 +283,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                   href={ctaButtonHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
+                  className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-violet-600 dark:bg-white/10 border border-violet-600 dark:border-white/20 px-4 py-4 text-sm font-medium text-white dark:text-white hover:bg-violet-700 dark:hover:bg-white/15 active:scale-95 active:opacity-80 transition-all"
                 >
                   {ctaButtonText}
                   <svg
@@ -325,7 +334,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
               </p>
 
               {/* Recruiter at-a-glance */}
-              <div className="animate-fade-slide-in-3 mt-5 flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 text-xs sm:text-sm text-foreground/50">
+              <div className="animate-fade-slide-in-3 mt-5 flex flex-col items-center sm:flex-row sm:flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 text-xs sm:text-sm text-slate-600 dark:text-foreground/50">
                 <span className="inline-flex items-center gap-1.5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -337,7 +346,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="text-violet-400/70 shrink-0"
+                    className="text-violet-600 dark:text-violet-400/70 shrink-0"
                   >
                     <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
                     <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
@@ -355,7 +364,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="text-violet-400/70 shrink-0"
+                    className="text-violet-600 dark:text-violet-400/70 shrink-0"
                   >
                     <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
                     <circle cx="12" cy="10" r="3" />
@@ -365,7 +374,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                 <span className="inline-flex items-center gap-1.5">
                   <span className="relative flex h-2 w-2 shrink-0">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500 animate-pulse" />
                   </span>
                   {t("hero.availability")}
                 </span>
@@ -374,7 +383,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
               <div className="flex flex-col sm:flex-row sm:gap-4 mt-10 gap-3 items-center lg:items-start animate-fade-slide-in-4">
                 <a
                   href="#projects"
-                  className="inline-flex items-center gap-2 rounded-full bg-violet-600 px-6 py-3 text-sm font-medium text-white shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:bg-violet-500 hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:scale-105 transition-all duration-300"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-violet-600 px-6 py-3 text-sm font-medium text-white shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:bg-violet-500 hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:scale-105 active:scale-95 active:opacity-80 transition-all duration-300"
                 >
                   {t("hero.viewProjects")}
                   <svg
@@ -395,7 +404,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-foreground/5 ring-1 ring-foreground/10 px-6 py-3 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-foreground/10 hover:ring-foreground/20 hover:scale-105 transition-all duration-300"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-transparent dark:bg-foreground/5 ring-1 ring-gray-300 dark:ring-foreground/10 px-6 py-3 text-sm font-medium text-gray-700 dark:text-foreground/80 hover:bg-violet-50 hover:ring-violet-500 hover:text-violet-600 dark:hover:text-foreground dark:hover:bg-foreground/10 dark:hover:ring-foreground/20 hover:scale-105 active:scale-95 active:opacity-80 transition-all duration-300"
                 >
                   {t("hero.contactMe")}
                 </a>
@@ -404,8 +413,8 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
 
             {/* Right column — photo */}
             <div className="relative shrink-0 animate-fade-slide-in-3">
-              {/* Glow behind photo */}
-              <div className="absolute -inset-6 rounded-3xl bg-violet-500/15 blur-3xl" />
+              {/* Glow behind photo (dark) / Shadow lift (light) */}
+              <div className="absolute -inset-6 rounded-3xl bg-violet-500/15 blur-3xl hidden dark:block" />
               <div className="relative">
                 <img
                   src={profileImg}
@@ -414,7 +423,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                   height={480}
                   loading="eager"
                   decoding="async"
-                  className="w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-2xl object-cover ring-1 ring-white/10 shadow-[0_0_40px_rgba(139,92,246,0.25),0_0_80px_rgba(139,92,246,0.1)]"
+                  className="w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-2xl object-cover ring-1 ring-white/10 shadow-2xl shadow-purple-900/10 dark:shadow-[0_0_40px_rgba(139,92,246,0.25),0_0_80px_rgba(139,92,246,0.1)]"
                 />
                 {/* Corner accent */}
                 <div className="absolute -bottom-3 -right-3 w-20 h-20 rounded-br-2xl border-b-2 border-r-2 border-violet-400/30" />
