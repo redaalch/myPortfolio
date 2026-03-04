@@ -106,14 +106,20 @@
   left: 0;
   height: 100%;
   width: 100%;
-  border: 1px solid var(--color-accent);
+  border: 1px solid;
   border-radius: 5px;
   transition: all 0.3s;
   color: var(--color-accent);
+  border-color: color-mix(in srgb, var(--color-foreground) 20%, transparent);
+}
+
+:global([data-theme="dark"]) .layer span {
   border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .iconLink:hover .layer span {
+  border-color: var(--color-accent);
   box-shadow: -1px 1px 3px var(--color-accent);
 }
 

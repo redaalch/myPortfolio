@@ -2,19 +2,14 @@
 
 /* ── Glass surface recipe ── */
 .contact-card {
-  --glass-bg: color-mix(in srgb, var(--color-background) 92%, var(--color-foreground));
-  --glass-border: color-mix(in srgb, var(--color-foreground) 10%, transparent);
-  --glass-shadow-ambient: 0 18px 60px rgba(0, 0, 0, 0.35);
-  --glass-shadow-tight: 0 8px 18px rgba(0, 0, 0, 0.28);
+  --glass-bg: transparent;
+  --glass-border: transparent;
+  --glass-shadow-ambient: none;
+  --glass-shadow-tight: none;
 
-  background:
-    radial-gradient(900px 500px at 20% 0%, rgba(255, 255, 255, 0.06), transparent 55%),
-    var(--glass-bg);
+  background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: var(--glass-shadow-ambient), var(--glass-shadow-tight);
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -22,13 +17,13 @@
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
-/* Overlay to suppress dot-grid texture inside cards */
+/* Overlay — disabled in dark (no container), active in light */
 .contact-card::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: color-mix(in srgb, var(--color-background) 35%, transparent);
+  background: transparent;
   pointer-events: none;
   z-index: 0;
 }
@@ -44,6 +39,9 @@
   --glass-border: rgba(255, 255, 255, 0.7);
   --glass-shadow-ambient: 0 8px 32px -8px rgba(124, 58, 237, 0.08);
   --glass-shadow-tight: 0 2px 8px -2px rgba(124, 58, 237, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--glass-shadow-ambient), var(--glass-shadow-tight);
 }
 
 [data-theme="light"] .contact-card::before {
@@ -56,8 +54,10 @@
   height: 48px;
   padding: 0 14px;
   border-radius: 12px;
-  border: 1px solid color-mix(in srgb, var(--color-foreground) 10%, transparent);
-  background: color-mix(in srgb, var(--color-foreground) 4%, transparent);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: var(--color-foreground);
   font-size: 14px;
   font-family: var(--font-sans);
@@ -75,19 +75,24 @@
 }
 
 .contact-input:hover {
-  border-color: color-mix(in srgb, var(--color-foreground) 16%, transparent);
-  background: color-mix(in srgb, var(--color-foreground) 5.5%, transparent);
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .contact-input:focus {
-  border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
-  background: color-mix(in srgb, var(--color-foreground) 6%, transparent);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  border-color: #8b5cf6;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
 }
 
 .contact-input.has-error {
-  border-color: rgba(255, 120, 160, 0.55);
-  box-shadow: 0 0 0 4px rgba(255, 120, 160, 0.12);
+  border-color: #f87171;
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15);
+}
+
+[data-theme="light"] .contact-input.has-error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
 }
 
 .contact-textarea {
@@ -99,16 +104,18 @@
 
 [data-theme="light"] .contact-input {
   background: rgba(255, 255, 255, 0.7);
-  border-color: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.12);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 [data-theme="light"] .contact-input:hover {
   background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 0, 0, 0.18);
 }
 [data-theme="light"] .contact-input:focus {
   background: rgba(255, 255, 255, 0.95);
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 12%, transparent);
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
 }
 [data-theme="light"] .contact-input::placeholder {
   color: rgba(0, 0, 0, 0.42);
@@ -138,29 +145,23 @@
   font-size: 14px;
   font-weight: 500;
   font-family: var(--font-sans);
-  border: 1px solid color-mix(in srgb, var(--color-foreground) 14%, transparent);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02)),
-    linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--color-accent) 22%, transparent),
-      color-mix(in srgb, var(--color-accent) 12%, transparent)
-    );
-  color: var(--color-foreground);
+  border: 1px solid rgba(139, 92, 246, 0.5);
+  background: #7c3aed;
+  color: #fff;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   transition:
     transform 160ms cubic-bezier(0.2, 0.8, 0.2, 1),
     box-shadow 160ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    border-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    border-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .contact-cta:hover:not(:disabled) {
-  border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.3),
-    0 0 0 4px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  background: #6d28d9;
+  border-color: rgba(139, 92, 246, 0.7);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.45);
   transform: translateY(-1px);
 }
 
@@ -170,33 +171,30 @@
 }
 
 .contact-cta:disabled {
-  opacity: 0.5;
+  opacity: 0.7;
   cursor: not-allowed;
-  filter: grayscale(0.3);
+  filter: grayscale(0.2);
   pointer-events: none;
 }
 
 .contact-cta--success {
-  border-color: #34d399 !important;
-  background: linear-gradient(135deg, rgba(52, 211, 153, 0.18), rgba(52, 211, 153, 0.1)) !important;
-  color: #34d399 !important;
+  border-color: #10b981 !important;
+  background: #059669 !important;
+  color: #fff !important;
 }
 
 [data-theme="light"] .contact-cta {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2)),
-    linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--color-accent) 12%, #fff),
-      color-mix(in srgb, var(--color-accent) 6%, #fff)
-    );
-  color: var(--color-accent);
-  border-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+  background: #7c3aed;
+  color: #fff;
+  border-color: #7c3aed;
+  box-shadow: 0 4px 14px -3px rgba(124, 58, 237, 0.4);
 }
 [data-theme="light"] .contact-cta:hover:not(:disabled) {
+  background: #6d28d9;
+  border-color: #6d28d9;
   box-shadow:
-    0 10px 30px rgba(124, 58, 237, 0.1),
-    0 0 0 4px color-mix(in srgb, var(--color-accent) 12%, transparent);
+    0 10px 30px -6px rgba(124, 58, 237, 0.35),
+    0 0 0 4px rgba(124, 58, 237, 0.12);
 }
 
 /* ── Chip toggle ── */
@@ -250,21 +248,23 @@
 }
 
 [data-theme="light"] .contact-chip {
-  background: rgba(255, 255, 255, 0.5);
-  border-color: rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.55);
 }
 [data-theme="light"] .contact-chip:hover {
-  background: rgba(255, 255, 255, 0.7);
-  border-color: rgba(0, 0, 0, 0.14);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.18);
+  color: rgba(0, 0, 0, 0.7);
 }
 [data-theme="light"] .contact-chip--selected {
-  background: color-mix(in srgb, var(--color-accent) 8%, #fff);
-  border-color: color-mix(in srgb, var(--color-accent) 35%, transparent);
-  color: var(--color-accent);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 8%, transparent);
+  background: rgba(124, 58, 237, 0.08);
+  border-color: #7c3aed;
+  color: #6d28d9;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.08);
 }
 [data-theme="light"] .contact-chip-dot {
-  background: var(--color-accent);
+  background: #7c3aed;
 }
 
 /* ── Action card ── */
@@ -280,15 +280,25 @@
 }
 
 .contact-action-card:hover {
-  border-color: color-mix(in srgb, var(--color-foreground) 18%, transparent) !important;
+  border-color: rgba(139, 92, 246, 0.3) !important;
   transform: translateY(-1px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 36px -8px rgba(139, 92, 246, 0.15);
+}
+
+[data-theme="light"] .contact-action-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 2px 8px -2px rgba(88, 28, 135, 0.06),
+    0 1px 3px -1px rgba(88, 28, 135, 0.04);
 }
 
 [data-theme="light"] .contact-action-card:hover {
-  background: rgba(255, 255, 255, 0.8) !important;
-  border-color: color-mix(in srgb, var(--color-accent) 20%, transparent) !important;
-  box-shadow: 0 4px 16px -4px rgba(124, 58, 237, 0.08);
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(124, 58, 237, 0.2) !important;
+  box-shadow:
+    0 8px 24px -6px rgba(88, 28, 135, 0.08),
+    0 2px 8px -2px rgba(88, 28, 135, 0.04);
 }
 
 /* ── Copied toast ── */
@@ -316,10 +326,22 @@
   margin-bottom: 6px;
 }
 
+[data-theme="light"] .contact-label {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+[data-theme="light"] .light-label {
+  color: rgba(0, 0, 0, 0.55);
+}
+
 /* ── Helper text ── */
 .contact-helper {
   font-size: 12px;
   color: color-mix(in srgb, var(--color-foreground) 45%, transparent);
+}
+
+[data-theme="light"] .contact-helper {
+  color: rgba(0, 0, 0, 0.5);
 }
 
 /* ── Field error ── */
@@ -327,6 +349,10 @@
   font-size: 12px;
   color: rgba(255, 120, 160, 0.95);
   min-height: 16px;
+}
+
+[data-theme="light"] .contact-field-error {
+  color: #dc2626;
 }
 
 /* ── Form footer ── */
@@ -337,7 +363,7 @@
   gap: 16px;
   padding-top: 12px;
   margin-top: 4px;
-  border-top: 1px solid color-mix(in srgb, var(--color-foreground) 6%, transparent);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .contact-form-footer span {
@@ -346,14 +372,24 @@
 }
 
 [data-theme="light"] .contact-form-footer {
-  border-top-color: rgba(0, 0, 0, 0.06);
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .contact-form-footer span {
+  color: rgba(0, 0, 0, 0.45);
 }
 
 /* ── Keyboard focus rings (designed, not default) ── */
 .contact-input:focus-visible {
   outline: none;
-  border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 18%, transparent);
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25);
+}
+
+[data-theme="light"] .contact-input:focus-visible {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
 }
 
 .contact-cta:focus-visible {
