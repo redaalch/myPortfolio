@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useTheme } from "../../hooks/useTheme";
 import technocolabsLogo from "../../assets/technocolabs_logo.avif";
 import alchdevLogo from "../../assets/alchdev.avif";
 
@@ -42,6 +43,8 @@ export default function ExperienceSection() {
   const { ref, visible } = useScrollReveal();
   const [activeIndex, setActiveIndex] = useState(0);
   const { t } = useTranslation();
+  const { theme } = useTheme();
+  const isLight = theme === "light";
   const experiences = getExperiences(t);
   const active = experiences[activeIndex];
 
@@ -57,33 +60,57 @@ export default function ExperienceSection() {
       >
         {/* Title with horizontal line */}
         <div className="flex items-center gap-4 sm:gap-6 mb-10 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-violet-400 via-purple-300 to-indigo-400 bg-clip-text text-transparent font-instrument-serif italic shrink-0">
+          <h2
+            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-instrument-serif italic shrink-0 ${
+              isLight
+                ? "text-gray-900"
+                : "bg-linear-to-r from-violet-400 via-purple-300 to-indigo-400 bg-clip-text text-transparent"
+            }`}
+          >
             {t("experience.sectionTitle")}
           </h2>
-          <div className="flex-1 h-px bg-foreground/15 hidden sm:block" />
+          <div
+            className={`flex-1 h-px hidden sm:block ${isLight ? "bg-gray-200" : "bg-foreground/15"}`}
+          />
         </div>
 
         {/* Tabbed layout — open/flat style */}
         <div className="flex flex-col md:flex-row gap-0">
           {/* Sidebar tabs with continuous left border */}
-          <nav className="flex md:flex-col shrink-0 md:w-48 border-b md:border-b-0 md:border-l-2 md:border-l-foreground/10 overflow-x-auto md:overflow-x-visible">
+          <nav
+            className={`flex md:flex-col shrink-0 md:w-48 border-b md:border-b-0 md:border-l-2 overflow-x-auto snap-x scrollbar-hide md:overflow-x-visible ${
+              isLight ? "md:border-l-gray-200" : "md:border-l-foreground/10"
+            }`}
+          >
             {experiences.map((xp, i) => (
               <button
                 key={i}
                 onClick={() => setActiveIndex(i)}
-                className={`relative text-left px-5 py-3 text-sm font-medium transition-colors duration-200 whitespace-nowrap
+                className={`relative text-left px-5 py-4 md:py-3 text-sm font-medium transition-all duration-300 whitespace-nowrap snap-start
                   ${
                     activeIndex === i
-                      ? "text-violet-400"
-                      : "text-foreground/70 hover:text-foreground/90"
+                      ? isLight
+                        ? "text-purple-700 bg-purple-50 rounded-r-md"
+                        : "text-white bg-white/10 rounded-r-md"
+                      : isLight
+                        ? "text-gray-500 hover:text-purple-600 hover:bg-gray-50"
+                        : "text-gray-400 hover:text-white"
                   }`}
               >
                 {/* Active left indicator (overlaps the border) */}
                 {activeIndex === i && (
-                  <span className="hidden md:block absolute -left-0.5 top-0 bottom-0 w-0.5 bg-violet-400" />
+                  <span
+                    className={`hidden md:block absolute -left-0.5 top-0 bottom-0 w-0.5 ${
+                      isLight ? "bg-purple-600" : "bg-violet-400"
+                    }`}
+                  />
                 )}
                 {activeIndex === i && (
-                  <span className="block md:hidden absolute bottom-0 left-0 right-0 h-0.5 bg-violet-400" />
+                  <span
+                    className={`block md:hidden absolute bottom-0 left-0 right-0 h-0.5 ${
+                      isLight ? "bg-purple-600" : "bg-violet-400"
+                    }`}
+                  />
                 )}
                 {xp.shortName}
               </button>
@@ -99,13 +126,16 @@ export default function ExperienceSection() {
                 width={44}
                 height={44}
                 loading="lazy"
-                className="shrink-0 w-11 h-11 rounded-xl object-cover ring-1 ring-foreground/10"
+                className="shrink-0 w-11 h-11 mt-0.5 rounded-xl object-cover ring-1 ring-foreground/10"
               />
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-teal-600 dark:text-teal-400 leading-snug">
-                  {active.role} <span className="text-violet-400">@ {active.company}</span>
+                <h3 className="text-xl sm:text-2xl font-bold leading-snug">
+                  <span className={isLight ? "text-gray-900" : "text-white"}>{active.role}</span>{" "}
+                  <span className={isLight ? "text-purple-700" : "text-purple-400"}>
+                    @ {active.company}
+                  </span>
                 </h3>
-                <p className="text-sm text-foreground/70 mt-1">
+                <p className={`text-sm mt-1 ${isLight ? "text-gray-500" : "text-foreground/70"}`}>
                   {active.type} | {active.period}
                 </p>
               </div>
@@ -115,8 +145,24 @@ export default function ExperienceSection() {
               {active.bullets.map((bullet, j) => (
                 <li
                   key={j}
-                  className="text-sm text-foreground/70 leading-relaxed pl-5 relative before:content-['▸'] before:text-violet-400 before:absolute before:left-0"
+                  className={`text-sm leading-loose pl-6 relative ${
+                    isLight ? "text-gray-600" : "text-foreground/70"
+                  }`}
                 >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={`absolute left-0 top-1 w-3.5 h-3.5 ${
+                      isLight ? "text-purple-500" : "text-purple-400"
+                    }`}
+                  >
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
                   {bullet}
                 </li>
               ))}

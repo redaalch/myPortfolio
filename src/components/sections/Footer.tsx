@@ -18,22 +18,26 @@ export default function Footer() {
       <div ref={ref} className={`max-w-7xl mx-auto px-6 ${visible ? "reveal visible" : "reveal"}`}>
         {/* Lighthouse scores */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-          <Gauge className="w-4 h-4 text-foreground/70" />
+          <Gauge className="w-4 h-4 text-gray-400 dark:text-gray-500" />
           {lighthouseKeys.map((item) => (
             <span
               key={item.key}
-              className="inline-flex items-center gap-1.5 rounded-full bg-foreground/[0.04] px-3 py-1.5 text-xs font-medium text-foreground/70 ring-1 ring-foreground/8"
+              className="inline-flex items-center gap-1.5 rounded-full bg-white/5 dark:bg-white/5 px-3 py-1.5 text-xs font-medium text-gray-500 dark:text-gray-400 ring-1 ring-white/10 dark:ring-white/10 light-lh-pill"
             >
               {t(`footer.lighthouse.${item.key}`)}
-              <span className="text-violet-400 font-semibold">{item.score}</span>
+              <span className="text-purple-600 dark:text-purple-400 font-semibold">
+                {item.score}
+              </span>
             </span>
           ))}
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
+        <div className="border-t border-white/10 dark:border-white/10 light-footer-border pt-6 flex flex-col items-center text-center md:flex-row md:text-left md:justify-between gap-6">
+          <div className="flex flex-col items-center gap-1 md:flex-row md:gap-3">
             <Logo height={44} className="opacity-50" />
-            <span className="text-sm text-foreground/70">&middot; {t("footer.role")}</span>
+            <span className="text-sm text-gray-400 dark:text-gray-400 light-footer-tagline">
+              {t("footer.role")}
+            </span>
           </div>
 
           <div className="flex items-center gap-4">
@@ -53,7 +57,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/reda-alalach/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-foreground/5 ring-1 ring-foreground/10 flex items-center justify-center text-foreground/70 hover:text-foreground hover:bg-foreground/10 transition-colors"
+              className="w-9 h-9 rounded-full bg-white/5 ring-1 ring-white/10 flex items-center justify-center text-gray-300 hover:text-purple-400 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/5 dark:ring-white/10 dark:text-gray-300 dark:hover:text-purple-400 dark:hover:bg-white/10 light-footer-icon"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-4 h-4" />
@@ -62,14 +66,14 @@ export default function Footer() {
               href="https://github.com/redaalch"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-foreground/5 ring-1 ring-foreground/10 flex items-center justify-center text-foreground/70 hover:text-foreground hover:bg-foreground/10 transition-colors"
+              className="w-9 h-9 rounded-full bg-white/5 ring-1 ring-white/10 flex items-center justify-center text-gray-300 hover:text-purple-400 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/5 dark:ring-white/10 dark:text-gray-300 dark:hover:text-purple-400 dark:hover:bg-white/10 light-footer-icon"
               aria-label="GitHub"
             >
               <Github className="w-4 h-4" />
             </a>
             <a
               href="mailto:reda.alalach@gmail.com"
-              className="w-9 h-9 rounded-full bg-foreground/5 ring-1 ring-foreground/10 flex items-center justify-center text-foreground/70 hover:text-foreground hover:bg-foreground/10 transition-colors"
+              className="w-9 h-9 rounded-full bg-white/5 ring-1 ring-white/10 flex items-center justify-center text-gray-300 hover:text-purple-400 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/5 dark:ring-white/10 dark:text-gray-300 dark:hover:text-purple-400 dark:hover:bg-white/10 light-footer-icon"
               aria-label="Email"
             >
               <Mail className="w-4 h-4" />
@@ -77,7 +81,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="text-center text-xs text-foreground/70 mt-8">
+        <p className="text-center text-xs text-gray-500 dark:text-gray-500 light-footer-copyright mt-8 pb-12 md:pb-0">
           {t("footer.copyright", { year: new Date().getFullYear() })}
         </p>
       </div>
