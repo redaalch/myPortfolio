@@ -90,12 +90,12 @@ export default function CaseStudyPage() {
             {t("caseStudy.label")}
           </p>
           <h1
-            className="font-bold text-teal-600 dark:text-teal-400 mb-4 leading-[1.2]"
+            className="font-bold text-foreground font-instrument-serif italic mb-4 leading-[1.2]"
             style={{ fontSize: "clamp(28px, 5vw, 44px)" }}
           >
             {caseStudy.title}
           </h1>
-          <p className="text-lg text-foreground/80 leading-relaxed max-w-187.5">
+          <p className="text-lg text-slate-700 dark:text-foreground/80 leading-relaxed max-w-187.5">
             {caseStudy.subtitle}
           </p>
           {project?.repoUrl && (
@@ -116,7 +116,7 @@ export default function CaseStudyPage() {
         <section className="mb-14 rounded-2xl bg-foreground/[0.03] ring-1 ring-foreground/10 overflow-hidden">
           {/* Header bar */}
           <div className="px-6 sm:px-8 py-4 border-b border-foreground/8 flex items-center gap-3">
-            <span className="h-2 w-2 rounded-full bg-teal-500" />
+            <span className="h-2 w-2 rounded-full bg-purple-500" />
             <h2 className="text-sm font-semibold text-foreground/90 uppercase tracking-[0.12em]">
               {t("caseStudy.atAGlance")}
             </h2>
@@ -170,7 +170,7 @@ export default function CaseStudyPage() {
                   {caseStudy.tldr.results.map((r, i) => (
                     <span
                       key={i}
-                      className="inline-flex items-center rounded-md bg-teal-500/10 px-2.5 py-1 text-xs font-medium text-teal-600 dark:text-teal-400 ring-1 ring-teal-500/20"
+                      className="inline-flex items-center rounded-md bg-purple-500/10 px-2.5 py-1 text-xs font-medium text-purple-600 dark:text-purple-400 ring-1 ring-purple-500/20"
                     >
                       {r}
                     </span>
@@ -184,7 +184,9 @@ export default function CaseStudyPage() {
         {/* Context section */}
         <section className="mb-14">
           <h2 className="text-2xl font-bold text-foreground mb-4">{t("caseStudy.context")}</h2>
-          <p className="text-base text-foreground/85 leading-[1.8]">{caseStudy.context}</p>
+          <p className="text-base text-slate-700 dark:text-foreground/85 leading-[1.8]">
+            {caseStudy.context}
+          </p>
         </section>
 
         {/* Constraints section */}
@@ -192,7 +194,10 @@ export default function CaseStudyPage() {
           <h2 className="text-2xl font-bold text-foreground mb-4">{t("caseStudy.constraints")}</h2>
           <ul className="space-y-3">
             {caseStudy.constraints.map((constraint, i) => (
-              <li key={i} className="flex items-start gap-3 text-foreground/85 leading-relaxed">
+              <li
+                key={i}
+                className="flex items-start gap-3 text-slate-700 dark:text-foreground/85 leading-relaxed"
+              >
                 <span className="mt-1.5 h-2 w-2 rounded-full bg-violet-400 shrink-0" />
                 {constraint}
               </li>
@@ -209,10 +214,12 @@ export default function CaseStudyPage() {
                 key={i}
                 className="rounded-xl bg-foreground/[0.03] ring-1 ring-foreground/10 p-6"
               >
-                <h3 className="text-lg font-semibold text-teal-600 dark:text-teal-400 mb-3">
+                <h3 className="text-lg font-semibold text-purple-600 dark:text-purple-400 mb-3">
                   {section.heading}
                 </h3>
-                <p className="text-sm text-foreground/80 leading-[1.8]">{section.content}</p>
+                <p className="text-sm text-slate-700 dark:text-foreground/80 leading-[1.8]">
+                  {section.content}
+                </p>
               </div>
             ))}
           </div>
@@ -253,7 +260,9 @@ export default function CaseStudyPage() {
                 <h3 className="text-base font-semibold text-foreground mb-2">
                   {decision.question}
                 </h3>
-                <p className="text-sm text-foreground/75 leading-[1.8]">{decision.answer}</p>
+                <p className="text-sm text-slate-700 dark:text-foreground/75 leading-[1.8]">
+                  {decision.answer}
+                </p>
               </div>
             ))}
           </div>
@@ -266,10 +275,12 @@ export default function CaseStudyPage() {
             {caseStudy.outcomes.map((outcome, i) => (
               <div
                 key={i}
-                className="rounded-xl bg-foreground/[0.03] ring-1 ring-foreground/10 p-5 text-center"
+                className="rounded-xl bg-slate-50 dark:bg-foreground/3 ring-1 ring-foreground/10 p-5 text-center"
               >
-                <p className="text-2xl font-bold text-violet-400 mb-1">{outcome.value}</p>
-                <p className="text-sm text-foreground/70">{outcome.label}</p>
+                <p className="text-2xl font-bold text-violet-500 dark:text-violet-400 mb-1">
+                  {outcome.value}
+                </p>
+                <p className="text-sm text-slate-600 dark:text-foreground/70">{outcome.label}</p>
               </div>
             ))}
           </div>
@@ -280,7 +291,10 @@ export default function CaseStudyPage() {
           <h2 className="text-2xl font-bold text-foreground mb-4">{t("caseStudy.whatsNext")}</h2>
           <ul className="space-y-3">
             {caseStudy.nextSteps.map((step, i) => (
-              <li key={i} className="flex items-start gap-3 text-foreground/85 leading-relaxed">
+              <li
+                key={i}
+                className="flex items-start gap-3 text-slate-700 dark:text-foreground/85 leading-relaxed"
+              >
                 <span className="mt-1.5 h-2 w-2 rounded-full bg-foreground/30 shrink-0" />
                 {step}
               </li>
@@ -293,7 +307,7 @@ export default function CaseStudyPage() {
           <Link
             to={project ? `/projects/${project.slug}` : "/#projects"}
             viewTransition
-            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-4 rounded-lg text-sm font-medium text-gray-700 border border-gray-300 bg-transparent hover:border-purple-600 hover:text-purple-600 hover:bg-purple-50 dark:text-foreground/80 dark:bg-white/5 dark:border-white/10 dark:hover:border-purple-500 dark:hover:bg-purple-500/10 dark:hover:text-purple-300 transition-all duration-300 hover:-translate-y-0.5"
           >
             <ArrowLeft className="w-4 h-4" />
             {t("caseStudy.backToProject")}
@@ -302,7 +316,7 @@ export default function CaseStudyPage() {
           <Link
             to="/#contact"
             viewTransition
-            className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded-lg text-sm font-medium text-gray-700 border border-gray-300 bg-transparent hover:border-purple-600 hover:text-purple-600 hover:bg-purple-50 dark:text-foreground/80 dark:bg-white/5 dark:border-white/10 dark:hover:border-purple-500 dark:hover:bg-purple-500/10 dark:hover:text-purple-300 transition-all duration-300 hover:-translate-y-0.5"
           >
             {t("caseStudy.startAProject")} &rsaquo;
           </Link>
