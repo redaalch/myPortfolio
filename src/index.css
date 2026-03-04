@@ -57,9 +57,9 @@
   --color-muted: rgba(26, 26, 46, 0.6);
   --color-accent: #7c3aed;
   --color-accent-light: #6d28d9;
-  --color-heading-from: #1e1b4b;
-  --color-heading-via: #7c3aed;
-  --color-heading-to: #8b5cf6;
+  --color-heading-from: #111827;
+  --color-heading-via: #1e1b4b;
+  --color-heading-to: #312e81;
   --color-hero-from: #1e1b4b;
   --color-hero-via: #312e81;
   --color-hero-to: #4c1d95;
@@ -266,6 +266,15 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: color-mix(in srgb, var(--color-foreground) 25%, transparent);
+}
+
+/* Hide scrollbar utility — used for swipeable tab bars */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 /* Focus-visible ring for keyboard navigation */
@@ -905,4 +914,34 @@ button:focus-visible {
   .flex.flex-col.gap-2 {
     page-break-inside: avoid;
   }
+}
+
+/* ── Footer: light-mode overrides ── */
+[data-theme="light"] .light-lh-pill {
+  background: rgba(255, 255, 255, 0.6);
+  --tw-ring-color: rgba(0, 0, 0, 0.08);
+  color: #6b7280; /* gray-500 */
+}
+
+[data-theme="light"] .light-footer-border {
+  border-top-color: #e5e7eb; /* gray-200 */
+}
+
+[data-theme="light"] .light-footer-tagline {
+  color: #4b5563; /* gray-600 */
+}
+
+[data-theme="light"] .light-footer-icon {
+  background: #fff;
+  --tw-ring-color: #e5e7eb;
+  color: #6b7280;
+  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .light-footer-icon:hover {
+  color: #7c3aed;
+  background: #f5f3ff;
+}
+
+[data-theme="light"] .light-footer-copyright {
+  color: #6b7280;
 }
