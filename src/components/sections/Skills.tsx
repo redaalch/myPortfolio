@@ -32,6 +32,7 @@ const MARQUEE_LOGOS = [
 interface Category {
   title: string;
   color: string;
+  lightColor: string;
   skills: string[];
   note?: string;
 }
@@ -40,17 +41,20 @@ const CATEGORIES: Category[] = [
   {
     title: "Backend",
     color: "#8b5cf6",
+    lightColor: "#6d28d9",
     skills: ["Node.js", "Express", "REST APIs", "JWT Auth", "Socket.io", "MongoDB", "Mongoose"],
   },
   {
     title: "Cloud & DevOps",
     color: "#3b82f6",
+    lightColor: "#1d4ed8",
     skills: ["Docker", "Kubernetes", "GitHub Actions", "GitLab CI", "Jenkins", "Linux"],
     note: "Learning: GCP + Firebase",
   },
   {
     title: "Frontend",
     color: "#10b981",
+    lightColor: "#047857",
     skills: [
       "React",
       "React Router",
@@ -64,6 +68,7 @@ const CATEGORIES: Category[] = [
   {
     title: "Quality",
     color: "#f97316",
+    lightColor: "#c2410c",
     skills: ["Testing Library", "Vitest", "Error Handling", "Logging & Monitoring"],
   },
 ];
@@ -166,9 +171,20 @@ export default function SkillsSection() {
     timer.current = setTimeout(() => setActive(null), 120);
   }, []);
 
-  const op = (ci: number) => (active == null ? 1 : active === ci ? 1 : 0.1);
+  const op = (ci: number) => (active == null ? 1 : active === ci ? 1 : isLight ? 0.3 : 0.1);
 
-  const lop = (ci: number) => (active == null ? 0.18 : active === ci ? 0.5 : 0.03);
+  const lop = (ci: number) =>
+    active == null
+      ? isLight
+        ? 0.35
+        : 0.18
+      : active === ci
+        ? isLight
+          ? 0.8
+          : 0.7
+        : isLight
+          ? 0.08
+          : 0.03;
 
   return (
     <section id="skills" className="py-32 relative">
@@ -199,8 +215,11 @@ export default function SkillsSection() {
           {CATEGORIES.map((cat, ci) => (
             <div key={ci} className="rounded-xl border border-foreground/8 bg-foreground/3 p-5">
               <div className="flex items-center gap-2.5 mb-3">
-                <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: cat.color }} />
-                <h3 className="text-sm font-semibold text-teal-600 dark:text-teal-400 tracking-wide">
+                <span
+                  className="w-2.5 h-2.5 rounded-full"
+                  style={{ backgroundColor: isLight ? cat.lightColor : cat.color }}
+                />
+                <h3 className="text-sm font-semibold text-gray-900 dark:text-white tracking-wide">
                   {cat.title}
                 </h3>
               </div>
@@ -208,7 +227,9 @@ export default function SkillsSection() {
                 {cat.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="text-xs px-2.5 py-1.5 rounded-full border text-foreground/70"
+                    className={`text-xs px-2.5 py-1.5 rounded-full border text-foreground/70 active:scale-95 active:brightness-125 transition-all duration-150 select-none ${
+                      isLight ? "active:bg-purple-100" : "active:bg-white/10"
+                    }`}
                     style={{
                       borderColor: `${cat.color}30`,
                       backgroundColor: `${cat.color}08`,
@@ -286,6 +307,7 @@ export default function SkillsSection() {
             const hub = HUB_POS[ci];
             const clusterSats = sats.filter((s) => s.ci === ci);
             const isHot = active === ci;
+            const clr = isLight ? cat.lightColor : cat.color;
 
             return (
               <g key={ci}>
@@ -296,8 +318,9 @@ export default function SkillsSection() {
                     y1={hub.y}
                     x2={s.x}
                     y2={s.y}
-                    stroke={cat.color}
-                    strokeWidth={isHot ? "1" : "0.6"}
+                    stroke={clr}
+                    strokeWidth={isHot ? "1.2" : isLight ? "0.8" : "0.6"}
+                    filter={isHot ? `url(#cg${ci})` : undefined}
                     style={{
                       opacity: visible ? lop(ci) : 0,
                       transition: `opacity 0.4s ease ${0.35 + si * 0.06}s, stroke-width 0.25s`,
@@ -320,7 +343,7 @@ export default function SkillsSection() {
                         cx={s.x}
                         cy={s.y}
                         r="6"
-                        fill={`${cat.color}15`}
+                        fill={`${clr}15`}
                         style={{
                           opacity: visible ? op(ci) : 0,
                           transformOrigin: `${s.x}px ${s.y}px`,
@@ -332,7 +355,7 @@ export default function SkillsSection() {
                         cx={s.x}
                         cy={s.y}
                         r="2.5"
-                        fill={cat.color}
+                        fill={clr}
                         style={{
                           opacity: visible ? op(ci) : 0,
                           transformOrigin: `${s.x}px ${s.y}px`,
@@ -347,12 +370,15 @@ export default function SkillsSection() {
                         dominantBaseline="middle"
                         fill={
                           isHot
-                            ? cat.color
-                            : "color-mix(in srgb, var(--color-foreground) 65%, transparent)"
+                            ? clr
+                            : isLight
+                              ? "color-mix(in srgb, var(--color-foreground) 75%, transparent)"
+                              : "color-mix(in srgb, var(--color-foreground) 80%, transparent)"
                         }
                         style={{
                           fontSize: isHot ? "10px" : "8.5px",
                           fontWeight: isHot ? 600 : 400,
+                          letterSpacing: "0.5px",
                           opacity: visible ? op(ci) : 0,
                           transition: `all 0.3s ease ${d + 0.08}s`,
                           pointerEvents: "none",
@@ -374,7 +400,7 @@ export default function SkillsSection() {
                     cx={hub.x}
                     cy={hub.y}
                     r="10"
-                    fill={`${cat.color}10`}
+                    fill={`${clr}10`}
                     style={{
                       opacity: visible ? op(ci) : 0,
                       transformOrigin: `${hub.x}px ${hub.y}px`,
@@ -386,7 +412,7 @@ export default function SkillsSection() {
                     cx={hub.x}
                     cy={hub.y}
                     r="5"
-                    fill={cat.color}
+                    fill={clr}
                     filter={isHot ? `url(#cg${ci})` : undefined}
                     style={{
                       opacity: visible ? op(ci) : 0,
@@ -399,15 +425,7 @@ export default function SkillsSection() {
                     x={hub.x}
                     y={hub.y - 22}
                     textAnchor="middle"
-                    fill={
-                      isHot
-                        ? isLight
-                          ? "#0d9488"
-                          : "#2dd4bf"
-                        : "color-mix(in srgb, " +
-                          (isLight ? "#0d9488" : "#2dd4bf") +
-                          " 75%, transparent)"
-                    }
+                    fill={isHot ? clr : "color-mix(in srgb, " + clr + " 75%, transparent)"}
                     style={{
                       fontSize: "12px",
                       fontWeight: 700,
@@ -426,7 +444,7 @@ export default function SkillsSection() {
                     x={hub.x}
                     y={hub.y + 32}
                     textAnchor="middle"
-                    fill={cat.color}
+                    fill={clr}
                     style={{
                       fontSize: "7.5px",
                       fontStyle: "italic",
@@ -454,13 +472,13 @@ export default function SkillsSection() {
               <span
                 className="w-2.5 h-2.5 rounded-full"
                 style={{
-                  backgroundColor: cat.color,
+                  backgroundColor: isLight ? cat.lightColor : cat.color,
                   opacity: op(ci),
                   transition: "opacity 0.3s",
                 }}
               />
               <span
-                className="text-xs text-foreground/70"
+                className={`text-xs ${isLight ? "text-gray-600" : "text-foreground/70"}`}
                 style={{ opacity: op(ci), transition: "opacity 0.3s" }}
               >
                 {cat.title}
@@ -471,12 +489,12 @@ export default function SkillsSection() {
 
         {/* ── Tech logo marquee ── */}
         <div
-          className="mt-16 relative overflow-hidden"
+          className="mt-20 relative w-full overflow-hidden"
           style={{
             maskImage:
-              "linear-gradient(to right, transparent, black 6rem, black calc(100% - 6rem), transparent)",
+              "linear-gradient(to right, transparent, black 3rem, black calc(100% - 3rem), transparent)",
             WebkitMaskImage:
-              "linear-gradient(to right, transparent, black 6rem, black calc(100% - 6rem), transparent)",
+              "linear-gradient(to right, transparent, black 3rem, black calc(100% - 3rem), transparent)",
           }}
         >
           <div className="marquee-track">
@@ -499,7 +517,7 @@ export default function SkillsSection() {
                       width={28}
                       height={28}
                       loading="lazy"
-                      className={`opacity-40 group-hover:opacity-90 transition-opacity duration-300${"invertDark" in logo && logo.invertDark ? " dark:invert" : ""}`}
+                      className={`${isLight ? "opacity-70 md:opacity-60" : "opacity-50 md:opacity-40"} grayscale md:group-hover:opacity-100 md:group-hover:grayscale-0 transition-all duration-300${"invertDark" in logo && logo.invertDark ? " dark:invert" : ""}`}
                     />
                     <span className="sr-only">{logo.name}</span>
                   </div>

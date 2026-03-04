@@ -22,15 +22,18 @@ function ProjectRow({
 
   /* ── Image element (reused in both layouts) ── */
   const image = project.image ? (
-    <img
-      src={project.image}
-      alt={project.title}
-      width={700}
-      height={438}
-      loading="lazy"
-      decoding="async"
-      className="w-full h-full object-cover rounded-xl"
-    />
+    <div className="group/img relative overflow-hidden rounded-xl">
+      <img
+        src={project.image}
+        alt={project.title}
+        width={700}
+        height={438}
+        loading="lazy"
+        decoding="async"
+        className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105"
+      />
+      <div className="absolute inset-0 bg-black/15 group-hover/img:bg-transparent transition-colors duration-500 rounded-xl" />
+    </div>
   ) : (
     <div
       className={`w-full aspect-video rounded-xl bg-linear-to-br ${isLight ? project.lightColor : project.color} flex items-center justify-center`}
@@ -50,49 +53,46 @@ function ProjectRow({
     <div
       className={`relative w-full lg:w-1/2 flex flex-col justify-start z-10 ${isEven ? "lg:text-left" : "lg:text-right"}`}
     >
+      {/* Mobile-only image banner */}
+      <div className="lg:hidden rounded-xl overflow-hidden mb-4">{image}</div>
+
       {/* Featured label */}
-      <span className={`text-xs tracking-wide ${isLight ? "text-foreground/50" : "text-white/50"}`}>
+      <span className={`text-xs tracking-wide ${isLight ? "text-purple-600" : "text-white/50"}`}>
         {t("projects.featuredProject")}
       </span>
 
       {/* Title */}
       <h3
         className={`text-2xl sm:text-3xl font-bold mt-1 leading-tight ${
-          isLight ? "text-teal-600" : "text-teal-400"
+          isLight ? "text-gray-900" : "text-white"
         }`}
       >
         {project.title}
       </h3>
 
-      {/* Description + image container — bordered on mobile */}
-      <div
-        className={`relative mt-4 rounded-lg overflow-hidden lg:overflow-visible ${
-          isLight ? "ring-1 ring-foreground/10 lg:ring-0" : "ring-1 ring-white/10 lg:ring-0"
-        }`}
-      >
-        {/* Description box — overlaps the image on desktop */}
+      {/* Description — plain on mobile, frosted glass overlay on desktop */}
+      <div className="relative mt-4 lg:rounded-lg lg:overflow-visible">
         <div
-          className={`p-5 text-sm leading-relaxed ${
+          className={`text-sm leading-relaxed ${
             isLight
-              ? "bg-white/90 shadow-lg text-foreground/75 backdrop-blur lg:rounded-lg"
-              : "bg-[#112240]/90 text-white/70 backdrop-blur lg:rounded-lg"
+              ? "text-slate-600 lg:p-5 lg:bg-white/80 lg:shadow-xl lg:shadow-purple-900/5 lg:border lg:border-purple-100/50 lg:backdrop-blur-md lg:rounded-lg"
+              : "text-gray-300 lg:p-5 lg:bg-background/40 lg:backdrop-blur-md lg:border lg:border-white/10 lg:rounded-lg"
           } ${isEven ? "lg:-mr-14" : "lg:-ml-15 lg:text-left"}`}
         >
           {project.description}
         </div>
-
-        {/* Mobile-only image: inside the bordered container */}
-        <div className="lg:hidden">{image}</div>
       </div>
 
-      {/* Tags — pipe-separated */}
-      <div className={`mt-4 flex flex-wrap gap-x-1 text-xs ${isEven ? "" : "lg:justify-end"}`}>
-        {project.tags.map((tag, i) => (
-          <span key={tag}>
-            <span className={isLight ? "text-teal-600" : "text-teal-400"}>{tag}</span>
-            {i < project.tags.length - 1 && (
-              <span className={isLight ? "text-foreground/30 mx-1" : "text-white/30 mx-1"}>|</span>
-            )}
+      {/* Tags — pills */}
+      <div className={`mt-4 flex flex-wrap gap-2 text-xs ${isEven ? "" : "lg:justify-end"}`}>
+        {project.tags.map((tag) => (
+          <span
+            key={tag}
+            className={`px-3 py-1 rounded-full font-medium ${
+              isLight ? "bg-violet-100 text-violet-700" : "bg-purple-500/10 text-purple-300"
+            }`}
+          >
+            {tag}
           </span>
         ))}
       </div>
@@ -106,73 +106,78 @@ function ProjectRow({
         </span>
       )}
 
-      {/* Actions row */}
+      {/* Actions */}
       <div
-        className={`flex items-center flex-wrap gap-x-3 gap-y-2 mt-5 ${isEven ? "" : "lg:justify-end"}`}
+        className={`mt-8 flex flex-col lg:flex-row lg:items-center lg:flex-wrap gap-y-3 lg:gap-x-3 lg:gap-y-2 ${isEven ? "" : "lg:justify-end"}`}
       >
-        {/* View Details */}
+        {/* View Details — full-width tap target on mobile */}
         <Link
           to={`/projects/${project.slug}`}
           viewTransition
-          className={`inline-flex items-center text-xs font-semibold uppercase tracking-wider px-5 py-2.5 rounded transition-colors ${
+          className={`inline-flex items-center justify-center text-xs font-semibold uppercase tracking-wider w-full lg:w-auto px-5 py-3 lg:py-2.5 rounded active:scale-95 active:opacity-80 transition-all duration-200 ${
             isLight
-              ? "ring-1 ring-foreground/20 text-foreground hover:bg-foreground/5"
-              : "ring-1 ring-white/20 text-white hover:bg-white/5"
+              ? "ring-1 ring-gray-300 text-gray-700 hover:ring-purple-500 hover:text-purple-600 hover:bg-purple-50"
+              : "ring-1 ring-white/20 text-white hover:bg-white/10 hover:ring-white/30"
           }`}
         >
           {t("projects.viewDetails")}
         </Link>
 
-        {/* Case Study */}
-        {project.hasCaseStudy && (
-          <Link
-            to={`/case-study/${project.slug}`}
-            viewTransition
-            className={`inline-flex items-center gap-1.5 text-xs font-medium transition-colors ${
-              isLight
-                ? "text-violet-600 hover:text-violet-800"
-                : "text-violet-400/80 hover:text-violet-300"
-            }`}
-          >
-            <BookOpen className="w-3.5 h-3.5" />
-            {t("projects.caseStudy")}
-          </Link>
-        )}
+        {/* Secondary links — centered on mobile */}
+        <div
+          className={`flex flex-wrap justify-center gap-4 ${isEven ? "lg:justify-start" : "lg:justify-end"}`}
+        >
+          {/* Case Study */}
+          {project.hasCaseStudy && (
+            <Link
+              to={`/case-study/${project.slug}`}
+              viewTransition
+              className={`inline-flex items-center gap-1.5 text-xs font-medium transition-colors ${
+                isLight
+                  ? "text-violet-600 hover:text-violet-800"
+                  : "text-violet-400/80 hover:text-violet-300"
+              }`}
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              {t("projects.caseStudy")}
+            </Link>
+          )}
 
-        {/* Live */}
-        {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${project.title} live site`}
-            className={`inline-flex items-center gap-1 text-xs transition-colors ${
-              isLight
-                ? "text-foreground/60 hover:text-foreground"
-                : "text-white/50 hover:text-white"
-            }`}
-          >
-            <ExternalLink className="w-3.5 h-3.5" />
-            {t("projects.live")}
-          </a>
-        )}
+          {/* Live */}
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${project.title} live site`}
+              className={`inline-flex items-center gap-1 text-xs transition-colors ${
+                isLight
+                  ? "text-foreground/60 hover:text-foreground"
+                  : "text-white/50 hover:text-white"
+              }`}
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              {t("projects.live")}
+            </a>
+          )}
 
-        {/* GitHub */}
-        {project.repoUrl && (
-          <a
-            href={project.repoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${project.title} GitHub repository`}
-            className={`transition-colors ${
-              isLight
-                ? "text-foreground/60 hover:text-foreground"
-                : "text-white/50 hover:text-white"
-            }`}
-          >
-            <Github className="w-5 h-5" />
-          </a>
-        )}
+          {/* GitHub */}
+          {project.repoUrl && (
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${project.title} GitHub repository`}
+              className={`transition-colors ${
+                isLight
+                  ? "text-foreground/60 hover:text-foreground"
+                  : "text-white/50 hover:text-white"
+              }`}
+            >
+              <Github className="w-5 h-5" />
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -201,7 +206,7 @@ export default function ProjectsSection() {
   const isLight = theme === "light";
 
   return (
-    <section id="projects" className="py-24 sm:py-32 relative overflow-hidden">
+    <section id="projects" className="pt-24 pb-44 sm:py-32 relative overflow-hidden">
       <div className="section-glow section-glow--projects" aria-hidden="true">
         <span className="sg-blob sg-blob--1" />
         <span className="sg-blob sg-blob--2" />
@@ -228,9 +233,24 @@ export default function ProjectsSection() {
           <Link
             to="/projects"
             viewTransition
-            className="contact-cta inline-flex items-center text-sm font-semibold uppercase tracking-widest px-8 py-3.5 rounded-xl"
+            className="inline-flex items-center gap-2 rounded-full bg-violet-600 px-8 py-3.5 text-sm font-semibold uppercase tracking-wider text-white shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:bg-violet-500 hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:scale-105 active:scale-95 active:opacity-80 transition-all duration-300"
           >
             {t("projects.viewAllProjects")}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-4 w-4"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
           </Link>
         </div>
       </div>
