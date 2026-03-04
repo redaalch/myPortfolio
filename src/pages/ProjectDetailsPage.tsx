@@ -1,4 +1,4 @@
-import { BookOpen } from "lucide-react";
+import { BookOpen, ExternalLink, Github } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -75,7 +75,7 @@ export default function ProjectDetailsPage() {
             {t("projects.featuredProjectLabel")}
           </p>
           <h1
-            className="font-bold text-teal-600 dark:text-teal-400 mb-6 leading-[1.2]"
+            className="font-bold text-foreground font-instrument-serif italic mb-6 leading-[1.2]"
             style={{ fontSize: "clamp(32px, 6vw, 48px)" }}
           >
             {project.title}
@@ -84,7 +84,7 @@ export default function ProjectDetailsPage() {
             {project.description}
           </p>
 
-          <h3 className="text-lg font-semibold text-teal-600 dark:text-teal-400 mt-10 mb-4">
+          <h3 className="text-lg font-semibold text-purple-400 mt-10 mb-4">
             {t("projects.technologiesUsed")}
           </h3>
           <div className="flex flex-wrap justify-center gap-2.5">
@@ -97,14 +97,44 @@ export default function ProjectDetailsPage() {
               </span>
             ))}
           </div>
+
+          {/* Action buttons */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-purple-600 text-white text-sm font-semibold shadow-lg shadow-purple-500/25 hover:bg-purple-500 hover:shadow-purple-500/40 hover:-translate-y-0.5 transition-all duration-300"
+              >
+                {t("projects.viewLiveApp")}
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            )}
+            {project.repoUrl && (
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-white/5 text-foreground/90 text-sm font-semibold border border-white/10 backdrop-blur-sm hover:border-purple-500 hover:bg-purple-500/10 hover:text-purple-300 hover:-translate-y-0.5 transition-all duration-300"
+              >
+                <Github className="w-4 h-4" />
+                {t("projects.viewSourceCode")}
+              </a>
+            )}
+            {project.repoNote && !project.repoUrl && (
+              <span className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-white/5 text-foreground/50 text-sm font-medium border border-white/10">
+                <Github className="w-4 h-4" />
+                {project.repoNote}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Project preview image */}
         <div className="mb-20">
-          <div
-            className={`rounded-2xl bg-linear-to-br ${project.color} p-4 md:p-6 shadow-[0_20px_60px_-10px_rgba(0,0,0,0.4)] max-w-200 mx-auto`}
-          >
-            <div className="h-72 md:h-112 rounded-xl bg-white/10 overflow-hidden flex items-center justify-center">
+          <div className="rounded-2xl bg-white/5 p-2 border border-white/10 max-w-200 mx-auto">
+            <div className="h-72 md:h-112 rounded-xl overflow-hidden flex items-center justify-center">
               {project.image ? (
                 <img
                   src={project.image}
@@ -125,7 +155,7 @@ export default function ProjectDetailsPage() {
 
         {/* About section */}
         <section className="mb-16">
-          <h2 className="text-[32px] font-bold text-teal-600 dark:text-teal-400 mb-8">
+          <h2 className="text-[32px] font-bold text-purple-400 mb-8">
             {t("projects.aboutThisProject")}
           </h2>
           <div className="space-y-5">
@@ -173,7 +203,7 @@ export default function ProjectDetailsPage() {
           <Link
             to="/#projects"
             viewTransition
-            className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded-lg text-sm font-medium text-foreground/80 bg-white/5 border border-white/10 hover:border-purple-500 hover:bg-purple-500/10 hover:text-purple-300 transition-all duration-300 hover:-translate-y-0.5"
           >
             &lsaquo; {t("projects.backToAllProjects")}
           </Link>
@@ -181,7 +211,7 @@ export default function ProjectDetailsPage() {
           <Link
             to="/#contact"
             viewTransition
-            className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded text-sm font-medium text-foreground/90 ring-1 ring-foreground/90 hover:bg-foreground/90 hover:text-background transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded-lg text-sm font-medium text-foreground/80 bg-white/5 border border-white/10 hover:border-purple-500 hover:bg-purple-500/10 hover:text-purple-300 transition-all duration-300 hover:-translate-y-0.5"
           >
             {t("projects.startAProject")} &rsaquo;
           </Link>
