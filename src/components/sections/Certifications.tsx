@@ -58,7 +58,7 @@ export default function CertificationsSection() {
   const { t } = useTranslation();
 
   return (
-    <section id="certifications" className="py-32 relative">
+    <section id="certifications" className="pt-32 pb-44 sm:py-32 relative">
       <div className="section-glow section-glow--certs" aria-hidden="true">
         <span className="sg-blob sg-blob--1" />
         <span className="sg-blob sg-blob--2" />
@@ -85,7 +85,7 @@ export default function CertificationsSection() {
                 href={cert.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col cert-card rounded-2xl p-5 h-full transition-all duration-300"
+                className="group flex flex-col cert-card rounded-2xl p-5 h-full active:scale-[0.98] transition-all duration-300"
               >
                 {/* Head: Logo box + external link */}
                 <div className="flex items-start justify-between">
@@ -110,10 +110,10 @@ export default function CertificationsSection() {
 
                 {/* Title + Platform */}
                 <div className="flex-1 mt-5">
-                  <h3 className="text-lg font-semibold leading-snug text-teal-600/90 dark:text-teal-400/85 group-hover:text-violet-400 dark:group-hover:text-violet-300 transition-colors line-clamp-2">
+                  <h3 className="text-lg font-semibold leading-snug text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-violet-300 transition-colors line-clamp-2">
                     {t(`certifications.items.${cert.key}.title`)}
                   </h3>
-                  <p className="mt-2.5 text-sm font-medium text-foreground/60">
+                  <p className="mt-2.5 text-sm font-medium text-gray-600 dark:text-gray-300">
                     {t(`certifications.items.${cert.key}.issuer`)}
                   </p>
                 </div>
@@ -121,18 +121,18 @@ export default function CertificationsSection() {
                 {/* Footer: status pill + metadata */}
                 <div className="cert-card-footer">
                   <StatusPill status={cert.status} />
-                  <p className="text-xs text-foreground/50">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
                     {cert.status === "completed"
                       ? t(`certifications.items.${cert.key}.issuedText`)
                       : null}
                   </p>
                   {cert.status === "in-progress" && (
-                    <p className="text-xs text-foreground/45 italic">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 italic">
                       {t(`certifications.items.${cert.key}.progressNote`)}
                     </p>
                   )}
                   {cert.credentialId && (
-                    <p className="text-[10px] font-mono text-foreground/35 tracking-wide">
+                    <p className="text-[10px] font-mono text-gray-500 dark:text-gray-500 tracking-wide">
                       ID: {cert.credentialId}
                     </p>
                   )}

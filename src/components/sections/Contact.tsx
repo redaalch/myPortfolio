@@ -173,11 +173,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section
-      id="contact"
-      className="relative px-4 sm:px-6 py-16 sm:py-24 md:py-32"
-      style={{ paddingBottom: "max(5rem, calc(4rem + env(safe-area-inset-bottom)))" }}
-    >
+    <section id="contact" className="relative px-4 sm:px-6 pt-16 pb-32 sm:py-24 md:py-32">
       {/* ── Background glow (light-mode only — see CSS) ── */}
       <div className="section-glow section-glow--contact" aria-hidden="true">
         <span className="sg-blob sg-blob--1" />
@@ -206,7 +202,7 @@ export default function ContactSection() {
 
           <div className="relative z-10 flex h-full flex-col justify-between gap-8">
             <div>
-              <span className="text-[11px] font-medium tracking-[0.25em] uppercase text-foreground/60">
+              <span className="text-[11px] font-medium tracking-[0.25em] uppercase text-foreground/60 dark:text-foreground/60 light-label">
                 {t("contact.getInTouch")}
               </span>
               <h2 className="mt-3 sm:mt-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[0.93] tracking-tight font-instrument-serif italic bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent">
@@ -214,11 +210,13 @@ export default function ContactSection() {
                 <br />
                 {t("contact.work")}
                 <br />
-                <span className="text-foreground/60">{t("contact.together")}</span>
+                <span className="text-gray-400 dark:text-foreground/60">
+                  {t("contact.together")}
+                </span>
               </h2>
             </div>
 
-            <p className="max-w-xs text-sm leading-relaxed text-foreground/65">
+            <p className="max-w-xs text-sm leading-relaxed text-gray-600 dark:text-foreground/65">
               {t("contact.contactDescription")}
             </p>
           </div>
@@ -284,13 +282,13 @@ export default function ContactSection() {
               ) : (
                 /* ── Form (idle / sending) ── */
                 <form onSubmit={handleSubmit} className="flex flex-col gap-1" noValidate>
-                  <span className="mb-3 text-[11px] font-medium tracking-[0.25em] uppercase text-foreground/60">
+                  <span className="mb-3 text-[11px] font-medium tracking-[0.25em] uppercase text-slate-600 dark:text-foreground/60">
                     {t("contact.sendMessage")}
                   </span>
 
                   {/* ── What are you looking for? — chip toggle group ── */}
                   <div className="mb-2 flex flex-col gap-2">
-                    <span className="text-xs font-medium text-foreground/50">
+                    <span className="text-xs font-medium text-gray-700 dark:text-foreground/50">
                       {t("contact.whatLookingFor")}
                     </span>
                     <div
@@ -314,7 +312,7 @@ export default function ContactSection() {
                         );
                       })}
                     </div>
-                    <span className="text-[11px] text-foreground/50">
+                    <span className="text-[11px] text-gray-500 dark:text-foreground/50">
                       {t("contact.helpsRoute")}
                     </span>
                   </div>
@@ -412,7 +410,7 @@ export default function ContactSection() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
               </span>
-              <span className="text-[13px] font-medium text-foreground/70">
+              <span className="text-[13px] font-medium text-gray-700 dark:text-foreground/70">
                 {t("contact.availableFor")}
               </span>
             </div>
@@ -426,12 +424,19 @@ export default function ContactSection() {
             className="contact-card contact-action-card group p-4 sm:p-5"
           >
             <div className="flex items-center gap-3">
-              <div className="flex size-10 items-center justify-center rounded-xl bg-foreground/5">
-                <FileText className="size-5 text-foreground/60" strokeWidth={1.5} />
+              <div className="flex size-10 items-center justify-center rounded-xl bg-purple-100 dark:bg-foreground/5">
+                <FileText
+                  className="size-5 text-purple-600 dark:text-foreground/60"
+                  strokeWidth={1.5}
+                />
               </div>
               <div>
-                <p className="text-sm font-medium text-foreground/85">{t("contact.viewCvCard")}</p>
-                <p className="text-[11px] text-foreground/55">{t("contact.downloadResume")}</p>
+                <p className="text-sm font-medium text-gray-800 dark:text-foreground/85">
+                  {t("contact.viewCvCard")}
+                </p>
+                <p className="text-[11px] text-gray-500 dark:text-foreground/55">
+                  {t("contact.downloadResume")}
+                </p>
               </div>
             </div>
             <ArrowUpRight
@@ -449,12 +454,19 @@ export default function ContactSection() {
               href="mailto:reda.alalach@gmail.com"
               className="flex items-center gap-3 min-w-0 flex-1 no-underline"
             >
-              <div className="flex size-10 items-center justify-center rounded-xl bg-foreground/5">
-                <Mail className="size-5 text-foreground/60" strokeWidth={1.5} />
+              <div className="flex size-10 items-center justify-center rounded-xl bg-purple-100 dark:bg-foreground/5">
+                <Mail
+                  className="size-5 text-purple-600 dark:text-foreground/60"
+                  strokeWidth={1.5}
+                />
               </div>
               <div className="min-w-0">
-                <p className="text-sm font-medium text-foreground/85">{t("contact.emailLabel")}</p>
-                <p className="truncate text-[11px] text-foreground/55">reda.alalach@gmail.com</p>
+                <p className="text-sm font-medium text-gray-800 dark:text-foreground/85">
+                  {t("contact.emailLabel")}
+                </p>
+                <p className="truncate text-[11px] text-gray-500 dark:text-foreground/55">
+                  reda.alalach@gmail.com
+                </p>
               </div>
             </a>
 
