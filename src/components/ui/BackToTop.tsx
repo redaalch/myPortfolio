@@ -19,7 +19,7 @@ export default function BackToTop() {
         const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         window.scrollTo({ top: 0, behavior: prefersReduced ? "auto" : "smooth" });
       }}
-      className={`fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-violet-600 text-white shadow-lg shadow-violet-600/30 transition-all duration-300 hover:bg-violet-500 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 sm:bottom-6 sm:right-6 ${
+      className={`fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-violet-600 text-white shadow-lg shadow-violet-600/30 transition-all duration-300 hover:bg-violet-500 hover:scale-110 active:scale-95 active:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 sm:bottom-6 sm:right-6 ${
         visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none"
       }`}
       style={{ bottom: "max(1.5rem, calc(1rem + env(safe-area-inset-bottom)))" }}

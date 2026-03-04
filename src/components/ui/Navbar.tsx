@@ -76,7 +76,7 @@ export default function Navbar() {
           aria-label="Main navigation"
           className="hidden lg:flex absolute left-1/2 -translate-x-1/2 z-10"
         >
-          <div className="flex items-center gap-1 rounded-full backdrop-blur-md bg-foreground/4 px-1.5 py-1 ring-1 ring-foreground/10">
+          <div className="flex items-center gap-1 rounded-full backdrop-blur-md bg-foreground/4 px-1.5 py-1 ring-1 ring-gray-200 dark:ring-foreground/10 shadow-md dark:shadow-none">
             {navLinks.map((link) => (
               <Link
                 key={link.key}
@@ -176,7 +176,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden mx-6 mb-4 rounded-2xl bg-background/60 ring-1 ring-foreground/10 backdrop-blur-xl p-4 animate-fade-slide-in-1">
+        <div className="lg:hidden mx-6 mb-4 rounded-2xl bg-white/90 dark:bg-[#030014]/80 ring-1 ring-gray-200 dark:ring-white/10 border border-gray-200 dark:border-white/10 backdrop-blur-xl shadow-2xl p-4 animate-fade-slide-in-1">
           <div className="flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link
@@ -184,7 +184,7 @@ export default function Navbar() {
                 to={link.href}
                 viewTransition
                 onClick={() => setMobileMenuOpen(false)}
-                className={`px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
+                className={`px-4 py-4 text-sm font-medium rounded-lg transition-colors ${
                   isActive(link.href)
                     ? "bg-violet-500/15 text-foreground"
                     : "text-foreground/50 hover:text-foreground hover:bg-foreground/5"
@@ -197,7 +197,7 @@ export default function Navbar() {
               to={cvHref}
               viewTransition
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-violet-600 dark:bg-white/10 border border-violet-600 dark:border-white/20 px-4 py-4 text-sm font-medium text-white dark:text-white hover:bg-violet-700 dark:hover:bg-white/15 active:scale-95 active:opacity-80 transition-all"
             >
               {t("nav.viewCv")}
               <svg
