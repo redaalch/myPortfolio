@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const prefersReducedMotion = () =>
-  typeof window !== "undefined" &&
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export function useScrollReveal(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
