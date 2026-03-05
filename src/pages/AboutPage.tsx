@@ -246,12 +246,12 @@ export default function AboutPage() {
             {STATS.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-xl bg-foreground/[0.03] ring-1 ring-foreground/8 p-6 text-center"
+                className="rounded-xl bg-white/5 border border-white/10 p-6 text-center"
               >
                 <p className="text-3xl font-bold bg-linear-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent mb-1">
                   {stat.value}
                 </p>
-                <p className="text-sm text-foreground/70">{stat.label}</p>
+                <p className="text-sm text-gray-500 dark:text-foreground/70">{stat.label}</p>
               </div>
             ))}
           </section>
@@ -274,7 +274,7 @@ export default function AboutPage() {
                   key={item.title}
                   className="rounded-xl bg-foreground/[0.03] ring-1 ring-foreground/8 p-6 hover:ring-violet-500/30 transition-all duration-300"
                 >
-                  <h3 className="text-base font-semibold text-teal-600 dark:text-teal-400 mb-2">
+                  <h3 className="text-base font-semibold text-purple-600 dark:text-purple-400 mb-2">
                     {item.title}
                   </h3>
                   <p className="text-sm text-foreground/70 leading-relaxed">{item.description}</p>
@@ -318,7 +318,7 @@ export default function AboutPage() {
                         <span className="text-xs font-medium text-foreground/70 tracking-widest uppercase">
                           {item.year}
                         </span>
-                        <h3 className="text-lg font-semibold text-teal-600 dark:text-teal-400 mt-1">
+                        <h3 className="text-lg font-semibold text-purple-600 dark:text-purple-400 mt-1">
                           {item.title}
                         </h3>
                         <p className="text-sm text-foreground/70 leading-relaxed mt-1 max-w-lg">
@@ -356,10 +356,12 @@ export default function AboutPage() {
                       <Icon className="w-5 h-5 text-violet-400" />
                     </div>
                     <div>
-                      <p className="text-xs font-medium text-foreground/70 uppercase tracking-wider">
+                      <p className="text-xs font-medium text-gray-500 dark:text-foreground/70 uppercase tracking-wider">
                         {fact.label}
                       </p>
-                      <p className="text-sm text-foreground/80 mt-0.5">{fact.value}</p>
+                      <p className="text-sm text-gray-600 dark:text-foreground/80 mt-0.5">
+                        {fact.value}
+                      </p>
                     </div>
                   </div>
                 );
