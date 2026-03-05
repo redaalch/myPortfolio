@@ -116,7 +116,7 @@ export default function ProjectDetailsPage() {
                 href={project.repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-white/5 text-foreground/90 text-sm font-semibold border border-white/10 backdrop-blur-sm hover:border-purple-500 hover:bg-purple-500/10 hover:text-purple-300 hover:-translate-y-0.5 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-semibold backdrop-blur-sm text-gray-700 border border-gray-300 bg-transparent hover:border-purple-600 hover:text-purple-600 hover:bg-purple-50 dark:bg-white/5 dark:text-foreground/90 dark:border-white/10 dark:hover:border-purple-500 dark:hover:bg-purple-500/10 dark:hover:text-purple-300 hover:-translate-y-0.5 transition-all duration-300"
               >
                 <Github className="w-4 h-4" />
                 {t("projects.viewSourceCode")}
@@ -203,7 +203,7 @@ export default function ProjectDetailsPage() {
           <Link
             to="/#projects"
             viewTransition
-            className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded-lg text-sm font-medium text-foreground/80 bg-white/5 border border-white/10 hover:border-purple-500 hover:bg-purple-500/10 hover:text-purple-300 transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded-lg text-sm font-medium text-gray-700 border border-gray-300 bg-transparent hover:border-purple-600 hover:text-purple-600 hover:bg-purple-50 dark:text-foreground/80 dark:bg-white/5 dark:border-white/10 dark:hover:border-purple-500 dark:hover:bg-purple-500/10 dark:hover:text-purple-300 transition-all duration-300 hover:-translate-y-0.5"
           >
             &lsaquo; {t("projects.backToAllProjects")}
           </Link>
@@ -211,7 +211,7 @@ export default function ProjectDetailsPage() {
           <Link
             to="/#contact"
             viewTransition
-            className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded-lg text-sm font-medium text-foreground/80 bg-white/5 border border-white/10 hover:border-purple-500 hover:bg-purple-500/10 hover:text-purple-300 transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-4 rounded-lg text-sm font-medium text-gray-700 border border-gray-300 bg-transparent hover:border-purple-600 hover:text-purple-600 hover:bg-purple-50 dark:text-foreground/80 dark:bg-white/5 dark:border-white/10 dark:hover:border-purple-500 dark:hover:bg-purple-500/10 dark:hover:text-purple-300 transition-all duration-300 hover:-translate-y-0.5"
           >
             {t("projects.startAProject")} &rsaquo;
           </Link>

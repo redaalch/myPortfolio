@@ -277,7 +277,7 @@ export default function CvPage() {
                 href={`#${id}`}
                 className={`rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                   activeSection === id
-                    ? "bg-foreground/5 text-foreground"
+                    ? "border-l-2 border-purple-500 text-purple-700 dark:text-purple-400 bg-foreground/5"
                     : "text-foreground/70 hover:text-foreground/90"
                 }`}
               >
@@ -290,7 +290,7 @@ export default function CvPage() {
               href="/Reda_Alalach_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-foreground/70 hover:text-foreground/90 transition-colors"
+              className="mt-2 inline-flex items-center gap-2 rounded-lg border border-purple-600 dark:border-purple-500/50 bg-transparent dark:bg-white/5 px-4 py-2 text-sm font-medium text-gray-800 dark:text-foreground/80 hover:bg-purple-500/10 hover:text-purple-700 dark:hover:text-purple-300 hover:border-purple-500 transition-all duration-300 print:hidden"
             >
               <Download className="size-3.5" />
               {t("cv.downloadPdf")}
@@ -314,8 +314,11 @@ export default function CvPage() {
               <SectionHeading>{t("cv.sections.experience")}</SectionHeading>
               <div className="space-y-10">
                 {EXPERIENCE_META.map((xp, i) => (
-                  <div key={i} className="group flex flex-col gap-3 sm:flex-row sm:gap-10">
-                    <span className="shrink-0 text-sm tabular-nums text-foreground/70 sm:w-40 sm:pt-0.5">
+                  <div
+                    key={i}
+                    className="group flex flex-col gap-3 sm:flex-row sm:gap-10 print:break-inside-avoid"
+                  >
+                    <span className="shrink-0 text-sm tabular-nums text-foreground/60 sm:w-40 sm:pt-0.5">
                       {t(`cv.experience.${xp.key}.period`)}
                     </span>
                     <div className="min-w-0 flex-1">
@@ -327,7 +330,7 @@ export default function CvPage() {
                       >
                         {t(`cv.experience.${xp.key}.titleAtCompany`)}
                       </a>
-                      <p className="mt-0.5 text-sm text-foreground/70">
+                      <p className="mt-0.5 text-sm text-foreground/60">
                         {t(`cv.experience.${xp.key}.location`)}
                       </p>
                       <ul className="mt-3 space-y-1.5">
@@ -353,8 +356,11 @@ export default function CvPage() {
               <SectionHeading>{t("cv.sections.projects")}</SectionHeading>
               <div className="space-y-8">
                 {PROJECTS_META.map((p, i) => (
-                  <div key={i} className="flex flex-col gap-2 sm:flex-row sm:gap-10">
-                    <span className="shrink-0 text-sm tabular-nums text-foreground/70 sm:w-40 sm:pt-0.5">
+                  <div
+                    key={i}
+                    className="flex flex-col gap-2 sm:flex-row sm:gap-10 print:break-inside-avoid"
+                  >
+                    <span className="shrink-0 text-sm tabular-nums text-foreground/60 sm:w-40 sm:pt-0.5">
                       {p.year}
                     </span>
                     <div className="min-w-0 flex-1">
@@ -394,18 +400,21 @@ export default function CvPage() {
               <SectionHeading>{t("cv.sections.education")}</SectionHeading>
               <div className="space-y-8">
                 {EDUCATION_META.map((ed, i) => (
-                  <div key={i} className="flex flex-col gap-2 sm:flex-row sm:gap-10">
-                    <span className="shrink-0 text-sm tabular-nums text-foreground/70 sm:w-40 sm:pt-0.5">
+                  <div
+                    key={i}
+                    className="flex flex-col gap-2 sm:flex-row sm:gap-10 print:break-inside-avoid"
+                  >
+                    <span className="shrink-0 text-sm tabular-nums text-foreground/60 sm:w-40 sm:pt-0.5">
                       {t(`cv.education.${ed.key}.period`)}
                     </span>
                     <div className="min-w-0 flex-1">
                       <span className="text-base font-semibold text-foreground">
                         {t(`cv.education.${ed.key}.title`)}
                       </span>
-                      <p className="mt-0.5 text-sm text-foreground/70">
+                      <p className="mt-0.5 text-sm text-foreground/60">
                         {t(`cv.education.${ed.key}.institution`)}
                       </p>
-                      <p className="text-sm text-foreground/70">
+                      <p className="text-sm text-foreground/60">
                         {t(`cv.education.${ed.key}.location`)}
                       </p>
                     </div>
@@ -419,8 +428,11 @@ export default function CvPage() {
               <SectionHeading>{t("cv.sections.certifications")}</SectionHeading>
               <div className="space-y-6">
                 {CERTIFICATIONS_META.map((c, i) => (
-                  <div key={i} className="flex flex-col gap-2 sm:flex-row sm:gap-10">
-                    <span className="shrink-0 text-sm tabular-nums text-foreground/70 sm:w-40 sm:pt-0.5">
+                  <div
+                    key={i}
+                    className="flex flex-col gap-2 sm:flex-row sm:gap-10 print:break-inside-avoid"
+                  >
+                    <span className="shrink-0 text-sm tabular-nums text-foreground/60 sm:w-40 sm:pt-0.5">
                       {c.status === "completed"
                         ? t(`certifications.items.${c.key}.issuedDate`)
                         : t("cv.inProgress")}
@@ -434,7 +446,7 @@ export default function CvPage() {
                       >
                         {t(`certifications.items.${c.key}.title`)}
                       </a>
-                      <p className="mt-0.5 text-sm text-foreground/70">
+                      <p className="mt-0.5 text-sm text-foreground/60">
                         {t(`certifications.items.${c.key}.issuer`)}
                       </p>
                       {c.status === "in-progress" && (
@@ -455,7 +467,7 @@ export default function CvPage() {
                 {SKILLS.map((s) => (
                   <span
                     key={s}
-                    className="rounded-full border border-foreground/15 bg-foreground/5 px-3.5 py-1.5 text-sm text-foreground/70"
+                    className="rounded-full border border-gray-200 bg-gray-50 px-3.5 py-1.5 text-sm text-gray-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300"
                   >
                     {s}
                   </span>
