@@ -208,8 +208,12 @@ export default function ContactSection() {
               <h2 className="mt-3 sm:mt-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[0.93] tracking-tight font-instrument-serif italic bg-linear-to-r from-heading-from via-heading-via to-heading-to bg-clip-text text-transparent">
                 {t("contact.letsWork")}
                 <br />
-                {t("contact.work")}
-                <br />
+                {t("contact.work") && (
+                  <>
+                    {t("contact.work")}
+                    <br />
+                  </>
+                )}
                 <span className="text-gray-400 dark:text-foreground/60">
                   {t("contact.together")}
                 </span>

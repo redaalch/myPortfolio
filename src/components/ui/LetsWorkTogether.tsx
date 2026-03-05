@@ -85,7 +85,7 @@ export default function LetsWorkTogether() {
 
           {/* Form */}
           <div
-            className="w-full rounded-2xl border border-foreground/15 bg-foreground/2 backdrop-blur-sm p-6 sm:p-8 transition-all duration-500"
+            className="w-full p-6 sm:p-8 transition-all duration-500"
             style={{
               transform: showForm ? "translateY(0)" : "translateY(15px)",
               opacity: showForm ? 1 : 0,
@@ -265,7 +265,7 @@ export default function LetsWorkTogether() {
                       ? "rgb(139 92 246)"
                       : "transparent",
                   transform: isClicked ? "scale(3)" : isHovered ? "scale(1.1)" : "scale(1)",
-                  opacity: isClicked ? 0 : 0.3,
+                  opacity: isClicked ? 0 : 1,
                   transitionDuration: isClicked ? "700ms" : "500ms",
                 }}
               />
