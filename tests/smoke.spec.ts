@@ -95,3 +95,88 @@ test.describe("Navigation", () => {
     await expect(page.locator("h1")).toContainText("Reda Alalach");
   });
 });
+
+/* ═══════════════════════════════════════════════════════════════
+   Projects page — card count, links & theme toggle
+   ═══════════════════════════════════════════════════════════════ */
+test.describe("Projects page — cards", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto("/projects");
+    // Wait for the grid to be visible
+    await expect(page.locator("h1, h2").first()).toBeVisible({ timeout: 10_000 });
+  });
+
+  test("renders exactly 4 project cards", async ({ page }) => {
+    const cards = page.locator('[class*="rounded-2xl"][class*="group"]');
+    await expect(cards).toHaveCount(4);
+  });
+
+  test("each card links to the correct project detail page", async ({ page }) => {
+    const expectedSlugs = [
+      "notesboard",
+      "real-time-notifications",
+      "alarm-clock",
+      "portfolio-site",
+    ];
+
+    for (const slug of expectedSlugs) {
+      const link = page.locator(`a[href="/projects/${slug}"]`);
+      await expect(link).toBeVisible();
+    }
+  });
+
+  test("case study links are present only for projects with case studies", async ({ page }) => {
+    // Projects with hasCaseStudy: notesboard, real-time-notifications, portfolio-site
+    const caseStudySlugs = ["notesboard", "real-time-notifications", "portfolio-site"];
+    for (const slug of caseStudySlugs) {
+      await expect(page.locator(`a[href="/case-study/${slug}"]`)).toBeVisible();
+    }
+
+    // alarm-clock does NOT have a case study link
+    await expect(page.locator('a[href="/case-study/alarm-clock"]')).toHaveCount(0);
+  });
+
+  test("clicking a card link navigates to the project detail page", async ({ page }) => {
+    const link = page.locator('a[href="/projects/notesboard"]').first();
+    await link.click();
+    await expect(page).toHaveURL("/projects/notesboard", { timeout: 10_000 });
+    await expect(page.locator("h1")).toContainText("NotesBoard");
+  });
+});
+
+test.describe("Projects page — theme toggle", () => {
+  test("toggling theme switches card styling between dark and light", async ({ page }) => {
+    await page.goto("/projects");
+    await expect(page.locator("h1, h2").first()).toBeVisible({ timeout: 10_000 });
+
+    // Get the first project card
+    const firstCard = page.locator('[class*="rounded-2xl"][class*="group"]').first();
+    await expect(firstCard).toBeVisible();
+
+    // Read initial theme from the document
+    const initialTheme = await page.evaluate(() =>
+      document.documentElement.getAttribute("data-theme"),
+    );
+
+    // Capture the initial card classes
+    const initialClasses = await firstCard.getAttribute("class");
+
+    // Click the theme toggle button (first visible instance — desktop nav)
+    const toggleBtn = page.locator('button[aria-label^="Switch to"]').first();
+    await toggleBtn.click();
+
+    // Theme attribute should have flipped
+    const newTheme = await page.evaluate(() => document.documentElement.getAttribute("data-theme"));
+    expect(newTheme).not.toBe(initialTheme);
+
+    // Card classes should have changed (light ↔ dark styles)
+    const newClasses = await firstCard.getAttribute("class");
+    expect(newClasses).not.toBe(initialClasses);
+
+    if (newTheme === "light") {
+      expect(newClasses).toContain("bg-white");
+    } else {
+      expect(newClasses).toContain("bg-[#1a2535]");
+    }
+  });
+});

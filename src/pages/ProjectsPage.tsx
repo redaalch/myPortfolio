@@ -11,12 +11,11 @@ function ProjectGridCard({ project, isLight }: { project: Project; isLight: bool
   const { t } = useTranslation();
   return (
     <div
-      className={`group rounded-2xl overflow-hidden flex flex-col transition-transform duration-300 hover:-translate-y-1 ${
+      className={`group rounded-2xl overflow-hidden h-full min-h-125 flex flex-col transition-transform duration-300 hover:-translate-y-1 ${
         isLight
           ? "bg-white ring-1 ring-foreground/8 shadow-md hover:shadow-lg"
           : "bg-[#1a2535] ring-1 ring-white/6 hover:ring-white/12"
       }`}
-      style={{ height: 520 }}
     >
       {/* ── Image banner ── */}
       <div className="relative overflow-hidden shrink-0" style={{ height: 200 }}>
@@ -57,7 +56,7 @@ function ProjectGridCard({ project, isLight }: { project: Project; isLight: bool
         {/* Title */}
         <h3
           className={`text-xl sm:text-[22px] font-bold mt-2 leading-tight ${
-            isLight ? "text-teal-600" : "text-teal-400"
+            isLight ? "text-purple-600" : "text-purple-400"
           }`}
         >
           {project.title}
@@ -86,12 +85,9 @@ function ProjectGridCard({ project, isLight }: { project: Project; isLight: bool
           ))}
         </div>
 
-        {/* Spacer to push footer down */}
-        <div className="flex-1 min-h-4" />
-
         {/* ── Footer actions ── */}
         <div
-          className={`flex items-center flex-wrap gap-x-3 gap-y-2 mt-5 pt-4 border-t ${isLight ? "border-foreground/6" : "border-white/8"}`}
+          className={`flex items-center flex-wrap gap-x-3 gap-y-2 mt-auto pt-4 border-t ${isLight ? "border-foreground/6" : "border-white/8"}`}
         >
           {/* View Details (primary) */}
           <Link
@@ -99,7 +95,7 @@ function ProjectGridCard({ project, isLight }: { project: Project; isLight: bool
             viewTransition
             className={`inline-flex items-center gap-1.5 text-xs font-medium px-4 py-2 rounded-lg transition-colors ${
               isLight
-                ? "ring-1 ring-teal-600/40 text-teal-700 hover:bg-teal-50"
+                ? "ring-1 ring-purple-600/40 text-purple-700 hover:bg-purple-50"
                 : "ring-1 ring-white/20 text-white/90 hover:bg-white/5"
             }`}
           >
