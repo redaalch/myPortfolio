@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /assets/
+Disallow: /sw.js
+Crawl-delay: 1
 
 Sitemap: https://remyportfolio.me/sitemap.xml
