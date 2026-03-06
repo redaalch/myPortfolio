@@ -104,11 +104,13 @@ const routes = [
 
 /**
  * Replace <title>, meta description, og:title, og:description, og:url,
- * twitter:title, twitter:description, and canonical link in the HTML template.
+ * og:image, og:image:alt, twitter:title, twitter:description, twitter:image,
+ * twitter:image:alt, and canonical link in the HTML template.
  */
 function injectMeta(html, { title, description, path, ogImage }) {
   const url = `${BASE_URL}/${path}`;
   const imageUrl = ogImage ? `${BASE_URL}/${ogImage}` : `${BASE_URL}/og-image.png`;
+  const imageAlt = `${title} — portfolio preview`;
 
   return html
     .replace(/<title>[^<]*<\/title>/, `<title>${escHtml(title)}</title>`)
@@ -133,6 +135,10 @@ function injectMeta(html, { title, description, path, ogImage }) {
       `<meta property="og:image" content="${escAttr(imageUrl)}" />`,
     )
     .replace(
+      /<meta\s+property="og:image:alt"\s+content="[^"]*"\s*\/?>/,
+      `<meta property="og:image:alt" content="${escAttr(imageAlt)}" />`,
+    )
+    .replace(
       /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/,
       `<meta name="twitter:title" content="${escAttr(title)}" />`,
     )
@@ -143,6 +149,10 @@ function injectMeta(html, { title, description, path, ogImage }) {
     .replace(
       /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/,
       `<meta name="twitter:image" content="${escAttr(imageUrl)}" />`,
+    )
+    .replace(
+      /<meta\s+name="twitter:image:alt"\s+content="[^"]*"\s*\/?>/,
+      `<meta name="twitter:image:alt" content="${escAttr(imageAlt)}" />`,
     )
     .replace(
       /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/,
