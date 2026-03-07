@@ -1,0 +1,129 @@
+---
+title: "Building a Real-Time Collaboration Engine with Yjs and WebSockets"
+slug: "building-a-real-time-collaboration-engine"
+date: "2025-01-15"
+tags: ["Yjs", "WebSockets", "Real-Time", "Architecture"]
+description: "How I implemented conflict-free real-time editing in NotesBoard using Yjs CRDTs, Hocuspocus, and Socket.io — with lessons on latency, state sync, and scaling."
+author: "Reda Alalach"
+coverImage: ""
+---
+
+## The Problem
+
+When I started building [NotesBoard](https://github.com/RedaAlalworked), I wanted users to collaborate on notes simultaneously — like Google Docs, but for a focused task management context. The challenge: **how do you let 10+ people edit the same document without conflicts?**
+
+Traditional approaches like operational transforms (OT) are complex to implement and require a central authority. I chose a different path: **CRDTs** (Conflict-free Replicated Data Types).
+
+## Why Yjs?
+
+After evaluating Automerge, ShareDB, and Yjs, I went with [Yjs](https://yjs.dev/) because:
+
+- **No central authority needed** — each client maintains its own state
+- **Automatic conflict resolution** — concurrent edits merge deterministically
+- **Rich ecosystem** — bindings for TipTap, ProseMirror, Monaco, CodeMirror
+- **Small footprint** — ~13KB gzipped for the core library
+
+## Architecture Overview
+
+Here's the high-level architecture I landed on:
+
+```
+┌─────────────┐    WebSocket    ┌──────────────┐    MongoDB
+│   Client A  │ ◄────────────► │  Hocuspocus   │ ◄──────────►  Persistence
+│   (Yjs +    │                │  Server       │
+│   TipTap)   │                │  (y-websocket)│
+└─────────────┘                └──────────────┘
+                                      ▲
+┌─────────────┐    WebSocket          │
+│   Client B  │ ◄────────────────────┘
+└─────────────┘
+```
+
+### Key components
+
+1. **Yjs Document** — the shared data structure (a `Y.Doc`) lives on every connected client
+2. **Hocuspocus** — a Node.js WebSocket server that relays Yjs updates between clients and persists snapshots
+3. **TipTap Editor** — the rich text editor, with `@tiptap/extension-collaboration` wired to Yjs
+
+## Implementation Highlights
+
+### Setting up the Yjs provider
+
+```typescript
+import * as Y from "yjs";
+import { HocuspocusProvider } from "@hocuspocus/provider";
+
+const ydoc = new Y.Doc();
+
+const provider = new HocuspocusProvider({
+  url: "wss://api.example.com/collab",
+  name: `note-${noteId}`,
+  document: ydoc,
+  token: authToken,
+});
+```
+
+The provider handles reconnection, awareness (cursor positions), and state vector exchange automatically.
+
+### Awareness for live cursors
+
+One of the most satisfying features was showing live cursor positions. Yjs's **awareness protocol** makes this straightforward:
+
+```typescript
+provider.awareness.setLocalStateField("user", {
+  name: currentUser.name,
+  color: currentUser.color,
+});
+```
+
+Each connected client broadcasts its cursor position and selection range. TipTap's collaboration cursor extension renders them as colored carets with name labels.
+
+### Persistence strategy
+
+I configured Hocuspocus to debounce writes to MongoDB:
+
+```typescript
+const server = new Hocuspocus({
+  debounce: 2000, // wait 2s after last edit
+  maxDebounce: 10000, // but flush at least every 10s
+  onStoreDocument: async ({ document, documentName }) => {
+    const state = Y.encodeStateAsUpdate(document);
+    await Note.updateOne({ _id: documentName }, { $set: { yDocState: Buffer.from(state) } });
+  },
+});
+```
+
+This gives a good balance between persistence safety and database load.
+
+## Performance Results
+
+After load testing with 15 concurrent editors on a single document:
+
+| Metric                   | Result        |
+| ------------------------ | ------------- |
+| Sync latency (p50)       | 32ms          |
+| Sync latency (p99)       | 78ms          |
+| Memory per connection    | ~2.4MB        |
+| Document merge conflicts | 0 (by design) |
+
+The zero conflicts metric is the whole point of CRDTs — edits are designed to commute, so there's no conflict to resolve.
+
+## Lessons Learned
+
+1. **Start with awareness** — showing who's online and where they're typing gives users confidence the system works, even before the editing is perfect.
+
+2. **Debounce persistence aggressively** — Yjs generates a lot of micro-updates. Batching them before writing to disk saves significant I/O.
+
+3. **Test with network throttling** — real users have unstable connections. I used Chrome DevTools' network throttling to simulate 3G and verified that Yjs resyncs gracefully after disconnections.
+
+4. **Binary encoding saves bandwidth** — Yjs updates are binary-encoded by default. Don't convert them to JSON for transport — it bloats the payload 3-5×.
+
+## What I'd Do Differently
+
+If I rebuilt this today, I'd explore **y-sweet** (Jamsocket's hosted Yjs backend) to eliminate the need to manage the WebSocket server myself. The DX is excellent and it handles scaling automatically.
+
+I'd also add **operational metrics from day one** — tracking sync latency, document size growth, and connection counts. I added these later, but having them from the start would have caught my debounce tuning issues earlier.
+
+---
+
+_This post is based on the [NotesBoard case study](/case-study/notesboard). Check it out for the full technical deep-dive._
