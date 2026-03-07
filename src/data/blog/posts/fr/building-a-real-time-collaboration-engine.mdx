@@ -1,0 +1,129 @@
+---
+title: "Construire un moteur de collaboration en temps réel avec Yjs et WebSockets"
+slug: "building-a-real-time-collaboration-engine"
+date: "2025-01-15"
+tags: ["Yjs", "WebSockets", "Temps réel", "Architecture"]
+description: "Comment j'ai implémenté l'édition collaborative sans conflits dans NotesBoard avec les CRDTs Yjs, Hocuspocus et Socket.io — avec les leçons apprises sur la latence, la synchronisation et le passage à l'échelle."
+author: "Reda Alalach"
+coverImage: ""
+---
+
+## Le problème
+
+En commençant le développement de [NotesBoard](https://github.com/RedaAlalworked), je voulais que les utilisateurs puissent collaborer simultanément sur des notes — comme Google Docs, mais dans un contexte de gestion de tâches. Le défi : **comment permettre à plus de 10 personnes d'éditer le même document sans conflits ?**
+
+Les approches traditionnelles comme les transformations opérationnelles (OT) sont complexes à implémenter et nécessitent une autorité centrale. J'ai choisi une autre voie : les **CRDTs** (Types de Données Répliquées sans Conflit).
+
+## Pourquoi Yjs ?
+
+Après avoir évalué Automerge, ShareDB et Yjs, j'ai opté pour [Yjs](https://yjs.dev/) car :
+
+- **Pas d'autorité centrale nécessaire** — chaque client maintient son propre état
+- **Résolution automatique des conflits** — les éditions concurrentes fusionnent de manière déterministe
+- **Écosystème riche** — bindings pour TipTap, ProseMirror, Monaco, CodeMirror
+- **Empreinte légère** — ~13 Ko gzippé pour la bibliothèque principale
+
+## Vue d'ensemble de l'architecture
+
+Voici l'architecture de haut niveau sur laquelle j'ai abouti :
+
+```
+┌─────────────┐    WebSocket    ┌──────────────┐    MongoDB
+│   Client A  │ ◄────────────► │  Hocuspocus   │ ◄──────────►  Persistance
+│   (Yjs +    │                │  Serveur      │
+│   TipTap)   │                │  (y-websocket)│
+└─────────────┘                └──────────────┘
+                                      ▲
+┌─────────────┐    WebSocket          │
+│   Client B  │ ◄────────────────────┘
+└─────────────┘
+```
+
+### Composants clés
+
+1. **Document Yjs** — la structure de données partagée (un `Y.Doc`) vit sur chaque client connecté
+2. **Hocuspocus** — un serveur WebSocket Node.js qui relaie les mises à jour Yjs entre les clients et persiste les snapshots
+3. **Éditeur TipTap** — l'éditeur de texte riche, avec `@tiptap/extension-collaboration` connecté à Yjs
+
+## Points forts de l'implémentation
+
+### Configuration du provider Yjs
+
+```typescript
+import * as Y from "yjs";
+import { HocuspocusProvider } from "@hocuspocus/provider";
+
+const ydoc = new Y.Doc();
+
+const provider = new HocuspocusProvider({
+  url: "wss://api.example.com/collab",
+  name: `note-${noteId}`,
+  document: ydoc,
+  token: authToken,
+});
+```
+
+Le provider gère automatiquement la reconnexion, l'awareness (positions des curseurs) et l'échange des vecteurs d'état.
+
+### Awareness pour les curseurs en direct
+
+L'une des fonctionnalités les plus satisfaisantes était l'affichage des positions de curseur en temps réel. Le protocole **awareness** de Yjs rend cela simple :
+
+```typescript
+provider.awareness.setLocalStateField("user", {
+  name: currentUser.name,
+  color: currentUser.color,
+});
+```
+
+Chaque client connecté diffuse sa position de curseur et sa plage de sélection. L'extension de curseur collaboratif de TipTap les affiche sous forme de carets colorés avec des étiquettes de nom.
+
+### Stratégie de persistance
+
+J'ai configuré Hocuspocus pour temporiser les écritures vers MongoDB :
+
+```typescript
+const server = new Hocuspocus({
+  debounce: 2000, // attendre 2s après la dernière édition
+  maxDebounce: 10000, // mais écrire au moins toutes les 10s
+  onStoreDocument: async ({ document, documentName }) => {
+    const state = Y.encodeStateAsUpdate(document);
+    await Note.updateOne({ _id: documentName }, { $set: { yDocState: Buffer.from(state) } });
+  },
+});
+```
+
+Cela donne un bon équilibre entre la sécurité de persistance et la charge sur la base de données.
+
+## Résultats de performance
+
+Après des tests de charge avec 15 éditeurs simultanés sur un seul document :
+
+| Métrique              | Résultat           |
+| --------------------- | ------------------ |
+| Latence de sync (p50) | 32 ms              |
+| Latence de sync (p99) | 78 ms              |
+| Mémoire par connexion | ~2,4 Mo            |
+| Conflits de fusion    | 0 (par conception) |
+
+Le zéro conflit est tout l'intérêt des CRDTs — les éditions sont conçues pour commuter, il n'y a donc aucun conflit à résoudre.
+
+## Leçons apprises
+
+1. **Commencez par l'awareness** — montrer qui est en ligne et où ils tapent donne confiance aux utilisateurs que le système fonctionne, même avant que l'édition soit parfaite.
+
+2. **Temporisez la persistance agressivement** — Yjs génère beaucoup de micro-mises à jour. Les regrouper avant d'écrire sur disque économise significativement les E/S.
+
+3. **Testez avec le throttling réseau** — les vrais utilisateurs ont des connexions instables. J'ai utilisé le throttling réseau de Chrome DevTools pour simuler la 3G et vérifier que Yjs se resynchronise correctement après les déconnexions.
+
+4. **L'encodage binaire économise la bande passante** — les mises à jour Yjs sont encodées en binaire par défaut. Ne les convertissez pas en JSON pour le transport — cela gonfle la charge utile de 3 à 5×.
+
+## Ce que je ferais différemment
+
+Si je reconstruisais cela aujourd'hui, j'explorerais **y-sweet** (le backend Yjs hébergé de Jamsocket) pour éliminer le besoin de gérer le serveur WebSocket moi-même. L'expérience développeur est excellente et il gère le passage à l'échelle automatiquement.
+
+J'ajouterais aussi des **métriques opérationnelles dès le premier jour** — le suivi de la latence de synchronisation, la croissance de la taille des documents et le nombre de connexions. Je les ai ajoutées plus tard, mais les avoir dès le départ aurait permis de détecter plus tôt mes problèmes de réglage de temporisation.
+
+---
+
+_Cet article est basé sur l'[étude de cas NotesBoard](/case-study/notesboard). Consultez-la pour l'analyse technique complète._
