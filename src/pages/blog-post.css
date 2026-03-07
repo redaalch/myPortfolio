@@ -1,0 +1,256 @@
+/* ── Blog prose styles ───────────────────────────────────────────────────────
+   Applied to .blog-prose — the container around rendered MDX content.
+   Provides readable typography with dark/light theme support.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.blog-prose {
+  --prose-body: rgba(255, 255, 255, 0.78);
+  --prose-headings: #ffffff;
+  --prose-links: #a78bfa;
+  --prose-links-hover: #c4b5fd;
+  --prose-bold: #ffffff;
+  --prose-code-bg: rgba(255, 255, 255, 0.08);
+  --prose-code-text: #e2e8f0;
+  --prose-pre-bg: #0d1117;
+  --prose-pre-border: rgba(255, 255, 255, 0.08);
+  --prose-blockquote-border: #8b5cf6;
+  --prose-blockquote-text: rgba(255, 255, 255, 0.6);
+  --prose-hr: rgba(255, 255, 255, 0.1);
+  --prose-th-bg: rgba(255, 255, 255, 0.04);
+  --prose-td-border: rgba(255, 255, 255, 0.08);
+  --prose-img-border: rgba(255, 255, 255, 0.08);
+  --prose-caption: rgba(255, 255, 255, 0.45);
+
+  color: var(--prose-body);
+  font-size: 1rem;
+  line-height: 1.8;
+  max-width: 72ch;
+}
+
+/* ── Light theme ── */
+[data-theme="light"] .blog-prose {
+  --prose-body: rgba(26, 26, 46, 0.8);
+  --prose-headings: #1a1a2e;
+  --prose-links: #7c3aed;
+  --prose-links-hover: #6d28d9;
+  --prose-bold: #1a1a2e;
+  --prose-code-bg: rgba(0, 0, 0, 0.05);
+  --prose-code-text: #1e293b;
+  --prose-pre-bg: #f8fafc;
+  --prose-pre-border: rgba(0, 0, 0, 0.08);
+  --prose-blockquote-border: #7c3aed;
+  --prose-blockquote-text: rgba(26, 26, 46, 0.6);
+  --prose-hr: rgba(0, 0, 0, 0.1);
+  --prose-th-bg: rgba(0, 0, 0, 0.03);
+  --prose-td-border: rgba(0, 0, 0, 0.08);
+  --prose-img-border: rgba(0, 0, 0, 0.08);
+  --prose-caption: rgba(26, 26, 46, 0.45);
+}
+
+/* ── Headings ── */
+.blog-prose h1,
+.blog-prose h2,
+.blog-prose h3,
+.blog-prose h4 {
+  color: var(--prose-headings);
+  font-weight: 700;
+  line-height: 1.3;
+  scroll-margin-top: 5rem;
+}
+
+.blog-prose h1 {
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+}
+
+.blog-prose h2 {
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--prose-hr);
+}
+
+.blog-prose h3 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.blog-prose h4 {
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Autolink heading anchors (from rehype-autolink-headings) */
+.blog-prose h2 a,
+.blog-prose h3 a,
+.blog-prose h4 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.blog-prose h2 a:hover,
+.blog-prose h3 a:hover,
+.blog-prose h4 a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Paragraphs ── */
+.blog-prose p {
+  margin-bottom: 1.25rem;
+}
+
+/* ── Links ── */
+.blog-prose a {
+  color: var(--prose-links);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.blog-prose a:hover {
+  color: var(--prose-links-hover);
+}
+
+/* ── Bold / strong ── */
+.blog-prose strong {
+  color: var(--prose-bold);
+  font-weight: 600;
+}
+
+/* ── Lists ── */
+.blog-prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.blog-prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.blog-prose li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.blog-prose li > ul,
+.blog-prose li > ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+/* ── Inline code ── */
+.blog-prose code:not(pre code) {
+  background: var(--prose-code-bg);
+  color: var(--prose-code-text);
+  padding: 0.15em 0.4em;
+  border-radius: 0.3rem;
+  font-size: 0.875em;
+  font-family: var(--font-mono);
+}
+
+/* ── Code blocks ── */
+.blog-prose pre {
+  background: var(--prose-pre-bg);
+  border: 1px solid var(--prose-pre-border);
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  font-family: var(--font-mono);
+}
+
+.blog-prose pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* ── Blockquotes ── */
+.blog-prose blockquote {
+  border-left: 3px solid var(--prose-blockquote-border);
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-bottom: 1.25rem;
+  color: var(--prose-blockquote-text);
+  font-style: italic;
+}
+
+.blog-prose blockquote p {
+  margin-bottom: 0.5rem;
+}
+
+/* ── Horizontal rules ── */
+.blog-prose hr {
+  border: none;
+  border-top: 1px solid var(--prose-hr);
+  margin: 2rem 0;
+}
+
+/* ── Images ── */
+.blog-prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  border: 1px solid var(--prose-img-border);
+  margin: 1.5rem 0;
+}
+
+/* ── Tables (GFM) ── */
+.blog-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.blog-prose th {
+  background: var(--prose-th-bg);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.625rem 0.75rem;
+  border-bottom: 2px solid var(--prose-td-border);
+}
+
+.blog-prose td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--prose-td-border);
+}
+
+/* ── Captions / small text ── */
+.blog-prose figcaption,
+.blog-prose .caption {
+  color: var(--prose-caption);
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: -0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Task lists (GFM checkboxes) ── */
+.blog-prose ul:has(input[type="checkbox"]) {
+  list-style: none;
+  padding-left: 0;
+}
+
+.blog-prose input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: var(--prose-links);
+}
+
+/* ── First paragraph emphasis ── */
+.blog-prose > p:first-child {
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
