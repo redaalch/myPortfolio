@@ -12,6 +12,8 @@ const CaseStudyPage = lazy(() => import("./pages/CaseStudyPage.tsx"));
 const AboutPage = lazy(() => import("./pages/AboutPage.tsx"));
 const CvPage = lazy(() => import("./pages/CvPage.tsx"));
 const ProjectsPage = lazy(() => import("./pages/ProjectsPage.tsx"));
+const BlogListPage = lazy(() => import("./pages/BlogListPage.tsx"));
+const BlogPostPage = lazy(() => import("./pages/BlogPostPage.tsx"));
 
 function PageSkeleton() {
   return (
@@ -97,6 +99,22 @@ const router = createBrowserRouter([
         element: (
           <SuspenseWrapper>
             <CaseStudyPage />
+          </SuspenseWrapper>
+        ),
+      },
+      {
+        path: "blog",
+        element: (
+          <SuspenseWrapper>
+            <BlogListPage />
+          </SuspenseWrapper>
+        ),
+      },
+      {
+        path: "blog/:slug",
+        element: (
+          <SuspenseWrapper>
+            <BlogPostPage />
           </SuspenseWrapper>
         ),
       },
