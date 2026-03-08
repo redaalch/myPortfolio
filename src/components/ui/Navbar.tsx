@@ -8,6 +8,7 @@ import LanguageToggle from "./LanguageToggle";
 const navLinks = [
   { key: "about", href: "/about" },
   { key: "projects", href: "/#projects" },
+  { key: "blog", href: "/blog" },
   { key: "experience", href: "/#experience" },
   { key: "skills", href: "/#skills" },
   { key: "certifications", href: "/#certifications" },
@@ -20,10 +21,11 @@ function useActiveLink() {
   const { pathname, hash } = useLocation();
 
   return (href: string) => {
-    // Path-based routes: /about, /cv
+    // Path-based routes: /about, /cv, /blog
     if (!href.startsWith("/#")) {
       if (href === "/about") return pathname === "/about";
       if (href === "/cv") return pathname === "/cv";
+      if (href === "/blog") return pathname.startsWith("/blog");
       return pathname === href;
     }
 
