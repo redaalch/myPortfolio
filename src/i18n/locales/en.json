@@ -8,6 +8,7 @@
     "contact": "Contact",
     "viewCv": "View CV",
     "home": "Home",
+    "blog": "Blog",
     "toggleMenu": "Toggle menu"
   },
   "hero": {
@@ -636,5 +637,18 @@
     "mainNavigation": "Main navigation",
     "projectType": "Project type",
     "backToTop": "Back to top"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Thoughts on web development, architecture decisions, and lessons learned building real-world projects.",
+    "allPosts": "All Posts",
+    "readMore": "Read more",
+    "minRead": "min read",
+    "noPosts": "No blog posts yet. Stay tuned!",
+    "noPostsForTag": "No posts found for this tag.",
+    "tableOfContents": "Table of Contents",
+    "prevPost": "Previous",
+    "nextPost": "Next",
+    "backToBlog": "Back to all posts"
   }
 }
