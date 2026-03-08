@@ -8,6 +8,7 @@
     "contact": "Contact",
     "viewCv": "Voir le CV",
     "home": "Accueil",
+    "blog": "Blog",
     "toggleMenu": "Basculer le menu"
   },
   "hero": {
@@ -652,5 +653,18 @@
     "mainNavigation": "Navigation principale",
     "projectType": "Type de projet",
     "backToTop": "Retour en haut"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Réflexions sur le développement web, les décisions d'architecture et les leçons tirées de projets concrets.",
+    "allPosts": "Tous les articles",
+    "readMore": "Lire la suite",
+    "minRead": "min de lecture",
+    "noPosts": "Aucun article de blog pour le moment. Restez à l'écoute !",
+    "noPostsForTag": "Aucun article trouvé pour ce tag.",
+    "tableOfContents": "Table des matières",
+    "prevPost": "Précédent",
+    "nextPost": "Suivant",
+    "backToBlog": "Retour aux articles"
   }
 }
