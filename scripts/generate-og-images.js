@@ -32,6 +32,13 @@ const pages = [
     description: "Full-Stack Developer — Node.js, React, real-time systems",
     tags: [],
   },
+  // Blog
+  {
+    slug: "blog",
+    title: "Blog",
+    description: "Thoughts on web dev, architecture, and lessons learned.",
+    tags: [],
+  },
   // Static pages
   {
     slug: "about",
