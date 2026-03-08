@@ -23,6 +23,15 @@ const BASE_URL = "https://remyportfolio.me";
 
 // ── Route definitions with per-route metadata ──────────────────────────────
 const routes = [
+  // Blog
+  {
+    path: "blog",
+    title: "Blog — Reda Alalach",
+    description:
+      "Thoughts on web development, architecture decisions, and lessons learned building real-world projects.",
+    ogImage: "og/blog.png",
+  },
+
   // Static pages
   {
     path: "about",
