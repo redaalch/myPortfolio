@@ -27,6 +27,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -46,15 +50,21 @@ jobs:
         run: npm run build
         env:
           VITE_WEB3FORMS_KEY: ${{ secrets.VITE_WEB3FORMS_KEY }}
+          VITE_BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+
+      - name: Install test browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify deployment
+        run: npm test -- tests/deployment.spec.ts
+        env:
+          PLAYWRIGHT_BASE_URL: http://localhost:4173${{ steps.pages.outputs.base_path }}/
 
       - name: Lighthouse CI
         continue-on-error: true
         run: |
           npm install -g @lhci/cli
           lhci autorun
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

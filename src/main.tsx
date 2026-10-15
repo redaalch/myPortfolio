@@ -50,7 +50,7 @@ function SuspenseWrapper({ children }: { children: React.ReactNode }) {
   );
 }
 
-const router = createBrowserRouter([
+const routes = [
   {
     element: <App />,
     children: [
@@ -121,7 +121,9 @@ const router = createBrowserRouter([
       { path: "*", element: <Navigate to="/" replace /> },
     ],
   },
-]);
+];
+
+const router = createBrowserRouter(routes, { basename: import.meta.env.BASE_URL });
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

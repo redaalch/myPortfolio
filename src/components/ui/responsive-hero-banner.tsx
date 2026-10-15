@@ -28,7 +28,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
     { label: "Contact", href: "#contact" },
   ],
   ctaButtonText = "View CV",
-  ctaButtonHref = "/Reda_Alalach_Resume.pdf",
+  ctaButtonHref = `${import.meta.env.BASE_URL}Reda_Alalach_Resume.pdf`,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t } = useTranslation();
@@ -37,8 +37,8 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
     <section className="w-full isolate min-h-screen overflow-hidden relative">
       {/* ── Background: hero image with heavy overlay to match section style ── */}
       <img
-        src="/hero-2400w.avif"
-        srcSet="/hero-1200w.avif 1200w, /hero-2400w.avif 2400w"
+        src={`${import.meta.env.BASE_URL}hero-2400w.avif`}
+        srcSet={`${import.meta.env.BASE_URL}hero-1200w.avif 1200w, ${import.meta.env.BASE_URL}hero-2400w.avif 2400w`}
         sizes="100vw"
         alt=""
         width={2400}
@@ -141,7 +141,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
       <div className="absolute bottom-24 left-0 w-32 h-px bg-linear-to-r from-transparent via-violet-400/20 to-transparent hidden lg:block" />
       <div className="absolute bottom-28 left-6 w-20 h-px bg-linear-to-r from-transparent via-violet-400/10 to-transparent hidden lg:block" />
 
-      <header className="z-10 xl:top-4 relative">
+      <header className="z-20 xl:top-4 relative">
         <div className="mx-6">
           <div className="flex items-center justify-between pt-4 relative">
             {/* Left — Logo */}

@@ -83,6 +83,21 @@ docker compose up --build
 
 ## CI / CD
 
+In **Settings → Pages → Build and deployment → Source**, select **GitHub Actions**.
+The deployment workflow builds the app and publishes `dist/`. Serving the repository
+root publishes the source HTML, whose `/src/main.tsx` entry cannot run in a browser.
+
+The workflow reads the site's base path from GitHub Pages and passes it as
+`VITE_BASE_PATH`, supporting both custom domains and project URLs such as
+`https://redaalch.github.io/myPortfolio/`.
+
+To verify a project-path deployment locally:
+
+```bash
+VITE_BASE_PATH=/myPortfolio/ npm run build
+PLAYWRIGHT_BASE_URL=http://localhost:4173/myPortfolio/ npm test -- tests/deployment.spec.ts
+```
+
 | Check             | Trigger            | Tool                                   |
 | ----------------- | ------------------ | -------------------------------------- |
 | Lint + Typecheck  | Every push         | ESLint + `tsc --noEmit`                |

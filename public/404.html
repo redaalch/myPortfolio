@@ -9,7 +9,7 @@
       // Encodes the current path + query into a query-string parameter
       // so index.html can restore the correct route client-side.
       // See: https://github.com/rafgraph/spa-github-pages
-      var pathSegmentsToKeep = 0; // 0 for user/org sites, 1 for project sites
+      var pathSegmentsToKeep = 0; // Set from VITE_BASE_PATH during the build
 
       var l = window.location;
       l.replace(

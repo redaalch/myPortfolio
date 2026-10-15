@@ -422,7 +422,7 @@ export default function ContactSection() {
 
           {/* ── View CV — action card ── */}
           <a
-            href="/Reda_Alalach_Resume.pdf"
+            href={`${import.meta.env.BASE_URL}Reda_Alalach_Resume.pdf`}
             target="_blank"
             rel="noopener noreferrer"
             className="contact-card contact-action-card group p-4 sm:p-5"

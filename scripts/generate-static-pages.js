@@ -186,6 +186,15 @@ if (!existsSync(templatePath)) {
 }
 
 const template = readFileSync(templatePath, "utf-8");
+const baseSegments = (process.env.VITE_BASE_PATH || "/").split("/").filter(Boolean).length;
+const notFoundPath = join(DIST, "404.html");
+writeFileSync(
+  notFoundPath,
+  readFileSync(notFoundPath, "utf-8").replace(
+    /var pathSegmentsToKeep = \d+;/,
+    `var pathSegmentsToKeep = ${baseSegments};`,
+  ),
+);
 let generated = 0;
 
 for (const route of routes) {

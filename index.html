@@ -11,12 +11,17 @@
     />
 
     <meta name="theme-color" content="#8b5cf6" />
-    <link rel="alternate" type="application/rss+xml" title="Reda Alalach — Blog" href="/rss.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Reda Alalach — Blog"
+      href="%BASE_URL%rss.xml"
+    />
     <link
       rel="alternate"
       type="application/atom+xml"
       title="Reda Alalach — Blog"
-      href="/atom.xml"
+      href="%BASE_URL%atom.xml"
     />
     <meta
       name="keywords"
@@ -51,9 +56,9 @@
     />
 
     <link rel="canonical" href="https://remyportfolio.me/" />
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" href="%BASE_URL%favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="%BASE_URL%apple-touch-icon.png" />
+    <link rel="manifest" href="%BASE_URL%site.webmanifest" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -83,7 +88,7 @@
       rel="preload"
       as="image"
       type="image/avif"
-      imagesrcset="/hero-1200w.avif 1200w, /hero-2400w.avif 2400w"
+      imagesrcset="%BASE_URL%hero-1200w.avif 1200w, %BASE_URL%hero-2400w.avif 2400w"
       imagesizes="100vw"
     />
 
@@ -131,6 +136,24 @@
 
     <title>Reda Alalach — Full-Stack Developer</title>
 
+    <!-- Keep the fallback readable even when app assets cannot load. -->
+    <style>
+      html {
+        background: #030014;
+        color: #e4e4e7;
+        --shell-accent: #c4b5fd;
+      }
+      html[data-theme="light"] {
+        background: #ffffff;
+        color: #1a1a2e;
+        --shell-accent: #6d28d9;
+      }
+      .static-shell a,
+      .static-shell .highlight {
+        color: var(--shell-accent);
+      }
+    </style>
+
     <!-- Theme init — prevent FOUC -->
     <script>
       !(function () {
@@ -168,6 +191,7 @@
            Feeds SEO crawlers, link-preview bots, and slow-connection users
            with real content instead of a blank div. -->
       <div
+        class="static-shell"
         style="
           max-width: 720px;
           margin: 0 auto;
@@ -176,7 +200,7 @@
             system-ui,
             -apple-system,
             sans-serif;
-          color: #e4e4e7;
+          color: inherit;
         "
       >
         <p
@@ -184,14 +208,14 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: #8b5cf6;
+            color: var(--shell-accent);
             margin-bottom: 12px;
           "
         >
           Backend / Full-Stack / DevOps — Open to internships
         </p>
         <h1 style="font-size: 2.5rem; line-height: 1.15; margin: 0 0 16px; font-weight: 400">
-          Hi, I'm <span style="color: #a78bfa">Reda Alalach</span><br />Full-Stack Developer
+          Hi, I'm <span class="highlight">Reda Alalach</span><br />Full-Stack Developer
         </h1>
         <p
           style="
@@ -210,48 +234,48 @@
         <ul style="list-style: none; padding: 0; margin: 0 0 40px">
           <li style="margin-bottom: 14px">
             <a
-              href="/case-study/notesboard"
-              style="color: #a78bfa; text-decoration: none; font-weight: 500"
+              href="%BASE_URL%case-study/notesboard"
+              style="text-decoration: none; font-weight: 500"
               >NotesBoard</a
             >
             — Collaborative notes &amp; analytics platform with real-time editing.
             <br />
-            <span style="opacity: 0.5; font-size: 0.85rem"
+            <span style="opacity: 0.7; font-size: 0.85rem"
               >10+ concurrent editors · &lt;80ms sync · React · Express · MongoDB · Socket.io</span
             >
           </li>
           <li style="margin-bottom: 14px">
             <a
-              href="/case-study/real-time-notifications"
-              style="color: #a78bfa; text-decoration: none; font-weight: 500"
+              href="%BASE_URL%case-study/real-time-notifications"
+              style="text-decoration: none; font-weight: 500"
               >Real-time Notifications</a
             >
             — Event-driven task notifications (internship, private repo).
             <br />
-            <span style="opacity: 0.5; font-size: 0.85rem"
+            <span style="opacity: 0.7; font-size: 0.85rem"
               >&lt;50ms delivery · Zero breaking changes · Socket.io · Express · JWT</span
             >
           </li>
           <li style="margin-bottom: 14px">
             <a
               href="https://redaalch.github.io/alarm-clock/"
-              style="color: #a78bfa; text-decoration: none; font-weight: 500"
+              style="text-decoration: none; font-weight: 500"
               >Alarm Clock</a
             >
             — Lightweight PWA with recurring alarms &amp; desktop notifications.
             <br />
-            <span style="opacity: 0.5; font-size: 0.85rem"
+            <span style="opacity: 0.7; font-size: 0.85rem"
               >Full offline support · &lt;1s load · JavaScript · HTML · CSS · PWA</span
             >
           </li>
         </ul>
 
-        <p style="font-size: 0.95rem; opacity: 0.6">
-          <a href="mailto:reda.alalach@gmail.com" style="color: #a78bfa">reda.alalach@gmail.com</a>
+        <p style="font-size: 0.95rem">
+          <a href="mailto:reda.alalach@gmail.com">reda.alalach@gmail.com</a>
           &nbsp;·&nbsp;
-          <a href="https://github.com/redaalch" style="color: #a78bfa">GitHub</a>
+          <a href="https://github.com/redaalch">GitHub</a>
           &nbsp;·&nbsp;
-          <a href="https://www.linkedin.com/in/reda-alalach/" style="color: #a78bfa">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/reda-alalach/">LinkedIn</a>
         </p>
       </div>
     </div>
@@ -263,11 +287,12 @@
         }
       </style>
       <div
+        class="static-shell"
         style="
           max-width: 700px;
           margin: 80px auto;
           padding: 24px;
-          color: #e4e4e7;
+          color: inherit;
           font-family: system-ui, sans-serif;
           text-align: center;
         "
@@ -290,15 +315,15 @@
           "
         >
           <li style="margin-bottom: 10px">
-            <strong style="color: #a78bfa">NotesBoard</strong> — Collaborative real-time notes &amp;
-            analytics platform (React, Express, MongoDB, Socket.io)
+            <strong style="color: var(--shell-accent)">NotesBoard</strong> — Collaborative real-time
+            notes &amp; analytics platform (React, Express, MongoDB, Socket.io)
           </li>
           <li style="margin-bottom: 10px">
-            <strong style="color: #a78bfa">Real-time Notifications</strong> — Event-driven task
-            notifications (Socket.io, Express, JWT)
+            <strong style="color: var(--shell-accent)">Real-time Notifications</strong> —
+            Event-driven task notifications (Socket.io, Express, JWT)
           </li>
           <li style="margin-bottom: 10px">
-            <a href="https://redaalch.github.io/alarm-clock/" style="color: #a78bfa"
+            <a href="https://redaalch.github.io/alarm-clock/" style="color: var(--shell-accent)"
               ><strong>Alarm Clock</strong></a
             >
             — PWA with recurring alarms &amp; desktop notifications
@@ -306,9 +331,11 @@
         </ul>
 
         <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap">
-          <a href="mailto:reda.alalach@gmail.com" style="color: #a78bfa">Email</a>
-          <a href="https://github.com/redaalch" style="color: #a78bfa">GitHub</a>
-          <a href="https://www.linkedin.com/in/reda-alalach/" style="color: #a78bfa">LinkedIn</a>
+          <a href="mailto:reda.alalach@gmail.com" style="color: var(--shell-accent)">Email</a>
+          <a href="https://github.com/redaalch" style="color: var(--shell-accent)">GitHub</a>
+          <a href="https://www.linkedin.com/in/reda-alalach/" style="color: var(--shell-accent)"
+            >LinkedIn</a
+          >
         </div>
       </div>
     </noscript>

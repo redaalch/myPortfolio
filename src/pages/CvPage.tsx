@@ -240,7 +240,7 @@ export default function CvPage() {
 
             {/* Download button — only shown on mobile; desktop gets it in the sidebar */}
             <a
-              href="/Reda_Alalach_Resume.pdf"
+              href={`${import.meta.env.BASE_URL}Reda_Alalach_Resume.pdf`}
               target="_blank"
               rel="noopener noreferrer"
               className="lg:hidden inline-flex items-center gap-2 rounded-lg border border-foreground/20 bg-foreground/5 px-4 py-2 text-sm font-medium text-foreground/80 hover:bg-foreground/10 hover:text-foreground transition-colors"
@@ -287,7 +287,7 @@ export default function CvPage() {
 
             <div className="mt-4 h-px bg-foreground/15" />
             <a
-              href="/Reda_Alalach_Resume.pdf"
+              href={`${import.meta.env.BASE_URL}Reda_Alalach_Resume.pdf`}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-2 inline-flex items-center gap-2 rounded-lg border border-purple-600 dark:border-purple-500/50 bg-transparent dark:bg-white/5 px-4 py-2 text-sm font-medium text-gray-800 dark:text-foreground/80 hover:bg-purple-500/10 hover:text-purple-700 dark:hover:text-purple-300 hover:border-purple-500 transition-all duration-300 print:hidden"
